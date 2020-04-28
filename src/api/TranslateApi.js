@@ -110,6 +110,7 @@ export default class TranslateApi {
      * @param {Number} opts.n Return top n translations. (default to 1)
      * @param {Boolean} opts.rich Returns rich translation information (e.g., with word alignments). (default to false)
      * @param {Boolean} opts.tmMatches Include translation memory fuzzy matches. (default to true)
+     * @param {Boolean} opts.projectTags Project tags. Projects tags in source to target if set to true. (default to false)
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TranslationList} and HTTP response
      */
     translateSegmentWithHttpInfo(memoryId, opts) {
@@ -129,7 +130,8 @@ export default class TranslateApi {
         'prefix': opts['prefix'],
         'n': opts['n'],
         'rich': opts['rich'],
-        'tm_matches': opts['tmMatches']
+        'tm_matches': opts['tmMatches'],
+        'project_tags': opts['projectTags']
       };
       let headerParams = {
       };
@@ -158,6 +160,7 @@ export default class TranslateApi {
      * @param {Number} opts.n Return top n translations. (default to 1)
      * @param {Boolean} opts.rich Returns rich translation information (e.g., with word alignments). (default to false)
      * @param {Boolean} opts.tmMatches Include translation memory fuzzy matches. (default to true)
+     * @param {Boolean} opts.projectTags Project tags. Projects tags in source to target if set to true. (default to false)
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TranslationList}
      */
     translateSegment(memoryId, opts) {

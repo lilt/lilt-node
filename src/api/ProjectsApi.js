@@ -146,6 +146,7 @@ export default class ProjectsApi {
      * @param {Number} opts.toTime Unix time stamp (epoch, in seconds) of Projects with `created_at` less than the value.
      * @param {String} opts.state A project state (backlog, inProgress, inReview, inQA, done).
      * @param {Boolean} opts.archived A flag that toggles whether to include archived projects in the response (the default is `true`).
+     * @param {Number} opts.connectorId A unique Connector identifier.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Project>} and HTTP response
      */
     getProjectWithHttpInfo(opts) {
@@ -161,7 +162,8 @@ export default class ProjectsApi {
         'from_time': opts['fromTime'],
         'to_time': opts['toTime'],
         'state': opts['state'],
-        'archived': opts['archived']
+        'archived': opts['archived'],
+        'connector_id': opts['connectorId']
       };
       let headerParams = {
       };
@@ -190,6 +192,7 @@ export default class ProjectsApi {
      * @param {Number} opts.toTime Unix time stamp (epoch, in seconds) of Projects with `created_at` less than the value.
      * @param {String} opts.state A project state (backlog, inProgress, inReview, inQA, done).
      * @param {Boolean} opts.archived A flag that toggles whether to include archived projects in the response (the default is `true`).
+     * @param {Number} opts.connectorId A unique Connector identifier.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Project>}
      */
     getProject(opts) {

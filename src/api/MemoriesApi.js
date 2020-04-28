@@ -401,7 +401,7 @@ export default class MemoriesApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/x-tmx'];
-      let returnType = 'Blob';
+      let returnType = File;
       return this.apiClient.callApi(
         '/memories/sync', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,

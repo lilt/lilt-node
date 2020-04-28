@@ -108,7 +108,7 @@ export default class FilesApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/octet-stream'];
-      let returnType = 'Blob';
+      let returnType = File;
       return this.apiClient.callApi(
         '/files', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -139,6 +139,7 @@ export default class FilesApi {
      * @param {Object} opts Optional parameters
      * @param {String} opts.exportUri A webhook endpoint that will export the translated document back to the source repository.
      * @param {String} opts.fileHash A hash value to associate with the file. The MD5 hash of the body contents will be used by default if a value isn't provided.
+     * @param {Boolean} opts.langId Flag indicating whether to perform language detection on the uploaded file. Default is false.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link File} and HTTP response
      */
     uploadFileWithHttpInfo(name, body, opts) {
@@ -158,7 +159,8 @@ export default class FilesApi {
       let queryParams = {
         'name': name,
         'export_uri': opts['exportUri'],
-        'file_hash': opts['fileHash']
+        'file_hash': opts['fileHash'],
+        'langId': opts['langId']
       };
       let headerParams = {
       };
@@ -168,7 +170,7 @@ export default class FilesApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/octet-stream'];
       let accepts = ['application/json'];
-      let returnType = 'Blob';
+      let returnType = File;
       return this.apiClient.callApi(
         '/files', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -184,6 +186,7 @@ export default class FilesApi {
      * @param {Object} opts Optional parameters
      * @param {String} opts.exportUri A webhook endpoint that will export the translated document back to the source repository.
      * @param {String} opts.fileHash A hash value to associate with the file. The MD5 hash of the body contents will be used by default if a value isn't provided.
+     * @param {Boolean} opts.langId Flag indicating whether to perform language detection on the uploaded file. Default is false.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link File}
      */
     uploadFile(name, body, opts) {

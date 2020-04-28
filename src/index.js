@@ -22,6 +22,7 @@ import DocumentPretranslateParameters from './model/DocumentPretranslateParamete
 import DocumentPretranslateResponse from './model/DocumentPretranslateResponse';
 import DocumentPretranslating from './model/DocumentPretranslating';
 import DocumentPretranslatingStatus from './model/DocumentPretranslatingStatus';
+import DocumentQuote from './model/DocumentQuote';
 import DocumentUpdateParameters from './model/DocumentUpdateParameters';
 import DocumentWithSegments from './model/DocumentWithSegments';
 import DocumentWithoutSegments from './model/DocumentWithoutSegments';
@@ -171,6 +172,12 @@ export {
      * @property {module:model/DocumentPretranslatingStatus}
      */
     DocumentPretranslatingStatus,
+
+    /**
+     * The DocumentQuote model constructor.
+     * @property {module:model/DocumentQuote}
+     */
+    DocumentQuote,
 
     /**
      * The DocumentUpdateParameters model constructor.

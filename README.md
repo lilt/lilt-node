@@ -195,6 +195,7 @@ Class | Method | HTTP request | Description
  - [LiltNode.DocumentPretranslateResponse](docs/DocumentPretranslateResponse.md)
  - [LiltNode.DocumentPretranslating](docs/DocumentPretranslating.md)
  - [LiltNode.DocumentPretranslatingStatus](docs/DocumentPretranslatingStatus.md)
+ - [LiltNode.DocumentQuote](docs/DocumentQuote.md)
  - [LiltNode.DocumentUpdateParameters](docs/DocumentUpdateParameters.md)
  - [LiltNode.DocumentWithSegments](docs/DocumentWithSegments.md)
  - [LiltNode.DocumentWithoutSegments](docs/DocumentWithoutSegments.md)

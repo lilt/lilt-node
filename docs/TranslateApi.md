@@ -98,7 +98,8 @@ let opts = {
   'prefix': "prefix_example", // String | A target prefix.
   'n': 1, // Number | Return top n translations.
   'rich': false, // Boolean | Returns rich translation information (e.g., with word alignments).
-  'tmMatches': true // Boolean | Include translation memory fuzzy matches.
+  'tmMatches': true, // Boolean | Include translation memory fuzzy matches.
+  'projectTags': false // Boolean | Project tags. Projects tags in source to target if set to true.
 };
 apiInstance.translateSegment(memoryId, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -120,6 +121,7 @@ Name | Type | Description  | Notes
  **n** | **Number**| Return top n translations. | [optional] [default to 1]
  **rich** | **Boolean**| Returns rich translation information (e.g., with word alignments). | [optional] [default to false]
  **tmMatches** | **Boolean**| Include translation memory fuzzy matches. | [optional] [default to true]
+ **projectTags** | **Boolean**| Project tags. Projects tags in source to target if set to true. | [optional] [default to false]
 
 ### Return type
 
