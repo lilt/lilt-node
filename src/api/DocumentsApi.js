@@ -214,7 +214,7 @@ export default class DocumentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/octet-stream'];
-      let returnType = 'Blob';
+      let returnType = File;
       return this.apiClient.callApi(
         '/documents/files', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,

@@ -12,23 +12,22 @@
  */
 
 import ApiClient from '../ApiClient';
-import DocumentQuote from './DocumentQuote';
 import MatchBand from './MatchBand';
 
 /**
- * The ProjectQuote model module.
- * @module model/ProjectQuote
+ * The DocumentQuote model module.
+ * @module model/DocumentQuote
  * @version v2.0
  */
-class ProjectQuote {
+class DocumentQuote {
     /**
-     * Constructs a new <code>ProjectQuote</code>.
-     * Quoting information for a Project. 
-     * @alias module:model/ProjectQuote
+     * Constructs a new <code>DocumentQuote</code>.
+     * Quoting information for a Document. 
+     * @alias module:model/DocumentQuote
      */
     constructor() { 
         
-        ProjectQuote.initialize(this);
+        DocumentQuote.initialize(this);
     }
 
     /**
@@ -40,15 +39,15 @@ class ProjectQuote {
     }
 
     /**
-     * Constructs a <code>ProjectQuote</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>DocumentQuote</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/ProjectQuote} obj Optional instance to populate.
-     * @return {module:model/ProjectQuote} The populated <code>ProjectQuote</code> instance.
+     * @param {module:model/DocumentQuote} obj Optional instance to populate.
+     * @return {module:model/DocumentQuote} The populated <code>DocumentQuote</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new ProjectQuote();
+            obj = obj || new DocumentQuote();
 
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'Number');
@@ -71,9 +70,6 @@ class ProjectQuote {
             if (data.hasOwnProperty('bands')) {
                 obj['bands'] = ApiClient.convertToType(data['bands'], [MatchBand]);
             }
-            if (data.hasOwnProperty('documents')) {
-                obj['documents'] = ApiClient.convertToType(data['documents'], [DocumentQuote]);
-            }
         }
         return obj;
     }
@@ -82,57 +78,51 @@ class ProjectQuote {
 }
 
 /**
- * A unique Project identifier.
+ * A unique Document identifier.
  * @member {Number} id
  */
-ProjectQuote.prototype['id'] = undefined;
+DocumentQuote.prototype['id'] = undefined;
 
 /**
- * The number of source words in the Project.
+ * The number of source words in the Document.
  * @member {Number} num_source_words
  */
-ProjectQuote.prototype['num_source_words'] = undefined;
+DocumentQuote.prototype['num_source_words'] = undefined;
 
 /**
- * The number of new source words in the Project.
+ * The number of new source words in the Document.
  * @member {Number} num_words_new
  */
-ProjectQuote.prototype['num_words_new'] = undefined;
+DocumentQuote.prototype['num_words_new'] = undefined;
 
 /**
- * The number of new segments in the Project.
+ * The number of new segments in the Document.
  * @member {Number} num_segments_new
  */
-ProjectQuote.prototype['num_segments_new'] = undefined;
+DocumentQuote.prototype['num_segments_new'] = undefined;
 
 /**
- * The number of repetition source words in the Project.
+ * The number of repetition source words in the Document.
  * @member {Number} num_words_repetition
  */
-ProjectQuote.prototype['num_words_repetition'] = undefined;
+DocumentQuote.prototype['num_words_repetition'] = undefined;
 
 /**
- * The number of repetition segments in the Project.
+ * The number of repetition segments in the Document.
  * @member {Number} num_segments_repetition
  */
-ProjectQuote.prototype['num_segments_repetition'] = undefined;
+DocumentQuote.prototype['num_segments_repetition'] = undefined;
 
 /**
  * A list of MatchBand objects that represent translation memory leverage statistics.
  * @member {Array.<module:model/MatchBand>} bands
  */
-ProjectQuote.prototype['bands'] = undefined;
-
-/**
- * A list of DocumentQuote objects that quotes information for a Document.
- * @member {Array.<module:model/DocumentQuote>} documents
- */
-ProjectQuote.prototype['documents'] = undefined;
+DocumentQuote.prototype['bands'] = undefined;
 
 
 
 
 
 
-export default ProjectQuote;
+export default DocumentQuote;
 

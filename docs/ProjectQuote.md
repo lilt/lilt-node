@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **numSegmentsNew** | **Number** | The number of new segments in the Project. | [optional] 
 **numWordsRepetition** | **Number** | The number of repetition source words in the Project. | [optional] 
 **numSegmentsRepetition** | **Number** | The number of repetition segments in the Project. | [optional] 
-**resources** | [**[MatchBand]**](MatchBand.md) | A list of MatchBand objects that represent translation memory leverage statistics. | [optional] 
+**bands** | [**[MatchBand]**](MatchBand.md) | A list of MatchBand objects that represent translation memory leverage statistics. | [optional] 
+**documents** | [**[DocumentQuote]**](DocumentQuote.md) | A list of DocumentQuote objects that quotes information for a Document. | [optional] 
 
 

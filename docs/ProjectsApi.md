@@ -154,7 +154,8 @@ let opts = {
   'fromTime': 56, // Number | Unix time stamp (epoch, in seconds) of Projects with `created_at` greater than or equal to the value.
   'toTime': 56, // Number | Unix time stamp (epoch, in seconds) of Projects with `created_at` less than the value.
   'state': "state_example", // String | A project state (backlog, inProgress, inReview, inQA, done).
-  'archived': true // Boolean | A flag that toggles whether to include archived projects in the response (the default is `true`).
+  'archived': true, // Boolean | A flag that toggles whether to include archived projects in the response (the default is `true`).
+  'connectorId': 56 // Number | A unique Connector identifier.
 };
 apiInstance.getProject(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -176,6 +177,7 @@ Name | Type | Description  | Notes
  **toTime** | **Number**| Unix time stamp (epoch, in seconds) of Projects with &#x60;created_at&#x60; less than the value. | [optional] 
  **state** | **String**| A project state (backlog, inProgress, inReview, inQA, done). | [optional] 
  **archived** | **Boolean**| A flag that toggles whether to include archived projects in the response (the default is &#x60;true&#x60;). | [optional] 
+ **connectorId** | **Number**| A unique Connector identifier. | [optional] 
 
 ### Return type
 

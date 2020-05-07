@@ -148,7 +148,8 @@ let name = "name_example"; // String | A file name.
 let body = "body_example"; // String | The file contents to be uploaded. The entire POST body will be treated as the file.
 let opts = {
   'exportUri': "exportUri_example", // String | A webhook endpoint that will export the translated document back to the source repository.
-  'fileHash': "fileHash_example" // String | A hash value to associate with the file. The MD5 hash of the body contents will be used by default if a value isn't provided.
+  'fileHash': "fileHash_example", // String | A hash value to associate with the file. The MD5 hash of the body contents will be used by default if a value isn't provided.
+  'langId': true // Boolean | Flag indicating whether to perform language detection on the uploaded file. Default is false.
 };
 apiInstance.uploadFile(name, body, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -167,6 +168,7 @@ Name | Type | Description  | Notes
  **body** | **String**| The file contents to be uploaded. The entire POST body will be treated as the file. | 
  **exportUri** | **String**| A webhook endpoint that will export the translated document back to the source repository. | [optional] 
  **fileHash** | **String**| A hash value to associate with the file. The MD5 hash of the body contents will be used by default if a value isn&#39;t provided. | [optional] 
+ **langId** | **Boolean**| Flag indicating whether to perform language detection on the uploaded file. Default is false. | [optional] 
 
 ### Return type
 

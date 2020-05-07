@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new LiltNode.ProjectQuote();
+    instance = new LiltNode.DocumentQuote();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,58 +47,46 @@
       object[property] = value;
   }
 
-  describe('ProjectQuote', function() {
-    it('should create an instance of ProjectQuote', function() {
-      // uncomment below and update the code to test ProjectQuote
-      //var instane = new LiltNode.ProjectQuote();
-      //expect(instance).to.be.a(LiltNode.ProjectQuote);
+  describe('DocumentQuote', function() {
+    it('should create an instance of DocumentQuote', function() {
+      // uncomment below and update the code to test DocumentQuote
+      //var instane = new LiltNode.DocumentQuote();
+      //expect(instance).to.be.a(LiltNode.DocumentQuote);
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instane = new LiltNode.ProjectQuote();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property numSourceWords (base name: "num_source_words")', function() {
-      // uncomment below and update the code to test the property numSourceWords
-      //var instane = new LiltNode.ProjectQuote();
+      //var instane = new LiltNode.DocumentQuote();
       //expect(instance).to.be();
     });
 
     it('should have the property numWordsNew (base name: "num_words_new")', function() {
       // uncomment below and update the code to test the property numWordsNew
-      //var instane = new LiltNode.ProjectQuote();
+      //var instane = new LiltNode.DocumentQuote();
       //expect(instance).to.be();
     });
 
     it('should have the property numSegmentsNew (base name: "num_segments_new")', function() {
       // uncomment below and update the code to test the property numSegmentsNew
-      //var instane = new LiltNode.ProjectQuote();
+      //var instane = new LiltNode.DocumentQuote();
       //expect(instance).to.be();
     });
 
     it('should have the property numWordsRepetition (base name: "num_words_repetition")', function() {
       // uncomment below and update the code to test the property numWordsRepetition
-      //var instane = new LiltNode.ProjectQuote();
+      //var instane = new LiltNode.DocumentQuote();
       //expect(instance).to.be();
     });
 
     it('should have the property numSegmentsRepetition (base name: "num_segments_repetition")', function() {
       // uncomment below and update the code to test the property numSegmentsRepetition
-      //var instane = new LiltNode.ProjectQuote();
+      //var instane = new LiltNode.DocumentQuote();
       //expect(instance).to.be();
     });
 
     it('should have the property bands (base name: "bands")', function() {
       // uncomment below and update the code to test the property bands
-      //var instane = new LiltNode.ProjectQuote();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property documents (base name: "documents")', function() {
-      // uncomment below and update the code to test the property documents
-      //var instane = new LiltNode.ProjectQuote();
+      //var instane = new LiltNode.DocumentQuote();
       //expect(instance).to.be();
     });
 
