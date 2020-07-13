@@ -299,6 +299,7 @@ export default class DocumentsApi {
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.caseSensitive Optional for using case matching against TM hits.
      * @param {Boolean} opts.autoAccept Optional parameter for auto-accepting 100% TM hits.
+     * @param {String} opts.mode An optional parameter indicating how the document will be pretranslated.  The accepted values are `null`, `tm`, or `tm+mt`. Default is `tm+mt`. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DocumentPretranslateResponse} and HTTP response
      */
     pretranslateDocumentWithHttpInfo(body, opts) {
@@ -313,7 +314,8 @@ export default class DocumentsApi {
       };
       let queryParams = {
         'case_sensitive': opts['caseSensitive'],
-        'auto_accept': opts['autoAccept']
+        'auto_accept': opts['autoAccept'],
+        'mode': opts['mode']
       };
       let headerParams = {
       };
@@ -338,6 +340,7 @@ export default class DocumentsApi {
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.caseSensitive Optional for using case matching against TM hits.
      * @param {Boolean} opts.autoAccept Optional parameter for auto-accepting 100% TM hits.
+     * @param {String} opts.mode An optional parameter indicating how the document will be pretranslated.  The accepted values are `null`, `tm`, or `tm+mt`. Default is `tm+mt`. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DocumentPretranslateResponse}
      */
     pretranslateDocument(body, opts) {
@@ -404,6 +407,7 @@ export default class DocumentsApi {
      * @param {Object} opts Optional parameters
      * @param {String} opts.pretranslate An optional parameter indicating if and how the document will be pretranslated upon being uploaded.  The accepted values are `null`, `tm`, or `tm+mt` 
      * @param {Boolean} opts.autoAccept An optional parameter to auto-accept segments with 100% translation memory matches when the `pretranslate` option is also set, or to auto-accept any target data that is present when the uploaded file is XLIFF. If omitted or set to `false`, no segments will be auto-accepted. 
+     * @param {Number} opts.configId An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DocumentWithSegments} and HTTP response
      */
     uploadDocumentFileWithHttpInfo(name, projectId, body, opts) {
@@ -430,7 +434,8 @@ export default class DocumentsApi {
         'name': name,
         'project_id': projectId,
         'pretranslate': opts['pretranslate'],
-        'auto_accept': opts['autoAccept']
+        'auto_accept': opts['autoAccept'],
+        'config_id': opts['configId']
       };
       let formParams = {
       };
@@ -455,6 +460,7 @@ export default class DocumentsApi {
      * @param {Object} opts Optional parameters
      * @param {String} opts.pretranslate An optional parameter indicating if and how the document will be pretranslated upon being uploaded.  The accepted values are `null`, `tm`, or `tm+mt` 
      * @param {Boolean} opts.autoAccept An optional parameter to auto-accept segments with 100% translation memory matches when the `pretranslate` option is also set, or to auto-accept any target data that is present when the uploaded file is XLIFF. If omitted or set to `false`, no segments will be auto-accepted. 
+     * @param {Number} opts.configId An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DocumentWithSegments}
      */
     uploadDocumentFile(name, projectId, body, opts) {

@@ -322,7 +322,8 @@ let apiInstance = new LiltNode.DocumentsApi();
 let body = new LiltNode.DocumentPretranslateParameters(); // DocumentPretranslateParameters | 
 let opts = {
   'caseSensitive': true, // Boolean | Optional for using case matching against TM hits.
-  'autoAccept': true // Boolean | Optional parameter for auto-accepting 100% TM hits.
+  'autoAccept': true, // Boolean | Optional parameter for auto-accepting 100% TM hits.
+  'mode': "mode_example" // String | An optional parameter indicating how the document will be pretranslated.  The accepted values are `null`, `tm`, or `tm+mt`. Default is `tm+mt`. 
 };
 apiInstance.pretranslateDocument(body, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -340,6 +341,7 @@ Name | Type | Description  | Notes
  **body** | [**DocumentPretranslateParameters**](DocumentPretranslateParameters.md)|  | 
  **caseSensitive** | **Boolean**| Optional for using case matching against TM hits. | [optional] 
  **autoAccept** | **Boolean**| Optional parameter for auto-accepting 100% TM hits. | [optional] 
+ **mode** | **String**| An optional parameter indicating how the document will be pretranslated.  The accepted values are &#x60;null&#x60;, &#x60;tm&#x60;, or &#x60;tm+mt&#x60;. Default is &#x60;tm+mt&#x60;.  | [optional] 
 
 ### Return type
 
@@ -438,7 +440,8 @@ let projectId = 56; // Number | A unique Project identifier.
 let body = "body_example"; // String | The file contents to be uploaded. The entire POST body will be treated as the file. 
 let opts = {
   'pretranslate': "pretranslate_example", // String | An optional parameter indicating if and how the document will be pretranslated upon being uploaded.  The accepted values are `null`, `tm`, or `tm+mt` 
-  'autoAccept': true // Boolean | An optional parameter to auto-accept segments with 100% translation memory matches when the `pretranslate` option is also set, or to auto-accept any target data that is present when the uploaded file is XLIFF. If omitted or set to `false`, no segments will be auto-accepted. 
+  'autoAccept': true, // Boolean | An optional parameter to auto-accept segments with 100% translation memory matches when the `pretranslate` option is also set, or to auto-accept any target data that is present when the uploaded file is XLIFF. If omitted or set to `false`, no segments will be auto-accepted. 
+  'configId': 56 // Number | An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file. 
 };
 apiInstance.uploadDocumentFile(name, projectId, body, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -458,6 +461,7 @@ Name | Type | Description  | Notes
  **body** | **String**| The file contents to be uploaded. The entire POST body will be treated as the file.  | 
  **pretranslate** | **String**| An optional parameter indicating if and how the document will be pretranslated upon being uploaded.  The accepted values are &#x60;null&#x60;, &#x60;tm&#x60;, or &#x60;tm+mt&#x60;  | [optional] 
  **autoAccept** | **Boolean**| An optional parameter to auto-accept segments with 100% translation memory matches when the &#x60;pretranslate&#x60; option is also set, or to auto-accept any target data that is present when the uploaded file is XLIFF. If omitted or set to &#x60;false&#x60;, no segments will be auto-accepted.  | [optional] 
+ **configId** | **Number**| An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file.  | [optional] 
 
 ### Return type
 

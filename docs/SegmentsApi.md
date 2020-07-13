@@ -122,7 +122,7 @@ Name | Type | Description  | Notes
 
 ## getSegment
 
-> Segment getSegment(id)
+> SegmentWithComments getSegment(id, opts)
 
 Retrieve a Segment
 
@@ -145,7 +145,10 @@ BasicAuth.password = 'YOUR PASSWORD';
 
 let apiInstance = new LiltNode.SegmentsApi();
 let id = 56; // Number | A unique Segment identifier.
-apiInstance.getSegment(id).then((data) => {
+let opts = {
+  'includeComments': false // Boolean | Include comments in the response.
+};
+apiInstance.getSegment(id, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -159,10 +162,11 @@ apiInstance.getSegment(id).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Number**| A unique Segment identifier. | 
+ **includeComments** | **Boolean**| Include comments in the response. | [optional] [default to false]
 
 ### Return type
 
-[**Segment**](Segment.md)
+[**SegmentWithComments**](SegmentWithComments.md)
 
 ### Authorization
 

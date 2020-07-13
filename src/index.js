@@ -13,7 +13,12 @@
 
 
 import ApiClient from './ApiClient';
+import Annotation from './model/Annotation';
 import ApiRoot from './model/ApiRoot';
+import Comment from './model/Comment';
+import Connector from './model/Connector';
+import Connector1 from './model/Connector1';
+import ConnectorDeleteResponse from './model/ConnectorDeleteResponse';
 import DocumentAssignmentParameters from './model/DocumentAssignmentParameters';
 import DocumentAssignmentResponse from './model/DocumentAssignmentResponse';
 import DocumentDeleteResponse from './model/DocumentDeleteResponse';
@@ -64,11 +69,13 @@ import Segment from './model/Segment';
 import SegmentCreateParameters from './model/SegmentCreateParameters';
 import SegmentDeleteResponse from './model/SegmentDeleteResponse';
 import SegmentUpdateParameters from './model/SegmentUpdateParameters';
+import SegmentWithComments from './model/SegmentWithComments';
 import TaggedSegment from './model/TaggedSegment';
 import TranslateRegisterResponse from './model/TranslateRegisterResponse';
 import Translation from './model/Translation';
 import TranslationList from './model/TranslationList';
 import TranslationMemoryEntry from './model/TranslationMemoryEntry';
+import ConnectorsApi from './api/ConnectorsApi';
 import DocumentsApi from './api/DocumentsApi';
 import FilesApi from './api/FilesApi';
 import LanguagesApi from './api/LanguagesApi';
@@ -120,10 +127,40 @@ export {
     ApiClient,
 
     /**
+     * The Annotation model constructor.
+     * @property {module:model/Annotation}
+     */
+    Annotation,
+
+    /**
      * The ApiRoot model constructor.
      * @property {module:model/ApiRoot}
      */
     ApiRoot,
+
+    /**
+     * The Comment model constructor.
+     * @property {module:model/Comment}
+     */
+    Comment,
+
+    /**
+     * The Connector model constructor.
+     * @property {module:model/Connector}
+     */
+    Connector,
+
+    /**
+     * The Connector1 model constructor.
+     * @property {module:model/Connector1}
+     */
+    Connector1,
+
+    /**
+     * The ConnectorDeleteResponse model constructor.
+     * @property {module:model/ConnectorDeleteResponse}
+     */
+    ConnectorDeleteResponse,
 
     /**
      * The DocumentAssignmentParameters model constructor.
@@ -426,6 +463,12 @@ export {
     SegmentUpdateParameters,
 
     /**
+     * The SegmentWithComments model constructor.
+     * @property {module:model/SegmentWithComments}
+     */
+    SegmentWithComments,
+
+    /**
      * The TaggedSegment model constructor.
      * @property {module:model/TaggedSegment}
      */
@@ -454,6 +497,12 @@ export {
      * @property {module:model/TranslationMemoryEntry}
      */
     TranslationMemoryEntry,
+
+    /**
+    * The ConnectorsApi service constructor.
+    * @property {module:api/ConnectorsApi}
+    */
+    ConnectorsApi,
 
     /**
     * The DocumentsApi service constructor.

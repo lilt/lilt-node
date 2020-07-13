@@ -126,9 +126,9 @@ var BasicAuth = defaultClient.authentications['BasicAuth'];
 BasicAuth.username = 'YOUR USERNAME'
 BasicAuth.password = 'YOUR PASSWORD'
 
-var api = new LiltNode.DocumentsApi()
-var body = new LiltNode.DocumentAssignmentParameters(); // {DocumentAssignmentParameters} 
-api.assignDocument(body).then(function(data) {
+var api = new LiltNode.ConnectorsApi()
+var body = new LiltNode.Connector1(); // {Connector1} 
+api.createConnector(body).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
 }, function(error) {
   console.error(error);
@@ -143,6 +143,10 @@ All URIs are relative to *https://lilt.com/2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*LiltNode.ConnectorsApi* | [**createConnector**](docs/ConnectorsApi.md#createConnector) | **POST** /connectors | Upload a Connector
+*LiltNode.ConnectorsApi* | [**deleteConnector**](docs/ConnectorsApi.md#deleteConnector) | **DELETE** /connectors | Delete a Connector
+*LiltNode.ConnectorsApi* | [**getConnectors**](docs/ConnectorsApi.md#getConnectors) | **GET** /connectors | Retrieve a Connector
+*LiltNode.ConnectorsApi* | [**updateConnector**](docs/ConnectorsApi.md#updateConnector) | **PUT** /connectors | Upload a Connector
 *LiltNode.DocumentsApi* | [**assignDocument**](docs/DocumentsApi.md#assignDocument) | **PUT** /documents/share | Assign a Document
 *LiltNode.DocumentsApi* | [**createDocument**](docs/DocumentsApi.md#createDocument) | **POST** /documents | Create a Document
 *LiltNode.DocumentsApi* | [**deleteDocument**](docs/DocumentsApi.md#deleteDocument) | **DELETE** /documents | Delete a Document
@@ -186,7 +190,12 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [LiltNode.Annotation](docs/Annotation.md)
  - [LiltNode.ApiRoot](docs/ApiRoot.md)
+ - [LiltNode.Comment](docs/Comment.md)
+ - [LiltNode.Connector](docs/Connector.md)
+ - [LiltNode.Connector1](docs/Connector1.md)
+ - [LiltNode.ConnectorDeleteResponse](docs/ConnectorDeleteResponse.md)
  - [LiltNode.DocumentAssignmentParameters](docs/DocumentAssignmentParameters.md)
  - [LiltNode.DocumentAssignmentResponse](docs/DocumentAssignmentResponse.md)
  - [LiltNode.DocumentDeleteResponse](docs/DocumentDeleteResponse.md)
@@ -237,6 +246,7 @@ Class | Method | HTTP request | Description
  - [LiltNode.SegmentCreateParameters](docs/SegmentCreateParameters.md)
  - [LiltNode.SegmentDeleteResponse](docs/SegmentDeleteResponse.md)
  - [LiltNode.SegmentUpdateParameters](docs/SegmentUpdateParameters.md)
+ - [LiltNode.SegmentWithComments](docs/SegmentWithComments.md)
  - [LiltNode.TaggedSegment](docs/TaggedSegment.md)
  - [LiltNode.TranslateRegisterResponse](docs/TranslateRegisterResponse.md)
  - [LiltNode.Translation](docs/Translation.md)
