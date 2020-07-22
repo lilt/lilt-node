@@ -35,6 +35,8 @@ import DocumentWithoutSegmentsStatus from './model/DocumentWithoutSegmentsStatus
 import Error from './model/Error';
 import File from './model/File';
 import FileDeleteResponse from './model/FileDeleteResponse';
+import InlineResponse200 from './model/InlineResponse200';
+import InlineResponse201 from './model/InlineResponse201';
 import LanguagesResponse from './model/LanguagesResponse';
 import LexiconEntry from './model/LexiconEntry';
 import LexiconEntryExamples from './model/LexiconEntryExamples';
@@ -257,6 +259,18 @@ export {
      * @property {module:model/FileDeleteResponse}
      */
     FileDeleteResponse,
+
+    /**
+     * The InlineResponse200 model constructor.
+     * @property {module:model/InlineResponse200}
+     */
+    InlineResponse200,
+
+    /**
+     * The InlineResponse201 model constructor.
+     * @property {module:model/InlineResponse201}
+     */
+    InlineResponse201,
 
     /**
      * The LanguagesResponse model constructor.
