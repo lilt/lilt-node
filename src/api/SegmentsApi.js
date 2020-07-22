@@ -18,6 +18,7 @@ import Segment from '../model/Segment';
 import SegmentCreateParameters from '../model/SegmentCreateParameters';
 import SegmentDeleteResponse from '../model/SegmentDeleteResponse';
 import SegmentUpdateParameters from '../model/SegmentUpdateParameters';
+import SegmentWithComments from '../model/SegmentWithComments';
 import TaggedSegment from '../model/TaggedSegment';
 
 /**
@@ -139,9 +140,12 @@ export default class SegmentsApi {
      * Retrieve a Segment
      * Retrieve a Segment.  
      * @param {Number} id A unique Segment identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Segment} and HTTP response
+     * @param {Object} opts Optional parameters
+     * @param {Boolean} opts.includeComments Include comments in the response. (default to false)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SegmentWithComments} and HTTP response
      */
-    getSegmentWithHttpInfo(id) {
+    getSegmentWithHttpInfo(id, opts) {
+      opts = opts || {};
       let postBody = null;
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
@@ -151,7 +155,8 @@ export default class SegmentsApi {
       let pathParams = {
       };
       let queryParams = {
-        'id': id
+        'id': id,
+        'include_comments': opts['includeComments']
       };
       let headerParams = {
       };
@@ -161,7 +166,7 @@ export default class SegmentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = Segment;
+      let returnType = SegmentWithComments;
       return this.apiClient.callApi(
         '/segments', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -173,10 +178,12 @@ export default class SegmentsApi {
      * Retrieve a Segment
      * Retrieve a Segment.  
      * @param {Number} id A unique Segment identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Segment}
+     * @param {Object} opts Optional parameters
+     * @param {Boolean} opts.includeComments Include comments in the response. (default to false)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SegmentWithComments}
      */
-    getSegment(id) {
-      return this.getSegmentWithHttpInfo(id)
+    getSegment(id, opts) {
+      return this.getSegmentWithHttpInfo(id, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

@@ -82,6 +82,9 @@ class Project {
             if (data.hasOwnProperty('metadata')) {
                 obj['metadata'] = ApiClient.convertToType(data['metadata'], Object);
             }
+            if (data.hasOwnProperty('sample_review_percentage')) {
+                obj['sample_review_percentage'] = ApiClient.convertToType(data['sample_review_percentage'], 'Number');
+            }
             if (data.hasOwnProperty('created_at')) {
                 obj['created_at'] = ApiClient.convertToType(data['created_at'], 'Number');
             }
@@ -163,6 +166,12 @@ Project.prototype['archived'] = undefined;
  * @member {Object} metadata
  */
 Project.prototype['metadata'] = undefined;
+
+/**
+ * The project's sample review percentage.
+ * @member {Number} sample_review_percentage
+ */
+Project.prototype['sample_review_percentage'] = undefined;
 
 /**
  * Time at which the object was created. Measured in seconds since the Unix epoch.

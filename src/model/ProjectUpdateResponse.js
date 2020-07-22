@@ -67,6 +67,9 @@ class ProjectUpdateResponse {
             if (data.hasOwnProperty('metadata')) {
                 obj['metadata'] = ApiClient.convertToType(data['metadata'], Object);
             }
+            if (data.hasOwnProperty('sample_review_percentage')) {
+                obj['sample_review_percentage'] = ApiClient.convertToType(data['sample_review_percentage'], 'Number');
+            }
         }
         return obj;
     }
@@ -109,6 +112,12 @@ ProjectUpdateResponse.prototype['archived'] = undefined;
  * @member {Object} metadata
  */
 ProjectUpdateResponse.prototype['metadata'] = undefined;
+
+/**
+ * The Project's sample review percentage. Must be an integer between 10 and 100, a multiple of 10 and greater than minimum value (displayed in error message).
+ * @member {Number} sample_review_percentage
+ */
+ProjectUpdateResponse.prototype['sample_review_percentage'] = undefined;
 
 
 
