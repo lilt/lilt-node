@@ -297,24 +297,26 @@ export default class DocumentsApi {
      * Initiate pretranslation of a list of Documents. This request will mark document(s) as being pretranslated. Pretranslation in this context is: - Applying and confirming exact TM matches based on the Memory of the Project; - Translating all other segments via MT without confirming them.  Example cURL command: ``` curl -X POST https://lilt.com/2/documents/pretranslate?key=API_KEY -d {\"id\": [123]} -H \"Content-Type: application/json\" ```  Document translation is an asynchronous process that, in effect, is performed in the background.  To check the status of pretranslation for a document, use the `GET /documents` endpoint. When pretranslation is in progress for a document, the `GET /documents` endpoint's response will include `is_pretranslating = true` as well as a more detailed status property `status.pretranslation` one of `idle`, `pending`, or `running`.  Once pretranslation is finished, the document can be downloaded via `GET /documents/files`. 
      * @param {module:model/DocumentPretranslateParameters} body 
      * @param {Object} opts Optional parameters
-     * @param {Boolean} opts.caseSensitive Optional for using case matching against TM hits.
      * @param {Boolean} opts.autoAccept Optional parameter for auto-accepting 100% TM hits.
-     * @param {String} opts.mode An optional parameter indicating how the document will be pretranslated.  The accepted values are `null`, `tm`, or `tm+mt`. Default is `tm+mt`. 
+     * @param {Boolean} opts.caseSensitive Optional for using case matching against TM hits.
+     * @param {Boolean} opts.attributeToCreator Optional parameter for for attributing translation authorship of exact matches to document creator.
+     * @param {String} opts.mode An optional parameter indicating how the document will be pretranslated.  The accepted values are `tm`, or `tm+mt`. Default is `tm+mt`. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DocumentPretranslateResponse} and HTTP response
      */
-    pretranslateDocumentWithHttpInfo(body, opts) {
+    pretranslateDocumentsWithHttpInfo(body, opts) {
       opts = opts || {};
       let postBody = body;
       // verify the required parameter 'body' is set
       if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling pretranslateDocument");
+        throw new Error("Missing the required parameter 'body' when calling pretranslateDocuments");
       }
 
       let pathParams = {
       };
       let queryParams = {
-        'case_sensitive': opts['caseSensitive'],
         'auto_accept': opts['autoAccept'],
+        'case_sensitive': opts['caseSensitive'],
+        'attribute_to_creator': opts['attributeToCreator'],
         'mode': opts['mode']
       };
       let headerParams = {
@@ -338,13 +340,14 @@ export default class DocumentsApi {
      * Initiate pretranslation of a list of Documents. This request will mark document(s) as being pretranslated. Pretranslation in this context is: - Applying and confirming exact TM matches based on the Memory of the Project; - Translating all other segments via MT without confirming them.  Example cURL command: ``` curl -X POST https://lilt.com/2/documents/pretranslate?key=API_KEY -d {\"id\": [123]} -H \"Content-Type: application/json\" ```  Document translation is an asynchronous process that, in effect, is performed in the background.  To check the status of pretranslation for a document, use the `GET /documents` endpoint. When pretranslation is in progress for a document, the `GET /documents` endpoint's response will include `is_pretranslating = true` as well as a more detailed status property `status.pretranslation` one of `idle`, `pending`, or `running`.  Once pretranslation is finished, the document can be downloaded via `GET /documents/files`. 
      * @param {module:model/DocumentPretranslateParameters} body 
      * @param {Object} opts Optional parameters
-     * @param {Boolean} opts.caseSensitive Optional for using case matching against TM hits.
      * @param {Boolean} opts.autoAccept Optional parameter for auto-accepting 100% TM hits.
-     * @param {String} opts.mode An optional parameter indicating how the document will be pretranslated.  The accepted values are `null`, `tm`, or `tm+mt`. Default is `tm+mt`. 
+     * @param {Boolean} opts.caseSensitive Optional for using case matching against TM hits.
+     * @param {Boolean} opts.attributeToCreator Optional parameter for for attributing translation authorship of exact matches to document creator.
+     * @param {String} opts.mode An optional parameter indicating how the document will be pretranslated.  The accepted values are `tm`, or `tm+mt`. Default is `tm+mt`. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DocumentPretranslateResponse}
      */
-    pretranslateDocument(body, opts) {
-      return this.pretranslateDocumentWithHttpInfo(body, opts)
+    pretranslateDocuments(body, opts) {
+      return this.pretranslateDocumentsWithHttpInfo(body, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
