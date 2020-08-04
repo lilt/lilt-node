@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**deleteDocument**](DocumentsApi.md#deleteDocument) | **DELETE** /documents | Delete a Document
 [**downloadFile**](DocumentsApi.md#downloadFile) | **GET** /documents/files | Download a File
 [**getDocument**](DocumentsApi.md#getDocument) | **GET** /documents | Retrieve a Document
-[**pretranslateDocument**](DocumentsApi.md#pretranslateDocument) | **POST** /documents/pretranslate | Pretranslate a Document
+[**pretranslateDocuments**](DocumentsApi.md#pretranslateDocuments) | **POST** /documents/pretranslate | Pretranslate a Document
 [**updateDocument**](DocumentsApi.md#updateDocument) | **PUT** /documents | Update a Document
 [**uploadDocumentFile**](DocumentsApi.md#uploadDocumentFile) | **POST** /documents/files | Upload a File
 
@@ -295,9 +295,9 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
-## pretranslateDocument
+## pretranslateDocuments
 
-> DocumentPretranslateResponse pretranslateDocument(body, opts)
+> DocumentPretranslateResponse pretranslateDocuments(body, opts)
 
 Pretranslate a Document
 
@@ -321,11 +321,12 @@ BasicAuth.password = 'YOUR PASSWORD';
 let apiInstance = new LiltNode.DocumentsApi();
 let body = new LiltNode.DocumentPretranslateParameters(); // DocumentPretranslateParameters | 
 let opts = {
-  'caseSensitive': true, // Boolean | Optional for using case matching against TM hits.
   'autoAccept': true, // Boolean | Optional parameter for auto-accepting 100% TM hits.
-  'mode': "mode_example" // String | An optional parameter indicating how the document will be pretranslated.  The accepted values are `null`, `tm`, or `tm+mt`. Default is `tm+mt`. 
+  'caseSensitive': true, // Boolean | Optional for using case matching against TM hits.
+  'attributeToCreator': true, // Boolean | Optional parameter for attributing translation authorship of exact matches to document creator.
+  'mode': "mode_example" // String | An optional parameter indicating how the document will be pretranslated.  The accepted values are `tm`, or `tm+mt`. Default is `tm+mt`. 
 };
-apiInstance.pretranslateDocument(body, opts).then((data) => {
+apiInstance.pretranslateDocuments(body, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -339,9 +340,10 @@ apiInstance.pretranslateDocument(body, opts).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**DocumentPretranslateParameters**](DocumentPretranslateParameters.md)|  | 
- **caseSensitive** | **Boolean**| Optional for using case matching against TM hits. | [optional] 
  **autoAccept** | **Boolean**| Optional parameter for auto-accepting 100% TM hits. | [optional] 
- **mode** | **String**| An optional parameter indicating how the document will be pretranslated.  The accepted values are &#x60;null&#x60;, &#x60;tm&#x60;, or &#x60;tm+mt&#x60;. Default is &#x60;tm+mt&#x60;.  | [optional] 
+ **caseSensitive** | **Boolean**| Optional for using case matching against TM hits. | [optional] 
+ **attributeToCreator** | **Boolean**| Optional parameter for attributing translation authorship of exact matches to document creator. | [optional] 
+ **mode** | **String**| An optional parameter indicating how the document will be pretranslated.  The accepted values are &#x60;tm&#x60;, or &#x60;tm+mt&#x60;. Default is &#x60;tm+mt&#x60;.  | [optional] 
 
 ### Return type
 

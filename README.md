@@ -152,7 +152,7 @@ Class | Method | HTTP request | Description
 *LiltNode.DocumentsApi* | [**deleteDocument**](docs/DocumentsApi.md#deleteDocument) | **DELETE** /documents | Delete a Document
 *LiltNode.DocumentsApi* | [**downloadFile**](docs/DocumentsApi.md#downloadFile) | **GET** /documents/files | Download a File
 *LiltNode.DocumentsApi* | [**getDocument**](docs/DocumentsApi.md#getDocument) | **GET** /documents | Retrieve a Document
-*LiltNode.DocumentsApi* | [**pretranslateDocument**](docs/DocumentsApi.md#pretranslateDocument) | **POST** /documents/pretranslate | Pretranslate a Document
+*LiltNode.DocumentsApi* | [**pretranslateDocuments**](docs/DocumentsApi.md#pretranslateDocuments) | **POST** /documents/pretranslate | Pretranslate a Document
 *LiltNode.DocumentsApi* | [**updateDocument**](docs/DocumentsApi.md#updateDocument) | **PUT** /documents | Update a Document
 *LiltNode.DocumentsApi* | [**uploadDocumentFile**](docs/DocumentsApi.md#uploadDocumentFile) | **POST** /documents/files | Upload a File
 *LiltNode.FilesApi* | [**deleteFile**](docs/FilesApi.md#deleteFile) | **DELETE** /files | Delete a File
@@ -212,6 +212,8 @@ Class | Method | HTTP request | Description
  - [LiltNode.Error](docs/Error.md)
  - [LiltNode.File](docs/File.md)
  - [LiltNode.FileDeleteResponse](docs/FileDeleteResponse.md)
+ - [LiltNode.InlineResponse200](docs/InlineResponse200.md)
+ - [LiltNode.InlineResponse201](docs/InlineResponse201.md)
  - [LiltNode.LanguagesResponse](docs/LanguagesResponse.md)
  - [LiltNode.LexiconEntry](docs/LexiconEntry.md)
  - [LiltNode.LexiconEntryExamples](docs/LexiconEntryExamples.md)
