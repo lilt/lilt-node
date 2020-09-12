@@ -35,7 +35,7 @@ BasicAuth.username = 'YOUR USERNAME';
 BasicAuth.password = 'YOUR PASSWORD';
 
 let apiInstance = new LiltNode.ConnectorsApi();
-let body = new LiltNode.Connector1(); // Connector1 | 
+let body = new LiltNode.Connector(); // Connector | 
 apiInstance.createConnector(body).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
@@ -49,7 +49,7 @@ apiInstance.createConnector(body).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Connector1**](Connector1.md)|  | 
+ **body** | [**Connector**](Connector.md)|  | 
 
 ### Return type
 
@@ -121,7 +121,7 @@ Name | Type | Description  | Notes
 
 ## getConnectors
 
-> Connector getConnectors(opts)
+> [Connector] getConnectors(opts)
 
 Retrieve a Connector
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Connector**](Connector.md)
+[**[Connector]**](Connector.md)
 
 ### Authorization
 
@@ -199,7 +199,7 @@ BasicAuth.username = 'YOUR USERNAME';
 BasicAuth.password = 'YOUR PASSWORD';
 
 let apiInstance = new LiltNode.ConnectorsApi();
-let body = new LiltNode.Connector(); // Connector | 
+let body = new LiltNode.ConnectorArguments(); // ConnectorArguments | 
 apiInstance.updateConnector(body).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
@@ -213,7 +213,7 @@ apiInstance.updateConnector(body).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Connector**](Connector.md)|  | 
+ **body** | [**ConnectorArguments**](ConnectorArguments.md)|  | 
 
 ### Return type
 

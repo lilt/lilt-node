@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The Translation model module.
  * @module model/Translation
- * @version v2.0
+ * @version 0.5.0
  */
 class Translation {
     /**
@@ -122,7 +122,7 @@ Translation.prototype['isTMMatch'] = undefined;
 Translation.prototype['targetDelimiters'] = undefined;
 
 /**
- * The target string can be constructed by suffixing each `targetDelimiters` entry with its corresponding word in `targetWords` and concatenating the constructed array.  Please note that the `targetDelimiters` array has one more entry than `targetWords` array which is why the last entry in the array will be the last value of `targetDelimiters`. 
+ * The target string can be constructed by suffixing each `targetDelimiters` entry with its corresponding word in `targetWords` and concatenating the constructed array. Please note that the `targetDelimiters` array has one more entry than `targetWords` array which is why the last entry in the array will be the last value of `targetDelimiters`. 
  * @member {Array.<String>} targetWords
  */
 Translation.prototype['targetWords'] = undefined;

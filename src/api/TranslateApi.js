@@ -20,7 +20,7 @@ import TranslationList from '../model/TranslationList';
 /**
 * Translate service.
 * @module api/TranslateApi
-* @version v2.0
+* @version 0.5.0
 */
 export default class TranslateApi {
 
@@ -107,7 +107,7 @@ export default class TranslateApi {
      * @param {String} opts.source The source text to be translated.
      * @param {Number} opts.sourceHash A source hash code.
      * @param {String} opts.prefix A target prefix.
-     * @param {Number} opts.n Return top n translations. (default to 1)
+     * @param {Number} opts.n Return top n translations (deprecated). (default to 1)
      * @param {Boolean} opts.rich Returns rich translation information (e.g., with word alignments). (default to false)
      * @param {Boolean} opts.tmMatches Include translation memory fuzzy matches. (default to true)
      * @param {Boolean} opts.projectTags Project tags. Projects tags in source to target if set to true. (default to false)
@@ -157,7 +157,7 @@ export default class TranslateApi {
      * @param {String} opts.source The source text to be translated.
      * @param {Number} opts.sourceHash A source hash code.
      * @param {String} opts.prefix A target prefix.
-     * @param {Number} opts.n Return top n translations. (default to 1)
+     * @param {Number} opts.n Return top n translations (deprecated). (default to 1)
      * @param {Boolean} opts.rich Returns rich translation information (e.g., with word alignments). (default to false)
      * @param {Boolean} opts.tmMatches Include translation memory fuzzy matches. (default to true)
      * @param {Boolean} opts.projectTags Project tags. Projects tags in source to target if set to true. (default to false)

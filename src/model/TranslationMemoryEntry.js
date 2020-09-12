@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The TranslationMemoryEntry model module.
  * @module model/TranslationMemoryEntry
- * @version v2.0
+ * @version 0.5.0
  */
 class TranslationMemoryEntry {
     /**

@@ -17,7 +17,7 @@ import Annotation from './model/Annotation';
 import ApiRoot from './model/ApiRoot';
 import Comment from './model/Comment';
 import Connector from './model/Connector';
-import Connector1 from './model/Connector1';
+import ConnectorArguments from './model/ConnectorArguments';
 import ConnectorDeleteResponse from './model/ConnectorDeleteResponse';
 import DocumentAssignmentParameters from './model/DocumentAssignmentParameters';
 import DocumentAssignmentResponse from './model/DocumentAssignmentResponse';
@@ -35,8 +35,6 @@ import DocumentWithoutSegmentsStatus from './model/DocumentWithoutSegmentsStatus
 import Error from './model/Error';
 import File from './model/File';
 import FileDeleteResponse from './model/FileDeleteResponse';
-import InlineResponse200 from './model/InlineResponse200';
-import InlineResponse201 from './model/InlineResponse201';
 import LanguagesResponse from './model/LanguagesResponse';
 import LexiconEntry from './model/LexiconEntry';
 import LexiconEntryExamples from './model/LexiconEntryExamples';
@@ -119,7 +117,7 @@ import TranslateApi from './api/TranslateApi';
 * </pre>
 * </p>
 * @module index
-* @version v2.0
+* @version 0.5.0
 */
 export {
     /**
@@ -153,10 +151,10 @@ export {
     Connector,
 
     /**
-     * The Connector1 model constructor.
-     * @property {module:model/Connector1}
+     * The ConnectorArguments model constructor.
+     * @property {module:model/ConnectorArguments}
      */
-    Connector1,
+    ConnectorArguments,
 
     /**
      * The ConnectorDeleteResponse model constructor.
@@ -259,18 +257,6 @@ export {
      * @property {module:model/FileDeleteResponse}
      */
     FileDeleteResponse,
-
-    /**
-     * The InlineResponse200 model constructor.
-     * @property {module:model/InlineResponse200}
-     */
-    InlineResponse200,
-
-    /**
-     * The InlineResponse201 model constructor.
-     * @property {module:model/InlineResponse201}
-     */
-    InlineResponse201,
 
     /**
      * The LanguagesResponse model constructor.

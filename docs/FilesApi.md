@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 ## getFiles
 
-> InlineResponse200 getFiles(opts)
+> [File] getFiles(opts)
 
 Retrieve a File
 
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+**[File]**
 
 ### Authorization
 
@@ -117,12 +117,12 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream
+- **Accept**: application/json
 
 
 ## uploadFile
 
-> InlineResponse201 uploadFile(name, body, opts)
+> File uploadFile(name, body, opts)
 
 Upload a File
 
@@ -172,7 +172,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse201**](InlineResponse201.md)
+**File**
 
 ### Authorization
 

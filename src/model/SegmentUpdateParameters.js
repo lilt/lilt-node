@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The SegmentUpdateParameters model module.
  * @module model/SegmentUpdateParameters
- * @version v2.0
+ * @version 0.5.0
  */
 class SegmentUpdateParameters {
     /**

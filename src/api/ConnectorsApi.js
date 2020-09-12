@@ -14,14 +14,14 @@
 
 import ApiClient from "../ApiClient";
 import Connector from '../model/Connector';
-import Connector1 from '../model/Connector1';
+import ConnectorArguments from '../model/ConnectorArguments';
 import ConnectorDeleteResponse from '../model/ConnectorDeleteResponse';
 import Error from '../model/Error';
 
 /**
 * Connectors service.
 * @module api/ConnectorsApi
-* @version v2.0
+* @version 0.5.0
 */
 export default class ConnectorsApi {
 
@@ -41,7 +41,7 @@ export default class ConnectorsApi {
     /**
      * Upload a Connector
      * Create a new connector linked to a supported external cms. 
-     * @param {module:model/Connector1} body 
+     * @param {module:model/Connector} body 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Connector} and HTTP response
      */
     createConnectorWithHttpInfo(body) {
@@ -74,7 +74,7 @@ export default class ConnectorsApi {
     /**
      * Upload a Connector
      * Create a new connector linked to a supported external cms. 
-     * @param {module:model/Connector1} body 
+     * @param {module:model/Connector} body 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Connector}
      */
     createConnector(body) {
@@ -138,7 +138,7 @@ export default class ConnectorsApi {
      * Retrieves one or more connectors available to your user. Connectors are not associated with a project or a memory.  To retrieve a specific connector, specify the <strong>id</strong> request parameter. To retrieve all connectors, omit the <strong>id</strong> request parameter.  Example cURL command: ```  curl -X GET https://lilt.com/2/connectors?key=API_KEY&id=274```
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id A unique Connector identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Connector} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Connector>} and HTTP response
      */
     getConnectorsWithHttpInfo(opts) {
       opts = opts || {};
@@ -157,7 +157,7 @@ export default class ConnectorsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = Connector;
+      let returnType = [Connector];
       return this.apiClient.callApi(
         '/connectors', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -170,7 +170,7 @@ export default class ConnectorsApi {
      * Retrieves one or more connectors available to your user. Connectors are not associated with a project or a memory.  To retrieve a specific connector, specify the <strong>id</strong> request parameter. To retrieve all connectors, omit the <strong>id</strong> request parameter.  Example cURL command: ```  curl -X GET https://lilt.com/2/connectors?key=API_KEY&id=274```
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id A unique Connector identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Connector}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Connector>}
      */
     getConnectors(opts) {
       return this.getConnectorsWithHttpInfo(opts)
@@ -183,7 +183,7 @@ export default class ConnectorsApi {
     /**
      * Upload a Connector
      * Create a new connector linked to a supported external content source. 
-     * @param {module:model/Connector} body 
+     * @param {module:model/ConnectorArguments} body 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Connector} and HTTP response
      */
     updateConnectorWithHttpInfo(body) {
@@ -216,7 +216,7 @@ export default class ConnectorsApi {
     /**
      * Upload a Connector
      * Create a new connector linked to a supported external content source. 
-     * @param {module:model/Connector} body 
+     * @param {module:model/ConnectorArguments} body 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Connector}
      */
     updateConnector(body) {

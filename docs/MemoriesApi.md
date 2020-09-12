@@ -363,7 +363,7 @@ Name | Type | Description  | Notes
 
 ## syncDownMemory
 
-> File syncDownMemory(id, opts)
+> Blob syncDownMemory(id, opts)
 
 Get-sync for a Memory
 
@@ -411,7 +411,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**File**
+**Blob**
 
 ### Authorization
 

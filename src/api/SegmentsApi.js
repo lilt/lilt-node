@@ -24,7 +24,7 @@ import TaggedSegment from '../model/TaggedSegment';
 /**
 * Segments service.
 * @module api/SegmentsApi
-* @version v2.0
+* @version 0.5.0
 */
 export default class SegmentsApi {
 

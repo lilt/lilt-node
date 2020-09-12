@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The ProjectUpdateResponse model module.
  * @module model/ProjectUpdateResponse
- * @version v2.0
+ * @version 0.5.0
  */
 class ProjectUpdateResponse {
     /**

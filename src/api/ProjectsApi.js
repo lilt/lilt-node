@@ -24,7 +24,7 @@ import ProjectUpdateResponse from '../model/ProjectUpdateResponse';
 /**
 * Projects service.
 * @module api/ProjectsApi
-* @version v2.0
+* @version 0.5.0
 */
 export default class ProjectsApi {
 
@@ -136,74 +136,6 @@ export default class ProjectsApi {
 
 
     /**
-     * Retrieve a Project
-     * Retrieves one or more projects, including the documents associated with each project. Retrieving a project is the most efficient way to retrieve a single project or a list of all available projects.  To retrieve a specific project, specify the `id` request parameter. To retrieve all projects, omit the `id` request parameter. To limit the retrieved projects to those with a particular source language or target language, specify the corresponding ISO 639-1 language codes in the `srclang` and `trglang` request parameters, respectively.
-     * @param {Object} opts Optional parameters
-     * @param {Number} opts.id A unique Project identifier.
-     * @param {String} opts.srclang An ISO 639-1 language code.
-     * @param {String} opts.trglang An ISO 639-1 language code.
-     * @param {Number} opts.fromTime Unix time stamp (epoch, in seconds) of Projects with `created_at` greater than or equal to the value.
-     * @param {Number} opts.toTime Unix time stamp (epoch, in seconds) of Projects with `created_at` less than the value.
-     * @param {String} opts.state A project state (backlog, inProgress, inReview, inQA, done).
-     * @param {Boolean} opts.archived A flag that toggles whether to include archived projects in the response (the default is `true`).
-     * @param {Number} opts.connectorId A unique Connector identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Project>} and HTTP response
-     */
-    getProjectWithHttpInfo(opts) {
-      opts = opts || {};
-      let postBody = null;
-
-      let pathParams = {
-      };
-      let queryParams = {
-        'id': opts['id'],
-        'srclang': opts['srclang'],
-        'trglang': opts['trglang'],
-        'from_time': opts['fromTime'],
-        'to_time': opts['toTime'],
-        'state': opts['state'],
-        'archived': opts['archived'],
-        'connector_id': opts['connectorId']
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['ApiKeyAuth', 'BasicAuth'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = [Project];
-      return this.apiClient.callApi(
-        '/projects', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null
-      );
-    }
-
-    /**
-     * Retrieve a Project
-     * Retrieves one or more projects, including the documents associated with each project. Retrieving a project is the most efficient way to retrieve a single project or a list of all available projects.  To retrieve a specific project, specify the `id` request parameter. To retrieve all projects, omit the `id` request parameter. To limit the retrieved projects to those with a particular source language or target language, specify the corresponding ISO 639-1 language codes in the `srclang` and `trglang` request parameters, respectively.
-     * @param {Object} opts Optional parameters
-     * @param {Number} opts.id A unique Project identifier.
-     * @param {String} opts.srclang An ISO 639-1 language code.
-     * @param {String} opts.trglang An ISO 639-1 language code.
-     * @param {Number} opts.fromTime Unix time stamp (epoch, in seconds) of Projects with `created_at` greater than or equal to the value.
-     * @param {Number} opts.toTime Unix time stamp (epoch, in seconds) of Projects with `created_at` less than the value.
-     * @param {String} opts.state A project state (backlog, inProgress, inReview, inQA, done).
-     * @param {Boolean} opts.archived A flag that toggles whether to include archived projects in the response (the default is `true`).
-     * @param {Number} opts.connectorId A unique Connector identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Project>}
-     */
-    getProject(opts) {
-      return this.getProjectWithHttpInfo(opts)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
-    }
-
-
-    /**
      * Retrieve Project report
      * Get information about a project that can be used for quoting. This includes: * A translation memory leverage report * Word count * Segment count  
      * @param {Number} id A unique Project identifier.
@@ -293,6 +225,74 @@ export default class ProjectsApi {
      */
     getProjectStatus(id) {
       return this.getProjectStatusWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Retrieve a Project
+     * Retrieves one or more projects, including the documents associated with each project. Retrieving a project is the most efficient way to retrieve a single project or a list of all available projects.  To retrieve a specific project, specify the `id` request parameter. To retrieve all projects, omit the `id` request parameter. To limit the retrieved projects to those with a particular source language or target language, specify the corresponding ISO 639-1 language codes in the `srclang` and `trglang` request parameters, respectively.
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.id A unique Project identifier.
+     * @param {String} opts.srclang An ISO 639-1 language code.
+     * @param {String} opts.trglang An ISO 639-1 language code.
+     * @param {Number} opts.fromTime Unix time stamp (epoch, in seconds) of Projects with `created_at` greater than or equal to the value.
+     * @param {Number} opts.toTime Unix time stamp (epoch, in seconds) of Projects with `created_at` less than the value.
+     * @param {String} opts.state A project state (backlog, inProgress, inReview, inQA, done).
+     * @param {Boolean} opts.archived A flag that toggles whether to include archived projects in the response (the default is `true`).
+     * @param {Number} opts.connectorId A unique Connector identifier.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Project>} and HTTP response
+     */
+    getProjectsWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'id': opts['id'],
+        'srclang': opts['srclang'],
+        'trglang': opts['trglang'],
+        'from_time': opts['fromTime'],
+        'to_time': opts['toTime'],
+        'state': opts['state'],
+        'archived': opts['archived'],
+        'connector_id': opts['connectorId']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = [Project];
+      return this.apiClient.callApi(
+        '/projects', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Retrieve a Project
+     * Retrieves one or more projects, including the documents associated with each project. Retrieving a project is the most efficient way to retrieve a single project or a list of all available projects.  To retrieve a specific project, specify the `id` request parameter. To retrieve all projects, omit the `id` request parameter. To limit the retrieved projects to those with a particular source language or target language, specify the corresponding ISO 639-1 language codes in the `srclang` and `trglang` request parameters, respectively.
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.id A unique Project identifier.
+     * @param {String} opts.srclang An ISO 639-1 language code.
+     * @param {String} opts.trglang An ISO 639-1 language code.
+     * @param {Number} opts.fromTime Unix time stamp (epoch, in seconds) of Projects with `created_at` greater than or equal to the value.
+     * @param {Number} opts.toTime Unix time stamp (epoch, in seconds) of Projects with `created_at` less than the value.
+     * @param {String} opts.state A project state (backlog, inProgress, inReview, inQA, done).
+     * @param {Boolean} opts.archived A flag that toggles whether to include archived projects in the response (the default is `true`).
+     * @param {Number} opts.connectorId A unique Connector identifier.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Project>}
+     */
+    getProjects(opts) {
+      return this.getProjectsWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

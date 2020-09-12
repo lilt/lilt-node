@@ -14,18 +14,18 @@
 import ApiClient from '../ApiClient';
 
 /**
- * The MemoryImportResponse model module.
- * @module model/MemoryImportResponse
+ * The ConnectorArguments model module.
+ * @module model/ConnectorArguments
  * @version 0.5.0
  */
-class MemoryImportResponse {
+class ConnectorArguments {
     /**
-     * Constructs a new <code>MemoryImportResponse</code>.
-     * @alias module:model/MemoryImportResponse
+     * Constructs a new <code>ConnectorArguments</code>.
+     * @alias module:model/ConnectorArguments
      */
     constructor() { 
         
-        MemoryImportResponse.initialize(this);
+        ConnectorArguments.initialize(this);
     }
 
     /**
@@ -37,21 +37,27 @@ class MemoryImportResponse {
     }
 
     /**
-     * Constructs a <code>MemoryImportResponse</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>ConnectorArguments</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/MemoryImportResponse} obj Optional instance to populate.
-     * @return {module:model/MemoryImportResponse} The populated <code>MemoryImportResponse</code> instance.
+     * @param {module:model/ConnectorArguments} obj Optional instance to populate.
+     * @return {module:model/ConnectorArguments} The populated <code>ConnectorArguments</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new MemoryImportResponse();
+            obj = obj || new ConnectorArguments();
 
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'Number');
             }
-            if (data.hasOwnProperty('isProcessing')) {
-                obj['isProcessing'] = ApiClient.convertToType(data['isProcessing'], 'Number');
+            if (data.hasOwnProperty('name')) {
+                obj['name'] = ApiClient.convertToType(data['name'], 'String');
+            }
+            if (data.hasOwnProperty('args')) {
+                obj['args'] = ApiClient.convertToType(data['args'], Object);
+            }
+            if (data.hasOwnProperty('schedule')) {
+                obj['schedule'] = ApiClient.convertToType(data['schedule'], 'String');
             }
         }
         return obj;
@@ -61,21 +67,33 @@ class MemoryImportResponse {
 }
 
 /**
- * A unique Memory identifier.
+ * A unique Connector identifier.
  * @member {Number} id
  */
-MemoryImportResponse.prototype['id'] = undefined;
+ConnectorArguments.prototype['id'] = undefined;
 
 /**
- * The current state of the import.
- * @member {Number} isProcessing
+ * Name of connector.
+ * @member {String} name
  */
-MemoryImportResponse.prototype['isProcessing'] = undefined;
+ConnectorArguments.prototype['name'] = undefined;
+
+/**
+ * Connector parameters.
+ * @member {Object} args
+ */
+ConnectorArguments.prototype['args'] = undefined;
+
+/**
+ * Cron string
+ * @member {String} schedule
+ */
+ConnectorArguments.prototype['schedule'] = undefined;
 
 
 
 
 
 
-export default MemoryImportResponse;
+export default ConnectorArguments;
 

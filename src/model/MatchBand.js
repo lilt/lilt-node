@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The MatchBand model module.
  * @module model/MatchBand
- * @version v2.0
+ * @version 0.5.0
  */
 class MatchBand {
     /**

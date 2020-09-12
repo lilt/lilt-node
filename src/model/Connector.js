@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The Connector model module.
  * @module model/Connector
- * @version v2.0
+ * @version 0.5.0
  */
 class Connector {
     /**
@@ -47,9 +47,6 @@ class Connector {
         if (data) {
             obj = obj || new Connector();
 
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'Number');
-            }
             if (data.hasOwnProperty('name')) {
                 obj['name'] = ApiClient.convertToType(data['name'], 'String');
             }
@@ -65,12 +62,6 @@ class Connector {
 
 
 }
-
-/**
- * A unique Connector identifier.
- * @member {Number} id
- */
-Connector.prototype['id'] = undefined;
 
 /**
  * Name of connector.

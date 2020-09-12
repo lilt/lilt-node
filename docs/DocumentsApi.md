@@ -7,11 +7,11 @@ Method | HTTP request | Description
 [**assignDocument**](DocumentsApi.md#assignDocument) | **PUT** /documents/share | Assign a Document
 [**createDocument**](DocumentsApi.md#createDocument) | **POST** /documents | Create a Document
 [**deleteDocument**](DocumentsApi.md#deleteDocument) | **DELETE** /documents | Delete a Document
-[**downloadFile**](DocumentsApi.md#downloadFile) | **GET** /documents/files | Download a File
+[**downloadDocument**](DocumentsApi.md#downloadDocument) | **GET** /documents/files | Download a Document
 [**getDocument**](DocumentsApi.md#getDocument) | **GET** /documents | Retrieve a Document
 [**pretranslateDocuments**](DocumentsApi.md#pretranslateDocuments) | **POST** /documents/pretranslate | Pretranslate a Document
 [**updateDocument**](DocumentsApi.md#updateDocument) | **PUT** /documents | Update a Document
-[**uploadDocumentFile**](DocumentsApi.md#uploadDocumentFile) | **POST** /documents/files | Upload a File
+[**uploadDocument**](DocumentsApi.md#uploadDocument) | **POST** /documents/files | Upload a File
 
 
 
@@ -179,11 +179,11 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
-## downloadFile
+## downloadDocument
 
-> File downloadFile(id, opts)
+> Blob downloadDocument(id, opts)
 
-Download a File
+Download a Document
 
 Export a Document that has been translated in the Lilt web application. Any Document can be downloaded in XLIFF 1.2 format, or can be retrieved in its original uploaded format by setting &#x60;is_xliff&#x3D;false&#x60;. This endpoint will fail if either (a) export or (b) pre-translation operations are in-progress. The status of those operations can be determined by retrieving the Document resource. Example CURL command: &#x60;&#x60;&#x60;   curl -X GET https://lilt.com/2/documents/files?key&#x3D;API_KEY&amp;id&#x3D;274 -o from_lilt.xliff &#x60;&#x60;&#x60;  
 
@@ -207,7 +207,7 @@ let id = 56; // Number | An unique Document identifier.
 let opts = {
   'isXliff': true // Boolean | Download the document in XLIFF 1.2 format.
 };
-apiInstance.downloadFile(id, opts).then((data) => {
+apiInstance.downloadDocument(id, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**File**
+**Blob**
 
 ### Authorization
 
@@ -413,9 +413,9 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
-## uploadDocumentFile
+## uploadDocument
 
-> DocumentWithSegments uploadDocumentFile(name, projectId, body, opts)
+> DocumentWithSegments uploadDocument(name, projectId, body, opts)
 
 Upload a File
 
@@ -445,7 +445,7 @@ let opts = {
   'autoAccept': true, // Boolean | An optional parameter to auto-accept segments with 100% translation memory matches when the `pretranslate` option is also set, or to auto-accept any target data that is present when the uploaded file is XLIFF. If omitted or set to `false`, no segments will be auto-accepted. 
   'configId': 56 // Number | An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file. 
 };
-apiInstance.uploadDocumentFile(name, projectId, body, opts).then((data) => {
+apiInstance.uploadDocument(name, projectId, body, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);

@@ -18,7 +18,7 @@ import LexiconEntryTranslations from './LexiconEntryTranslations';
 /**
  * The LexiconEntry model module.
  * @module model/LexiconEntry
- * @version v2.0
+ * @version 0.5.0
  */
 class LexiconEntry {
     /**

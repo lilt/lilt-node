@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The DocumentParameters model module.
  * @module model/DocumentParameters
- * @version v2.0
+ * @version 0.5.0
  */
 class DocumentParameters {
     /**

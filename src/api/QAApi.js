@@ -19,7 +19,7 @@ import QARuleMatches from '../model/QARuleMatches';
 /**
 * QA service.
 * @module api/QAApi
-* @version v2.0
+* @version 0.5.0
 */
 export default class QAApi {
 

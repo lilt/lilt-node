@@ -15,13 +15,11 @@
 import ApiClient from "../ApiClient";
 import Error from '../model/Error';
 import FileDeleteResponse from '../model/FileDeleteResponse';
-import InlineResponse200 from '../model/InlineResponse200';
-import InlineResponse201 from '../model/InlineResponse201';
 
 /**
 * Files service.
 * @module api/FilesApi
-* @version v2.0
+* @version 0.5.0
 */
 export default class FilesApi {
 
@@ -91,7 +89,7 @@ export default class FilesApi {
      * Retrieves one or more files available to your user. Files are not associated with a project or a memory. They are unprocessed and can be used later in the project/document creation workflow step.  To retrieve a specific file, specify the <strong>id</strong> request parameter. To retrieve all files, omit the <strong>id</strong> request parameter.  Example cURL command: ```  curl -X GET https://lilt.com/2/files?key=API_KEY&id=274```
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id A unique File identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/InlineResponse200} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<File>} and HTTP response
      */
     getFilesWithHttpInfo(opts) {
       opts = opts || {};
@@ -109,8 +107,8 @@ export default class FilesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/octet-stream'];
-      let returnType = InlineResponse200;
+      let accepts = ['application/json'];
+      let returnType = [File];
       return this.apiClient.callApi(
         '/files', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -123,7 +121,7 @@ export default class FilesApi {
      * Retrieves one or more files available to your user. Files are not associated with a project or a memory. They are unprocessed and can be used later in the project/document creation workflow step.  To retrieve a specific file, specify the <strong>id</strong> request parameter. To retrieve all files, omit the <strong>id</strong> request parameter.  Example cURL command: ```  curl -X GET https://lilt.com/2/files?key=API_KEY&id=274```
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id A unique File identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/InlineResponse200}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<File>}
      */
     getFiles(opts) {
       return this.getFilesWithHttpInfo(opts)
@@ -142,7 +140,7 @@ export default class FilesApi {
      * @param {String} opts.exportUri A webhook endpoint that will export the translated document back to the source repository.
      * @param {String} opts.fileHash A hash value to associate with the file. The MD5 hash of the body contents will be used by default if a value isn't provided.
      * @param {Boolean} opts.langId Flag indicating whether to perform language detection on the uploaded file. Default is false.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/InlineResponse201} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link File} and HTTP response
      */
     uploadFileWithHttpInfo(name, body, opts) {
       opts = opts || {};
@@ -172,7 +170,7 @@ export default class FilesApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/octet-stream'];
       let accepts = ['application/json'];
-      let returnType = InlineResponse201;
+      let returnType = File;
       return this.apiClient.callApi(
         '/files', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -189,7 +187,7 @@ export default class FilesApi {
      * @param {String} opts.exportUri A webhook endpoint that will export the translated document back to the source repository.
      * @param {String} opts.fileHash A hash value to associate with the file. The MD5 hash of the body contents will be used by default if a value isn't provided.
      * @param {Boolean} opts.langId Flag indicating whether to perform language detection on the uploaded file. Default is false.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/InlineResponse201}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link File}
      */
     uploadFile(name, body, opts) {
       return this.uploadFileWithHttpInfo(name, body, opts)

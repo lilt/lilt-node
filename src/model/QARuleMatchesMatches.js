@@ -19,7 +19,7 @@ import QARuleMatchesRule from './QARuleMatchesRule';
 /**
  * The QARuleMatchesMatches model module.
  * @module model/QARuleMatchesMatches
- * @version v2.0
+ * @version 0.5.0
  */
 class QARuleMatchesMatches {
     /**

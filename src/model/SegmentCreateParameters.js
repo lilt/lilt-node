@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The SegmentCreateParameters model module.
  * @module model/SegmentCreateParameters
- * @version v2.0
+ * @version 0.5.0
  */
 class SegmentCreateParameters {
     /**

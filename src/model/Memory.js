@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The Memory model module.
  * @module model/Memory
- * @version v2.0
+ * @version 0.5.0
  */
 class Memory {
     /**
