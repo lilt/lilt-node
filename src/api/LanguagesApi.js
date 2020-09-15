@@ -19,7 +19,7 @@ import LanguagesResponse from '../model/LanguagesResponse';
 /**
 * Languages service.
 * @module api/LanguagesApi
-* @version v2.0
+* @version 0.5.0
 */
 export default class LanguagesApi {
 

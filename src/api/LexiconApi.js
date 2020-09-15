@@ -21,7 +21,7 @@ import LexiconUpdateResponse from '../model/LexiconUpdateResponse';
 /**
 * Lexicon service.
 * @module api/LexiconApi
-* @version v2.0
+* @version 0.5.0
 */
 export default class LexiconApi {
 

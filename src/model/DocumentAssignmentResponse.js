@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The DocumentAssignmentResponse model module.
  * @module model/DocumentAssignmentResponse
- * @version v2.0
+ * @version 0.5.0
  */
 class DocumentAssignmentResponse {
     /**

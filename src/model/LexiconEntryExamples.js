@@ -18,7 +18,7 @@ import LexiconEntryTargetSpan from './LexiconEntryTargetSpan';
 /**
  * The LexiconEntryExamples model module.
  * @module model/LexiconEntryExamples
- * @version v2.0
+ * @version 0.5.0
  */
 class LexiconEntryExamples {
     /**

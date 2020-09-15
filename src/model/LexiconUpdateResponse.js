@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The LexiconUpdateResponse model module.
  * @module model/LexiconUpdateResponse
- * @version v2.0
+ * @version 0.5.0
  */
 class LexiconUpdateResponse {
     /**

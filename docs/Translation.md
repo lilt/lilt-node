@@ -11,6 +11,6 @@ Name | Type | Description | Notes
 **score** | **Number** | The score of the translation. | [optional] 
 **isTMMatch** | **Boolean** | TM only: If true, indicates an exact translation memory match. | [optional] 
 **targetDelimiters** | **[String]** | A format string that indicates, for each word, if the word should be preceded by a space. | [optional] 
-**targetWords** | **[String]** | The target string can be constructed by suffixing each &#x60;targetDelimiters&#x60; entry with its corresponding word in &#x60;targetWords&#x60; and concatenating the constructed array.  Please note that the &#x60;targetDelimiters&#x60; array has one more entry than &#x60;targetWords&#x60; array which is why the last entry in the array will be the last value of &#x60;targetDelimiters&#x60;.  | [optional] 
+**targetWords** | **[String]** | The target string can be constructed by suffixing each &#x60;targetDelimiters&#x60; entry with its corresponding word in &#x60;targetWords&#x60; and concatenating the constructed array. Please note that the &#x60;targetDelimiters&#x60; array has one more entry than &#x60;targetWords&#x60; array which is why the last entry in the array will be the last value of &#x60;targetDelimiters&#x60;.  | [optional] 
 
 

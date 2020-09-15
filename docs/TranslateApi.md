@@ -96,7 +96,7 @@ let opts = {
   'source': "source_example", // String | The source text to be translated.
   'sourceHash': 56, // Number | A source hash code.
   'prefix': "prefix_example", // String | A target prefix.
-  'n': 1, // Number | Return top n translations.
+  'n': 1, // Number | Return top n translations (deprecated).
   'rich': false, // Boolean | Returns rich translation information (e.g., with word alignments).
   'tmMatches': true, // Boolean | Include translation memory fuzzy matches.
   'projectTags': false // Boolean | Project tags. Projects tags in source to target if set to true.
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
  **source** | **String**| The source text to be translated. | [optional] 
  **sourceHash** | **Number**| A source hash code. | [optional] 
  **prefix** | **String**| A target prefix. | [optional] 
- **n** | **Number**| Return top n translations. | [optional] [default to 1]
+ **n** | **Number**| Return top n translations (deprecated). | [optional] [default to 1]
  **rich** | **Boolean**| Returns rich translation information (e.g., with word alignments). | [optional] [default to false]
  **tmMatches** | **Boolean**| Include translation memory fuzzy matches. | [optional] [default to true]
  **projectTags** | **Boolean**| Project tags. Projects tags in source to target if set to true. | [optional] [default to false]

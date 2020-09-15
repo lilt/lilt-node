@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The LexiconEntrySourceSpan model module.
  * @module model/LexiconEntrySourceSpan
- * @version v2.0
+ * @version 0.5.0
  */
 class LexiconEntrySourceSpan {
     /**

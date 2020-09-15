@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The File model module.
  * @module model/File
- * @version v2.0
+ * @version 0.5.0
  */
 class File {
     /**
@@ -60,6 +60,12 @@ class File {
             if (data.hasOwnProperty('export_uri')) {
                 obj['export_uri'] = ApiClient.convertToType(data['export_uri'], 'String');
             }
+            if (data.hasOwnProperty('detected_lang')) {
+                obj['detected_lang'] = ApiClient.convertToType(data['detected_lang'], 'String');
+            }
+            if (data.hasOwnProperty('detected_lang_confidence')) {
+                obj['detected_lang_confidence'] = ApiClient.convertToType(data['detected_lang_confidence'], 'Number');
+            }
             if (data.hasOwnProperty('created_at')) {
                 obj['created_at'] = ApiClient.convertToType(data['created_at'], 'Number');
             }
@@ -96,6 +102,18 @@ File.prototype['file_hash'] = undefined;
  * @member {String} export_uri
  */
 File.prototype['export_uri'] = undefined;
+
+/**
+ * Language associated with the file.
+ * @member {String} detected_lang
+ */
+File.prototype['detected_lang'] = undefined;
+
+/**
+ * Confidence score for the language associated with the file.
+ * @member {Number} detected_lang_confidence
+ */
+File.prototype['detected_lang_confidence'] = undefined;
 
 /**
  * Time at which the object was created. Measured in seconds since the Unix epoch.

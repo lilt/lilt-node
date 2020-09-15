@@ -26,7 +26,7 @@ import TranslationMemoryEntry from '../model/TranslationMemoryEntry';
 /**
 * Memories service.
 * @module api/MemoriesApi
-* @version v2.0
+* @version 0.5.0
 */
 export default class MemoriesApi {
 
@@ -375,7 +375,7 @@ export default class MemoriesApi {
      * @param {Number} opts.fromTime Unix time stamp (epoch, in seconds) of the start of the Memory section.
      * @param {Number} opts.toTime Unix time stamp (epoch, in seconds) of the end of the Memory section.
      * @param {String} opts.when The date field on which retrieved segments match from/to time stamps: `created`, `updated`, `deleted`. If this parameter is omitted, then the whole Memory is returned.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link File} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Blob} and HTTP response
      */
     syncDownMemoryWithHttpInfo(id, opts) {
       opts = opts || {};
@@ -401,7 +401,7 @@ export default class MemoriesApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/x-tmx'];
-      let returnType = File;
+      let returnType = 'Blob';
       return this.apiClient.callApi(
         '/memories/sync', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -417,7 +417,7 @@ export default class MemoriesApi {
      * @param {Number} opts.fromTime Unix time stamp (epoch, in seconds) of the start of the Memory section.
      * @param {Number} opts.toTime Unix time stamp (epoch, in seconds) of the end of the Memory section.
      * @param {String} opts.when The date field on which retrieved segments match from/to time stamps: `created`, `updated`, `deleted`. If this parameter is omitted, then the whole Memory is returned.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link File}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Blob}
      */
     syncDownMemory(id, opts) {
       return this.syncDownMemoryWithHttpInfo(id, opts)

@@ -26,7 +26,7 @@ import Error from '../model/Error';
 /**
 * Documents service.
 * @module api/DocumentsApi
-* @version v2.0
+* @version 0.5.0
 */
 export default class DocumentsApi {
 
@@ -185,19 +185,19 @@ export default class DocumentsApi {
 
 
     /**
-     * Download a File
+     * Download a Document
      * Export a Document that has been translated in the Lilt web application. Any Document can be downloaded in XLIFF 1.2 format, or can be retrieved in its original uploaded format by setting `is_xliff=false`. This endpoint will fail if either (a) export or (b) pre-translation operations are in-progress. The status of those operations can be determined by retrieving the Document resource. Example CURL command: ```   curl -X GET https://lilt.com/2/documents/files?key=API_KEY&id=274 -o from_lilt.xliff ```  
      * @param {Number} id An unique Document identifier.
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.isXliff Download the document in XLIFF 1.2 format. (default to true)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link File} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Blob} and HTTP response
      */
-    downloadFileWithHttpInfo(id, opts) {
+    downloadDocumentWithHttpInfo(id, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling downloadFile");
+        throw new Error("Missing the required parameter 'id' when calling downloadDocument");
       }
 
       let pathParams = {
@@ -214,7 +214,7 @@ export default class DocumentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/octet-stream'];
-      let returnType = File;
+      let returnType = 'Blob';
       return this.apiClient.callApi(
         '/documents/files', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -223,15 +223,15 @@ export default class DocumentsApi {
     }
 
     /**
-     * Download a File
+     * Download a Document
      * Export a Document that has been translated in the Lilt web application. Any Document can be downloaded in XLIFF 1.2 format, or can be retrieved in its original uploaded format by setting `is_xliff=false`. This endpoint will fail if either (a) export or (b) pre-translation operations are in-progress. The status of those operations can be determined by retrieving the Document resource. Example CURL command: ```   curl -X GET https://lilt.com/2/documents/files?key=API_KEY&id=274 -o from_lilt.xliff ```  
      * @param {Number} id An unique Document identifier.
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.isXliff Download the document in XLIFF 1.2 format. (default to true)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link File}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Blob}
      */
-    downloadFile(id, opts) {
-      return this.downloadFileWithHttpInfo(id, opts)
+    downloadDocument(id, opts) {
+      return this.downloadDocumentWithHttpInfo(id, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -413,20 +413,20 @@ export default class DocumentsApi {
      * @param {Number} opts.configId An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DocumentWithSegments} and HTTP response
      */
-    uploadDocumentFileWithHttpInfo(name, projectId, body, opts) {
+    uploadDocumentWithHttpInfo(name, projectId, body, opts) {
       opts = opts || {};
       let postBody = body;
       // verify the required parameter 'name' is set
       if (name === undefined || name === null) {
-        throw new Error("Missing the required parameter 'name' when calling uploadDocumentFile");
+        throw new Error("Missing the required parameter 'name' when calling uploadDocument");
       }
       // verify the required parameter 'projectId' is set
       if (projectId === undefined || projectId === null) {
-        throw new Error("Missing the required parameter 'projectId' when calling uploadDocumentFile");
+        throw new Error("Missing the required parameter 'projectId' when calling uploadDocument");
       }
       // verify the required parameter 'body' is set
       if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling uploadDocumentFile");
+        throw new Error("Missing the required parameter 'body' when calling uploadDocument");
       }
 
       let pathParams = {
@@ -466,8 +466,8 @@ export default class DocumentsApi {
      * @param {Number} opts.configId An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DocumentWithSegments}
      */
-    uploadDocumentFile(name, projectId, body, opts) {
-      return this.uploadDocumentFileWithHttpInfo(name, projectId, body, opts)
+    uploadDocument(name, projectId, body, opts) {
+      return this.uploadDocumentWithHttpInfo(name, projectId, body, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

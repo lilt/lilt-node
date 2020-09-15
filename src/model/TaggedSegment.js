@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The TaggedSegment model module.
  * @module model/TaggedSegment
- * @version v2.0
+ * @version 0.5.0
  */
 class TaggedSegment {
     /**

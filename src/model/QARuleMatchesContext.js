@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The QARuleMatchesContext model module.
  * @module model/QARuleMatchesContext
- * @version v2.0
+ * @version 0.5.0
  */
 class QARuleMatchesContext {
     /**
