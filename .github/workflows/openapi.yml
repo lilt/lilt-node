@@ -30,6 +30,7 @@ jobs:
             -p usePromises=true
             --git-user-id lilt
             --git-repo-id lilt-node
+            --skip-validate-spec
             -o .
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.3.0
