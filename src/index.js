@@ -19,9 +19,12 @@ import Comment from './model/Comment';
 import Connector from './model/Connector';
 import ConnectorArguments from './model/ConnectorArguments';
 import ConnectorDeleteResponse from './model/ConnectorDeleteResponse';
+import ConnectorJob from './model/ConnectorJob';
 import DocumentAssignmentParameters from './model/DocumentAssignmentParameters';
 import DocumentAssignmentResponse from './model/DocumentAssignmentResponse';
 import DocumentDeleteResponse from './model/DocumentDeleteResponse';
+import DocumentDoneUpdateParameters from './model/DocumentDoneUpdateParameters';
+import DocumentDoneUpdateParameters1 from './model/DocumentDoneUpdateParameters1';
 import DocumentParameters from './model/DocumentParameters';
 import DocumentPretranslateParameters from './model/DocumentPretranslateParameters';
 import DocumentPretranslateResponse from './model/DocumentPretranslateResponse';
@@ -163,6 +166,12 @@ export {
     ConnectorDeleteResponse,
 
     /**
+     * The ConnectorJob model constructor.
+     * @property {module:model/ConnectorJob}
+     */
+    ConnectorJob,
+
+    /**
      * The DocumentAssignmentParameters model constructor.
      * @property {module:model/DocumentAssignmentParameters}
      */
@@ -179,6 +188,18 @@ export {
      * @property {module:model/DocumentDeleteResponse}
      */
     DocumentDeleteResponse,
+
+    /**
+     * The DocumentDoneUpdateParameters model constructor.
+     * @property {module:model/DocumentDoneUpdateParameters}
+     */
+    DocumentDoneUpdateParameters,
+
+    /**
+     * The DocumentDoneUpdateParameters1 model constructor.
+     * @property {module:model/DocumentDoneUpdateParameters1}
+     */
+    DocumentDoneUpdateParameters1,
 
     /**
      * The DocumentParameters model constructor.
