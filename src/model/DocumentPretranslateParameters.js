@@ -22,10 +22,11 @@ class DocumentPretranslateParameters {
     /**
      * Constructs a new <code>DocumentPretranslateParameters</code>.
      * @alias module:model/DocumentPretranslateParameters
+     * @param id {Array.<Number>} A list of unique Document identifiers.
      */
-    constructor() { 
+    constructor(id) { 
         
-        DocumentPretranslateParameters.initialize(this);
+        DocumentPretranslateParameters.initialize(this, id);
     }
 
     /**
@@ -33,7 +34,8 @@ class DocumentPretranslateParameters {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, id) { 
+        obj['id'] = id;
     }
 
     /**
@@ -50,6 +52,18 @@ class DocumentPretranslateParameters {
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], ['Number']);
             }
+            if (data.hasOwnProperty('auto_accept')) {
+                obj['auto_accept'] = ApiClient.convertToType(data['auto_accept'], 'Boolean');
+            }
+            if (data.hasOwnProperty('case_sensitive')) {
+                obj['case_sensitive'] = ApiClient.convertToType(data['case_sensitive'], 'Boolean');
+            }
+            if (data.hasOwnProperty('attribute_to_creator')) {
+                obj['attribute_to_creator'] = ApiClient.convertToType(data['attribute_to_creator'], 'Boolean');
+            }
+            if (data.hasOwnProperty('mode')) {
+                obj['mode'] = ApiClient.convertToType(data['mode'], 'String');
+            }
         }
         return obj;
     }
@@ -62,6 +76,30 @@ class DocumentPretranslateParameters {
  * @member {Array.<Number>} id
  */
 DocumentPretranslateParameters.prototype['id'] = undefined;
+
+/**
+ * Optional parameter for auto-accepting 100% TM hits.
+ * @member {Boolean} auto_accept
+ */
+DocumentPretranslateParameters.prototype['auto_accept'] = undefined;
+
+/**
+ * Optional for using case matching against TM hits..
+ * @member {Boolean} case_sensitive
+ */
+DocumentPretranslateParameters.prototype['case_sensitive'] = undefined;
+
+/**
+ * Optional parameter for attributing translation authorship of exact matches to document creator.
+ * @member {Boolean} attribute_to_creator
+ */
+DocumentPretranslateParameters.prototype['attribute_to_creator'] = undefined;
+
+/**
+ * An optional parameter indicating how the document will be pretranslated.  The accepted values are `tm`, or `tm+mt`. Default is `tm`. 
+ * @member {String} mode
+ */
+DocumentPretranslateParameters.prototype['mode'] = undefined;
 
 
 

@@ -7,6 +7,9 @@ Method | HTTP request | Description
 [**assignDocument**](DocumentsApi.md#assignDocument) | **PUT** /documents/share | Assign a Document
 [**createDocument**](DocumentsApi.md#createDocument) | **POST** /documents | Create a Document
 [**deleteDocument**](DocumentsApi.md#deleteDocument) | **DELETE** /documents | Delete a Document
+[**documentsDoneReviewPost**](DocumentsApi.md#documentsDoneReviewPost) | **POST** /documents/done/review | Mark review done
+[**documentsDoneTranslationPost**](DocumentsApi.md#documentsDoneTranslationPost) | **POST** /documents/done/translation | Mark translation done
+[**documentsDoneUnlockPost**](DocumentsApi.md#documentsDoneUnlockPost) | **POST** /documents/done/unlock | Unlock documents
 [**downloadDocument**](DocumentsApi.md#downloadDocument) | **GET** /documents/files | Download a Document
 [**getDocument**](DocumentsApi.md#getDocument) | **GET** /documents | Retrieve a Document
 [**pretranslateDocuments**](DocumentsApi.md#pretranslateDocuments) | **POST** /documents/pretranslate | Pretranslate a Document
@@ -179,6 +182,168 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## documentsDoneReviewPost
+
+> [String] documentsDoneReviewPost(body)
+
+Mark review done
+
+Mark the review of documents as done/undone in bulk.  When being marked positively as done:  - Documents must not already be marked as done for review. - Documents must already be marked as done for translation. - This request will also trigger an email notification.  Example curl: &#x60;&#x60;&#x60;   curl --X --request POST &#39;https://lilt.com/2/documents/done/review&#39; \\   --header &#39;Authorization: Basic API_KEY&#x3D;&#39; \\   --header &#39;Content-Type: application/json&#39; \\   --data-raw &#39;{       \&quot;documentIds\&quot;: [23921, 23922],       \&quot;isDone\&quot;: true   }&#39; &#x60;&#x60;&#x60; 
+
+### Example
+
+```javascript
+import LiltNode from 'lilt-node';
+let defaultClient = LiltNode.ApiClient.instance;
+// Configure API key authorization: ApiKeyAuth
+let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix = 'Token';
+// Configure HTTP basic authorization: BasicAuth
+let BasicAuth = defaultClient.authentications['BasicAuth'];
+BasicAuth.username = 'YOUR USERNAME';
+BasicAuth.password = 'YOUR PASSWORD';
+
+let apiInstance = new LiltNode.DocumentsApi();
+let body = new LiltNode.DocumentDoneUpdateParameters1(); // DocumentDoneUpdateParameters1 | 
+apiInstance.documentsDoneReviewPost(body).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**DocumentDoneUpdateParameters1**](DocumentDoneUpdateParameters1.md)|  | 
+
+### Return type
+
+**[String]**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## documentsDoneTranslationPost
+
+> [String] documentsDoneTranslationPost(body)
+
+Mark translation done
+
+Mark the translation of documents as done/undone in bulk.  When being marked positively as done:  - Documents must not already be marked as done and all segments must be confirmed. - This request will also trigger an email notification to a document&#39;s assigned reviewer that the document is ready for review.  When being marked as un-done: - Documents must not be marked as complete for review.  Example curl: &#x60;&#x60;&#x60;   curl --X --request POST &#39;https://lilt.com/2/documents/done/translation&#39; \\   --header &#39;Authorization: Basic API_KEY&#x3D;&#39; \\   --header &#39;Content-Type: application/json&#39; \\   --data-raw &#39;{       \&quot;documentIds\&quot;: [23921, 23922],       \&quot;isDone\&quot;: true   }&#39; &#x60;&#x60;&#x60; 
+
+### Example
+
+```javascript
+import LiltNode from 'lilt-node';
+let defaultClient = LiltNode.ApiClient.instance;
+// Configure API key authorization: ApiKeyAuth
+let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix = 'Token';
+// Configure HTTP basic authorization: BasicAuth
+let BasicAuth = defaultClient.authentications['BasicAuth'];
+BasicAuth.username = 'YOUR USERNAME';
+BasicAuth.password = 'YOUR PASSWORD';
+
+let apiInstance = new LiltNode.DocumentsApi();
+let body = new LiltNode.DocumentDoneUpdateParameters(); // DocumentDoneUpdateParameters | 
+apiInstance.documentsDoneTranslationPost(body).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**DocumentDoneUpdateParameters**](DocumentDoneUpdateParameters.md)|  | 
+
+### Return type
+
+**[String]**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## documentsDoneUnlockPost
+
+> [String] documentsDoneUnlockPost(body)
+
+Unlock documents
+
+Unlock documents for translation. Sets document \&quot;Translation Done\&quot; and \&quot;Review Done\&quot; to false.  Example curl: &#x60;&#x60;&#x60;   curl --X --request POST &#39;https://lilt.com/2/documents/done/unlock&#39; \\   --header &#39;Authorization: Basic API_KEY&#x3D;&#39; \\   --header &#39;Content-Type: application/json&#39; \\   --data-raw &#39;{       \&quot;documentIds\&quot;: [23921, 23922]   }&#39; &#x60;&#x60;&#x60; 
+
+### Example
+
+```javascript
+import LiltNode from 'lilt-node';
+let defaultClient = LiltNode.ApiClient.instance;
+// Configure API key authorization: ApiKeyAuth
+let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix = 'Token';
+// Configure HTTP basic authorization: BasicAuth
+let BasicAuth = defaultClient.authentications['BasicAuth'];
+BasicAuth.username = 'YOUR USERNAME';
+BasicAuth.password = 'YOUR PASSWORD';
+
+let apiInstance = new LiltNode.DocumentsApi();
+let body = null; // Object | document ids to update
+apiInstance.documentsDoneUnlockPost(body).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **Object**| document ids to update | 
+
+### Return type
+
+**[String]**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
 ## downloadDocument
 
 > Blob downloadDocument(id, opts)
@@ -301,7 +466,7 @@ Name | Type | Description  | Notes
 
 Pretranslate a Document
 
-Initiate pretranslation of a list of Documents. This request will mark document(s) as being pretranslated. Pretranslation in this context is: - Applying and confirming exact TM matches based on the Memory of the Project; - Translating all other segments via MT without confirming them.  Example cURL command: &#x60;&#x60;&#x60; curl -X POST https://lilt.com/2/documents/pretranslate?key&#x3D;API_KEY -d {\&quot;id\&quot;: [123]} -H \&quot;Content-Type: application/json\&quot; &#x60;&#x60;&#x60;  Document translation is an asynchronous process that, in effect, is performed in the background.  To check the status of pretranslation for a document, use the &#x60;GET /documents&#x60; endpoint. When pretranslation is in progress for a document, the &#x60;GET /documents&#x60; endpoint&#39;s response will include &#x60;is_pretranslating &#x3D; true&#x60; as well as a more detailed status property &#x60;status.pretranslation&#x60; one of &#x60;idle&#x60;, &#x60;pending&#x60;, or &#x60;running&#x60;.  Once pretranslation is finished, the document can be downloaded via &#x60;GET /documents/files&#x60;. 
+Initiate pretranslation of a list of Documents. This request will mark document(s) as being pretranslated. Pretranslation in this context is: - Applying and confirming exact TM matches based on the Memory of the Project; - Translating all other segments via MT without confirming them.  Example CURL command: &#x60;&#x60;&#x60; curl -X POST https://lilt.com/2/documents/pretranslate?key&#x3D;API_KEY -d {\&quot;id\&quot;: [123]} -H \&quot;Content-Type: application/json\&quot; &#x60;&#x60;&#x60;  Document translation is an asynchronous process that, in effect, is performed in the background.  To check the status of pretranslation for a document, use the &#x60;GET /documents&#x60; endpoint. When pretranslation is in progress for a document, the &#x60;GET /documents&#x60; endpoint&#39;s response will include &#x60;is_pretranslating &#x3D; true&#x60; as well as a more detailed status property &#x60;status.pretranslation&#x60; one of &#x60;idle&#x60;, &#x60;pending&#x60;, or &#x60;running&#x60;.  Once pretranslation is finished, the document can be downloaded via &#x60;GET /documents/files&#x60;. 
 
 ### Example
 
@@ -321,10 +486,10 @@ BasicAuth.password = 'YOUR PASSWORD';
 let apiInstance = new LiltNode.DocumentsApi();
 let body = new LiltNode.DocumentPretranslateParameters(); // DocumentPretranslateParameters | 
 let opts = {
-  'autoAccept': true, // Boolean | Optional parameter for auto-accepting 100% TM hits.
-  'caseSensitive': true, // Boolean | Optional for using case matching against TM hits.
-  'attributeToCreator': true, // Boolean | Optional parameter for attributing translation authorship of exact matches to document creator.
-  'mode': "mode_example" // String | An optional parameter indicating how the document will be pretranslated.  The accepted values are `tm`, or `tm+mt`. Default is `tm+mt`. 
+  'autoAccept': true, // Boolean | Deprecated, use body param instead. Optional parameter for auto-accepting 100% TM hits.
+  'caseSensitive': true, // Boolean | Deprecated, use body param instead. Optional for using case matching against TM hits.
+  'attributeToCreator': true, // Boolean | Deprecated, use body param instead. Optional parameter for attributing translation authorship of exact matches to document creator.
+  'mode': "mode_example" // String | Deprecated, use body param instead. An optional parameter indicating how the document will be pretranslated.  The accepted values are `tm`, or `tm+mt`. Default is `tm`. 
 };
 apiInstance.pretranslateDocuments(body, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -340,10 +505,10 @@ apiInstance.pretranslateDocuments(body, opts).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**DocumentPretranslateParameters**](DocumentPretranslateParameters.md)|  | 
- **autoAccept** | **Boolean**| Optional parameter for auto-accepting 100% TM hits. | [optional] 
- **caseSensitive** | **Boolean**| Optional for using case matching against TM hits. | [optional] 
- **attributeToCreator** | **Boolean**| Optional parameter for attributing translation authorship of exact matches to document creator. | [optional] 
- **mode** | **String**| An optional parameter indicating how the document will be pretranslated.  The accepted values are &#x60;tm&#x60;, or &#x60;tm+mt&#x60;. Default is &#x60;tm+mt&#x60;.  | [optional] 
+ **autoAccept** | **Boolean**| Deprecated, use body param instead. Optional parameter for auto-accepting 100% TM hits. | [optional] 
+ **caseSensitive** | **Boolean**| Deprecated, use body param instead. Optional for using case matching against TM hits. | [optional] 
+ **attributeToCreator** | **Boolean**| Deprecated, use body param instead. Optional parameter for attributing translation authorship of exact matches to document creator. | [optional] 
+ **mode** | **String**| Deprecated, use body param instead. An optional parameter indicating how the document will be pretranslated.  The accepted values are &#x60;tm&#x60;, or &#x60;tm+mt&#x60;. Default is &#x60;tm&#x60;.  | [optional] 
 
 ### Return type
 

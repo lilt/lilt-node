@@ -16,6 +16,7 @@ import ApiClient from "../ApiClient";
 import Connector from '../model/Connector';
 import ConnectorArguments from '../model/ConnectorArguments';
 import ConnectorDeleteResponse from '../model/ConnectorDeleteResponse';
+import ConnectorJob from '../model/ConnectorJob';
 import Error from '../model/Error';
 
 /**
@@ -134,8 +135,104 @@ export default class ConnectorsApi {
 
 
     /**
+     * Deliver a Connector Job
+     * Request an export job for the given connector job ID. This will check Lilt for completed projects that are associated with this job and deliver them to the target system.  Example CURL command: ```  curl -X POST https://lilt.com/2/connectors/jobs/deliver?key=API_KEY&id=9274 ``` 
+     * @param {Number} id A unique Connector Job identifier.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
+     */
+    exportConnectorJobWithHttpInfo(id) {
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling exportConnectorJob");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'id': id
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = null;
+      return this.apiClient.callApi(
+        '/connectors/jobs/deliver', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Deliver a Connector Job
+     * Request an export job for the given connector job ID. This will check Lilt for completed projects that are associated with this job and deliver them to the target system.  Example CURL command: ```  curl -X POST https://lilt.com/2/connectors/jobs/deliver?key=API_KEY&id=9274 ``` 
+     * @param {Number} id A unique Connector Job identifier.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    exportConnectorJob(id) {
+      return this.exportConnectorJobWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Retreive a Connector Job
+     * Retrieves a connector job available to your user. Use this to check the status of jobs started by the `/connectors/sync` and `/connectors/jobs/deliver` endpoints.  Example CURL command: ```  curl -X GET https://lilt.com/2/connectors/jobs?key=API_KEY&id=9274 ``` 
+     * @param {Number} id A unique Connector Job identifier.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ConnectorJob>} and HTTP response
+     */
+    getConnectorJobsWithHttpInfo(id) {
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling getConnectorJobs");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'id': id
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = [ConnectorJob];
+      return this.apiClient.callApi(
+        '/connectors/jobs', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Retreive a Connector Job
+     * Retrieves a connector job available to your user. Use this to check the status of jobs started by the `/connectors/sync` and `/connectors/jobs/deliver` endpoints.  Example CURL command: ```  curl -X GET https://lilt.com/2/connectors/jobs?key=API_KEY&id=9274 ``` 
+     * @param {Number} id A unique Connector Job identifier.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ConnectorJob>}
+     */
+    getConnectorJobs(id) {
+      return this.getConnectorJobsWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * Retrieve a Connector
-     * Retrieves one or more connectors available to your user. Connectors are not associated with a project or a memory.  To retrieve a specific connector, specify the <strong>id</strong> request parameter. To retrieve all connectors, omit the <strong>id</strong> request parameter.  Example cURL command: ```  curl -X GET https://lilt.com/2/connectors?key=API_KEY&id=274```
+     * Retrieves one or more connectors available to your user. Connectors are not associated with a project or a memory.  To retrieve a specific connector, specify the <strong>id</strong> request parameter. To retrieve all connectors, omit the <strong>id</strong> request parameter.  Example CURL command: ```  curl -X GET https://lilt.com/2/connectors?key=API_KEY&id=274```
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id A unique Connector identifier.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Connector>} and HTTP response
@@ -167,13 +264,61 @@ export default class ConnectorsApi {
 
     /**
      * Retrieve a Connector
-     * Retrieves one or more connectors available to your user. Connectors are not associated with a project or a memory.  To retrieve a specific connector, specify the <strong>id</strong> request parameter. To retrieve all connectors, omit the <strong>id</strong> request parameter.  Example cURL command: ```  curl -X GET https://lilt.com/2/connectors?key=API_KEY&id=274```
+     * Retrieves one or more connectors available to your user. Connectors are not associated with a project or a memory.  To retrieve a specific connector, specify the <strong>id</strong> request parameter. To retrieve all connectors, omit the <strong>id</strong> request parameter.  Example CURL command: ```  curl -X GET https://lilt.com/2/connectors?key=API_KEY&id=274```
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id A unique Connector identifier.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Connector>}
      */
     getConnectors(opts) {
       return this.getConnectorsWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Sync a Connector
+     * Request an import job for the given connector ID. This will check the target system for new content to pull into Lilt.  Example CURL command: ```  curl -X GET https://lilt.com/2/connectors/sync?key=API_KEY&id=128 ``` 
+     * @param {Number} id A unique Connector identifier.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ConnectorJob} and HTTP response
+     */
+    syncConnectorWithHttpInfo(id) {
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling syncConnector");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'id': id
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = ConnectorJob;
+      return this.apiClient.callApi(
+        '/connectors/sync', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Sync a Connector
+     * Request an import job for the given connector ID. This will check the target system for new content to pull into Lilt.  Example CURL command: ```  curl -X GET https://lilt.com/2/connectors/sync?key=API_KEY&id=128 ``` 
+     * @param {Number} id A unique Connector identifier.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ConnectorJob}
+     */
+    syncConnector(id) {
+      return this.syncConnectorWithHttpInfo(id)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

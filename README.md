@@ -145,11 +145,17 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *LiltNode.ConnectorsApi* | [**createConnector**](docs/ConnectorsApi.md#createConnector) | **POST** /connectors | Upload a Connector
 *LiltNode.ConnectorsApi* | [**deleteConnector**](docs/ConnectorsApi.md#deleteConnector) | **DELETE** /connectors | Delete a Connector
+*LiltNode.ConnectorsApi* | [**exportConnectorJob**](docs/ConnectorsApi.md#exportConnectorJob) | **POST** /connectors/jobs/deliver | Deliver a Connector Job
+*LiltNode.ConnectorsApi* | [**getConnectorJobs**](docs/ConnectorsApi.md#getConnectorJobs) | **GET** /connectors/jobs | Retreive a Connector Job
 *LiltNode.ConnectorsApi* | [**getConnectors**](docs/ConnectorsApi.md#getConnectors) | **GET** /connectors | Retrieve a Connector
+*LiltNode.ConnectorsApi* | [**syncConnector**](docs/ConnectorsApi.md#syncConnector) | **POST** /connectors/sync | Sync a Connector
 *LiltNode.ConnectorsApi* | [**updateConnector**](docs/ConnectorsApi.md#updateConnector) | **PUT** /connectors | Upload a Connector
 *LiltNode.DocumentsApi* | [**assignDocument**](docs/DocumentsApi.md#assignDocument) | **PUT** /documents/share | Assign a Document
 *LiltNode.DocumentsApi* | [**createDocument**](docs/DocumentsApi.md#createDocument) | **POST** /documents | Create a Document
 *LiltNode.DocumentsApi* | [**deleteDocument**](docs/DocumentsApi.md#deleteDocument) | **DELETE** /documents | Delete a Document
+*LiltNode.DocumentsApi* | [**documentsDoneReviewPost**](docs/DocumentsApi.md#documentsDoneReviewPost) | **POST** /documents/done/review | Mark review done
+*LiltNode.DocumentsApi* | [**documentsDoneTranslationPost**](docs/DocumentsApi.md#documentsDoneTranslationPost) | **POST** /documents/done/translation | Mark translation done
+*LiltNode.DocumentsApi* | [**documentsDoneUnlockPost**](docs/DocumentsApi.md#documentsDoneUnlockPost) | **POST** /documents/done/unlock | Unlock documents
 *LiltNode.DocumentsApi* | [**downloadDocument**](docs/DocumentsApi.md#downloadDocument) | **GET** /documents/files | Download a Document
 *LiltNode.DocumentsApi* | [**getDocument**](docs/DocumentsApi.md#getDocument) | **GET** /documents | Retrieve a Document
 *LiltNode.DocumentsApi* | [**pretranslateDocuments**](docs/DocumentsApi.md#pretranslateDocuments) | **POST** /documents/pretranslate | Pretranslate a Document
@@ -196,9 +202,12 @@ Class | Method | HTTP request | Description
  - [LiltNode.Connector](docs/Connector.md)
  - [LiltNode.ConnectorArguments](docs/ConnectorArguments.md)
  - [LiltNode.ConnectorDeleteResponse](docs/ConnectorDeleteResponse.md)
+ - [LiltNode.ConnectorJob](docs/ConnectorJob.md)
  - [LiltNode.DocumentAssignmentParameters](docs/DocumentAssignmentParameters.md)
  - [LiltNode.DocumentAssignmentResponse](docs/DocumentAssignmentResponse.md)
  - [LiltNode.DocumentDeleteResponse](docs/DocumentDeleteResponse.md)
+ - [LiltNode.DocumentDoneUpdateParameters](docs/DocumentDoneUpdateParameters.md)
+ - [LiltNode.DocumentDoneUpdateParameters1](docs/DocumentDoneUpdateParameters1.md)
  - [LiltNode.DocumentParameters](docs/DocumentParameters.md)
  - [LiltNode.DocumentPretranslateParameters](docs/DocumentPretranslateParameters.md)
  - [LiltNode.DocumentPretranslateResponse](docs/DocumentPretranslateResponse.md)
