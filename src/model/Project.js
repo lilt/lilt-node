@@ -144,7 +144,7 @@ Project.prototype['trglocale'] = undefined;
 Project.prototype['name'] = undefined;
 
 /**
- * The project's state. The possible states are 'backlog', 'inProgress', 'inReview', 'inQA', and 'done'
+ * The project's state. The possible states are `backlog`, `inProgress`, `inReview`, `inQA`, and `done`.
  * @member {String} state
  */
 Project.prototype['state'] = undefined;
@@ -162,7 +162,7 @@ Project.prototype['due_date'] = undefined;
 Project.prototype['archived'] = undefined;
 
 /**
- * A JSON object for storing various project metadata.
+ * A JSON object of key/value string pairs. Stores custom project information.
  * @member {Object} metadata
  */
 Project.prototype['metadata'] = undefined;
