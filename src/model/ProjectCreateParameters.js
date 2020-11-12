@@ -98,7 +98,7 @@ ProjectCreateParameters.prototype['file_ids'] = undefined;
 ProjectCreateParameters.prototype['due_date'] = undefined;
 
 /**
- * Metadata associated with a project. This field must be valid JSON.
+ * A JSON object of key/value string pairs. Stores custom project information.
  * @member {Object} metadata
  */
 ProjectCreateParameters.prototype['metadata'] = undefined;
