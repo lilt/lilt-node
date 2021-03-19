@@ -15,6 +15,7 @@
 import ApiClient from "../ApiClient";
 import Error from '../model/Error';
 import TranslateRegisterResponse from '../model/TranslateRegisterResponse';
+import TranslationInfo from '../model/TranslationInfo';
 import TranslationList from '../model/TranslationList';
 
 /**
@@ -35,6 +36,171 @@ export default class TranslateApi {
         this.apiClient = apiClient || ApiClient.instance;
     }
 
+
+
+    /**
+     * Translate a File
+     * Start machine translation of one or more Files that have previously been uploaded.  The response will include an `id` parameter that can be used to monitor and download the translations in subsequent calls.  Example CURL: ``` curl --X --request POST 'https://lilt.com/2/translate/file?key=API_KEY&fileId=583&memoryId=2495&configId=123' ```  
+     * @param {String} fileId List of File ids to be translated, comma separated.
+     * @param {String} memoryId Id of Memory to use in translation.
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.configId An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TranslationInfo} and HTTP response
+     */
+    batchTranslateFileWithHttpInfo(fileId, memoryId, opts) {
+      opts = opts || {};
+      let postBody = null;
+      // verify the required parameter 'fileId' is set
+      if (fileId === undefined || fileId === null) {
+        throw new Error("Missing the required parameter 'fileId' when calling batchTranslateFile");
+      }
+      // verify the required parameter 'memoryId' is set
+      if (memoryId === undefined || memoryId === null) {
+        throw new Error("Missing the required parameter 'memoryId' when calling batchTranslateFile");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'fileId': fileId,
+        'memoryId': memoryId,
+        'configId': opts['configId']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = TranslationInfo;
+      return this.apiClient.callApi(
+        '/translate/file', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Translate a File
+     * Start machine translation of one or more Files that have previously been uploaded.  The response will include an `id` parameter that can be used to monitor and download the translations in subsequent calls.  Example CURL: ``` curl --X --request POST 'https://lilt.com/2/translate/file?key=API_KEY&fileId=583&memoryId=2495&configId=123' ```  
+     * @param {String} fileId List of File ids to be translated, comma separated.
+     * @param {String} memoryId Id of Memory to use in translation.
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.configId An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TranslationInfo}
+     */
+    batchTranslateFile(fileId, memoryId, opts) {
+      return this.batchTranslateFileWithHttpInfo(fileId, memoryId, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Download translated file
+     * Download a translated File.  Example CURL: ``` curl --X --request GET 'https://lilt.com/2/translate/files?key=API_KEY&id=1' ```  
+     * @param {String} id A translation id.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Blob} and HTTP response
+     */
+    downloadFileWithHttpInfo(id) {
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling downloadFile");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'id': id
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = [];
+      let accepts = ['application/octet-stream'];
+      let returnType = 'Blob';
+      return this.apiClient.callApi(
+        '/translate/files', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Download translated file
+     * Download a translated File.  Example CURL: ``` curl --X --request GET 'https://lilt.com/2/translate/files?key=API_KEY&id=1' ```  
+     * @param {String} id A translation id.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Blob}
+     */
+    downloadFile(id) {
+      return this.downloadFileWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Monitor file translation
+     * Get information about the one or more Files that are being translated with machine translation. Query filters are optional but at least one must be provided.  Example CURL: ``` curl --X --request GET 'https://lilt.com/2/translate/file?key=API_KEY&translationIds=1,2&fromTime=1607966744&toTime=1707966744&status=InProgress' ```  
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.translationIds List of translation ids, comma separated
+     * @param {String} opts.status One of the translation statuses - `InProgress`, `Completed`, `Failed`, `ReadyForDownload`
+     * @param {Number} opts.fromTime Results after this time (inclusive) will be returned, specified as seconds since the Unix epoch.
+     * @param {Number} opts.toTime Results before this time (exclusive) will be returned, specified as seconds since the Unix epoch.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TranslationInfo} and HTTP response
+     */
+    monitorFileTranslationWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'translationIds': opts['translationIds'],
+        'status': opts['status'],
+        'fromTime': opts['fromTime'],
+        'toTime': opts['toTime']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = TranslationInfo;
+      return this.apiClient.callApi(
+        '/translate/file', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Monitor file translation
+     * Get information about the one or more Files that are being translated with machine translation. Query filters are optional but at least one must be provided.  Example CURL: ``` curl --X --request GET 'https://lilt.com/2/translate/file?key=API_KEY&translationIds=1,2&fromTime=1607966744&toTime=1707966744&status=InProgress' ```  
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.translationIds List of translation ids, comma separated
+     * @param {String} opts.status One of the translation statuses - `InProgress`, `Completed`, `Failed`, `ReadyForDownload`
+     * @param {Number} opts.fromTime Results after this time (inclusive) will be returned, specified as seconds since the Unix epoch.
+     * @param {Number} opts.toTime Results before this time (exclusive) will be returned, specified as seconds since the Unix epoch.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TranslationInfo}
+     */
+    monitorFileTranslation(opts) {
+      return this.monitorFileTranslationWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
 
 
     /**

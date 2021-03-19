@@ -36,7 +36,6 @@ import DocumentWithSegments from './model/DocumentWithSegments';
 import DocumentWithoutSegments from './model/DocumentWithoutSegments';
 import DocumentWithoutSegmentsStatus from './model/DocumentWithoutSegmentsStatus';
 import Error from './model/Error';
-import File from './model/File';
 import FileDeleteResponse from './model/FileDeleteResponse';
 import LanguagesResponse from './model/LanguagesResponse';
 import LexiconEntry from './model/LexiconEntry';
@@ -73,9 +72,11 @@ import SegmentCreateParameters from './model/SegmentCreateParameters';
 import SegmentDeleteResponse from './model/SegmentDeleteResponse';
 import SegmentUpdateParameters from './model/SegmentUpdateParameters';
 import SegmentWithComments from './model/SegmentWithComments';
+import SourceFile from './model/SourceFile';
 import TaggedSegment from './model/TaggedSegment';
 import TranslateRegisterResponse from './model/TranslateRegisterResponse';
 import Translation from './model/Translation';
+import TranslationInfo from './model/TranslationInfo';
 import TranslationList from './model/TranslationList';
 import TranslationMemoryEntry from './model/TranslationMemoryEntry';
 import ConnectorsApi from './api/ConnectorsApi';
@@ -266,12 +267,6 @@ export {
      * @property {module:model/Error}
      */
     Error,
-
-    /**
-     * The File model constructor.
-     * @property {module:model/File}
-     */
-    File,
 
     /**
      * The FileDeleteResponse model constructor.
@@ -490,6 +485,12 @@ export {
     SegmentWithComments,
 
     /**
+     * The SourceFile model constructor.
+     * @property {module:model/SourceFile}
+     */
+    SourceFile,
+
+    /**
      * The TaggedSegment model constructor.
      * @property {module:model/TaggedSegment}
      */
@@ -506,6 +507,12 @@ export {
      * @property {module:model/Translation}
      */
     Translation,
+
+    /**
+     * The TranslationInfo model constructor.
+     * @property {module:model/TranslationInfo}
+     */
+    TranslationInfo,
 
     /**
      * The TranslationList model constructor.

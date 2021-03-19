@@ -207,7 +207,7 @@ BasicAuth.password = 'YOUR PASSWORD';
 let apiInstance = new LiltNode.MemoriesApi();
 let memoryId = 56; // Number | A unique Memory identifier.
 let name = "name_example"; // String | Name of the TM or termbase file.
-let body = "body_example"; // String | The file contents to be uploaded. The entire POST body will be treated as the file.
+let body = "/path/to/file"; // File | The file contents to be uploaded. The entire POST body will be treated as the file.
 apiInstance.importMemoryFile(memoryId, name, body).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
@@ -223,7 +223,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **memoryId** | **Number**| A unique Memory identifier. | 
  **name** | **String**| Name of the TM or termbase file. | 
- **body** | **String**| The file contents to be uploaded. The entire POST body will be treated as the file. | 
+ **body** | **File**| The file contents to be uploaded. The entire POST body will be treated as the file. | 
 
 ### Return type
 
