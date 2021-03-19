@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 ## getFiles
 
-> [File] getFiles(opts)
+> [SourceFile] getFiles(opts)
 
 Retrieve a File
 
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[File]**
+[**[SourceFile]**](SourceFile.md)
 
 ### Authorization
 
@@ -122,7 +122,7 @@ Name | Type | Description  | Notes
 
 ## uploadFile
 
-> File uploadFile(name, body, opts)
+> SourceFile uploadFile(name, body, opts)
 
 Upload a File
 
@@ -145,11 +145,14 @@ BasicAuth.password = 'YOUR PASSWORD';
 
 let apiInstance = new LiltNode.FilesApi();
 let name = "name_example"; // String | A file name.
-let body = "body_example"; // String | The file contents to be uploaded. The entire POST body will be treated as the file.
+let body = "/path/to/file"; // File | The file contents to be uploaded. The entire POST body will be treated as the file.
 let opts = {
   'exportUri': "exportUri_example", // String | A webhook endpoint that will export the translated document back to the source repository.
   'fileHash': "fileHash_example", // String | A hash value to associate with the file. The MD5 hash of the body contents will be used by default if a value isn't provided.
-  'langId': true // Boolean | Flag indicating whether to perform language detection on the uploaded file. Default is false.
+  'langId': true, // Boolean | Flag indicating whether to perform language detection on the uploaded file. Default is false.
+  'projectId': 56, // Number | The project to associate the uploaded file with.
+  'category': "category_example", // String | The category of the file. The options are `REFERENCE`, or `API`. The default is API. Files with the `REFERENCE` category will be displayed as reference material.
+  'labels': "labels_example" // String | Comma-separated list of labels to add to the uploaded document.
 };
 apiInstance.uploadFile(name, body, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -165,14 +168,17 @@ apiInstance.uploadFile(name, body, opts).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| A file name. | 
- **body** | **String**| The file contents to be uploaded. The entire POST body will be treated as the file. | 
+ **body** | **File**| The file contents to be uploaded. The entire POST body will be treated as the file. | 
  **exportUri** | **String**| A webhook endpoint that will export the translated document back to the source repository. | [optional] 
  **fileHash** | **String**| A hash value to associate with the file. The MD5 hash of the body contents will be used by default if a value isn&#39;t provided. | [optional] 
  **langId** | **Boolean**| Flag indicating whether to perform language detection on the uploaded file. Default is false. | [optional] 
+ **projectId** | **Number**| The project to associate the uploaded file with. | [optional] 
+ **category** | **String**| The category of the file. The options are &#x60;REFERENCE&#x60;, or &#x60;API&#x60;. The default is API. Files with the &#x60;REFERENCE&#x60; category will be displayed as reference material. | [optional] 
+ **labels** | **String**| Comma-separated list of labels to add to the uploaded document. | [optional] 
 
 ### Return type
 
-**File**
+[**SourceFile**](SourceFile.md)
 
 ### Authorization
 

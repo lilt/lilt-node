@@ -190,6 +190,9 @@ Class | Method | HTTP request | Description
 *LiltNode.SegmentsApi* | [**getSegment**](docs/SegmentsApi.md#getSegment) | **GET** /segments | Retrieve a Segment
 *LiltNode.SegmentsApi* | [**tagSegment**](docs/SegmentsApi.md#tagSegment) | **GET** /segments/tag | Tag a Segment
 *LiltNode.SegmentsApi* | [**updateSegment**](docs/SegmentsApi.md#updateSegment) | **PUT** /segments | Update a Segment
+*LiltNode.TranslateApi* | [**batchTranslateFile**](docs/TranslateApi.md#batchTranslateFile) | **POST** /translate/file | Translate a File
+*LiltNode.TranslateApi* | [**downloadFile**](docs/TranslateApi.md#downloadFile) | **GET** /translate/files | Download translated file
+*LiltNode.TranslateApi* | [**monitorFileTranslation**](docs/TranslateApi.md#monitorFileTranslation) | **GET** /translate/file | Monitor file translation
 *LiltNode.TranslateApi* | [**registerSegment**](docs/TranslateApi.md#registerSegment) | **GET** /translate/register | Register a segment
 *LiltNode.TranslateApi* | [**translateSegment**](docs/TranslateApi.md#translateSegment) | **GET** /translate | Translate a segment
 
@@ -219,7 +222,6 @@ Class | Method | HTTP request | Description
  - [LiltNode.DocumentWithoutSegments](docs/DocumentWithoutSegments.md)
  - [LiltNode.DocumentWithoutSegmentsStatus](docs/DocumentWithoutSegmentsStatus.md)
  - [LiltNode.Error](docs/Error.md)
- - [LiltNode.File](docs/File.md)
  - [LiltNode.FileDeleteResponse](docs/FileDeleteResponse.md)
  - [LiltNode.LanguagesResponse](docs/LanguagesResponse.md)
  - [LiltNode.LexiconEntry](docs/LexiconEntry.md)
@@ -256,9 +258,11 @@ Class | Method | HTTP request | Description
  - [LiltNode.SegmentDeleteResponse](docs/SegmentDeleteResponse.md)
  - [LiltNode.SegmentUpdateParameters](docs/SegmentUpdateParameters.md)
  - [LiltNode.SegmentWithComments](docs/SegmentWithComments.md)
+ - [LiltNode.SourceFile](docs/SourceFile.md)
  - [LiltNode.TaggedSegment](docs/TaggedSegment.md)
  - [LiltNode.TranslateRegisterResponse](docs/TranslateRegisterResponse.md)
  - [LiltNode.Translation](docs/Translation.md)
+ - [LiltNode.TranslationInfo](docs/TranslationInfo.md)
  - [LiltNode.TranslationList](docs/TranslationList.md)
  - [LiltNode.TranslationMemoryEntry](docs/TranslationMemoryEntry.md)
 
