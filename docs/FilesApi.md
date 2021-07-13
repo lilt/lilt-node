@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 ## getFiles
 
-> [SourceFile] getFiles(opts)
+> [Object] getFiles(opts)
 
 Retrieve a File
 
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[SourceFile]**](SourceFile.md)
+**[Object]**
 
 ### Authorization
 
@@ -122,11 +122,11 @@ Name | Type | Description  | Notes
 
 ## uploadFile
 
-> SourceFile uploadFile(name, body, opts)
+> Object uploadFile(name, body, opts)
 
 Upload a File
 
-Upload a File in any of the formats [documented in our knowledge base](https://support.lilt.com/hc/en-us/articles/360020816253-File-Formats). Request parameters should be passed in as query string parameters.  When uploading a file, any parameters needed to issue a request to the specified export_uri can be encoded in the export_uri itself as query parameters. Typical examples of parameters that may be required are an access token to authorize requests to a third-party HTTP API and the unique identifier of a resource available via the third-party HTTP API that corresponds to the file. An example export_uri that encodes a target resource identifier (i.e., source_id) of an associated resource behind a third party HTTP API is given in the CURL command below.  Example CURL command: &#x60;&#x60;&#x60;   curl -X POST https://lilt.com/2/files?key&#x3D;API_KEY&amp;name&#x3D;en_US.json&amp;export_uri&#x3D;https://example.com/export?source_id&#x3D;12345 \\   --header \&quot;Content-Type: application/octet-stream\&quot; \\   --data-binary @en_US.json &#x60;&#x60;&#x60; Calls to GET /files are used to monitor the language detection results. The API response will be augmented to include detected language and confidence score.  The language detection will complete asynchronously. Prior to completion, the &#x60;detected_lang&#x60; value will be &#x60;zxx&#x60;, the reserved ISO 639-2 code for \&quot;No linguistic content/not applicable\&quot;.  If the language can not be determined, or the detection process fails, the &#x60;detected_lang&#x60; field will return &#x60;und&#x60;, the reserved ISO 639-2 code for undetermined language, and the &#x60;detected_lang_confidence&#x60; score will be &#x60;0&#x60;.  
+Upload a File in any of the formats [documented in our knowledge base](https://support.lilt.com/hc/en-us/articles/360020816253-File-Formats). Request parameters should be passed in as query string parameters.  Example CURL command: &#x60;&#x60;&#x60;   curl -X POST https://lilt.com/2/files?key&#x3D;API_KEY&amp;name&#x3D;en_US.json \\   --header \&quot;Content-Type: application/octet-stream\&quot; \\   --data-binary @en_US.json &#x60;&#x60;&#x60; Calls to GET /files are used to monitor the language detection results. The API response will be augmented to include detected language and confidence score.  The language detection will complete asynchronously. Prior to completion, the &#x60;detected_lang&#x60; value will be &#x60;zxx&#x60;, the reserved ISO 639-2 code for \&quot;No linguistic content/not applicable\&quot;.  If the language can not be determined, or the detection process fails, the &#x60;detected_lang&#x60; field will return &#x60;und&#x60;, the reserved ISO 639-2 code for undetermined language, and the &#x60;detected_lang_confidence&#x60; score will be &#x60;0&#x60;.  
 
 ### Example
 
@@ -147,7 +147,6 @@ let apiInstance = new LiltNode.FilesApi();
 let name = "name_example"; // String | A file name.
 let body = "/path/to/file"; // File | The file contents to be uploaded. The entire POST body will be treated as the file.
 let opts = {
-  'exportUri': "exportUri_example", // String | A webhook endpoint that will export the translated document back to the source repository.
   'fileHash': "fileHash_example", // String | A hash value to associate with the file. The MD5 hash of the body contents will be used by default if a value isn't provided.
   'langId': true, // Boolean | Flag indicating whether to perform language detection on the uploaded file. Default is false.
   'projectId': 56, // Number | The project to associate the uploaded file with.
@@ -169,7 +168,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| A file name. | 
  **body** | **File**| The file contents to be uploaded. The entire POST body will be treated as the file. | 
- **exportUri** | **String**| A webhook endpoint that will export the translated document back to the source repository. | [optional] 
  **fileHash** | **String**| A hash value to associate with the file. The MD5 hash of the body contents will be used by default if a value isn&#39;t provided. | [optional] 
  **langId** | **Boolean**| Flag indicating whether to perform language detection on the uploaded file. Default is false. | [optional] 
  **projectId** | **Number**| The project to associate the uploaded file with. | [optional] 
@@ -178,7 +176,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SourceFile**](SourceFile.md)
+**Object**
 
 ### Authorization
 

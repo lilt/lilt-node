@@ -13,9 +13,7 @@
 
 
 import ApiClient from "../ApiClient";
-import Error from '../model/Error';
 import FileDeleteResponse from '../model/FileDeleteResponse';
-import SourceFile from '../model/SourceFile';
 
 /**
 * Files service.
@@ -90,7 +88,7 @@ export default class FilesApi {
      * Retrieves one or more files available to your user. Files are not associated with a project or a memory. They are unprocessed and can be used later in the project/document creation workflow step.  To retrieve a specific file, specify the <strong>id</strong> request parameter. To retrieve all files, omit the <strong>id</strong> request parameter.  Example CURL command: ```  curl -X GET https://lilt.com/2/files?key=API_KEY&id=274```
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id A unique File identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/SourceFile>} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<Object>} and HTTP response
      */
     getFilesWithHttpInfo(opts) {
       opts = opts || {};
@@ -109,7 +107,7 @@ export default class FilesApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = [SourceFile];
+      let returnType = [Object];
       return this.apiClient.callApi(
         '/files', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -122,7 +120,7 @@ export default class FilesApi {
      * Retrieves one or more files available to your user. Files are not associated with a project or a memory. They are unprocessed and can be used later in the project/document creation workflow step.  To retrieve a specific file, specify the <strong>id</strong> request parameter. To retrieve all files, omit the <strong>id</strong> request parameter.  Example CURL command: ```  curl -X GET https://lilt.com/2/files?key=API_KEY&id=274```
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id A unique File identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/SourceFile>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<Object>}
      */
     getFiles(opts) {
       return this.getFilesWithHttpInfo(opts)
@@ -134,17 +132,16 @@ export default class FilesApi {
 
     /**
      * Upload a File
-     * Upload a File in any of the formats [documented in our knowledge base](https://support.lilt.com/hc/en-us/articles/360020816253-File-Formats). Request parameters should be passed in as query string parameters.  When uploading a file, any parameters needed to issue a request to the specified export_uri can be encoded in the export_uri itself as query parameters. Typical examples of parameters that may be required are an access token to authorize requests to a third-party HTTP API and the unique identifier of a resource available via the third-party HTTP API that corresponds to the file. An example export_uri that encodes a target resource identifier (i.e., source_id) of an associated resource behind a third party HTTP API is given in the CURL command below.  Example CURL command: ```   curl -X POST https://lilt.com/2/files?key=API_KEY&name=en_US.json&export_uri=https://example.com/export?source_id=12345 \\   --header \"Content-Type: application/octet-stream\" \\   --data-binary @en_US.json ``` Calls to GET /files are used to monitor the language detection results. The API response will be augmented to include detected language and confidence score.  The language detection will complete asynchronously. Prior to completion, the `detected_lang` value will be `zxx`, the reserved ISO 639-2 code for \"No linguistic content/not applicable\".  If the language can not be determined, or the detection process fails, the `detected_lang` field will return `und`, the reserved ISO 639-2 code for undetermined language, and the `detected_lang_confidence` score will be `0`.  
+     * Upload a File in any of the formats [documented in our knowledge base](https://support.lilt.com/hc/en-us/articles/360020816253-File-Formats). Request parameters should be passed in as query string parameters.  Example CURL command: ```   curl -X POST https://lilt.com/2/files?key=API_KEY&name=en_US.json \\   --header \"Content-Type: application/octet-stream\" \\   --data-binary @en_US.json ``` Calls to GET /files are used to monitor the language detection results. The API response will be augmented to include detected language and confidence score.  The language detection will complete asynchronously. Prior to completion, the `detected_lang` value will be `zxx`, the reserved ISO 639-2 code for \"No linguistic content/not applicable\".  If the language can not be determined, or the detection process fails, the `detected_lang` field will return `und`, the reserved ISO 639-2 code for undetermined language, and the `detected_lang_confidence` score will be `0`.  
      * @param {String} name A file name.
      * @param {File} body The file contents to be uploaded. The entire POST body will be treated as the file.
      * @param {Object} opts Optional parameters
-     * @param {String} opts.exportUri A webhook endpoint that will export the translated document back to the source repository.
      * @param {String} opts.fileHash A hash value to associate with the file. The MD5 hash of the body contents will be used by default if a value isn't provided.
      * @param {Boolean} opts.langId Flag indicating whether to perform language detection on the uploaded file. Default is false.
      * @param {Number} opts.projectId The project to associate the uploaded file with.
      * @param {String} opts.category The category of the file. The options are `REFERENCE`, or `API`. The default is API. Files with the `REFERENCE` category will be displayed as reference material.
      * @param {String} opts.labels Comma-separated list of labels to add to the uploaded document.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SourceFile} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     uploadFileWithHttpInfo(name, body, opts) {
       opts = opts || {};
@@ -162,7 +159,6 @@ export default class FilesApi {
       };
       let queryParams = {
         'name': name,
-        'export_uri': opts['exportUri'],
         'file_hash': opts['fileHash'],
         'langId': opts['langId'],
         'project_id': opts['projectId'],
@@ -177,7 +173,7 @@ export default class FilesApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/octet-stream'];
       let accepts = ['application/json'];
-      let returnType = SourceFile;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/files', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -187,17 +183,16 @@ export default class FilesApi {
 
     /**
      * Upload a File
-     * Upload a File in any of the formats [documented in our knowledge base](https://support.lilt.com/hc/en-us/articles/360020816253-File-Formats). Request parameters should be passed in as query string parameters.  When uploading a file, any parameters needed to issue a request to the specified export_uri can be encoded in the export_uri itself as query parameters. Typical examples of parameters that may be required are an access token to authorize requests to a third-party HTTP API and the unique identifier of a resource available via the third-party HTTP API that corresponds to the file. An example export_uri that encodes a target resource identifier (i.e., source_id) of an associated resource behind a third party HTTP API is given in the CURL command below.  Example CURL command: ```   curl -X POST https://lilt.com/2/files?key=API_KEY&name=en_US.json&export_uri=https://example.com/export?source_id=12345 \\   --header \"Content-Type: application/octet-stream\" \\   --data-binary @en_US.json ``` Calls to GET /files are used to monitor the language detection results. The API response will be augmented to include detected language and confidence score.  The language detection will complete asynchronously. Prior to completion, the `detected_lang` value will be `zxx`, the reserved ISO 639-2 code for \"No linguistic content/not applicable\".  If the language can not be determined, or the detection process fails, the `detected_lang` field will return `und`, the reserved ISO 639-2 code for undetermined language, and the `detected_lang_confidence` score will be `0`.  
+     * Upload a File in any of the formats [documented in our knowledge base](https://support.lilt.com/hc/en-us/articles/360020816253-File-Formats). Request parameters should be passed in as query string parameters.  Example CURL command: ```   curl -X POST https://lilt.com/2/files?key=API_KEY&name=en_US.json \\   --header \"Content-Type: application/octet-stream\" \\   --data-binary @en_US.json ``` Calls to GET /files are used to monitor the language detection results. The API response will be augmented to include detected language and confidence score.  The language detection will complete asynchronously. Prior to completion, the `detected_lang` value will be `zxx`, the reserved ISO 639-2 code for \"No linguistic content/not applicable\".  If the language can not be determined, or the detection process fails, the `detected_lang` field will return `und`, the reserved ISO 639-2 code for undetermined language, and the `detected_lang_confidence` score will be `0`.  
      * @param {String} name A file name.
      * @param {File} body The file contents to be uploaded. The entire POST body will be treated as the file.
      * @param {Object} opts Optional parameters
-     * @param {String} opts.exportUri A webhook endpoint that will export the translated document back to the source repository.
      * @param {String} opts.fileHash A hash value to associate with the file. The MD5 hash of the body contents will be used by default if a value isn't provided.
      * @param {Boolean} opts.langId Flag indicating whether to perform language detection on the uploaded file. Default is false.
      * @param {Number} opts.projectId The project to associate the uploaded file with.
      * @param {String} opts.category The category of the file. The options are `REFERENCE`, or `API`. The default is API. Files with the `REFERENCE` category will be displayed as reference material.
      * @param {String} opts.labels Comma-separated list of labels to add to the uploaded document.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SourceFile}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     uploadFile(name, body, opts) {
       return this.uploadFileWithHttpInfo(name, body, opts)

@@ -13,8 +13,6 @@
 
 
 import ApiClient from "../ApiClient";
-import Error from '../model/Error';
-import LexiconEntry from '../model/LexiconEntry';
 import LexiconUpdateParameters from '../model/LexiconUpdateParameters';
 import LexiconUpdateResponse from '../model/LexiconUpdateResponse';
 
@@ -47,7 +45,7 @@ export default class LexiconApi {
      * @param {String} query The query term.
      * @param {Object} opts Optional parameters
      * @param {Number} opts.n The maximum number of results to return. (default to 1)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/LexiconEntry>} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<Object>} and HTTP response
      */
     queryLexiconWithHttpInfo(memoryId, srclang, trglang, query, opts) {
       opts = opts || {};
@@ -86,7 +84,7 @@ export default class LexiconApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = [LexiconEntry];
+      let returnType = [Object];
       return this.apiClient.callApi(
         '/lexicon', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -103,7 +101,7 @@ export default class LexiconApi {
      * @param {String} query The query term.
      * @param {Object} opts Optional parameters
      * @param {Number} opts.n The maximum number of results to return. (default to 1)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/LexiconEntry>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<Object>}
      */
     queryLexicon(memoryId, srclang, trglang, query, opts) {
       return this.queryLexiconWithHttpInfo(memoryId, srclang, trglang, query, opts)

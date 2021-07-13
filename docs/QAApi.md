@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## qaCheck
 
-> QARuleMatches qaCheck(target, trglang, opts)
+> Object qaCheck(target, trglang, opts)
 
 Perform QA check
 
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**QARuleMatches**](QARuleMatches.md)
+**Object**
 
 ### Authorization
 

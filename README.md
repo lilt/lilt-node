@@ -126,9 +126,11 @@ var BasicAuth = defaultClient.authentications['BasicAuth'];
 BasicAuth.username = 'YOUR USERNAME'
 BasicAuth.password = 'YOUR PASSWORD'
 
-var api = new LiltNode.ConnectorsApi()
-var body = new LiltNode.Connector(); // {Connector} 
-api.createConnector(body).then(function(data) {
+var api = new LiltNode.CommentsApi()
+var documentId = 56; // {Number} A unique document identifier.
+var segmentId = 56; // {Number} A unique segment identifier.
+var body = null; // {Object} The comment being created
+api.createComment(documentId, segmentId, body).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
 }, function(error) {
   console.error(error);
@@ -143,10 +145,14 @@ All URIs are relative to *https://lilt.com/2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*LiltNode.CommentsApi* | [**createComment**](docs/CommentsApi.md#createComment) | **POST** /comments | Create a new comment
+*LiltNode.CommentsApi* | [**deleteComment**](docs/CommentsApi.md#deleteComment) | **DELETE** /comments | Delete a Comment
+*LiltNode.CommentsApi* | [**getDocumentComments**](docs/CommentsApi.md#getDocumentComments) | **GET** /comments | Retrieve a document&#39;s comments by segment
+*LiltNode.CommentsApi* | [**updateComment**](docs/CommentsApi.md#updateComment) | **PUT** /comments | Update an existing comment
 *LiltNode.ConnectorsApi* | [**createConnector**](docs/ConnectorsApi.md#createConnector) | **POST** /connectors | Upload a Connector
 *LiltNode.ConnectorsApi* | [**deleteConnector**](docs/ConnectorsApi.md#deleteConnector) | **DELETE** /connectors | Delete a Connector
 *LiltNode.ConnectorsApi* | [**exportConnectorJob**](docs/ConnectorsApi.md#exportConnectorJob) | **POST** /connectors/jobs/deliver | Deliver a Connector Job
-*LiltNode.ConnectorsApi* | [**getConnectorJobs**](docs/ConnectorsApi.md#getConnectorJobs) | **GET** /connectors/jobs | Retreive a Connector Job
+*LiltNode.ConnectorsApi* | [**getConnectorJobs**](docs/ConnectorsApi.md#getConnectorJobs) | **GET** /connectors/jobs | Retrieve a Connector Job
 *LiltNode.ConnectorsApi* | [**getConnectors**](docs/ConnectorsApi.md#getConnectors) | **GET** /connectors | Retrieve a Connector
 *LiltNode.ConnectorsApi* | [**syncConnector**](docs/ConnectorsApi.md#syncConnector) | **POST** /connectors/sync | Sync a Connector
 *LiltNode.ConnectorsApi* | [**updateConnector**](docs/ConnectorsApi.md#updateConnector) | **PUT** /connectors | Upload a Connector
@@ -164,6 +170,18 @@ Class | Method | HTTP request | Description
 *LiltNode.FilesApi* | [**deleteFile**](docs/FilesApi.md#deleteFile) | **DELETE** /files | Delete a File
 *LiltNode.FilesApi* | [**getFiles**](docs/FilesApi.md#getFiles) | **GET** /files | Retrieve a File
 *LiltNode.FilesApi* | [**uploadFile**](docs/FilesApi.md#uploadFile) | **POST** /files | Upload a File
+*LiltNode.JobsApi* | [**archiveJob**](docs/JobsApi.md#archiveJob) | **POST** /jobs/{jobId}/archive | Archive a Job
+*LiltNode.JobsApi* | [**createJob**](docs/JobsApi.md#createJob) | **POST** /jobs | Create a Job
+*LiltNode.JobsApi* | [**deleteJob**](docs/JobsApi.md#deleteJob) | **DELETE** /jobs/{jobId} | Delete a Job
+*LiltNode.JobsApi* | [**deliverJob**](docs/JobsApi.md#deliverJob) | **POST** /jobs/{jobId}/deliver | Deliver a Job
+*LiltNode.JobsApi* | [**downloadJob**](docs/JobsApi.md#downloadJob) | **GET** /jobs/{jobId}/downlod | Download a Job
+*LiltNode.JobsApi* | [**exportJob**](docs/JobsApi.md#exportJob) | **GET** /jobs/{jobId}/export | Export a Job
+*LiltNode.JobsApi* | [**getJob**](docs/JobsApi.md#getJob) | **GET** /jobs/{jobId} | Retrieve a Job
+*LiltNode.JobsApi* | [**getJobLeverageStats**](docs/JobsApi.md#getJobLeverageStats) | **POST** /jobs/{jobId}/stats | Retrieve Job Leverage Stats
+*LiltNode.JobsApi* | [**reactivateJob**](docs/JobsApi.md#reactivateJob) | **POST** /jobs/{jobId}/reactivate | Reactivate a Job
+*LiltNode.JobsApi* | [**retrieveAllJobs**](docs/JobsApi.md#retrieveAllJobs) | **GET** /jobs | Retrieve all Jobs
+*LiltNode.JobsApi* | [**unarchiveJob**](docs/JobsApi.md#unarchiveJob) | **POST** /jobs/{jobId}/unarchive | Unarchive a Job
+*LiltNode.JobsApi* | [**updateJob**](docs/JobsApi.md#updateJob) | **PUT** /jobs/{jobId} | Update a Job
 *LiltNode.LanguagesApi* | [**getLanguages**](docs/LanguagesApi.md#getLanguages) | **GET** /languages | Retrieve supported languages
 *LiltNode.LexiconApi* | [**queryLexicon**](docs/LexiconApi.md#queryLexicon) | **GET** /lexicon | Query a Lexicon
 *LiltNode.LexiconApi* | [**updateLexicon**](docs/LexiconApi.md#updateLexicon) | **POST** /lexicon | Update a Lexicon
@@ -188,8 +206,13 @@ Class | Method | HTTP request | Description
 *LiltNode.SegmentsApi* | [**createSegment**](docs/SegmentsApi.md#createSegment) | **POST** /segments | Create a Segment
 *LiltNode.SegmentsApi* | [**deleteSegment**](docs/SegmentsApi.md#deleteSegment) | **DELETE** /segments | Delete a Segment
 *LiltNode.SegmentsApi* | [**getSegment**](docs/SegmentsApi.md#getSegment) | **GET** /segments | Retrieve a Segment
+*LiltNode.SegmentsApi* | [**segmentsReviewUnlockPost**](docs/SegmentsApi.md#segmentsReviewUnlockPost) | **POST** /segments/review/unlock | Unaccept and unlock segments
 *LiltNode.SegmentsApi* | [**tagSegment**](docs/SegmentsApi.md#tagSegment) | **GET** /segments/tag | Tag a Segment
 *LiltNode.SegmentsApi* | [**updateSegment**](docs/SegmentsApi.md#updateSegment) | **PUT** /segments | Update a Segment
+*LiltNode.SettingsApi* | [**getOrganizationSettings**](docs/SettingsApi.md#getOrganizationSettings) | **GET** /settings/organization | Update or create a setting
+*LiltNode.SettingsApi* | [**getProjectSettings**](docs/SettingsApi.md#getProjectSettings) | **GET** /settings/project/{projectId} | Get settings for a project
+*LiltNode.SettingsApi* | [**getUserSettings**](docs/SettingsApi.md#getUserSettings) | **GET** /settings/user | Get settings for a project
+*LiltNode.SettingsApi* | [**upsertSetting**](docs/SettingsApi.md#upsertSetting) | **POST** /settings | Get organization-level settings
 *LiltNode.TranslateApi* | [**batchTranslateFile**](docs/TranslateApi.md#batchTranslateFile) | **POST** /translate/file | Translate a File
 *LiltNode.TranslateApi* | [**downloadFile**](docs/TranslateApi.md#downloadFile) | **GET** /translate/files | Download translated file
 *LiltNode.TranslateApi* | [**monitorFileTranslation**](docs/TranslateApi.md#monitorFileTranslation) | **GET** /translate/file | Monitor file translation
@@ -199,13 +222,11 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [LiltNode.Annotation](docs/Annotation.md)
  - [LiltNode.ApiRoot](docs/ApiRoot.md)
- - [LiltNode.Comment](docs/Comment.md)
+ - [LiltNode.CommentDeleteResponse](docs/CommentDeleteResponse.md)
  - [LiltNode.Connector](docs/Connector.md)
  - [LiltNode.ConnectorArguments](docs/ConnectorArguments.md)
  - [LiltNode.ConnectorDeleteResponse](docs/ConnectorDeleteResponse.md)
- - [LiltNode.ConnectorJob](docs/ConnectorJob.md)
  - [LiltNode.DocumentAssignmentParameters](docs/DocumentAssignmentParameters.md)
  - [LiltNode.DocumentAssignmentResponse](docs/DocumentAssignmentResponse.md)
  - [LiltNode.DocumentDeleteResponse](docs/DocumentDeleteResponse.md)
@@ -214,57 +235,27 @@ Class | Method | HTTP request | Description
  - [LiltNode.DocumentParameters](docs/DocumentParameters.md)
  - [LiltNode.DocumentPretranslateParameters](docs/DocumentPretranslateParameters.md)
  - [LiltNode.DocumentPretranslateResponse](docs/DocumentPretranslateResponse.md)
- - [LiltNode.DocumentPretranslating](docs/DocumentPretranslating.md)
- - [LiltNode.DocumentPretranslatingStatus](docs/DocumentPretranslatingStatus.md)
- - [LiltNode.DocumentQuote](docs/DocumentQuote.md)
  - [LiltNode.DocumentUpdateParameters](docs/DocumentUpdateParameters.md)
- - [LiltNode.DocumentWithSegments](docs/DocumentWithSegments.md)
- - [LiltNode.DocumentWithoutSegments](docs/DocumentWithoutSegments.md)
- - [LiltNode.DocumentWithoutSegmentsStatus](docs/DocumentWithoutSegmentsStatus.md)
- - [LiltNode.Error](docs/Error.md)
  - [LiltNode.FileDeleteResponse](docs/FileDeleteResponse.md)
+ - [LiltNode.JobCreateParameters](docs/JobCreateParameters.md)
+ - [LiltNode.JobDeleteResponse](docs/JobDeleteResponse.md)
+ - [LiltNode.JobUpdateParameters](docs/JobUpdateParameters.md)
  - [LiltNode.LanguagesResponse](docs/LanguagesResponse.md)
- - [LiltNode.LexiconEntry](docs/LexiconEntry.md)
- - [LiltNode.LexiconEntryExamples](docs/LexiconEntryExamples.md)
- - [LiltNode.LexiconEntrySourceSpan](docs/LexiconEntrySourceSpan.md)
- - [LiltNode.LexiconEntryTargetSpan](docs/LexiconEntryTargetSpan.md)
- - [LiltNode.LexiconEntryTranslations](docs/LexiconEntryTranslations.md)
  - [LiltNode.LexiconUpdateParameters](docs/LexiconUpdateParameters.md)
  - [LiltNode.LexiconUpdateResponse](docs/LexiconUpdateResponse.md)
- - [LiltNode.MatchBand](docs/MatchBand.md)
- - [LiltNode.Memory](docs/Memory.md)
  - [LiltNode.MemoryCreateParameters](docs/MemoryCreateParameters.md)
  - [LiltNode.MemoryDeleteResponse](docs/MemoryDeleteResponse.md)
  - [LiltNode.MemoryImportResponse](docs/MemoryImportResponse.md)
  - [LiltNode.MemoryInsertResponse](docs/MemoryInsertResponse.md)
  - [LiltNode.MemoryUpdateParameters](docs/MemoryUpdateParameters.md)
  - [LiltNode.MemoryUpdateResponse](docs/MemoryUpdateResponse.md)
- - [LiltNode.Project](docs/Project.md)
  - [LiltNode.ProjectCreateParameters](docs/ProjectCreateParameters.md)
  - [LiltNode.ProjectDeleteResponse](docs/ProjectDeleteResponse.md)
- - [LiltNode.ProjectQuote](docs/ProjectQuote.md)
- - [LiltNode.ProjectStatus](docs/ProjectStatus.md)
  - [LiltNode.ProjectUpdateResponse](docs/ProjectUpdateResponse.md)
- - [LiltNode.QARuleMatches](docs/QARuleMatches.md)
- - [LiltNode.QARuleMatchesContext](docs/QARuleMatchesContext.md)
- - [LiltNode.QARuleMatchesMatches](docs/QARuleMatchesMatches.md)
- - [LiltNode.QARuleMatchesReplacements](docs/QARuleMatchesReplacements.md)
- - [LiltNode.QARuleMatchesRule](docs/QARuleMatchesRule.md)
- - [LiltNode.QARuleMatchesRuleCategory](docs/QARuleMatchesRuleCategory.md)
- - [LiltNode.QARuleMatchesRuleUrls](docs/QARuleMatchesRuleUrls.md)
- - [LiltNode.ResourceStatus](docs/ResourceStatus.md)
- - [LiltNode.Segment](docs/Segment.md)
  - [LiltNode.SegmentCreateParameters](docs/SegmentCreateParameters.md)
  - [LiltNode.SegmentDeleteResponse](docs/SegmentDeleteResponse.md)
  - [LiltNode.SegmentUpdateParameters](docs/SegmentUpdateParameters.md)
- - [LiltNode.SegmentWithComments](docs/SegmentWithComments.md)
- - [LiltNode.SourceFile](docs/SourceFile.md)
- - [LiltNode.TaggedSegment](docs/TaggedSegment.md)
  - [LiltNode.TranslateRegisterResponse](docs/TranslateRegisterResponse.md)
- - [LiltNode.Translation](docs/Translation.md)
- - [LiltNode.TranslationInfo](docs/TranslationInfo.md)
- - [LiltNode.TranslationList](docs/TranslationList.md)
- - [LiltNode.TranslationMemoryEntry](docs/TranslationMemoryEntry.md)
 
 
 ## Documentation for Authorization

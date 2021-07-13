@@ -57,8 +57,8 @@ class ProjectCreateParameters {
             if (data.hasOwnProperty('memory_id')) {
                 obj['memory_id'] = ApiClient.convertToType(data['memory_id'], 'Number');
             }
-            if (data.hasOwnProperty('file_ids')) {
-                obj['file_ids'] = ApiClient.convertToType(data['file_ids'], ['Number']);
+            if (data.hasOwnProperty('job_id')) {
+                obj['job_id'] = ApiClient.convertToType(data['job_id'], 'Number');
             }
             if (data.hasOwnProperty('due_date')) {
                 obj['due_date'] = ApiClient.convertToType(data['due_date'], 'Number');
@@ -86,10 +86,10 @@ ProjectCreateParameters.prototype['name'] = undefined;
 ProjectCreateParameters.prototype['memory_id'] = undefined;
 
 /**
- * A list of Files to add to this new Project.
- * @member {Array.<Number>} file_ids
+ * The Job to associate with this new Project. If a Job ID is not provided then a new Job will be created to contain the Project. 
+ * @member {Number} job_id
  */
-ProjectCreateParameters.prototype['file_ids'] = undefined;
+ProjectCreateParameters.prototype['job_id'] = undefined;
 
 /**
  * The due date. Measured in seconds since the Unix epoch.
