@@ -14,18 +14,18 @@
 import ApiClient from '../ApiClient';
 
 /**
- * The DocumentPretranslateResponse model module.
- * @module model/DocumentPretranslateResponse
+ * The JobUpdateParameters model module.
+ * @module model/JobUpdateParameters
  * @version 0.5.0
  */
-class DocumentPretranslateResponse {
+class JobUpdateParameters {
     /**
-     * Constructs a new <code>DocumentPretranslateResponse</code>.
-     * @alias module:model/DocumentPretranslateResponse
+     * Constructs a new <code>JobUpdateParameters</code>.
+     * @alias module:model/JobUpdateParameters
      */
     constructor() { 
         
-        DocumentPretranslateResponse.initialize(this);
+        JobUpdateParameters.initialize(this);
     }
 
     /**
@@ -37,24 +37,21 @@ class DocumentPretranslateResponse {
     }
 
     /**
-     * Constructs a <code>DocumentPretranslateResponse</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>JobUpdateParameters</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/DocumentPretranslateResponse} obj Optional instance to populate.
-     * @return {module:model/DocumentPretranslateResponse} The populated <code>DocumentPretranslateResponse</code> instance.
+     * @param {module:model/JobUpdateParameters} obj Optional instance to populate.
+     * @return {module:model/JobUpdateParameters} The populated <code>JobUpdateParameters</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new DocumentPretranslateResponse();
+            obj = obj || new JobUpdateParameters();
 
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], ['Number']);
+            if (data.hasOwnProperty('name')) {
+                obj['name'] = ApiClient.convertToType(data['name'], 'String');
             }
-            if (data.hasOwnProperty('is_pretranslating')) {
-                obj['is_pretranslating'] = ApiClient.convertToType(data['is_pretranslating'], 'Boolean');
-            }
-            if (data.hasOwnProperty('documents')) {
-                obj['documents'] = ApiClient.convertToType(data['documents'], [Object]);
+            if (data.hasOwnProperty('dueDate')) {
+                obj['dueDate'] = ApiClient.convertToType(data['dueDate'], 'Number');
             }
         }
         return obj;
@@ -64,27 +61,21 @@ class DocumentPretranslateResponse {
 }
 
 /**
- * A list of documents being pretranslated.
- * @member {Array.<Number>} id
+ * A name for the Job.
+ * @member {String} name
  */
-DocumentPretranslateResponse.prototype['id'] = undefined;
+JobUpdateParameters.prototype['name'] = undefined;
 
 /**
- * If the operation succeeded, then `true`. Otherwise, `false`.
- * @member {Boolean} is_pretranslating
+ * An ISO string date.
+ * @member {Number} dueDate
  */
-DocumentPretranslateResponse.prototype['is_pretranslating'] = undefined;
-
-/**
- * Document pretranslation status.
- * @member {Array.<Object>} documents
- */
-DocumentPretranslateResponse.prototype['documents'] = undefined;
+JobUpdateParameters.prototype['dueDate'] = undefined;
 
 
 
 
 
 
-export default DocumentPretranslateResponse;
+export default JobUpdateParameters;
 

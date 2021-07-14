@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 
 ## createDocument
 
-> DocumentWithSegments createDocument(opts)
+> Object createDocument(opts)
 
 Create a Document
 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentWithSegments**](DocumentWithSegments.md)
+**Object**
 
 ### Authorization
 
@@ -404,7 +404,7 @@ Name | Type | Description  | Notes
 
 ## getDocument
 
-> DocumentWithSegments getDocument(id, opts)
+> Object getDocument(id, opts)
 
 Retrieve a Document
 
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentWithSegments**](DocumentWithSegments.md)
+**Object**
 
 ### Authorization
 
@@ -526,7 +526,7 @@ Name | Type | Description  | Notes
 
 ## updateDocument
 
-> DocumentWithSegments updateDocument(body)
+> Object updateDocument(body)
 
 Update a Document
 
@@ -566,7 +566,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentWithSegments**](DocumentWithSegments.md)
+**Object**
 
 ### Authorization
 
@@ -580,7 +580,7 @@ Name | Type | Description  | Notes
 
 ## uploadDocument
 
-> DocumentWithSegments uploadDocument(name, projectId, body, opts)
+> Object uploadDocument(name, projectId, body, opts)
 
 Upload a File
 
@@ -606,8 +606,10 @@ let name = "name_example"; // String | A file name.
 let projectId = 56; // Number | A unique Project identifier.
 let body = "/path/to/file"; // File | The file contents to be uploaded. The entire POST body will be treated as the file. 
 let opts = {
-  'pretranslate': "pretranslate_example", // String | An optional parameter indicating if and how the document will be pretranslated upon being uploaded.  The accepted values are `null`, `tm`, or `tm+mt` 
+  'pretranslate': "pretranslate_example", // String | An optional parameter indicating if and how the document will be pretranslated upon being uploaded. The accepted values are `TM`, or `TM+MT` 
   'autoAccept': true, // Boolean | An optional parameter to auto-accept segments with 100% translation memory matches when the `pretranslate` option is also set, or to auto-accept any target data that is present when the uploaded file is XLIFF. If omitted or set to `false`, no segments will be auto-accepted. 
+  'caseSensitive': true, // Boolean | An optional parameter to use case sensitive translation memory matching when the `pretranslate` option is also enabled. Matches must have identical character-by-character case to qualify as matches. Default value is `false` 
+  'matchAttribution': true, // Boolean | An optional parameter to attribute translation authorship of exact matches to the author of the file when the `pretranslate` option is also enabled. Default value is `false` 
   'configId': 56 // Number | An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file. 
 };
 apiInstance.uploadDocument(name, projectId, body, opts).then((data) => {
@@ -626,13 +628,15 @@ Name | Type | Description  | Notes
  **name** | **String**| A file name. | 
  **projectId** | **Number**| A unique Project identifier. | 
  **body** | **File**| The file contents to be uploaded. The entire POST body will be treated as the file.  | 
- **pretranslate** | **String**| An optional parameter indicating if and how the document will be pretranslated upon being uploaded.  The accepted values are &#x60;null&#x60;, &#x60;tm&#x60;, or &#x60;tm+mt&#x60;  | [optional] 
+ **pretranslate** | **String**| An optional parameter indicating if and how the document will be pretranslated upon being uploaded. The accepted values are &#x60;TM&#x60;, or &#x60;TM+MT&#x60;  | [optional] 
  **autoAccept** | **Boolean**| An optional parameter to auto-accept segments with 100% translation memory matches when the &#x60;pretranslate&#x60; option is also set, or to auto-accept any target data that is present when the uploaded file is XLIFF. If omitted or set to &#x60;false&#x60;, no segments will be auto-accepted.  | [optional] 
+ **caseSensitive** | **Boolean**| An optional parameter to use case sensitive translation memory matching when the &#x60;pretranslate&#x60; option is also enabled. Matches must have identical character-by-character case to qualify as matches. Default value is &#x60;false&#x60;  | [optional] 
+ **matchAttribution** | **Boolean**| An optional parameter to attribute translation authorship of exact matches to the author of the file when the &#x60;pretranslate&#x60; option is also enabled. Default value is &#x60;false&#x60;  | [optional] 
  **configId** | **Number**| An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file.  | [optional] 
 
 ### Return type
 
-[**DocumentWithSegments**](DocumentWithSegments.md)
+**Object**
 
 ### Authorization
 

@@ -13,12 +13,8 @@
 
 
 import ApiClient from "../ApiClient";
-import Error from '../model/Error';
-import Project from '../model/Project';
 import ProjectCreateParameters from '../model/ProjectCreateParameters';
 import ProjectDeleteResponse from '../model/ProjectDeleteResponse';
-import ProjectQuote from '../model/ProjectQuote';
-import ProjectStatus from '../model/ProjectStatus';
 import ProjectUpdateResponse from '../model/ProjectUpdateResponse';
 
 /**
@@ -45,7 +41,7 @@ export default class ProjectsApi {
      * Create a Project
      * Create a Project. A Project is a collection of Documents.  A Project is associated with exactly one Memory.  Projects appear in the dashboard of the web app.  
      * @param {module:model/ProjectCreateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Project} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     createProjectWithHttpInfo(body) {
       let postBody = body;
@@ -66,7 +62,7 @@ export default class ProjectsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = Project;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/projects', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -78,7 +74,7 @@ export default class ProjectsApi {
      * Create a Project
      * Create a Project. A Project is a collection of Documents.  A Project is associated with exactly one Memory.  Projects appear in the dashboard of the web app.  
      * @param {module:model/ProjectCreateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Project}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     createProject(body) {
       return this.createProjectWithHttpInfo(body)
@@ -139,7 +135,7 @@ export default class ProjectsApi {
      * Retrieve Project report
      * Get information about a project that can be used for quoting. This includes: * A translation memory leverage report * Word count * Segment count  
      * @param {Number} id A unique Project identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ProjectQuote} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     getProjectReportWithHttpInfo(id) {
       let postBody = null;
@@ -161,7 +157,7 @@ export default class ProjectsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = ProjectQuote;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/projects/quote', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -173,7 +169,7 @@ export default class ProjectsApi {
      * Retrieve Project report
      * Get information about a project that can be used for quoting. This includes: * A translation memory leverage report * Word count * Segment count  
      * @param {Number} id A unique Project identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ProjectQuote}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     getProjectReport(id) {
       return this.getProjectReportWithHttpInfo(id)
@@ -187,7 +183,7 @@ export default class ProjectsApi {
      * Retrieve Project status
      * Retrieve the status of a Project.  
      * @param {Number} id A unique Project identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ProjectStatus} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     getProjectStatusWithHttpInfo(id) {
       let postBody = null;
@@ -209,7 +205,7 @@ export default class ProjectsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = ProjectStatus;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/projects/status', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -221,7 +217,7 @@ export default class ProjectsApi {
      * Retrieve Project status
      * Retrieve the status of a Project.  
      * @param {Number} id A unique Project identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ProjectStatus}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     getProjectStatus(id) {
       return this.getProjectStatusWithHttpInfo(id)
@@ -243,7 +239,7 @@ export default class ProjectsApi {
      * @param {String} opts.state A project state (backlog, inProgress, inReview, inQA, done).
      * @param {Boolean} opts.archived A flag that toggles whether to include archived projects in the response (the default is `true`).
      * @param {Number} opts.connectorId A unique Connector identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Project>} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<Object>} and HTTP response
      */
     getProjectsWithHttpInfo(opts) {
       opts = opts || {};
@@ -269,7 +265,7 @@ export default class ProjectsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = [Project];
+      let returnType = [Object];
       return this.apiClient.callApi(
         '/projects', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -289,7 +285,7 @@ export default class ProjectsApi {
      * @param {String} opts.state A project state (backlog, inProgress, inReview, inQA, done).
      * @param {Boolean} opts.archived A flag that toggles whether to include archived projects in the response (the default is `true`).
      * @param {Number} opts.connectorId A unique Connector identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Project>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<Object>}
      */
     getProjects(opts) {
       return this.getProjectsWithHttpInfo(opts)
@@ -303,7 +299,7 @@ export default class ProjectsApi {
      * Update a Project
      * Update a Project. 
      * @param {module:model/ProjectUpdateResponse} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Project} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     updateProjectWithHttpInfo(body) {
       let postBody = body;
@@ -324,7 +320,7 @@ export default class ProjectsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = Project;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/projects', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -336,7 +332,7 @@ export default class ProjectsApi {
      * Update a Project
      * Update a Project. 
      * @param {module:model/ProjectUpdateResponse} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Project}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     updateProject(body) {
       return this.updateProjectWithHttpInfo(body)

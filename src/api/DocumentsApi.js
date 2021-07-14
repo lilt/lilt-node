@@ -22,8 +22,6 @@ import DocumentParameters from '../model/DocumentParameters';
 import DocumentPretranslateParameters from '../model/DocumentPretranslateParameters';
 import DocumentPretranslateResponse from '../model/DocumentPretranslateResponse';
 import DocumentUpdateParameters from '../model/DocumentUpdateParameters';
-import DocumentWithSegments from '../model/DocumentWithSegments';
-import Error from '../model/Error';
 
 /**
 * Documents service.
@@ -97,7 +95,7 @@ export default class DocumentsApi {
      * Create a new Document. A Document is a collection of one or more Segments. Documents are nested inside of Projects, and appear in the Project details view in the web app. Document-level relationships between Segments are considered by the machine translation system during adaptation. If there is no inherent document structure in your data, you still might consider grouping related Segments into Documents to improve translation quality. 
      * @param {Object} opts Optional parameters
      * @param {module:model/DocumentParameters} opts.body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DocumentWithSegments} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     createDocumentWithHttpInfo(opts) {
       opts = opts || {};
@@ -115,7 +113,7 @@ export default class DocumentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = DocumentWithSegments;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/documents', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -128,7 +126,7 @@ export default class DocumentsApi {
      * Create a new Document. A Document is a collection of one or more Segments. Documents are nested inside of Projects, and appear in the Project details view in the web app. Document-level relationships between Segments are considered by the machine translation system during adaptation. If there is no inherent document structure in your data, you still might consider grouping related Segments into Documents to improve translation quality. 
      * @param {Object} opts Optional parameters
      * @param {module:model/DocumentParameters} opts.body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DocumentWithSegments}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     createDocument(opts) {
       return this.createDocumentWithHttpInfo(opts)
@@ -387,7 +385,7 @@ export default class DocumentsApi {
      * @param {Number} id A unique Document identifier.
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.withSegments Flag indicating whether full segment information should be returned.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DocumentWithSegments} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     getDocumentWithHttpInfo(id, opts) {
       opts = opts || {};
@@ -411,7 +409,7 @@ export default class DocumentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = DocumentWithSegments;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/documents', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -425,7 +423,7 @@ export default class DocumentsApi {
      * @param {Number} id A unique Document identifier.
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.withSegments Flag indicating whether full segment information should be returned.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DocumentWithSegments}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     getDocument(id, opts) {
       return this.getDocumentWithHttpInfo(id, opts)
@@ -501,7 +499,7 @@ export default class DocumentsApi {
      * Update a Document
      * Update a Document. 
      * @param {module:model/DocumentUpdateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DocumentWithSegments} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     updateDocumentWithHttpInfo(body) {
       let postBody = body;
@@ -522,7 +520,7 @@ export default class DocumentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = DocumentWithSegments;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/documents', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -534,7 +532,7 @@ export default class DocumentsApi {
      * Update a Document
      * Update a Document. 
      * @param {module:model/DocumentUpdateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DocumentWithSegments}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     updateDocument(body) {
       return this.updateDocumentWithHttpInfo(body)
@@ -551,10 +549,12 @@ export default class DocumentsApi {
      * @param {Number} projectId A unique Project identifier.
      * @param {File} body The file contents to be uploaded. The entire POST body will be treated as the file. 
      * @param {Object} opts Optional parameters
-     * @param {String} opts.pretranslate An optional parameter indicating if and how the document will be pretranslated upon being uploaded.  The accepted values are `null`, `tm`, or `tm+mt` 
+     * @param {String} opts.pretranslate An optional parameter indicating if and how the document will be pretranslated upon being uploaded. The accepted values are `TM`, or `TM+MT` 
      * @param {Boolean} opts.autoAccept An optional parameter to auto-accept segments with 100% translation memory matches when the `pretranslate` option is also set, or to auto-accept any target data that is present when the uploaded file is XLIFF. If omitted or set to `false`, no segments will be auto-accepted. 
+     * @param {Boolean} opts.caseSensitive An optional parameter to use case sensitive translation memory matching when the `pretranslate` option is also enabled. Matches must have identical character-by-character case to qualify as matches. Default value is `false` 
+     * @param {Boolean} opts.matchAttribution An optional parameter to attribute translation authorship of exact matches to the author of the file when the `pretranslate` option is also enabled. Default value is `false` 
      * @param {Number} opts.configId An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file. 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DocumentWithSegments} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     uploadDocumentWithHttpInfo(name, projectId, body, opts) {
       opts = opts || {};
@@ -581,6 +581,8 @@ export default class DocumentsApi {
         'project_id': projectId,
         'pretranslate': opts['pretranslate'],
         'auto_accept': opts['autoAccept'],
+        'case_sensitive': opts['caseSensitive'],
+        'match_attribution': opts['matchAttribution'],
         'config_id': opts['configId']
       };
       let formParams = {
@@ -589,7 +591,7 @@ export default class DocumentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/octet-stream'];
       let accepts = ['application/json'];
-      let returnType = DocumentWithSegments;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/documents/files', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -604,10 +606,12 @@ export default class DocumentsApi {
      * @param {Number} projectId A unique Project identifier.
      * @param {File} body The file contents to be uploaded. The entire POST body will be treated as the file. 
      * @param {Object} opts Optional parameters
-     * @param {String} opts.pretranslate An optional parameter indicating if and how the document will be pretranslated upon being uploaded.  The accepted values are `null`, `tm`, or `tm+mt` 
+     * @param {String} opts.pretranslate An optional parameter indicating if and how the document will be pretranslated upon being uploaded. The accepted values are `TM`, or `TM+MT` 
      * @param {Boolean} opts.autoAccept An optional parameter to auto-accept segments with 100% translation memory matches when the `pretranslate` option is also set, or to auto-accept any target data that is present when the uploaded file is XLIFF. If omitted or set to `false`, no segments will be auto-accepted. 
+     * @param {Boolean} opts.caseSensitive An optional parameter to use case sensitive translation memory matching when the `pretranslate` option is also enabled. Matches must have identical character-by-character case to qualify as matches. Default value is `false` 
+     * @param {Boolean} opts.matchAttribution An optional parameter to attribute translation authorship of exact matches to the author of the file when the `pretranslate` option is also enabled. Default value is `false` 
      * @param {Number} opts.configId An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file. 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DocumentWithSegments}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     uploadDocument(name, projectId, body, opts) {
       return this.uploadDocumentWithHttpInfo(name, projectId, body, opts)

@@ -13,13 +13,9 @@
 
 
 import ApiClient from "../ApiClient";
-import Error from '../model/Error';
-import Segment from '../model/Segment';
 import SegmentCreateParameters from '../model/SegmentCreateParameters';
 import SegmentDeleteResponse from '../model/SegmentDeleteResponse';
 import SegmentUpdateParameters from '../model/SegmentUpdateParameters';
-import SegmentWithComments from '../model/SegmentWithComments';
-import TaggedSegment from '../model/TaggedSegment';
 
 /**
 * Segments service.
@@ -45,7 +41,7 @@ export default class SegmentsApi {
      * Create a Segment
      * Create a Segment and add it to a Memory. A Segment is a source/target pair that is used to train the machine translation system and populate the translation memory. This is not intended to be used on documents and will throw an error.  The maximum source length is 5,000 characters.  
      * @param {module:model/SegmentCreateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Segment} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     createSegmentWithHttpInfo(body) {
       let postBody = body;
@@ -66,7 +62,7 @@ export default class SegmentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = Segment;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/segments', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -78,7 +74,7 @@ export default class SegmentsApi {
      * Create a Segment
      * Create a Segment and add it to a Memory. A Segment is a source/target pair that is used to train the machine translation system and populate the translation memory. This is not intended to be used on documents and will throw an error.  The maximum source length is 5,000 characters.  
      * @param {module:model/SegmentCreateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Segment}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     createSegment(body) {
       return this.createSegmentWithHttpInfo(body)
@@ -142,7 +138,7 @@ export default class SegmentsApi {
      * @param {Number} id A unique Segment identifier.
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.includeComments Include comments in the response. (default to false)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SegmentWithComments} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     getSegmentWithHttpInfo(id, opts) {
       opts = opts || {};
@@ -166,7 +162,7 @@ export default class SegmentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = SegmentWithComments;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/segments', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -180,10 +176,57 @@ export default class SegmentsApi {
      * @param {Number} id A unique Segment identifier.
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.includeComments Include comments in the response. (default to false)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SegmentWithComments}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     getSegment(id, opts) {
       return this.getSegmentWithHttpInfo(id, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Unaccept and unlock segments
+     * Unaccept and unlock segments. Sets individual segments' \"Review Done\" to false. Confirmed segments will remain confirmed.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/segments/review/unlock?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"segmentIds\": [23921, 23922]   }' ``` 
+     * @param {Object} body segment ids to update
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<String>} and HTTP response
+     */
+    segmentsReviewUnlockPostWithHttpInfo(body) {
+      let postBody = body;
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling segmentsReviewUnlockPost");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = ['String'];
+      return this.apiClient.callApi(
+        '/segments/review/unlock', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Unaccept and unlock segments
+     * Unaccept and unlock segments. Sets individual segments' \"Review Done\" to false. Confirmed segments will remain confirmed.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/segments/review/unlock?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"segmentIds\": [23921, 23922]   }' ``` 
+     * @param {Object} body segment ids to update
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<String>}
+     */
+    segmentsReviewUnlockPost(body) {
+      return this.segmentsReviewUnlockPostWithHttpInfo(body)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -196,7 +239,7 @@ export default class SegmentsApi {
      * @param {String} sourceTagged The tagged source string.
      * @param {String} target The target string.
      * @param {Number} memoryId A unique Memory identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TaggedSegment} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     tagSegmentWithHttpInfo(sourceTagged, target, memoryId) {
       let postBody = null;
@@ -228,7 +271,7 @@ export default class SegmentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = TaggedSegment;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/segments/tag', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -242,7 +285,7 @@ export default class SegmentsApi {
      * @param {String} sourceTagged The tagged source string.
      * @param {String} target The target string.
      * @param {Number} memoryId A unique Memory identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TaggedSegment}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     tagSegment(sourceTagged, target, memoryId) {
       return this.tagSegmentWithHttpInfo(sourceTagged, target, memoryId)
@@ -256,7 +299,7 @@ export default class SegmentsApi {
      * Update a Segment
      * Update a Segment in memory. The Memory will be updated with the new target string.  
      * @param {module:model/SegmentUpdateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Segment} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     updateSegmentWithHttpInfo(body) {
       let postBody = body;
@@ -277,7 +320,7 @@ export default class SegmentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = Segment;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/segments', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -289,7 +332,7 @@ export default class SegmentsApi {
      * Update a Segment
      * Update a Segment in memory. The Memory will be updated with the new target string.  
      * @param {module:model/SegmentUpdateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Segment}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     updateSegment(body) {
       return this.updateSegmentWithHttpInfo(body)

@@ -13,15 +13,12 @@
 
 
 import ApiClient from "../ApiClient";
-import Error from '../model/Error';
-import Memory from '../model/Memory';
 import MemoryCreateParameters from '../model/MemoryCreateParameters';
 import MemoryDeleteResponse from '../model/MemoryDeleteResponse';
 import MemoryImportResponse from '../model/MemoryImportResponse';
 import MemoryInsertResponse from '../model/MemoryInsertResponse';
 import MemoryUpdateParameters from '../model/MemoryUpdateParameters';
 import MemoryUpdateResponse from '../model/MemoryUpdateResponse';
-import TranslationMemoryEntry from '../model/TranslationMemoryEntry';
 
 /**
 * Memories service.
@@ -45,9 +42,9 @@ export default class MemoriesApi {
 
     /**
      * Create a Memory
-     * Create a new Memory. A Memory is a container that collects source/target sentences for a specific language pair (e.g., English>French). The data in the Memory is used to train the MT system, populate the TM, and update the lexicon. Memories are private to your account - the data is not shared across users - unless you explicitly share a Memory with your team (via web app only).  <a href=\"https://lilt.com/kb/memory/memories\" target=_blank>Refer to our KB</a> for a more detailed description.  
+     * Create a new Memory. A Memory is a container that collects source/target sentences for a specific language pair (e.g., English>French). The data in the Memory is used to train the MT system, populate the TM, and update the lexicon. Memories are private to your account - the data is not shared across users - unless you explicitly share a Memory with your team (via web app only).  <a href=\"https://support.lilt.com/hc/en-us/sections/360012579193-Lilt-Translate-Engine\" target=_blank>Refer to our KB</a> for a more detailed description.  
      * @param {module:model/MemoryCreateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Memory} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     createMemoryWithHttpInfo(body) {
       let postBody = body;
@@ -68,7 +65,7 @@ export default class MemoriesApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = Memory;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/memories', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -78,9 +75,9 @@ export default class MemoriesApi {
 
     /**
      * Create a Memory
-     * Create a new Memory. A Memory is a container that collects source/target sentences for a specific language pair (e.g., English>French). The data in the Memory is used to train the MT system, populate the TM, and update the lexicon. Memories are private to your account - the data is not shared across users - unless you explicitly share a Memory with your team (via web app only).  <a href=\"https://lilt.com/kb/memory/memories\" target=_blank>Refer to our KB</a> for a more detailed description.  
+     * Create a new Memory. A Memory is a container that collects source/target sentences for a specific language pair (e.g., English>French). The data in the Memory is used to train the MT system, populate the TM, and update the lexicon. Memories are private to your account - the data is not shared across users - unless you explicitly share a Memory with your team (via web app only).  <a href=\"https://support.lilt.com/hc/en-us/sections/360012579193-Lilt-Translate-Engine\" target=_blank>Refer to our KB</a> for a more detailed description.  
      * @param {module:model/MemoryCreateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Memory}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     createMemory(body) {
       return this.createMemoryWithHttpInfo(body)
@@ -143,7 +140,7 @@ export default class MemoriesApi {
      * Retrieve a Memory. If you cannot access the Memory (401 error) please check permissions (e.g. in case you created the Memory via the web app with a different account you may have to explicitly share that Memory).  
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id An optional Memory identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Memory>} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<Object>} and HTTP response
      */
     getMemoryWithHttpInfo(opts) {
       opts = opts || {};
@@ -162,7 +159,7 @@ export default class MemoriesApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = [Memory];
+      let returnType = [Object];
       return this.apiClient.callApi(
         '/memories', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -175,7 +172,7 @@ export default class MemoriesApi {
      * Retrieve a Memory. If you cannot access the Memory (401 error) please check permissions (e.g. in case you created the Memory via the web app with a different account you may have to explicitly share that Memory).  
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id An optional Memory identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Memory>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<Object>}
      */
     getMemory(opts) {
       return this.getMemoryWithHttpInfo(opts)
@@ -191,9 +188,12 @@ export default class MemoriesApi {
      * @param {Number} memoryId A unique Memory identifier.
      * @param {String} name Name of the TM or termbase file.
      * @param {File} body The file contents to be uploaded. The entire POST body will be treated as the file.
+     * @param {Object} opts Optional parameters
+     * @param {Boolean} opts.hasHeaderRow A flag indicating whether an imported Termbase CSV has a header row or not (the default value is `false`).
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/MemoryImportResponse} and HTTP response
      */
-    importMemoryFileWithHttpInfo(memoryId, name, body) {
+    importMemoryFileWithHttpInfo(memoryId, name, body, opts) {
+      opts = opts || {};
       let postBody = body;
       // verify the required parameter 'memoryId' is set
       if (memoryId === undefined || memoryId === null) {
@@ -214,7 +214,8 @@ export default class MemoriesApi {
       };
       let headerParams = {
         'memory_id': memoryId,
-        'name': name
+        'name': name,
+        'has_header_row': opts['hasHeaderRow']
       };
       let formParams = {
       };
@@ -236,10 +237,12 @@ export default class MemoriesApi {
      * @param {Number} memoryId A unique Memory identifier.
      * @param {String} name Name of the TM or termbase file.
      * @param {File} body The file contents to be uploaded. The entire POST body will be treated as the file.
+     * @param {Object} opts Optional parameters
+     * @param {Boolean} opts.hasHeaderRow A flag indicating whether an imported Termbase CSV has a header row or not (the default value is `false`).
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/MemoryImportResponse}
      */
-    importMemoryFile(memoryId, name, body) {
-      return this.importMemoryFileWithHttpInfo(memoryId, name, body)
+    importMemoryFile(memoryId, name, body, opts) {
+      return this.importMemoryFileWithHttpInfo(memoryId, name, body, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -253,7 +256,7 @@ export default class MemoriesApi {
      * @param {String} query A source query.
      * @param {Object} opts Optional parameters
      * @param {Number} opts.n Maximum number of results to return. (default to 10)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/TranslationMemoryEntry>} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<Object>} and HTTP response
      */
     queryMemoryWithHttpInfo(id, query, opts) {
       opts = opts || {};
@@ -282,7 +285,7 @@ export default class MemoriesApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = [TranslationMemoryEntry];
+      let returnType = [Object];
       return this.apiClient.callApi(
         '/memories/query', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -297,7 +300,7 @@ export default class MemoriesApi {
      * @param {String} query A source query.
      * @param {Object} opts Optional parameters
      * @param {Number} opts.n Maximum number of results to return. (default to 10)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/TranslationMemoryEntry>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<Object>}
      */
     queryMemory(id, query, opts) {
       return this.queryMemoryWithHttpInfo(id, query, opts)
@@ -557,7 +560,7 @@ export default class MemoriesApi {
      * Update the name of a Memory
      * Update a Memory. 
      * @param {module:model/MemoryUpdateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Memory} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     updateMemoryWithHttpInfo(body) {
       let postBody = body;
@@ -578,7 +581,7 @@ export default class MemoriesApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = Memory;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/memories', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -590,7 +593,7 @@ export default class MemoriesApi {
      * Update the name of a Memory
      * Update a Memory. 
      * @param {module:model/MemoryUpdateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Memory}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     updateMemory(body) {
       return this.updateMemoryWithHttpInfo(body)

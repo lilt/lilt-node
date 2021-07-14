@@ -19,11 +19,11 @@ Method | HTTP request | Description
 
 ## createMemory
 
-> Memory createMemory(body)
+> Object createMemory(body)
 
 Create a Memory
 
-Create a new Memory. A Memory is a container that collects source/target sentences for a specific language pair (e.g., English&gt;French). The data in the Memory is used to train the MT system, populate the TM, and update the lexicon. Memories are private to your account - the data is not shared across users - unless you explicitly share a Memory with your team (via web app only).  &lt;a href&#x3D;\&quot;https://lilt.com/kb/memory/memories\&quot; target&#x3D;_blank&gt;Refer to our KB&lt;/a&gt; for a more detailed description.  
+Create a new Memory. A Memory is a container that collects source/target sentences for a specific language pair (e.g., English&gt;French). The data in the Memory is used to train the MT system, populate the TM, and update the lexicon. Memories are private to your account - the data is not shared across users - unless you explicitly share a Memory with your team (via web app only).  &lt;a href&#x3D;\&quot;https://support.lilt.com/hc/en-us/sections/360012579193-Lilt-Translate-Engine\&quot; target&#x3D;_blank&gt;Refer to our KB&lt;/a&gt; for a more detailed description.  
 
 ### Example
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Memory**](Memory.md)
+**Object**
 
 ### Authorization
 
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 ## getMemory
 
-> [Memory] getMemory(opts)
+> [Object] getMemory(opts)
 
 Retrieve a Memory
 
@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[Memory]**](Memory.md)
+**[Object]**
 
 ### Authorization
 
@@ -183,7 +183,7 @@ Name | Type | Description  | Notes
 
 ## importMemoryFile
 
-> MemoryImportResponse importMemoryFile(memoryId, name, body)
+> MemoryImportResponse importMemoryFile(memoryId, name, body, opts)
 
 File import for a Memory
 
@@ -208,7 +208,10 @@ let apiInstance = new LiltNode.MemoriesApi();
 let memoryId = 56; // Number | A unique Memory identifier.
 let name = "name_example"; // String | Name of the TM or termbase file.
 let body = "/path/to/file"; // File | The file contents to be uploaded. The entire POST body will be treated as the file.
-apiInstance.importMemoryFile(memoryId, name, body).then((data) => {
+let opts = {
+  'hasHeaderRow': true // Boolean | A flag indicating whether an imported Termbase CSV has a header row or not (the default value is `false`).
+};
+apiInstance.importMemoryFile(memoryId, name, body, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -224,6 +227,7 @@ Name | Type | Description  | Notes
  **memoryId** | **Number**| A unique Memory identifier. | 
  **name** | **String**| Name of the TM or termbase file. | 
  **body** | **File**| The file contents to be uploaded. The entire POST body will be treated as the file. | 
+ **hasHeaderRow** | **Boolean**| A flag indicating whether an imported Termbase CSV has a header row or not (the default value is &#x60;false&#x60;). | [optional] 
 
 ### Return type
 
@@ -241,7 +245,7 @@ Name | Type | Description  | Notes
 
 ## queryMemory
 
-> [TranslationMemoryEntry] queryMemory(id, query, opts)
+> [Object] queryMemory(id, query, opts)
 
 Query a Memory
 
@@ -287,7 +291,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[TranslationMemoryEntry]**](TranslationMemoryEntry.md)
+**[Object]**
 
 ### Authorization
 
@@ -549,7 +553,7 @@ Name | Type | Description  | Notes
 
 ## updateMemory
 
-> Memory updateMemory(body)
+> Object updateMemory(body)
 
 Update the name of a Memory
 
@@ -589,7 +593,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Memory**](Memory.md)
+**Object**
 
 ### Authorization
 
