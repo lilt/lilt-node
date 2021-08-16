@@ -16,8 +16,6 @@ import ApiClient from "../ApiClient";
 import Connector from '../model/Connector';
 import ConnectorArguments from '../model/ConnectorArguments';
 import ConnectorDeleteResponse from '../model/ConnectorDeleteResponse';
-import ConnectorJob from '../model/ConnectorJob';
-import Error from '../model/Error';
 
 /**
 * Connectors service.
@@ -43,7 +41,7 @@ export default class ConnectorsApi {
      * Upload a Connector
      * Create a new connector linked to a supported external cms. 
      * @param {module:model/Connector} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Connector} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     createConnectorWithHttpInfo(body) {
       let postBody = body;
@@ -64,7 +62,7 @@ export default class ConnectorsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = Connector;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/connectors', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -76,7 +74,7 @@ export default class ConnectorsApi {
      * Upload a Connector
      * Create a new connector linked to a supported external cms. 
      * @param {module:model/Connector} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Connector}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     createConnector(body) {
       return this.createConnectorWithHttpInfo(body)
@@ -183,10 +181,10 @@ export default class ConnectorsApi {
 
 
     /**
-     * Retreive a Connector Job
+     * Retrieve a Connector Job
      * Retrieves a connector job available to your user. Use this to check the status of jobs started by the `/connectors/sync` and `/connectors/jobs/deliver` endpoints.  Example CURL command: ```  curl -X GET https://lilt.com/2/connectors/jobs?key=API_KEY&id=9274 ``` 
      * @param {Number} id A unique Connector Job identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/ConnectorJob>} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<Object>} and HTTP response
      */
     getConnectorJobsWithHttpInfo(id) {
       let postBody = null;
@@ -208,7 +206,7 @@ export default class ConnectorsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = [ConnectorJob];
+      let returnType = [Object];
       return this.apiClient.callApi(
         '/connectors/jobs', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -217,10 +215,10 @@ export default class ConnectorsApi {
     }
 
     /**
-     * Retreive a Connector Job
+     * Retrieve a Connector Job
      * Retrieves a connector job available to your user. Use this to check the status of jobs started by the `/connectors/sync` and `/connectors/jobs/deliver` endpoints.  Example CURL command: ```  curl -X GET https://lilt.com/2/connectors/jobs?key=API_KEY&id=9274 ``` 
      * @param {Number} id A unique Connector Job identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/ConnectorJob>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<Object>}
      */
     getConnectorJobs(id) {
       return this.getConnectorJobsWithHttpInfo(id)
@@ -235,7 +233,7 @@ export default class ConnectorsApi {
      * Retrieves one or more connectors available to your user. Connectors are not associated with a project or a memory.  To retrieve a specific connector, specify the <strong>id</strong> request parameter. To retrieve all connectors, omit the <strong>id</strong> request parameter.  Example CURL command: ```  curl -X GET https://lilt.com/2/connectors?key=API_KEY&id=274```
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id A unique Connector identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Connector>} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<Object>} and HTTP response
      */
     getConnectorsWithHttpInfo(opts) {
       opts = opts || {};
@@ -254,7 +252,7 @@ export default class ConnectorsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = [Connector];
+      let returnType = [Object];
       return this.apiClient.callApi(
         '/connectors', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -267,7 +265,7 @@ export default class ConnectorsApi {
      * Retrieves one or more connectors available to your user. Connectors are not associated with a project or a memory.  To retrieve a specific connector, specify the <strong>id</strong> request parameter. To retrieve all connectors, omit the <strong>id</strong> request parameter.  Example CURL command: ```  curl -X GET https://lilt.com/2/connectors?key=API_KEY&id=274```
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id A unique Connector identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Connector>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<Object>}
      */
     getConnectors(opts) {
       return this.getConnectorsWithHttpInfo(opts)
@@ -281,7 +279,7 @@ export default class ConnectorsApi {
      * Sync a Connector
      * Request an import job for the given connector ID. This will check the target system for new content to pull into Lilt.  Example CURL command: ```  curl -X GET https://lilt.com/2/connectors/sync?key=API_KEY&id=128 ``` 
      * @param {Number} id A unique Connector identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ConnectorJob} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     syncConnectorWithHttpInfo(id) {
       let postBody = null;
@@ -303,7 +301,7 @@ export default class ConnectorsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = ConnectorJob;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/connectors/sync', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -315,7 +313,7 @@ export default class ConnectorsApi {
      * Sync a Connector
      * Request an import job for the given connector ID. This will check the target system for new content to pull into Lilt.  Example CURL command: ```  curl -X GET https://lilt.com/2/connectors/sync?key=API_KEY&id=128 ``` 
      * @param {Number} id A unique Connector identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ConnectorJob}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     syncConnector(id) {
       return this.syncConnectorWithHttpInfo(id)
@@ -329,7 +327,7 @@ export default class ConnectorsApi {
      * Upload a Connector
      * Create a new connector linked to a supported external content source. 
      * @param {module:model/ConnectorArguments} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Connector} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     updateConnectorWithHttpInfo(body) {
       let postBody = body;
@@ -350,7 +348,7 @@ export default class ConnectorsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = Connector;
+      let returnType = Object;
       return this.apiClient.callApi(
         '/connectors', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -362,7 +360,7 @@ export default class ConnectorsApi {
      * Upload a Connector
      * Create a new connector linked to a supported external content source. 
      * @param {module:model/ConnectorArguments} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Connector}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     updateConnector(body) {
       return this.updateConnectorWithHttpInfo(body)
