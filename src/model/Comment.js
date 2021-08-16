@@ -55,14 +55,23 @@ class Comment {
             if (data.hasOwnProperty('text')) {
                 obj['text'] = ApiClient.convertToType(data['text'], 'String');
             }
-            if (data.hasOwnProperty('user_id')) {
-                obj['user_id'] = ApiClient.convertToType(data['user_id'], 'Number');
+            if (data.hasOwnProperty('annotations')) {
+                obj['annotations'] = ApiClient.convertToType(data['annotations'], [Annotation]);
             }
             if (data.hasOwnProperty('is_resolved')) {
                 obj['is_resolved'] = ApiClient.convertToType(data['is_resolved'], 'Boolean');
             }
-            if (data.hasOwnProperty('annotations')) {
-                obj['annotations'] = ApiClient.convertToType(data['annotations'], [Annotation]);
+            if (data.hasOwnProperty('document_id')) {
+                obj['document_id'] = ApiClient.convertToType(data['document_id'], 'Number');
+            }
+            if (data.hasOwnProperty('segment_id')) {
+                obj['segment_id'] = ApiClient.convertToType(data['segment_id'], 'Number');
+            }
+            if (data.hasOwnProperty('segment_revision_id')) {
+                obj['segment_revision_id'] = ApiClient.convertToType(data['segment_revision_id'], 'Number');
+            }
+            if (data.hasOwnProperty('user_id')) {
+                obj['user_id'] = ApiClient.convertToType(data['user_id'], 'Number');
             }
             if (data.hasOwnProperty('created_at')) {
                 obj['created_at'] = ApiClient.convertToType(data['created_at'], 'Number');
@@ -87,10 +96,10 @@ Comment.prototype['id'] = undefined;
 Comment.prototype['text'] = undefined;
 
 /**
- * The User who created this Comment.
- * @member {Number} user_id
+ * A list of optional Annotations.
+ * @member {Array.<module:model/Annotation>} annotations
  */
-Comment.prototype['user_id'] = undefined;
+Comment.prototype['annotations'] = undefined;
 
 /**
  * Whether the Comment is resolved.
@@ -99,10 +108,28 @@ Comment.prototype['user_id'] = undefined;
 Comment.prototype['is_resolved'] = undefined;
 
 /**
- * A list of optional Annotations.
- * @member {Array.<module:model/Annotation>} annotations
+ * The document to which the comment belongs.
+ * @member {Number} document_id
  */
-Comment.prototype['annotations'] = undefined;
+Comment.prototype['document_id'] = undefined;
+
+/**
+ * The individual segment to which the comment applies.
+ * @member {Number} segment_id
+ */
+Comment.prototype['segment_id'] = undefined;
+
+/**
+ * The revision of the individual segment to which the comment applies.
+ * @member {Number} segment_revision_id
+ */
+Comment.prototype['segment_revision_id'] = undefined;
+
+/**
+ * The user who created this comment.
+ * @member {Number} user_id
+ */
+Comment.prototype['user_id'] = undefined;
 
 /**
  * Time at which the object was created. Measured in seconds since the Unix epoch.

@@ -13,40 +13,86 @@
 
 
 import ApiClient from './ApiClient';
+import Annotation from './model/Annotation';
 import ApiRoot from './model/ApiRoot';
+import Comment from './model/Comment';
+import CommentBody from './model/CommentBody';
 import CommentDeleteResponse from './model/CommentDeleteResponse';
 import Connector from './model/Connector';
 import ConnectorArguments from './model/ConnectorArguments';
 import ConnectorDeleteResponse from './model/ConnectorDeleteResponse';
+import ConnectorJob from './model/ConnectorJob';
 import DocumentAssignmentParameters from './model/DocumentAssignmentParameters';
 import DocumentAssignmentResponse from './model/DocumentAssignmentResponse';
+import DocumentComments from './model/DocumentComments';
 import DocumentDeleteResponse from './model/DocumentDeleteResponse';
 import DocumentDoneUpdateParameters from './model/DocumentDoneUpdateParameters';
 import DocumentDoneUpdateParameters1 from './model/DocumentDoneUpdateParameters1';
 import DocumentParameters from './model/DocumentParameters';
 import DocumentPretranslateParameters from './model/DocumentPretranslateParameters';
 import DocumentPretranslateResponse from './model/DocumentPretranslateResponse';
+import DocumentPretranslating from './model/DocumentPretranslating';
+import DocumentPretranslatingStatus from './model/DocumentPretranslatingStatus';
+import DocumentQuote from './model/DocumentQuote';
 import DocumentUpdateParameters from './model/DocumentUpdateParameters';
+import DocumentWithSegments from './model/DocumentWithSegments';
+import DocumentWithoutSegments from './model/DocumentWithoutSegments';
+import DocumentWithoutSegmentsStatus from './model/DocumentWithoutSegmentsStatus';
+import Error from './model/Error';
+import Error2 from './model/Error2';
 import FileDeleteResponse from './model/FileDeleteResponse';
+import Job from './model/Job';
 import JobCreateParameters from './model/JobCreateParameters';
 import JobDeleteResponse from './model/JobDeleteResponse';
+import JobLeverageStats from './model/JobLeverageStats';
+import JobLeverageStatsProjects from './model/JobLeverageStatsProjects';
+import JobProject from './model/JobProject';
+import JobStats from './model/JobStats';
 import JobUpdateParameters from './model/JobUpdateParameters';
+import LanguagePair from './model/LanguagePair';
 import LanguagesResponse from './model/LanguagesResponse';
+import LexiconEntry from './model/LexiconEntry';
+import LexiconEntryExamples from './model/LexiconEntryExamples';
+import LexiconEntrySourceSpan from './model/LexiconEntrySourceSpan';
+import LexiconEntryTargetSpan from './model/LexiconEntryTargetSpan';
+import LexiconEntryTranslations from './model/LexiconEntryTranslations';
 import LexiconUpdateParameters from './model/LexiconUpdateParameters';
 import LexiconUpdateResponse from './model/LexiconUpdateResponse';
+import MatchBand from './model/MatchBand';
+import Memory from './model/Memory';
 import MemoryCreateParameters from './model/MemoryCreateParameters';
 import MemoryDeleteResponse from './model/MemoryDeleteResponse';
 import MemoryImportResponse from './model/MemoryImportResponse';
 import MemoryInsertResponse from './model/MemoryInsertResponse';
 import MemoryUpdateParameters from './model/MemoryUpdateParameters';
 import MemoryUpdateResponse from './model/MemoryUpdateResponse';
+import Project from './model/Project';
 import ProjectCreateParameters from './model/ProjectCreateParameters';
 import ProjectDeleteResponse from './model/ProjectDeleteResponse';
+import ProjectQuote from './model/ProjectQuote';
+import ProjectStatus from './model/ProjectStatus';
 import ProjectUpdateResponse from './model/ProjectUpdateResponse';
+import QARuleMatches from './model/QARuleMatches';
+import QARuleMatchesContext from './model/QARuleMatchesContext';
+import QARuleMatchesMatches from './model/QARuleMatchesMatches';
+import QARuleMatchesReplacements from './model/QARuleMatchesReplacements';
+import QARuleMatchesRule from './model/QARuleMatchesRule';
+import QARuleMatchesRuleCategory from './model/QARuleMatchesRuleCategory';
+import QARuleMatchesRuleUrls from './model/QARuleMatchesRuleUrls';
+import ResourceStatus from './model/ResourceStatus';
+import Segment from './model/Segment';
 import SegmentCreateParameters from './model/SegmentCreateParameters';
 import SegmentDeleteResponse from './model/SegmentDeleteResponse';
 import SegmentUpdateParameters from './model/SegmentUpdateParameters';
+import SegmentWithComments from './model/SegmentWithComments';
+import SettingUpsertBody from './model/SettingUpsertBody';
+import SourceFile from './model/SourceFile';
+import TaggedSegment from './model/TaggedSegment';
 import TranslateRegisterResponse from './model/TranslateRegisterResponse';
+import Translation from './model/Translation';
+import TranslationInfo from './model/TranslationInfo';
+import TranslationList from './model/TranslationList';
+import TranslationMemoryEntry from './model/TranslationMemoryEntry';
 import CommentsApi from './api/CommentsApi';
 import ConnectorsApi from './api/ConnectorsApi';
 import DocumentsApi from './api/DocumentsApi';
@@ -102,10 +148,28 @@ export {
     ApiClient,
 
     /**
+     * The Annotation model constructor.
+     * @property {module:model/Annotation}
+     */
+    Annotation,
+
+    /**
      * The ApiRoot model constructor.
      * @property {module:model/ApiRoot}
      */
     ApiRoot,
+
+    /**
+     * The Comment model constructor.
+     * @property {module:model/Comment}
+     */
+    Comment,
+
+    /**
+     * The CommentBody model constructor.
+     * @property {module:model/CommentBody}
+     */
+    CommentBody,
 
     /**
      * The CommentDeleteResponse model constructor.
@@ -132,6 +196,12 @@ export {
     ConnectorDeleteResponse,
 
     /**
+     * The ConnectorJob model constructor.
+     * @property {module:model/ConnectorJob}
+     */
+    ConnectorJob,
+
+    /**
      * The DocumentAssignmentParameters model constructor.
      * @property {module:model/DocumentAssignmentParameters}
      */
@@ -142,6 +212,12 @@ export {
      * @property {module:model/DocumentAssignmentResponse}
      */
     DocumentAssignmentResponse,
+
+    /**
+     * The DocumentComments model constructor.
+     * @property {module:model/DocumentComments}
+     */
+    DocumentComments,
 
     /**
      * The DocumentDeleteResponse model constructor.
@@ -180,16 +256,70 @@ export {
     DocumentPretranslateResponse,
 
     /**
+     * The DocumentPretranslating model constructor.
+     * @property {module:model/DocumentPretranslating}
+     */
+    DocumentPretranslating,
+
+    /**
+     * The DocumentPretranslatingStatus model constructor.
+     * @property {module:model/DocumentPretranslatingStatus}
+     */
+    DocumentPretranslatingStatus,
+
+    /**
+     * The DocumentQuote model constructor.
+     * @property {module:model/DocumentQuote}
+     */
+    DocumentQuote,
+
+    /**
      * The DocumentUpdateParameters model constructor.
      * @property {module:model/DocumentUpdateParameters}
      */
     DocumentUpdateParameters,
 
     /**
+     * The DocumentWithSegments model constructor.
+     * @property {module:model/DocumentWithSegments}
+     */
+    DocumentWithSegments,
+
+    /**
+     * The DocumentWithoutSegments model constructor.
+     * @property {module:model/DocumentWithoutSegments}
+     */
+    DocumentWithoutSegments,
+
+    /**
+     * The DocumentWithoutSegmentsStatus model constructor.
+     * @property {module:model/DocumentWithoutSegmentsStatus}
+     */
+    DocumentWithoutSegmentsStatus,
+
+    /**
+     * The Error model constructor.
+     * @property {module:model/Error}
+     */
+    Error,
+
+    /**
+     * The Error2 model constructor.
+     * @property {module:model/Error2}
+     */
+    Error2,
+
+    /**
      * The FileDeleteResponse model constructor.
      * @property {module:model/FileDeleteResponse}
      */
     FileDeleteResponse,
+
+    /**
+     * The Job model constructor.
+     * @property {module:model/Job}
+     */
+    Job,
 
     /**
      * The JobCreateParameters model constructor.
@@ -204,16 +334,76 @@ export {
     JobDeleteResponse,
 
     /**
+     * The JobLeverageStats model constructor.
+     * @property {module:model/JobLeverageStats}
+     */
+    JobLeverageStats,
+
+    /**
+     * The JobLeverageStatsProjects model constructor.
+     * @property {module:model/JobLeverageStatsProjects}
+     */
+    JobLeverageStatsProjects,
+
+    /**
+     * The JobProject model constructor.
+     * @property {module:model/JobProject}
+     */
+    JobProject,
+
+    /**
+     * The JobStats model constructor.
+     * @property {module:model/JobStats}
+     */
+    JobStats,
+
+    /**
      * The JobUpdateParameters model constructor.
      * @property {module:model/JobUpdateParameters}
      */
     JobUpdateParameters,
 
     /**
+     * The LanguagePair model constructor.
+     * @property {module:model/LanguagePair}
+     */
+    LanguagePair,
+
+    /**
      * The LanguagesResponse model constructor.
      * @property {module:model/LanguagesResponse}
      */
     LanguagesResponse,
+
+    /**
+     * The LexiconEntry model constructor.
+     * @property {module:model/LexiconEntry}
+     */
+    LexiconEntry,
+
+    /**
+     * The LexiconEntryExamples model constructor.
+     * @property {module:model/LexiconEntryExamples}
+     */
+    LexiconEntryExamples,
+
+    /**
+     * The LexiconEntrySourceSpan model constructor.
+     * @property {module:model/LexiconEntrySourceSpan}
+     */
+    LexiconEntrySourceSpan,
+
+    /**
+     * The LexiconEntryTargetSpan model constructor.
+     * @property {module:model/LexiconEntryTargetSpan}
+     */
+    LexiconEntryTargetSpan,
+
+    /**
+     * The LexiconEntryTranslations model constructor.
+     * @property {module:model/LexiconEntryTranslations}
+     */
+    LexiconEntryTranslations,
 
     /**
      * The LexiconUpdateParameters model constructor.
@@ -226,6 +416,18 @@ export {
      * @property {module:model/LexiconUpdateResponse}
      */
     LexiconUpdateResponse,
+
+    /**
+     * The MatchBand model constructor.
+     * @property {module:model/MatchBand}
+     */
+    MatchBand,
+
+    /**
+     * The Memory model constructor.
+     * @property {module:model/Memory}
+     */
+    Memory,
 
     /**
      * The MemoryCreateParameters model constructor.
@@ -264,6 +466,12 @@ export {
     MemoryUpdateResponse,
 
     /**
+     * The Project model constructor.
+     * @property {module:model/Project}
+     */
+    Project,
+
+    /**
      * The ProjectCreateParameters model constructor.
      * @property {module:model/ProjectCreateParameters}
      */
@@ -276,10 +484,76 @@ export {
     ProjectDeleteResponse,
 
     /**
+     * The ProjectQuote model constructor.
+     * @property {module:model/ProjectQuote}
+     */
+    ProjectQuote,
+
+    /**
+     * The ProjectStatus model constructor.
+     * @property {module:model/ProjectStatus}
+     */
+    ProjectStatus,
+
+    /**
      * The ProjectUpdateResponse model constructor.
      * @property {module:model/ProjectUpdateResponse}
      */
     ProjectUpdateResponse,
+
+    /**
+     * The QARuleMatches model constructor.
+     * @property {module:model/QARuleMatches}
+     */
+    QARuleMatches,
+
+    /**
+     * The QARuleMatchesContext model constructor.
+     * @property {module:model/QARuleMatchesContext}
+     */
+    QARuleMatchesContext,
+
+    /**
+     * The QARuleMatchesMatches model constructor.
+     * @property {module:model/QARuleMatchesMatches}
+     */
+    QARuleMatchesMatches,
+
+    /**
+     * The QARuleMatchesReplacements model constructor.
+     * @property {module:model/QARuleMatchesReplacements}
+     */
+    QARuleMatchesReplacements,
+
+    /**
+     * The QARuleMatchesRule model constructor.
+     * @property {module:model/QARuleMatchesRule}
+     */
+    QARuleMatchesRule,
+
+    /**
+     * The QARuleMatchesRuleCategory model constructor.
+     * @property {module:model/QARuleMatchesRuleCategory}
+     */
+    QARuleMatchesRuleCategory,
+
+    /**
+     * The QARuleMatchesRuleUrls model constructor.
+     * @property {module:model/QARuleMatchesRuleUrls}
+     */
+    QARuleMatchesRuleUrls,
+
+    /**
+     * The ResourceStatus model constructor.
+     * @property {module:model/ResourceStatus}
+     */
+    ResourceStatus,
+
+    /**
+     * The Segment model constructor.
+     * @property {module:model/Segment}
+     */
+    Segment,
 
     /**
      * The SegmentCreateParameters model constructor.
@@ -300,10 +574,58 @@ export {
     SegmentUpdateParameters,
 
     /**
+     * The SegmentWithComments model constructor.
+     * @property {module:model/SegmentWithComments}
+     */
+    SegmentWithComments,
+
+    /**
+     * The SettingUpsertBody model constructor.
+     * @property {module:model/SettingUpsertBody}
+     */
+    SettingUpsertBody,
+
+    /**
+     * The SourceFile model constructor.
+     * @property {module:model/SourceFile}
+     */
+    SourceFile,
+
+    /**
+     * The TaggedSegment model constructor.
+     * @property {module:model/TaggedSegment}
+     */
+    TaggedSegment,
+
+    /**
      * The TranslateRegisterResponse model constructor.
      * @property {module:model/TranslateRegisterResponse}
      */
     TranslateRegisterResponse,
+
+    /**
+     * The Translation model constructor.
+     * @property {module:model/Translation}
+     */
+    Translation,
+
+    /**
+     * The TranslationInfo model constructor.
+     * @property {module:model/TranslationInfo}
+     */
+    TranslationInfo,
+
+    /**
+     * The TranslationList model constructor.
+     * @property {module:model/TranslationList}
+     */
+    TranslationList,
+
+    /**
+     * The TranslationMemoryEntry model constructor.
+     * @property {module:model/TranslationMemoryEntry}
+     */
+    TranslationMemoryEntry,
 
     /**
     * The CommentsApi service constructor.

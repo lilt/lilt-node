@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## createProject
 
-> Object createProject(body)
+> Project createProject(body)
 
 Create a Project
 
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**Project**](Project.md)
 
 ### Authorization
 
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 
 ## getProjectReport
 
-> Object getProjectReport(id)
+> ProjectQuote getProjectReport(id)
 
 Retrieve Project report
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**ProjectQuote**](ProjectQuote.md)
 
 ### Authorization
 
@@ -179,7 +179,7 @@ Name | Type | Description  | Notes
 
 ## getProjectStatus
 
-> Object getProjectStatus(id)
+> ProjectStatus getProjectStatus(id)
 
 Retrieve Project status
 
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**ProjectStatus**](ProjectStatus.md)
 
 ### Authorization
 
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ## getProjects
 
-> [Object] getProjects(opts)
+> [Project] getProjects(opts)
 
 Retrieve a Project
 
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[Object]**
+[**[Project]**](Project.md)
 
 ### Authorization
 
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 
 ## updateProject
 
-> Object updateProject(body)
+> Project updateProject(body)
 
 Update a Project
 
@@ -343,7 +343,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**Project**](Project.md)
 
 ### Authorization
 

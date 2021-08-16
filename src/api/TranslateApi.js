@@ -13,7 +13,10 @@
 
 
 import ApiClient from "../ApiClient";
+import Error2 from '../model/Error2';
 import TranslateRegisterResponse from '../model/TranslateRegisterResponse';
+import TranslationInfo from '../model/TranslationInfo';
+import TranslationList from '../model/TranslationList';
 
 /**
 * Translate service.
@@ -42,7 +45,7 @@ export default class TranslateApi {
      * @param {String} memoryId Id of Memory to use in translation.
      * @param {Object} opts Optional parameters
      * @param {Number} opts.configId An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TranslationInfo} and HTTP response
      */
     batchTranslateFileWithHttpInfo(fileId, memoryId, opts) {
       opts = opts || {};
@@ -71,7 +74,7 @@ export default class TranslateApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = TranslationInfo;
       return this.apiClient.callApi(
         '/translate/file', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -86,7 +89,7 @@ export default class TranslateApi {
      * @param {String} memoryId Id of Memory to use in translation.
      * @param {Object} opts Optional parameters
      * @param {Number} opts.configId An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TranslationInfo}
      */
     batchTranslateFile(fileId, memoryId, opts) {
       return this.batchTranslateFileWithHttpInfo(fileId, memoryId, opts)
@@ -152,7 +155,7 @@ export default class TranslateApi {
      * @param {String} opts.status One of the translation statuses - `InProgress`, `Completed`, `Failed`, `ReadyForDownload`
      * @param {Number} opts.fromTime Results after this time (inclusive) will be returned, specified as seconds since the Unix epoch.
      * @param {Number} opts.toTime Results before this time (exclusive) will be returned, specified as seconds since the Unix epoch.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TranslationInfo} and HTTP response
      */
     monitorFileTranslationWithHttpInfo(opts) {
       opts = opts || {};
@@ -174,7 +177,7 @@ export default class TranslateApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = TranslationInfo;
       return this.apiClient.callApi(
         '/translate/file', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -190,7 +193,7 @@ export default class TranslateApi {
      * @param {String} opts.status One of the translation statuses - `InProgress`, `Completed`, `Failed`, `ReadyForDownload`
      * @param {Number} opts.fromTime Results after this time (inclusive) will be returned, specified as seconds since the Unix epoch.
      * @param {Number} opts.toTime Results before this time (exclusive) will be returned, specified as seconds since the Unix epoch.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TranslationInfo}
      */
     monitorFileTranslation(opts) {
       return this.monitorFileTranslationWithHttpInfo(opts)
@@ -274,7 +277,7 @@ export default class TranslateApi {
      * @param {Boolean} opts.rich Returns rich translation information (e.g., with word alignments). (default to false)
      * @param {Boolean} opts.tmMatches Include translation memory fuzzy matches. (default to true)
      * @param {Boolean} opts.projectTags Project tags. Projects tags in source to target if set to true. (default to false)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TranslationList} and HTTP response
      */
     translateSegmentWithHttpInfo(memoryId, opts) {
       opts = opts || {};
@@ -304,7 +307,7 @@ export default class TranslateApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = TranslationList;
       return this.apiClient.callApi(
         '/translate', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -324,7 +327,7 @@ export default class TranslateApi {
      * @param {Boolean} opts.rich Returns rich translation information (e.g., with word alignments). (default to false)
      * @param {Boolean} opts.tmMatches Include translation memory fuzzy matches. (default to true)
      * @param {Boolean} opts.projectTags Project tags. Projects tags in source to target if set to true. (default to false)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TranslationList}
      */
     translateSegment(memoryId, opts) {
       return this.translateSegmentWithHttpInfo(memoryId, opts)

@@ -13,6 +13,7 @@
 
 
 import ApiClient from "../ApiClient";
+import Error2 from '../model/Error2';
 import LanguagesResponse from '../model/LanguagesResponse';
 
 /**

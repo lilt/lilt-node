@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 
 ## createDocument
 
-> Object createDocument(opts)
+> DocumentWithSegments createDocument(opts)
 
 Create a Document
 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**DocumentWithSegments**](DocumentWithSegments.md)
 
 ### Authorization
 
@@ -404,7 +404,7 @@ Name | Type | Description  | Notes
 
 ## getDocument
 
-> Object getDocument(id, opts)
+> DocumentWithSegments getDocument(id, opts)
 
 Retrieve a Document
 
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**DocumentWithSegments**](DocumentWithSegments.md)
 
 ### Authorization
 
@@ -526,7 +526,7 @@ Name | Type | Description  | Notes
 
 ## updateDocument
 
-> Object updateDocument(body)
+> DocumentWithSegments updateDocument(body)
 
 Update a Document
 
@@ -566,7 +566,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**DocumentWithSegments**](DocumentWithSegments.md)
 
 ### Authorization
 
@@ -580,7 +580,7 @@ Name | Type | Description  | Notes
 
 ## uploadDocument
 
-> Object uploadDocument(name, projectId, body, opts)
+> DocumentWithSegments uploadDocument(name, projectId, body, opts)
 
 Upload a File
 
@@ -636,7 +636,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**DocumentWithSegments**](DocumentWithSegments.md)
 
 ### Authorization
 

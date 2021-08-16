@@ -13,7 +13,9 @@
 
 
 import ApiClient from "../ApiClient";
+import Error2 from '../model/Error2';
 import FileDeleteResponse from '../model/FileDeleteResponse';
+import SourceFile from '../model/SourceFile';
 
 /**
 * Files service.
@@ -88,7 +90,7 @@ export default class FilesApi {
      * Retrieves one or more files available to your user. Files are not associated with a project or a memory. They are unprocessed and can be used later in the project/document creation workflow step.  To retrieve a specific file, specify the <strong>id</strong> request parameter. To retrieve all files, omit the <strong>id</strong> request parameter.  Example CURL command: ```  curl -X GET https://lilt.com/2/files?key=API_KEY&id=274```
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id A unique File identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<Object>} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/SourceFile>} and HTTP response
      */
     getFilesWithHttpInfo(opts) {
       opts = opts || {};
@@ -107,7 +109,7 @@ export default class FilesApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = [Object];
+      let returnType = [SourceFile];
       return this.apiClient.callApi(
         '/files', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -120,7 +122,7 @@ export default class FilesApi {
      * Retrieves one or more files available to your user. Files are not associated with a project or a memory. They are unprocessed and can be used later in the project/document creation workflow step.  To retrieve a specific file, specify the <strong>id</strong> request parameter. To retrieve all files, omit the <strong>id</strong> request parameter.  Example CURL command: ```  curl -X GET https://lilt.com/2/files?key=API_KEY&id=274```
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id A unique File identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<Object>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/SourceFile>}
      */
     getFiles(opts) {
       return this.getFilesWithHttpInfo(opts)
@@ -141,7 +143,7 @@ export default class FilesApi {
      * @param {Number} opts.projectId The project to associate the uploaded file with.
      * @param {String} opts.category The category of the file. The options are `REFERENCE`, or `API`. The default is API. Files with the `REFERENCE` category will be displayed as reference material.
      * @param {String} opts.labels Comma-separated list of labels to add to the uploaded document.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SourceFile} and HTTP response
      */
     uploadFileWithHttpInfo(name, body, opts) {
       opts = opts || {};
@@ -173,7 +175,7 @@ export default class FilesApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/octet-stream'];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = SourceFile;
       return this.apiClient.callApi(
         '/files', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -192,7 +194,7 @@ export default class FilesApi {
      * @param {Number} opts.projectId The project to associate the uploaded file with.
      * @param {String} opts.category The category of the file. The options are `REFERENCE`, or `API`. The default is API. Files with the `REFERENCE` category will be displayed as reference material.
      * @param {String} opts.labels Comma-separated list of labels to add to the uploaded document.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SourceFile}
      */
     uploadFile(name, body, opts) {
       return this.uploadFileWithHttpInfo(name, body, opts)

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## createComment
 
-> Object createComment(documentId, segmentId, body)
+> Comment createComment(documentId, segmentId, body)
 
 Create a new comment
 
@@ -37,7 +37,7 @@ BasicAuth.password = 'YOUR PASSWORD';
 let apiInstance = new LiltNode.CommentsApi();
 let documentId = 56; // Number | A unique document identifier.
 let segmentId = 56; // Number | A unique segment identifier.
-let body = null; // Object | The comment being created
+let body = new LiltNode.CommentBody(); // CommentBody | The comment being created
 apiInstance.createComment(documentId, segmentId, body).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
@@ -53,11 +53,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **documentId** | **Number**| A unique document identifier. | 
  **segmentId** | **Number**| A unique segment identifier. | 
- **body** | **Object**| The comment being created | 
+ **body** | [**CommentBody**](CommentBody.md)| The comment being created | 
 
 ### Return type
 
-**Object**
+[**Comment**](Comment.md)
 
 ### Authorization
 
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 
 ## getDocumentComments
 
-> Object getDocumentComments(documentId)
+> DocumentComments getDocumentComments(documentId)
 
 Retrieve a document&#39;s comments by segment
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**DocumentComments**](DocumentComments.md)
 
 ### Authorization
 
@@ -179,7 +179,7 @@ Name | Type | Description  | Notes
 
 ## updateComment
 
-> Object updateComment(commentId, documentId, body)
+> Comment updateComment(commentId, documentId, body)
 
 Update an existing comment
 
@@ -203,7 +203,7 @@ BasicAuth.password = 'YOUR PASSWORD';
 let apiInstance = new LiltNode.CommentsApi();
 let commentId = 56; // Number | A unique comment identifier.
 let documentId = 56; // Number | A unique document identifier.
-let body = null; // Object | The comment being updated.
+let body = new LiltNode.CommentBody(); // CommentBody | The comment being updated.
 apiInstance.updateComment(commentId, documentId, body).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
@@ -219,11 +219,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **commentId** | **Number**| A unique comment identifier. | 
  **documentId** | **Number**| A unique document identifier. | 
- **body** | **Object**| The comment being updated. | 
+ **body** | [**CommentBody**](CommentBody.md)| The comment being updated. | 
 
 ### Return type
 
-**Object**
+[**Comment**](Comment.md)
 
 ### Authorization
 

@@ -13,6 +13,8 @@
 
 
 import ApiClient from "../ApiClient";
+import Error2 from '../model/Error2';
+import QARuleMatches from '../model/QARuleMatches';
 
 /**
 * QA service.
@@ -42,7 +44,7 @@ export default class QAApi {
      * @param {Object} opts Optional parameters
      * @param {String} opts.source An optional source string.
      * @param {String} opts.srclang An ISO 639-1 language code.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/QARuleMatches} and HTTP response
      */
     qaCheckWithHttpInfo(target, trglang, opts) {
       opts = opts || {};
@@ -72,7 +74,7 @@ export default class QAApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = QARuleMatches;
       return this.apiClient.callApi(
         '/qa', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -88,7 +90,7 @@ export default class QAApi {
      * @param {Object} opts Optional parameters
      * @param {String} opts.source An optional source string.
      * @param {String} opts.srclang An ISO 639-1 language code.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/QARuleMatches}
      */
     qaCheck(target, trglang, opts) {
       return this.qaCheckWithHttpInfo(target, trglang, opts)

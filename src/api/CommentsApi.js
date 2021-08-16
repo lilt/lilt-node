@@ -13,7 +13,11 @@
 
 
 import ApiClient from "../ApiClient";
+import Comment from '../model/Comment';
+import CommentBody from '../model/CommentBody';
 import CommentDeleteResponse from '../model/CommentDeleteResponse';
+import DocumentComments from '../model/DocumentComments';
+import Error2 from '../model/Error2';
 
 /**
 * Comments service.
@@ -40,8 +44,8 @@ export default class CommentsApi {
      * Create a new comment for the specified Segment ID.
      * @param {Number} documentId A unique document identifier.
      * @param {Number} segmentId A unique segment identifier.
-     * @param {Object} body The comment being created
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @param {module:model/CommentBody} body The comment being created
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Comment} and HTTP response
      */
     createCommentWithHttpInfo(documentId, segmentId, body) {
       let postBody = body;
@@ -72,7 +76,7 @@ export default class CommentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = Comment;
       return this.apiClient.callApi(
         '/comments', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -85,8 +89,8 @@ export default class CommentsApi {
      * Create a new comment for the specified Segment ID.
      * @param {Number} documentId A unique document identifier.
      * @param {Number} segmentId A unique segment identifier.
-     * @param {Object} body The comment being created
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @param {module:model/CommentBody} body The comment being created
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Comment}
      */
     createComment(documentId, segmentId, body) {
       return this.createCommentWithHttpInfo(documentId, segmentId, body)
@@ -148,7 +152,7 @@ export default class CommentsApi {
      * Retrieve a document's comments by segment
      * Retrieves all comments associated with a specified document, grouped by their Segment's ID.  To retrieve a document's comments, specify the <strong>document_id</strong> request parameter.  Example CURL command: ```   curl -X GET https://lilt.com/2/comments?key=API_KEY&document_id=123 ``` 
      * @param {Number} documentId A unique document identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DocumentComments} and HTTP response
      */
     getDocumentCommentsWithHttpInfo(documentId) {
       let postBody = null;
@@ -170,7 +174,7 @@ export default class CommentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = DocumentComments;
       return this.apiClient.callApi(
         '/comments', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -182,7 +186,7 @@ export default class CommentsApi {
      * Retrieve a document's comments by segment
      * Retrieves all comments associated with a specified document, grouped by their Segment's ID.  To retrieve a document's comments, specify the <strong>document_id</strong> request parameter.  Example CURL command: ```   curl -X GET https://lilt.com/2/comments?key=API_KEY&document_id=123 ``` 
      * @param {Number} documentId A unique document identifier.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DocumentComments}
      */
     getDocumentComments(documentId) {
       return this.getDocumentCommentsWithHttpInfo(documentId)
@@ -197,8 +201,8 @@ export default class CommentsApi {
      * Update an existing comment.
      * @param {Number} commentId A unique comment identifier.
      * @param {Number} documentId A unique document identifier.
-     * @param {Object} body The comment being updated.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @param {module:model/CommentBody} body The comment being updated.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Comment} and HTTP response
      */
     updateCommentWithHttpInfo(commentId, documentId, body) {
       let postBody = body;
@@ -229,7 +233,7 @@ export default class CommentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = Comment;
       return this.apiClient.callApi(
         '/comments', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -242,8 +246,8 @@ export default class CommentsApi {
      * Update an existing comment.
      * @param {Number} commentId A unique comment identifier.
      * @param {Number} documentId A unique document identifier.
-     * @param {Object} body The comment being updated.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @param {module:model/CommentBody} body The comment being updated.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Comment}
      */
     updateComment(commentId, documentId, body) {
       return this.updateCommentWithHttpInfo(commentId, documentId, body)

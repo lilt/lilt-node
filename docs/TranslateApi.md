@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## batchTranslateFile
 
-> Object batchTranslateFile(fileId, memoryId, opts)
+> TranslationInfo batchTranslateFile(fileId, memoryId, opts)
 
 Translate a File
 
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**TranslationInfo**](TranslationInfo.md)
 
 ### Authorization
 
@@ -128,7 +128,7 @@ Name | Type | Description  | Notes
 
 ## monitorFileTranslation
 
-> Object monitorFileTranslation(opts)
+> TranslationInfo monitorFileTranslation(opts)
 
 Monitor file translation
 
@@ -176,7 +176,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**TranslationInfo**](TranslationInfo.md)
 
 ### Authorization
 
@@ -248,7 +248,7 @@ Name | Type | Description  | Notes
 
 ## translateSegment
 
-> Object translateSegment(memoryId, opts)
+> TranslationList translateSegment(memoryId, opts)
 
 Translate a segment
 
@@ -304,7 +304,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**TranslationList**](TranslationList.md)
 
 ### Authorization
 

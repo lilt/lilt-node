@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## createSegment
 
-> Object createSegment(body)
+> Segment createSegment(body)
 
 Create a Segment
 
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**Segment**](Segment.md)
 
 ### Authorization
 
@@ -123,7 +123,7 @@ Name | Type | Description  | Notes
 
 ## getSegment
 
-> Object getSegment(id, opts)
+> SegmentWithComments getSegment(id, opts)
 
 Retrieve a Segment
 
@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**SegmentWithComments**](SegmentWithComments.md)
 
 ### Authorization
 
@@ -235,7 +235,7 @@ Name | Type | Description  | Notes
 
 ## tagSegment
 
-> Object tagSegment(sourceTagged, target, memoryId)
+> TaggedSegment tagSegment(sourceTagged, target, memoryId)
 
 Tag a Segment
 
@@ -279,7 +279,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**TaggedSegment**](TaggedSegment.md)
 
 ### Authorization
 
@@ -293,7 +293,7 @@ Name | Type | Description  | Notes
 
 ## updateSegment
 
-> Object updateSegment(body)
+> Segment updateSegment(body)
 
 Update a Segment
 
@@ -333,7 +333,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**Segment**](Segment.md)
 
 ### Authorization
 

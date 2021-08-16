@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 ## getFiles
 
-> [Object] getFiles(opts)
+> [SourceFile] getFiles(opts)
 
 Retrieve a File
 
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[Object]**
+[**[SourceFile]**](SourceFile.md)
 
 ### Authorization
 
@@ -122,7 +122,7 @@ Name | Type | Description  | Notes
 
 ## uploadFile
 
-> Object uploadFile(name, body, opts)
+> SourceFile uploadFile(name, body, opts)
 
 Upload a File
 
@@ -176,7 +176,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**SourceFile**](SourceFile.md)
 
 ### Authorization
 

@@ -14,6 +14,7 @@
 
 import ApiClient from "../ApiClient";
 import ApiRoot from '../model/ApiRoot';
+import Error2 from '../model/Error2';
 
 /**
 * Root service.

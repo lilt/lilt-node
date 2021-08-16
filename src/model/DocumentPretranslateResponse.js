@@ -12,6 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import DocumentPretranslating from './DocumentPretranslating';
 
 /**
  * The DocumentPretranslateResponse model module.
@@ -54,7 +55,7 @@ class DocumentPretranslateResponse {
                 obj['is_pretranslating'] = ApiClient.convertToType(data['is_pretranslating'], 'Boolean');
             }
             if (data.hasOwnProperty('documents')) {
-                obj['documents'] = ApiClient.convertToType(data['documents'], [Object]);
+                obj['documents'] = ApiClient.convertToType(data['documents'], [DocumentPretranslating]);
             }
         }
         return obj;
@@ -77,7 +78,7 @@ DocumentPretranslateResponse.prototype['is_pretranslating'] = undefined;
 
 /**
  * Document pretranslation status.
- * @member {Array.<Object>} documents
+ * @member {Array.<module:model/DocumentPretranslating>} documents
  */
 DocumentPretranslateResponse.prototype['documents'] = undefined;
 

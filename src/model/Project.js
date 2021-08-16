@@ -55,6 +55,9 @@ class Project {
             if (data.hasOwnProperty('memory_id')) {
                 obj['memory_id'] = ApiClient.convertToType(data['memory_id'], 'Number');
             }
+            if (data.hasOwnProperty('job_id')) {
+                obj['job_id'] = ApiClient.convertToType(data['job_id'], 'Number');
+            }
             if (data.hasOwnProperty('srclang')) {
                 obj['srclang'] = ApiClient.convertToType(data['srclang'], 'String');
             }
@@ -112,6 +115,12 @@ Project.prototype['id'] = undefined;
  * @member {Number} memory_id
  */
 Project.prototype['memory_id'] = undefined;
+
+/**
+ * A unique number identifying the associated Job.
+ * @member {Number} job_id
+ */
+Project.prototype['job_id'] = undefined;
 
 /**
  * An ISO 639-1 language identifier.

@@ -12,6 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import LanguagePair from './LanguagePair';
 
 /**
  * The JobCreateParameters model module.
@@ -23,7 +24,7 @@ class JobCreateParameters {
      * Constructs a new <code>JobCreateParameters</code>.
      * @alias module:model/JobCreateParameters
      * @param name {String} A name for the Job.
-     * @param languagePairs {Array.<Object>} Language pairs is a set of one or more pairs that includes source language, source locale(optional), target language, target locale(optional), and memoryId.
+     * @param languagePairs {Array.<module:model/LanguagePair>} Language pairs is a set of one or more pairs that includes source language, source locale(optional), target language, target locale(optional), and memoryId.
      * @param fileIds {Array.<Number>} A list of file ids to upload to job creation.
      */
     constructor(name, languagePairs, fileIds) { 
@@ -60,7 +61,7 @@ class JobCreateParameters {
                 obj['due'] = ApiClient.convertToType(data['due'], 'String');
             }
             if (data.hasOwnProperty('languagePairs')) {
-                obj['languagePairs'] = ApiClient.convertToType(data['languagePairs'], [Object]);
+                obj['languagePairs'] = ApiClient.convertToType(data['languagePairs'], [LanguagePair]);
             }
             if (data.hasOwnProperty('fileIds')) {
                 obj['fileIds'] = ApiClient.convertToType(data['fileIds'], ['Number']);
@@ -86,7 +87,7 @@ JobCreateParameters.prototype['due'] = undefined;
 
 /**
  * Language pairs is a set of one or more pairs that includes source language, source locale(optional), target language, target locale(optional), and memoryId.
- * @member {Array.<Object>} languagePairs
+ * @member {Array.<module:model/LanguagePair>} languagePairs
  */
 JobCreateParameters.prototype['languagePairs'] = undefined;
 

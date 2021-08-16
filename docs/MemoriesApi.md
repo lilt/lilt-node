@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## createMemory
 
-> Object createMemory(body)
+> Memory createMemory(body)
 
 Create a Memory
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**Memory**](Memory.md)
 
 ### Authorization
 
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 ## getMemory
 
-> [Object] getMemory(opts)
+> [Memory] getMemory(opts)
 
 Retrieve a Memory
 
@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[Object]**
+[**[Memory]**](Memory.md)
 
 ### Authorization
 
@@ -245,7 +245,7 @@ Name | Type | Description  | Notes
 
 ## queryMemory
 
-> [Object] queryMemory(id, query, opts)
+> [TranslationMemoryEntry] queryMemory(id, query, opts)
 
 Query a Memory
 
@@ -291,7 +291,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[Object]**
+[**[TranslationMemoryEntry]**](TranslationMemoryEntry.md)
 
 ### Authorization
 
@@ -553,7 +553,7 @@ Name | Type | Description  | Notes
 
 ## updateMemory
 
-> Object updateMemory(body)
+> Memory updateMemory(body)
 
 Update the name of a Memory
 
@@ -593,7 +593,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**Memory**](Memory.md)
 
 ### Authorization
 

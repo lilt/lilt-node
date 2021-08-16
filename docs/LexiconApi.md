@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## queryLexicon
 
-> [Object] queryLexicon(memoryId, srclang, trglang, query, opts)
+> [LexiconEntry] queryLexicon(memoryId, srclang, trglang, query, opts)
 
 Query a Lexicon
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[Object]**
+[**[LexiconEntry]**](LexiconEntry.md)
 
 ### Authorization
 

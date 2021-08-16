@@ -67,7 +67,7 @@ This endpoint does not need any parameter.
 
 Get settings for a project
 
-Get the settings as applied to a specific project.  Active settings will combine project-level settings, organization-level settings and fallback to setting default values.  Example CURL:  &#x60;&#x60;&#x60; curl --location --request GET &#39;https://lilt.com/2/settings/project/123?key&#x3D;&lt;API_KEY&gt;&#39; \\ &#x60;&#x60;&#x60;  
+Get the settings as applied to a specific project. Active settings will combine project-level settings, organization-level settings and fallback to setting default values.  Example CURL:  &#x60;&#x60;&#x60; curl --location --request GET &#39;https://lilt.com/2/settings/project/123?key&#x3D;&lt;API_KEY&gt;&#39; \\ &#x60;&#x60;&#x60;  
 
 ### Example
 
@@ -190,7 +190,7 @@ BasicAuth.password = 'YOUR PASSWORD';
 
 let apiInstance = new LiltNode.SettingsApi();
 let opts = {
-  'body': null // Object | 
+  'body': new LiltNode.SettingUpsertBody() // SettingUpsertBody | 
 };
 apiInstance.upsertSetting(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -205,7 +205,7 @@ apiInstance.upsertSetting(opts).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **Object**|  | [optional] 
+ **body** | [**SettingUpsertBody**](SettingUpsertBody.md)|  | [optional] 
 
 ### Return type
 

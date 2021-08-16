@@ -13,7 +13,9 @@
 
 
 import ApiClient from "../ApiClient";
+import Error2 from '../model/Error2';
 import SettingDictionary from '../model/SettingDictionary';
+import SettingUpsertBody from '../model/SettingUpsertBody';
 
 /**
 * Settings service.
@@ -78,7 +80,7 @@ export default class SettingsApi {
 
     /**
      * Get settings for a project
-     * Get the settings as applied to a specific project.  Active settings will combine project-level settings, organization-level settings and fallback to setting default values.  Example CURL:  ``` curl --location --request GET 'https://lilt.com/2/settings/project/123?key=<API_KEY>' \\ ```  
+     * Get the settings as applied to a specific project. Active settings will combine project-level settings, organization-level settings and fallback to setting default values.  Example CURL:  ``` curl --location --request GET 'https://lilt.com/2/settings/project/123?key=<API_KEY>' \\ ```  
      * @param {Number} projectId A project id.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SettingDictionary} and HTTP response
      */
@@ -112,7 +114,7 @@ export default class SettingsApi {
 
     /**
      * Get settings for a project
-     * Get the settings as applied to a specific project.  Active settings will combine project-level settings, organization-level settings and fallback to setting default values.  Example CURL:  ``` curl --location --request GET 'https://lilt.com/2/settings/project/123?key=<API_KEY>' \\ ```  
+     * Get the settings as applied to a specific project. Active settings will combine project-level settings, organization-level settings and fallback to setting default values.  Example CURL:  ``` curl --location --request GET 'https://lilt.com/2/settings/project/123?key=<API_KEY>' \\ ```  
      * @param {Number} projectId A project id.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SettingDictionary}
      */
@@ -169,7 +171,7 @@ export default class SettingsApi {
      * Get organization-level settings
      * Create or update the value for the given setting and setting scope.  Example CURL to set an organization-level setting:  ``` curl --location --request POST 'https://lilt.com/2/settings?key=<API_KEY>' \\ --header 'Content-Type: application/json' \\ --data-raw '{     \"settingName\": \"requireBatchQaTranslator\",     \"value\": false,     \"organizationId\": 285,     \"scope\": \"Organization\" }' ```  
      * @param {Object} opts Optional parameters
-     * @param {Object} opts.body 
+     * @param {module:model/SettingUpsertBody} opts.body 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
      */
     upsertSettingWithHttpInfo(opts) {
@@ -200,7 +202,7 @@ export default class SettingsApi {
      * Get organization-level settings
      * Create or update the value for the given setting and setting scope.  Example CURL to set an organization-level setting:  ``` curl --location --request POST 'https://lilt.com/2/settings?key=<API_KEY>' \\ --header 'Content-Type: application/json' \\ --data-raw '{     \"settingName\": \"requireBatchQaTranslator\",     \"value\": false,     \"organizationId\": 285,     \"scope\": \"Organization\" }' ```  
      * @param {Object} opts Optional parameters
-     * @param {Object} opts.body 
+     * @param {module:model/SettingUpsertBody} opts.body 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
      */
     upsertSetting(opts) {

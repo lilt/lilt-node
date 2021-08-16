@@ -13,8 +13,11 @@
 
 
 import ApiClient from "../ApiClient";
+import Error2 from '../model/Error2';
+import Job from '../model/Job';
 import JobCreateParameters from '../model/JobCreateParameters';
 import JobDeleteResponse from '../model/JobDeleteResponse';
+import JobLeverageStats from '../model/JobLeverageStats';
 import JobUpdateParameters from '../model/JobUpdateParameters';
 
 /**
@@ -39,9 +42,9 @@ export default class JobsApi {
 
     /**
      * Archive a Job
-     * Set job to archived, unassign all linguists and archive all projects and documents inside the job.  It will return the archived job.  Example CURL command:   ``` curl -X POST 'https://lilt.com/2/jobs/{id}/archive?key=API_KEY' ```
+     * Set job to archived, unassign all linguists and archive all projects and documents inside the job.  It will return the archived job.  Example CURL command:  ``` curl -X POST 'https://lilt.com/2/jobs/{id}/archive?key=API_KEY' ```
      * @param {Number} jobId A job id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Job} and HTTP response
      */
     archiveJobWithHttpInfo(jobId) {
       let postBody = null;
@@ -63,7 +66,7 @@ export default class JobsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = Job;
       return this.apiClient.callApi(
         '/jobs/{jobId}/archive', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -73,9 +76,9 @@ export default class JobsApi {
 
     /**
      * Archive a Job
-     * Set job to archived, unassign all linguists and archive all projects and documents inside the job.  It will return the archived job.  Example CURL command:   ``` curl -X POST 'https://lilt.com/2/jobs/{id}/archive?key=API_KEY' ```
+     * Set job to archived, unassign all linguists and archive all projects and documents inside the job.  It will return the archived job.  Example CURL command:  ``` curl -X POST 'https://lilt.com/2/jobs/{id}/archive?key=API_KEY' ```
      * @param {Number} jobId A job id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Job}
      */
     archiveJob(jobId) {
       return this.archiveJobWithHttpInfo(jobId)
@@ -87,9 +90,9 @@ export default class JobsApi {
 
     /**
      * Create a Job
-     * Create a Job. A Job is a collection of Projects. A Job will contain multiple projects, based on the language pair. A Project is associated with exactly one Memory.  Jobs appear in the Jobs dashboard of the web app.  Example CURL command:   ``` curl -X POST 'https://lilt.com/2/jobs?key=API_KEY' \\ --header 'Content-Type: application/json' \\ --data-raw '{   \"name\": \"test job\",   \"fileIds\": [5009, 5010, 5011],   \"due\": \"2022-05-05T10:56:44.985Z\",   \"srcLang\": \"en\",   \"srcLocale\": \"US\",   \"languagePairs\": [       { \"memoryId\": 3121, \"trgLang\": \"de\" },       { \"memoryId\": 2508, \"trgLang\": \"fr\" },       { \"memoryId\": 3037, \"trgLang\": \"zh\" }     ] }' ```  
+     * Create a Job. A Job is a collection of Projects. A Job will contain multiple projects, based on the language pair. A Project is associated with exactly one Memory.  Jobs appear in the Jobs dashboard of the web app.  Example CURL command:  ``` curl -X POST 'https://lilt.com/2/jobs?key=API_KEY' \\ --header 'Content-Type: application/json' \\ --data-raw '{   \"name\": \"test job\",   \"fileIds\": [5009, 5010, 5011],   \"due\": \"2022-05-05T10:56:44.985Z\",   \"srcLang\": \"en\",   \"srcLocale\": \"US\",   \"languagePairs\": [       { \"memoryId\": 3121, \"trgLang\": \"de\" },       { \"memoryId\": 2508, \"trgLang\": \"fr\" },       { \"memoryId\": 3037, \"trgLang\": \"zh\" }     ] }' ```  
      * @param {module:model/JobCreateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Job} and HTTP response
      */
     createJobWithHttpInfo(body) {
       let postBody = body;
@@ -110,7 +113,7 @@ export default class JobsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = Job;
       return this.apiClient.callApi(
         '/jobs', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -120,9 +123,9 @@ export default class JobsApi {
 
     /**
      * Create a Job
-     * Create a Job. A Job is a collection of Projects. A Job will contain multiple projects, based on the language pair. A Project is associated with exactly one Memory.  Jobs appear in the Jobs dashboard of the web app.  Example CURL command:   ``` curl -X POST 'https://lilt.com/2/jobs?key=API_KEY' \\ --header 'Content-Type: application/json' \\ --data-raw '{   \"name\": \"test job\",   \"fileIds\": [5009, 5010, 5011],   \"due\": \"2022-05-05T10:56:44.985Z\",   \"srcLang\": \"en\",   \"srcLocale\": \"US\",   \"languagePairs\": [       { \"memoryId\": 3121, \"trgLang\": \"de\" },       { \"memoryId\": 2508, \"trgLang\": \"fr\" },       { \"memoryId\": 3037, \"trgLang\": \"zh\" }     ] }' ```  
+     * Create a Job. A Job is a collection of Projects. A Job will contain multiple projects, based on the language pair. A Project is associated with exactly one Memory.  Jobs appear in the Jobs dashboard of the web app.  Example CURL command:  ``` curl -X POST 'https://lilt.com/2/jobs?key=API_KEY' \\ --header 'Content-Type: application/json' \\ --data-raw '{   \"name\": \"test job\",   \"fileIds\": [5009, 5010, 5011],   \"due\": \"2022-05-05T10:56:44.985Z\",   \"srcLang\": \"en\",   \"srcLocale\": \"US\",   \"languagePairs\": [       { \"memoryId\": 3121, \"trgLang\": \"de\" },       { \"memoryId\": 2508, \"trgLang\": \"fr\" },       { \"memoryId\": 3037, \"trgLang\": \"zh\" }     ] }' ```  
      * @param {module:model/JobCreateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Job}
      */
     createJob(body) {
       return this.createJobWithHttpInfo(body)
@@ -134,7 +137,7 @@ export default class JobsApi {
 
     /**
      * Delete a Job
-     * Delete a job, deletes all projects and documents in the job, deletes all the segments from all the job's translation memories.  Example CURL command:   ``` curl -X DELETE 'https://lilt.com/2/jobs/{id}?key=API_KEY' ```
+     * Delete a job, deletes all projects and documents in the job, deletes all the segments from all the job's translation memories.  Example CURL command:  ``` curl -X DELETE 'https://lilt.com/2/jobs/{id}?key=API_KEY' ```
      * @param {Number} id A job id.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/JobDeleteResponse} and HTTP response
      */
@@ -168,7 +171,7 @@ export default class JobsApi {
 
     /**
      * Delete a Job
-     * Delete a job, deletes all projects and documents in the job, deletes all the segments from all the job's translation memories.  Example CURL command:   ``` curl -X DELETE 'https://lilt.com/2/jobs/{id}?key=API_KEY' ```
+     * Delete a job, deletes all projects and documents in the job, deletes all the segments from all the job's translation memories.  Example CURL command:  ``` curl -X DELETE 'https://lilt.com/2/jobs/{id}?key=API_KEY' ```
      * @param {Number} id A job id.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/JobDeleteResponse}
      */
@@ -182,9 +185,9 @@ export default class JobsApi {
 
     /**
      * Deliver a Job
-     * Set the job state to delivered and set all the projects in the job to done  It will return the delivered job.  Example CURL command:   ``` curl -X POST 'https://lilt.com/2/jobs/{id}/deliver?key=API_KEY' ```
+     * Set the job state to delivered and set all the projects in the job to done  It will return the delivered job.  Example CURL command:  ``` curl -X POST 'https://lilt.com/2/jobs/{id}/deliver?key=API_KEY' ```
      * @param {Number} jobId A job id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Job} and HTTP response
      */
     deliverJobWithHttpInfo(jobId) {
       let postBody = null;
@@ -206,7 +209,7 @@ export default class JobsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = Job;
       return this.apiClient.callApi(
         '/jobs/{jobId}/deliver', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -216,9 +219,9 @@ export default class JobsApi {
 
     /**
      * Deliver a Job
-     * Set the job state to delivered and set all the projects in the job to done  It will return the delivered job.  Example CURL command:   ``` curl -X POST 'https://lilt.com/2/jobs/{id}/deliver?key=API_KEY' ```
+     * Set the job state to delivered and set all the projects in the job to done  It will return the delivered job.  Example CURL command:  ``` curl -X POST 'https://lilt.com/2/jobs/{id}/deliver?key=API_KEY' ```
      * @param {Number} jobId A job id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Job}
      */
     deliverJob(jobId) {
       return this.deliverJobWithHttpInfo(jobId)
@@ -230,7 +233,7 @@ export default class JobsApi {
 
     /**
      * Download a Job
-     * Make sure you have exported a job with the same id before using this api.    Downloading files requires the exported job `id` in the param.  Example CURL command:   ``` curl -X GET 'https://lilt.com/2/jobs/{id}/download?key=API_KEY' ```
+     * Make sure you have exported a job with the same id before using this api.  Downloading files requires the exported job `id` in the param.  Example CURL command:  ``` curl -X GET 'https://lilt.com/2/jobs/{id}/download?key=API_KEY' ```
      * @param {Number} jobId A job id.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
@@ -264,7 +267,7 @@ export default class JobsApi {
 
     /**
      * Download a Job
-     * Make sure you have exported a job with the same id before using this api.    Downloading files requires the exported job `id` in the param.  Example CURL command:   ``` curl -X GET 'https://lilt.com/2/jobs/{id}/download?key=API_KEY' ```
+     * Make sure you have exported a job with the same id before using this api.  Downloading files requires the exported job `id` in the param.  Example CURL command:  ``` curl -X GET 'https://lilt.com/2/jobs/{id}/download?key=API_KEY' ```
      * @param {Number} jobId A job id.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
@@ -278,7 +281,7 @@ export default class JobsApi {
 
     /**
      * Export a Job
-     * Prepare job files for download. To export translated documents from the job use the query parameter `type=files`:   Example CURL command:   ``` curl -X GET 'https://lilt.com/2/jobs/{id}/export?key=API_KEY&type=files' ```  To export job memories use the query parameter `type=memory`.  The status of the export can be checked by requesting the job `GET /jobs/:jobId`, `job.isProcessing` will be `1` while in progress, `0` when idle and `-2` when the export failed.
+     * Prepare job files for download. To export translated documents from the job use the query parameter `type=files`:  Example CURL command:  ``` curl -X GET 'https://lilt.com/2/jobs/{id}/export?key=API_KEY&type=files' ```  To export job memories use the query parameter `type=memory`.  The status of the export can be checked by requesting the job `GET /jobs/:jobId`, `job.isProcessing` will be `1` while in progress, `0` when idle and `-2` when the export failed.
      * @param {Number} jobId A job id.
      * @param {String} type category for files and memory.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
@@ -318,7 +321,7 @@ export default class JobsApi {
 
     /**
      * Export a Job
-     * Prepare job files for download. To export translated documents from the job use the query parameter `type=files`:   Example CURL command:   ``` curl -X GET 'https://lilt.com/2/jobs/{id}/export?key=API_KEY&type=files' ```  To export job memories use the query parameter `type=memory`.  The status of the export can be checked by requesting the job `GET /jobs/:jobId`, `job.isProcessing` will be `1` while in progress, `0` when idle and `-2` when the export failed.
+     * Prepare job files for download. To export translated documents from the job use the query parameter `type=files`:  Example CURL command:  ``` curl -X GET 'https://lilt.com/2/jobs/{id}/export?key=API_KEY&type=files' ```  To export job memories use the query parameter `type=memory`.  The status of the export can be checked by requesting the job `GET /jobs/:jobId`, `job.isProcessing` will be `1` while in progress, `0` when idle and `-2` when the export failed.
      * @param {Number} jobId A job id.
      * @param {String} type category for files and memory.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
@@ -333,9 +336,9 @@ export default class JobsApi {
 
     /**
      * Retrieve a Job
-     * Retrieves a job data along with stats. To retrieve a specific job, you will need the job `id` in the url path.  Example CURL command:   ``` curl -X GET 'https://lilt.com/2/jobs/{id}?key=API_KEY' ```
+     * Retrieves a job data along with stats. To retrieve a specific job, you will need the job `id` in the url path.  Example CURL command:  ``` curl -X GET 'https://lilt.com/2/jobs/{id}?key=API_KEY' ```
      * @param {Number} jobId A job id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Job} and HTTP response
      */
     getJobWithHttpInfo(jobId) {
       let postBody = null;
@@ -357,7 +360,7 @@ export default class JobsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = Job;
       return this.apiClient.callApi(
         '/jobs/{jobId}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -367,9 +370,9 @@ export default class JobsApi {
 
     /**
      * Retrieve a Job
-     * Retrieves a job data along with stats. To retrieve a specific job, you will need the job `id` in the url path.  Example CURL command:   ``` curl -X GET 'https://lilt.com/2/jobs/{id}?key=API_KEY' ```
+     * Retrieves a job data along with stats. To retrieve a specific job, you will need the job `id` in the url path.  Example CURL command:  ``` curl -X GET 'https://lilt.com/2/jobs/{id}?key=API_KEY' ```
      * @param {Number} jobId A job id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Job}
      */
     getJob(jobId) {
       return this.getJobWithHttpInfo(jobId)
@@ -383,7 +386,7 @@ export default class JobsApi {
      * Retrieve Job Leverage Stats
      * Get the TM leverage stats for the job (new/exact/fuzzy matches).  Example CURL command:  ``` curl -X POST 'https://lilt.com/2/jobs/{id}/stats?key=API_KEY' ```
      * @param {Number} jobId A job id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/JobLeverageStats} and HTTP response
      */
     getJobLeverageStatsWithHttpInfo(jobId) {
       let postBody = null;
@@ -405,7 +408,7 @@ export default class JobsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = JobLeverageStats;
       return this.apiClient.callApi(
         '/jobs/{jobId}/stats', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -417,7 +420,7 @@ export default class JobsApi {
      * Retrieve Job Leverage Stats
      * Get the TM leverage stats for the job (new/exact/fuzzy matches).  Example CURL command:  ``` curl -X POST 'https://lilt.com/2/jobs/{id}/stats?key=API_KEY' ```
      * @param {Number} jobId A job id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/JobLeverageStats}
      */
     getJobLeverageStats(jobId) {
       return this.getJobLeverageStatsWithHttpInfo(jobId)
@@ -429,9 +432,9 @@ export default class JobsApi {
 
     /**
      * Reactivate a Job
-     * Set the job state to active. Does not change the state of projects associated with the given job.  It will return the reactivated job.  Example CURL command:   ``` curl -X POST 'https://lilt.com/2/jobs/{id}/reactivate?key=API_KEY' ```
+     * Set the job state to active. Does not change the state of projects associated with the given job.  It will return the reactivated job.  Example CURL command:  ``` curl -X POST 'https://lilt.com/2/jobs/{id}/reactivate?key=API_KEY' ```
      * @param {Number} jobId A job id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Job} and HTTP response
      */
     reactivateJobWithHttpInfo(jobId) {
       let postBody = null;
@@ -453,7 +456,7 @@ export default class JobsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = Job;
       return this.apiClient.callApi(
         '/jobs/{jobId}/reactivate', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -463,9 +466,9 @@ export default class JobsApi {
 
     /**
      * Reactivate a Job
-     * Set the job state to active. Does not change the state of projects associated with the given job.  It will return the reactivated job.  Example CURL command:   ``` curl -X POST 'https://lilt.com/2/jobs/{id}/reactivate?key=API_KEY' ```
+     * Set the job state to active. Does not change the state of projects associated with the given job.  It will return the reactivated job.  Example CURL command:  ``` curl -X POST 'https://lilt.com/2/jobs/{id}/reactivate?key=API_KEY' ```
      * @param {Number} jobId A job id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Job}
      */
     reactivateJob(jobId) {
       return this.reactivateJobWithHttpInfo(jobId)
@@ -477,10 +480,10 @@ export default class JobsApi {
 
     /**
      * Retrieve all Jobs
-     * Get all Jobs. You can retrieve all jobs from your account using the above API.  Example CURL command:   ``` curl -X GET 'https://lilt.com/2/jobs?key=API_KEY&isArchived=false' ```
+     * Get all Jobs. You can retrieve all jobs from your account using the above API.  Example CURL command:  ``` curl -X GET 'https://lilt.com/2/jobs?key=API_KEY&isArchived=false' ```
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.isArchived Retrieves all jobs that are archived.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<Object>} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Job>} and HTTP response
      */
     retrieveAllJobsWithHttpInfo(opts) {
       opts = opts || {};
@@ -499,7 +502,7 @@ export default class JobsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = [Object];
+      let returnType = [Job];
       return this.apiClient.callApi(
         '/jobs', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -509,10 +512,10 @@ export default class JobsApi {
 
     /**
      * Retrieve all Jobs
-     * Get all Jobs. You can retrieve all jobs from your account using the above API.  Example CURL command:   ``` curl -X GET 'https://lilt.com/2/jobs?key=API_KEY&isArchived=false' ```
+     * Get all Jobs. You can retrieve all jobs from your account using the above API.  Example CURL command:  ``` curl -X GET 'https://lilt.com/2/jobs?key=API_KEY&isArchived=false' ```
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.isArchived Retrieves all jobs that are archived.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<Object>}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Job>}
      */
     retrieveAllJobs(opts) {
       return this.retrieveAllJobsWithHttpInfo(opts)
@@ -524,9 +527,9 @@ export default class JobsApi {
 
     /**
      * Unarchive a Job
-     * Set job to unarchived, the job will move to active status.  Example CURL command:   ``` curl -X POST 'https://lilt.com/2/jobs/{id}/unarchive?key=API_KEY' ```
+     * Set job to unarchived, the job will move to active status.  Example CURL command:  ``` curl -X POST 'https://lilt.com/2/jobs/{id}/unarchive?key=API_KEY' ```
      * @param {Number} jobId A job id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Job} and HTTP response
      */
     unarchiveJobWithHttpInfo(jobId) {
       let postBody = null;
@@ -548,7 +551,7 @@ export default class JobsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = Job;
       return this.apiClient.callApi(
         '/jobs/{jobId}/unarchive', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -558,9 +561,9 @@ export default class JobsApi {
 
     /**
      * Unarchive a Job
-     * Set job to unarchived, the job will move to active status.  Example CURL command:   ``` curl -X POST 'https://lilt.com/2/jobs/{id}/unarchive?key=API_KEY' ```
+     * Set job to unarchived, the job will move to active status.  Example CURL command:  ``` curl -X POST 'https://lilt.com/2/jobs/{id}/unarchive?key=API_KEY' ```
      * @param {Number} jobId A job id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Job}
      */
     unarchiveJob(jobId) {
       return this.unarchiveJobWithHttpInfo(jobId)
@@ -572,11 +575,11 @@ export default class JobsApi {
 
     /**
      * Update a Job
-     * Updates a job with the new job properties. To update a specific job, you will need the job `id` in the url path.  You can update job's name and due date by passing the property and new value in the body.  Example CURL command:   ``` curl -X PUT 'https://lilt.com/2/jobs/{id}?key=API_KEY' \\ --header 'Content-Type: application/json' \\ --data-raw '{   \"name\": \"test job\",   \"due\": \"2022-05-05T10:56:44.985Z\" }' ```
+     * Updates a job with the new job properties. To update a specific job, you will need the job `id` in the url path.  You can update job's name and due date by passing the property and new value in the body.  Example CURL command:  ``` curl -X PUT 'https://lilt.com/2/jobs/{id}?key=API_KEY' \\ --header 'Content-Type: application/json' \\ --data-raw '{   \"name\": \"test job\",   \"due\": \"2022-05-05T10:56:44.985Z\" }' ```
      * @param {Number} id A job id.
      * @param {Object} opts Optional parameters
      * @param {module:model/JobUpdateParameters} opts.body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Job} and HTTP response
      */
     updateJobWithHttpInfo(id, opts) {
       opts = opts || {};
@@ -599,7 +602,7 @@ export default class JobsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = Job;
       return this.apiClient.callApi(
         '/jobs/{jobId}', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -609,11 +612,11 @@ export default class JobsApi {
 
     /**
      * Update a Job
-     * Updates a job with the new job properties. To update a specific job, you will need the job `id` in the url path.  You can update job's name and due date by passing the property and new value in the body.  Example CURL command:   ``` curl -X PUT 'https://lilt.com/2/jobs/{id}?key=API_KEY' \\ --header 'Content-Type: application/json' \\ --data-raw '{   \"name\": \"test job\",   \"due\": \"2022-05-05T10:56:44.985Z\" }' ```
+     * Updates a job with the new job properties. To update a specific job, you will need the job `id` in the url path.  You can update job's name and due date by passing the property and new value in the body.  Example CURL command:  ``` curl -X PUT 'https://lilt.com/2/jobs/{id}?key=API_KEY' \\ --header 'Content-Type: application/json' \\ --data-raw '{   \"name\": \"test job\",   \"due\": \"2022-05-05T10:56:44.985Z\" }' ```
      * @param {Number} id A job id.
      * @param {Object} opts Optional parameters
      * @param {module:model/JobUpdateParameters} opts.body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Job}
      */
     updateJob(id, opts) {
       return this.updateJobWithHttpInfo(id, opts)

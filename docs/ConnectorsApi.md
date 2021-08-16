@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## createConnector
 
-> Object createConnector(body)
+> Connector createConnector(body)
 
 Upload a Connector
 
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**Connector**](Connector.md)
 
 ### Authorization
 
@@ -178,7 +178,7 @@ null (empty response body)
 
 ## getConnectorJobs
 
-> [Object] getConnectorJobs(id)
+> [ConnectorJob] getConnectorJobs(id)
 
 Retrieve a Connector Job
 
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[Object]**
+[**[ConnectorJob]**](ConnectorJob.md)
 
 ### Authorization
 
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 ## getConnectors
 
-> [Object] getConnectors(opts)
+> [Connector] getConnectors(opts)
 
 Retrieve a Connector
 
@@ -274,7 +274,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[Object]**
+[**[Connector]**](Connector.md)
 
 ### Authorization
 
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 
 ## syncConnector
 
-> Object syncConnector(id)
+> ConnectorJob syncConnector(id)
 
 Sync a Connector
 
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**ConnectorJob**](ConnectorJob.md)
 
 ### Authorization
 
@@ -342,7 +342,7 @@ Name | Type | Description  | Notes
 
 ## updateConnector
 
-> Object updateConnector(body)
+> Connector updateConnector(body)
 
 Upload a Connector
 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**Connector**](Connector.md)
 
 ### Authorization
 

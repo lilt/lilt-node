@@ -57,9 +57,6 @@ class SourceFile {
             if (data.hasOwnProperty('file_hash')) {
                 obj['file_hash'] = ApiClient.convertToType(data['file_hash'], 'String');
             }
-            if (data.hasOwnProperty('export_uri')) {
-                obj['export_uri'] = ApiClient.convertToType(data['export_uri'], 'String');
-            }
             if (data.hasOwnProperty('detected_lang')) {
                 obj['detected_lang'] = ApiClient.convertToType(data['detected_lang'], 'String');
             }
@@ -102,12 +99,6 @@ SourceFile.prototype['name'] = undefined;
  * @member {String} file_hash
  */
 SourceFile.prototype['file_hash'] = undefined;
-
-/**
- * A webhook endpoint that will export the translated document back to the source repository.
- * @member {String} export_uri
- */
-SourceFile.prototype['export_uri'] = undefined;
 
 /**
  * Language associated with the file.
