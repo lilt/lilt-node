@@ -85,7 +85,10 @@ import SegmentCreateParameters from './model/SegmentCreateParameters';
 import SegmentDeleteResponse from './model/SegmentDeleteResponse';
 import SegmentUpdateParameters from './model/SegmentUpdateParameters';
 import SegmentWithComments from './model/SegmentWithComments';
+import Setting from './model/Setting';
+import SettingDictionary from './model/SettingDictionary';
 import SettingUpsertBody from './model/SettingUpsertBody';
+import SettingUpsertResponse from './model/SettingUpsertResponse';
 import SourceFile from './model/SourceFile';
 import TaggedSegment from './model/TaggedSegment';
 import TranslateRegisterResponse from './model/TranslateRegisterResponse';
@@ -580,10 +583,28 @@ export {
     SegmentWithComments,
 
     /**
+     * The Setting model constructor.
+     * @property {module:model/Setting}
+     */
+    Setting,
+
+    /**
+     * The SettingDictionary model constructor.
+     * @property {module:model/SettingDictionary}
+     */
+    SettingDictionary,
+
+    /**
      * The SettingUpsertBody model constructor.
      * @property {module:model/SettingUpsertBody}
      */
     SettingUpsertBody,
+
+    /**
+     * The SettingUpsertResponse model constructor.
+     * @property {module:model/SettingUpsertResponse}
+     */
+    SettingUpsertResponse,
 
     /**
      * The SourceFile model constructor.
