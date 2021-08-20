@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The CommentDeleteResponse model module.
  * @module model/CommentDeleteResponse
- * @version 0.5.0
+ * @version 0.6.2
  */
 class CommentDeleteResponse {
     /**

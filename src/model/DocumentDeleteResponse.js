@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The DocumentDeleteResponse model module.
  * @module model/DocumentDeleteResponse
- * @version 0.5.0
+ * @version 0.6.2
  */
 class DocumentDeleteResponse {
     /**

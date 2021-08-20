@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The SettingUpsertBody model module.
  * @module model/SettingUpsertBody
- * @version 0.5.0
+ * @version 0.6.2
  */
 class SettingUpsertBody {
     /**

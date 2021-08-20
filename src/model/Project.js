@@ -17,7 +17,7 @@ import DocumentWithoutSegments from './DocumentWithoutSegments';
 /**
  * The Project model module.
  * @module model/Project
- * @version 0.5.0
+ * @version 0.6.2
  */
 class Project {
     /**

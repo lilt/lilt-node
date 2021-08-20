@@ -17,7 +17,7 @@ import Comment from './Comment';
 /**
  * The DocumentComments model module.
  * @module model/DocumentComments
- * @version 0.5.0
+ * @version 0.6.2
  */
 class DocumentComments {
     /**

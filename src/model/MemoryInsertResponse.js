@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The MemoryInsertResponse model module.
  * @module model/MemoryInsertResponse
- * @version 0.5.0
+ * @version 0.6.2
  */
 class MemoryInsertResponse {
     /**

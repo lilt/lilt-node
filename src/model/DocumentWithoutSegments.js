@@ -17,7 +17,7 @@ import DocumentWithoutSegmentsStatus from './DocumentWithoutSegmentsStatus';
 /**
  * The DocumentWithoutSegments model module.
  * @module model/DocumentWithoutSegments
- * @version 0.5.0
+ * @version 0.6.2
  */
 class DocumentWithoutSegments {
     /**

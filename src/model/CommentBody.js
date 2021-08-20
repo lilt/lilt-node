@@ -17,7 +17,7 @@ import Annotation from './Annotation';
 /**
  * The CommentBody model module.
  * @module model/CommentBody
- * @version 0.5.0
+ * @version 0.6.2
  */
 class CommentBody {
     /**

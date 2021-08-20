@@ -141,7 +141,7 @@ import TranslateApi from './api/TranslateApi';
 * </pre>
 * </p>
 * @module index
-* @version 0.5.0
+* @version 0.6.2
 */
 export {
     /**

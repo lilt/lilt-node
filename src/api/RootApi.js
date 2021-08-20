@@ -19,7 +19,7 @@ import Error2 from '../model/Error2';
 /**
 * Root service.
 * @module api/RootApi
-* @version 0.5.0
+* @version 0.6.2
 */
 export default class RootApi {
 

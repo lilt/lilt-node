@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The LexiconUpdateParameters model module.
  * @module model/LexiconUpdateParameters
- * @version 0.5.0
+ * @version 0.6.2
  */
 class LexiconUpdateParameters {
     /**

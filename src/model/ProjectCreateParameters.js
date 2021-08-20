@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The ProjectCreateParameters model module.
  * @module model/ProjectCreateParameters
- * @version 0.5.0
+ * @version 0.6.2
  */
 class ProjectCreateParameters {
     /**

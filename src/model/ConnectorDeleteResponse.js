@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The ConnectorDeleteResponse model module.
  * @module model/ConnectorDeleteResponse
- * @version 0.5.0
+ * @version 0.6.2
  */
 class ConnectorDeleteResponse {
     /**

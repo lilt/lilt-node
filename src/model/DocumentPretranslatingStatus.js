@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The DocumentPretranslatingStatus model module.
  * @module model/DocumentPretranslatingStatus
- * @version 0.5.0
+ * @version 0.6.2
  */
 class DocumentPretranslatingStatus {
     /**

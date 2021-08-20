@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The MemoryDeleteResponse model module.
  * @module model/MemoryDeleteResponse
- * @version 0.5.0
+ * @version 0.6.2
  */
 class MemoryDeleteResponse {
     /**

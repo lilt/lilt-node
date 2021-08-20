@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The Annotation model module.
  * @module model/Annotation
- * @version 0.5.0
+ * @version 0.6.2
  */
 class Annotation {
     /**

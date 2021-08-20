@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The Setting model module.
  * @module model/Setting
- * @version 0.5.0
+ * @version 0.6.2
  */
 class Setting {
     /**

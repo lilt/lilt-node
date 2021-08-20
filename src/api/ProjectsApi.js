@@ -24,7 +24,7 @@ import ProjectUpdateResponse from '../model/ProjectUpdateResponse';
 /**
 * Projects service.
 * @module api/ProjectsApi
-* @version 0.5.0
+* @version 0.6.2
 */
 export default class ProjectsApi {
 

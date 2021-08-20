@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The ConnectorJob model module.
  * @module model/ConnectorJob
- * @version 0.5.0
+ * @version 0.6.2
  */
 class ConnectorJob {
     /**

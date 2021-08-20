@@ -18,7 +18,7 @@ import QARuleMatchesRuleUrls from './QARuleMatchesRuleUrls';
 /**
  * The QARuleMatchesRule model module.
  * @module model/QARuleMatchesRule
- * @version 0.5.0
+ * @version 0.6.2
  */
 class QARuleMatchesRule {
     /**

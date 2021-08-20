@@ -17,7 +17,7 @@ import DocumentPretranslating from './DocumentPretranslating';
 /**
  * The DocumentPretranslateResponse model module.
  * @module model/DocumentPretranslateResponse
- * @version 0.5.0
+ * @version 0.6.2
  */
 class DocumentPretranslateResponse {
     /**

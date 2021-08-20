@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The TranslateRegisterResponse model module.
  * @module model/TranslateRegisterResponse
- * @version 0.5.0
+ * @version 0.6.2
  */
 class TranslateRegisterResponse {
     /**

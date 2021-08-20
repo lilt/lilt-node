@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The LexiconEntryTranslations model module.
  * @module model/LexiconEntryTranslations
- * @version 0.5.0
+ * @version 0.6.2
  */
 class LexiconEntryTranslations {
     /**

@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The ConnectorArguments model module.
  * @module model/ConnectorArguments
- * @version 0.5.0
+ * @version 0.6.2
  */
 class ConnectorArguments {
     /**

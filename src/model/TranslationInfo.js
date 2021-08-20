@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The TranslationInfo model module.
  * @module model/TranslationInfo
- * @version 0.5.0
+ * @version 0.6.2
  */
 class TranslationInfo {
     /**

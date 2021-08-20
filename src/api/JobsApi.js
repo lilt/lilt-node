@@ -23,7 +23,7 @@ import JobUpdateParameters from '../model/JobUpdateParameters';
 /**
 * Jobs service.
 * @module api/JobsApi
-* @version 0.5.0
+* @version 0.6.2
 */
 export default class JobsApi {
 

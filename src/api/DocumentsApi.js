@@ -28,7 +28,7 @@ import Error2 from '../model/Error2';
 /**
 * Documents service.
 * @module api/DocumentsApi
-* @version 0.5.0
+* @version 0.6.2
 */
 export default class DocumentsApi {
 

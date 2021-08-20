@@ -17,7 +17,7 @@ import DocumentPretranslatingStatus from './DocumentPretranslatingStatus';
 /**
  * The DocumentPretranslating model module.
  * @module model/DocumentPretranslating
- * @version 0.5.0
+ * @version 0.6.2
  */
 class DocumentPretranslating {
     /**

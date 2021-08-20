@@ -22,7 +22,7 @@ import Error2 from '../model/Error2';
 /**
 * Connectors service.
 * @module api/ConnectorsApi
-* @version 0.5.0
+* @version 0.6.2
 */
 export default class ConnectorsApi {
 

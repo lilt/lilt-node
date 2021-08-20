@@ -26,7 +26,7 @@ import TranslationMemoryEntry from '../model/TranslationMemoryEntry';
 /**
 * Memories service.
 * @module api/MemoriesApi
-* @version 0.5.0
+* @version 0.6.2
 */
 export default class MemoriesApi {
 

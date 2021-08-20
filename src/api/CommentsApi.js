@@ -22,7 +22,7 @@ import Error2 from '../model/Error2';
 /**
 * Comments service.
 * @module api/CommentsApi
-* @version 0.5.0
+* @version 0.6.2
 */
 export default class CommentsApi {
 

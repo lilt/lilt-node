@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The JobUpdateParameters model module.
  * @module model/JobUpdateParameters
- * @version 0.5.0
+ * @version 0.6.2
  */
 class JobUpdateParameters {
     /**

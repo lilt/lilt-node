@@ -18,7 +18,7 @@ import SettingDictionary from './SettingDictionary';
 /**
  * The SettingUpsertResponse model module.
  * @module model/SettingUpsertResponse
- * @version 0.5.0
+ * @version 0.6.2
  */
 class SettingUpsertResponse {
     /**

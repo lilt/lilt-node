@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The SegmentDeleteResponse model module.
  * @module model/SegmentDeleteResponse
- * @version 0.5.0
+ * @version 0.6.2
  */
 class SegmentDeleteResponse {
     /**

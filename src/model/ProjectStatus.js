@@ -17,7 +17,7 @@ import ResourceStatus from './ResourceStatus';
 /**
  * The ProjectStatus model module.
  * @module model/ProjectStatus
- * @version 0.5.0
+ * @version 0.6.2
  */
 class ProjectStatus {
     /**

@@ -20,7 +20,7 @@ import SettingUpsertBody from '../model/SettingUpsertBody';
 /**
 * Settings service.
 * @module api/SettingsApi
-* @version 0.5.0
+* @version 0.6.2
 */
 export default class SettingsApi {
 

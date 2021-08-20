@@ -18,7 +18,7 @@ import MatchBand from './MatchBand';
 /**
  * The ProjectQuote model module.
  * @module model/ProjectQuote
- * @version 0.5.0
+ * @version 0.6.2
  */
 class ProjectQuote {
     /**

@@ -17,19 +17,20 @@ import LanguagePair from './LanguagePair';
 /**
  * The JobCreateParameters model module.
  * @module model/JobCreateParameters
- * @version 0.5.0
+ * @version 0.6.2
  */
 class JobCreateParameters {
     /**
      * Constructs a new <code>JobCreateParameters</code>.
      * @alias module:model/JobCreateParameters
      * @param name {String} A name for the Job.
+     * @param srcLang {String} The source language for the job.
      * @param languagePairs {Array.<module:model/LanguagePair>} Language pairs is a set of one or more pairs that includes source language, source locale(optional), target language, target locale(optional), and memoryId.
      * @param fileIds {Array.<Number>} A list of file ids to upload to job creation.
      */
-    constructor(name, languagePairs, fileIds) { 
+    constructor(name, srcLang, languagePairs, fileIds) { 
         
-        JobCreateParameters.initialize(this, name, languagePairs, fileIds);
+        JobCreateParameters.initialize(this, name, srcLang, languagePairs, fileIds);
     }
 
     /**
@@ -37,8 +38,9 @@ class JobCreateParameters {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, name, languagePairs, fileIds) { 
+    static initialize(obj, name, srcLang, languagePairs, fileIds) { 
         obj['name'] = name;
+        obj['srcLang'] = srcLang;
         obj['languagePairs'] = languagePairs;
         obj['fileIds'] = fileIds;
     }
@@ -56,6 +58,12 @@ class JobCreateParameters {
 
             if (data.hasOwnProperty('name')) {
                 obj['name'] = ApiClient.convertToType(data['name'], 'String');
+            }
+            if (data.hasOwnProperty('srcLang')) {
+                obj['srcLang'] = ApiClient.convertToType(data['srcLang'], 'String');
+            }
+            if (data.hasOwnProperty('srcLocale')) {
+                obj['srcLocale'] = ApiClient.convertToType(data['srcLocale'], 'String');
             }
             if (data.hasOwnProperty('due')) {
                 obj['due'] = ApiClient.convertToType(data['due'], 'String');
@@ -78,6 +86,18 @@ class JobCreateParameters {
  * @member {String} name
  */
 JobCreateParameters.prototype['name'] = undefined;
+
+/**
+ * The source language for the job.
+ * @member {String} srcLang
+ */
+JobCreateParameters.prototype['srcLang'] = undefined;
+
+/**
+ * The source locale for the job.
+ * @member {String} srcLocale
+ */
+JobCreateParameters.prototype['srcLocale'] = undefined;
 
 /**
  * An ISO string date.
