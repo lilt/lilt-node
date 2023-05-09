@@ -1,6 +1,6 @@
 /**
  * Lilt REST API
- * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests. ## Authentication Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use. 
+ * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests.  ## Authentication  Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use.  ## Quotas  Our services have a general quota of 4000 requests per minute. Should you hit the maximum requests per minute, you will need to wait 60 seconds before you can send another request. 
  *
  * The version of the OpenAPI document: v2.0
  * Contact: support@lilt.com
@@ -13,14 +13,15 @@
 
 
 import ApiClient from "../ApiClient";
-import Error2 from '../model/Error2';
-import SettingDictionary from '../model/SettingDictionary';
+import Error from '../model/Error';
+import Setting from '../model/Setting';
 import SettingUpsertBody from '../model/SettingUpsertBody';
+import SettingUpsertResponse from '../model/SettingUpsertResponse';
 
 /**
 * Settings service.
 * @module api/SettingsApi
-* @version 0.6.2
+* @version 0.5.0
 */
 export default class SettingsApi {
 
@@ -38,9 +39,9 @@ export default class SettingsApi {
 
 
     /**
-     * Update or create a setting
+     * Get organization-level settings
      * Get the organization-level settings for the active users organization  Example CURL:  ``` curl --location --request GET 'https://lilt.com/2/settings/organization?key=<API_KEY>' \\ ```  
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SettingDictionary} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object.<String, module:model/{String: Setting}>} and HTTP response
      */
     getOrganizationSettingsWithHttpInfo() {
       let postBody = null;
@@ -57,7 +58,7 @@ export default class SettingsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = SettingDictionary;
+      let returnType = {'String': Setting};
       return this.apiClient.callApi(
         '/settings/organization', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -66,9 +67,9 @@ export default class SettingsApi {
     }
 
     /**
-     * Update or create a setting
+     * Get organization-level settings
      * Get the organization-level settings for the active users organization  Example CURL:  ``` curl --location --request GET 'https://lilt.com/2/settings/organization?key=<API_KEY>' \\ ```  
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SettingDictionary}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object.<String, module:model/{String: Setting}>}
      */
     getOrganizationSettings() {
       return this.getOrganizationSettingsWithHttpInfo()
@@ -82,7 +83,7 @@ export default class SettingsApi {
      * Get settings for a project
      * Get the settings as applied to a specific project. Active settings will combine project-level settings, organization-level settings and fallback to setting default values.  Example CURL:  ``` curl --location --request GET 'https://lilt.com/2/settings/project/123?key=<API_KEY>' \\ ```  
      * @param {Number} projectId A project id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SettingDictionary} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object.<String, module:model/{String: Setting}>} and HTTP response
      */
     getProjectSettingsWithHttpInfo(projectId) {
       let postBody = null;
@@ -104,7 +105,7 @@ export default class SettingsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = SettingDictionary;
+      let returnType = {'String': Setting};
       return this.apiClient.callApi(
         '/settings/project/{projectId}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -116,7 +117,7 @@ export default class SettingsApi {
      * Get settings for a project
      * Get the settings as applied to a specific project. Active settings will combine project-level settings, organization-level settings and fallback to setting default values.  Example CURL:  ``` curl --location --request GET 'https://lilt.com/2/settings/project/123?key=<API_KEY>' \\ ```  
      * @param {Number} projectId A project id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SettingDictionary}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object.<String, module:model/{String: Setting}>}
      */
     getProjectSettings(projectId) {
       return this.getProjectSettingsWithHttpInfo(projectId)
@@ -127,9 +128,9 @@ export default class SettingsApi {
 
 
     /**
-     * Get settings for a project
-     * Get the active settings applied to a user.  Example CURL:  ``` curl --location --request GET 'https://lilt.com/2/settings/user?key=<API_KEY>' \\ ```  
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SettingDictionary} and HTTP response
+     * Get settings for the authenticated  user
+     * Get the active settings applied to the authenticated user.  Example CURL:  ``` curl --location --request GET 'https://lilt.com/2/settings/user?key=<API_KEY>' \\ ```  
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object.<String, module:model/{String: Setting}>} and HTTP response
      */
     getUserSettingsWithHttpInfo() {
       let postBody = null;
@@ -146,7 +147,7 @@ export default class SettingsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = SettingDictionary;
+      let returnType = {'String': Setting};
       return this.apiClient.callApi(
         '/settings/user', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -155,9 +156,9 @@ export default class SettingsApi {
     }
 
     /**
-     * Get settings for a project
-     * Get the active settings applied to a user.  Example CURL:  ``` curl --location --request GET 'https://lilt.com/2/settings/user?key=<API_KEY>' \\ ```  
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SettingDictionary}
+     * Get settings for the authenticated  user
+     * Get the active settings applied to the authenticated user.  Example CURL:  ``` curl --location --request GET 'https://lilt.com/2/settings/user?key=<API_KEY>' \\ ```  
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object.<String, module:model/{String: Setting}>}
      */
     getUserSettings() {
       return this.getUserSettingsWithHttpInfo()
@@ -168,11 +169,11 @@ export default class SettingsApi {
 
 
     /**
-     * Get organization-level settings
+     * Update or create a setting
      * Create or update the value for the given setting and setting scope.  Example CURL to set an organization-level setting:  ``` curl --location --request POST 'https://lilt.com/2/settings?key=<API_KEY>' \\ --header 'Content-Type: application/json' \\ --data-raw '{     \"settingName\": \"requireBatchQaTranslator\",     \"value\": false,     \"organizationId\": 285,     \"scope\": \"Organization\" }' ```  
      * @param {Object} opts Optional parameters
      * @param {module:model/SettingUpsertBody} opts.body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Object} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SettingUpsertResponse} and HTTP response
      */
     upsertSettingWithHttpInfo(opts) {
       opts = opts || {};
@@ -190,7 +191,7 @@ export default class SettingsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = Object;
+      let returnType = SettingUpsertResponse;
       return this.apiClient.callApi(
         '/settings', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -199,11 +200,11 @@ export default class SettingsApi {
     }
 
     /**
-     * Get organization-level settings
+     * Update or create a setting
      * Create or update the value for the given setting and setting scope.  Example CURL to set an organization-level setting:  ``` curl --location --request POST 'https://lilt.com/2/settings?key=<API_KEY>' \\ --header 'Content-Type: application/json' \\ --data-raw '{     \"settingName\": \"requireBatchQaTranslator\",     \"value\": false,     \"organizationId\": 285,     \"scope\": \"Organization\" }' ```  
      * @param {Object} opts Optional parameters
      * @param {module:model/SettingUpsertBody} opts.body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Object}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SettingUpsertResponse}
      */
     upsertSetting(opts) {
       return this.upsertSettingWithHttpInfo(opts)

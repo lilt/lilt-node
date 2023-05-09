@@ -1,6 +1,6 @@
 /**
  * Lilt REST API
- * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests. ## Authentication Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use. 
+ * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests.  ## Authentication  Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use.  ## Quotas  Our services have a general quota of 4000 requests per minute. Should you hit the maximum requests per minute, you will need to wait 60 seconds before you can send another request. 
  *
  * The version of the OpenAPI document: v2.0
  * Contact: support@lilt.com
@@ -13,7 +13,7 @@
 
 
 import ApiClient from "../ApiClient";
-import Error2 from '../model/Error2';
+import Error from '../model/Error';
 import Job from '../model/Job';
 import JobCreateParameters from '../model/JobCreateParameters';
 import JobDeleteResponse from '../model/JobDeleteResponse';
@@ -23,7 +23,7 @@ import JobUpdateParameters from '../model/JobUpdateParameters';
 /**
 * Jobs service.
 * @module api/JobsApi
-* @version 0.6.2
+* @version 0.5.0
 */
 export default class JobsApi {
 
@@ -138,18 +138,18 @@ export default class JobsApi {
     /**
      * Delete a Job
      * Delete a job, deletes all projects and documents in the job, deletes all the segments from all the job's translation memories.  Example CURL command:  ``` curl -X DELETE 'https://lilt.com/2/jobs/{id}?key=API_KEY' ```
-     * @param {Number} id A job id.
+     * @param {Number} jobId A job id.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/JobDeleteResponse} and HTTP response
      */
-    deleteJobWithHttpInfo(id) {
+    deleteJobWithHttpInfo(jobId) {
       let postBody = null;
-      // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling deleteJob");
+      // verify the required parameter 'jobId' is set
+      if (jobId === undefined || jobId === null) {
+        throw new Error("Missing the required parameter 'jobId' when calling deleteJob");
       }
 
       let pathParams = {
-        'id': id
+        'jobId': jobId
       };
       let queryParams = {
       };
@@ -172,11 +172,11 @@ export default class JobsApi {
     /**
      * Delete a Job
      * Delete a job, deletes all projects and documents in the job, deletes all the segments from all the job's translation memories.  Example CURL command:  ``` curl -X DELETE 'https://lilt.com/2/jobs/{id}?key=API_KEY' ```
-     * @param {Number} id A job id.
+     * @param {Number} jobId A job id.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/JobDeleteResponse}
      */
-    deleteJob(id) {
-      return this.deleteJobWithHttpInfo(id)
+    deleteJob(jobId) {
+      return this.deleteJobWithHttpInfo(jobId)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -480,9 +480,12 @@ export default class JobsApi {
 
     /**
      * Retrieve all Jobs
-     * Get all Jobs. You can retrieve all jobs from your account using the above API.  Example CURL command:  ``` curl -X GET 'https://lilt.com/2/jobs?key=API_KEY&isArchived=false' ```
+     * Get all Jobs within a given offset and limit. You can retrieve jobs from your account using the above API.  Example CURL command:  ``` curl -X GET 'https://lilt.com/2/jobs?key=API_KEY&isArchived=false' ```
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.isArchived Retrieves all jobs that are archived.
+     * @param {Boolean} opts.isDelivered Retrieves all jobs that are delivered.
+     * @param {Number} opts.offset Return jobs starting at the offset row. If not given the default offset will be 0.
+     * @param {Number} opts.limit The maximum number of jobs to be returned. If not given the default limit will be 25.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Job>} and HTTP response
      */
     retrieveAllJobsWithHttpInfo(opts) {
@@ -492,7 +495,10 @@ export default class JobsApi {
       let pathParams = {
       };
       let queryParams = {
-        'isArchived': opts['isArchived']
+        'isArchived': opts['isArchived'],
+        'isDelivered': opts['isDelivered'],
+        'offset': opts['offset'],
+        'limit': opts['limit']
       };
       let headerParams = {
       };
@@ -512,9 +518,12 @@ export default class JobsApi {
 
     /**
      * Retrieve all Jobs
-     * Get all Jobs. You can retrieve all jobs from your account using the above API.  Example CURL command:  ``` curl -X GET 'https://lilt.com/2/jobs?key=API_KEY&isArchived=false' ```
+     * Get all Jobs within a given offset and limit. You can retrieve jobs from your account using the above API.  Example CURL command:  ``` curl -X GET 'https://lilt.com/2/jobs?key=API_KEY&isArchived=false' ```
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.isArchived Retrieves all jobs that are archived.
+     * @param {Boolean} opts.isDelivered Retrieves all jobs that are delivered.
+     * @param {Number} opts.offset Return jobs starting at the offset row. If not given the default offset will be 0.
+     * @param {Number} opts.limit The maximum number of jobs to be returned. If not given the default limit will be 25.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Job>}
      */
     retrieveAllJobs(opts) {
@@ -576,21 +585,21 @@ export default class JobsApi {
     /**
      * Update a Job
      * Updates a job with the new job properties. To update a specific job, you will need the job `id` in the url path.  You can update job's name and due date by passing the property and new value in the body.  Example CURL command:  ``` curl -X PUT 'https://lilt.com/2/jobs/{id}?key=API_KEY' \\ --header 'Content-Type: application/json' \\ --data-raw '{   \"name\": \"test job\",   \"due\": \"2022-05-05T10:56:44.985Z\" }' ```
-     * @param {Number} id A job id.
+     * @param {Number} jobId A job id.
      * @param {Object} opts Optional parameters
      * @param {module:model/JobUpdateParameters} opts.body 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Job} and HTTP response
      */
-    updateJobWithHttpInfo(id, opts) {
+    updateJobWithHttpInfo(jobId, opts) {
       opts = opts || {};
       let postBody = opts['body'];
-      // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling updateJob");
+      // verify the required parameter 'jobId' is set
+      if (jobId === undefined || jobId === null) {
+        throw new Error("Missing the required parameter 'jobId' when calling updateJob");
       }
 
       let pathParams = {
-        'id': id
+        'jobId': jobId
       };
       let queryParams = {
       };
@@ -613,13 +622,13 @@ export default class JobsApi {
     /**
      * Update a Job
      * Updates a job with the new job properties. To update a specific job, you will need the job `id` in the url path.  You can update job's name and due date by passing the property and new value in the body.  Example CURL command:  ``` curl -X PUT 'https://lilt.com/2/jobs/{id}?key=API_KEY' \\ --header 'Content-Type: application/json' \\ --data-raw '{   \"name\": \"test job\",   \"due\": \"2022-05-05T10:56:44.985Z\" }' ```
-     * @param {Number} id A job id.
+     * @param {Number} jobId A job id.
      * @param {Object} opts Optional parameters
      * @param {module:model/JobUpdateParameters} opts.body 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Job}
      */
-    updateJob(id, opts) {
-      return this.updateJobWithHttpInfo(id, opts)
+    updateJob(jobId, opts) {
+      return this.updateJobWithHttpInfo(jobId, opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

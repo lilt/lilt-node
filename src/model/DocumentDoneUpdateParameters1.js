@@ -1,6 +1,6 @@
 /**
  * Lilt REST API
- * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests. ## Authentication Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use. 
+ * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests.  ## Authentication  Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use.  ## Quotas  Our services have a general quota of 4000 requests per minute. Should you hit the maximum requests per minute, you will need to wait 60 seconds before you can send another request. 
  *
  * The version of the OpenAPI document: v2.0
  * Contact: support@lilt.com
@@ -16,17 +16,18 @@ import ApiClient from '../ApiClient';
 /**
  * The DocumentDoneUpdateParameters1 model module.
  * @module model/DocumentDoneUpdateParameters1
- * @version 0.6.2
+ * @version 0.5.0
  */
 class DocumentDoneUpdateParameters1 {
     /**
      * Constructs a new <code>DocumentDoneUpdateParameters1</code>.
      * @alias module:model/DocumentDoneUpdateParameters1
+     * @param documentIds {Array.<Number>} array of document ids
      * @param isDone {Boolean} 
      */
-    constructor(isDone) { 
+    constructor(documentIds, isDone) { 
         
-        DocumentDoneUpdateParameters1.initialize(this, isDone);
+        DocumentDoneUpdateParameters1.initialize(this, documentIds, isDone);
     }
 
     /**
@@ -34,7 +35,8 @@ class DocumentDoneUpdateParameters1 {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, isDone) { 
+    static initialize(obj, documentIds, isDone) { 
+        obj['documentIds'] = documentIds;
         obj['isDone'] = isDone;
     }
 
@@ -49,6 +51,9 @@ class DocumentDoneUpdateParameters1 {
         if (data) {
             obj = obj || new DocumentDoneUpdateParameters1();
 
+            if (data.hasOwnProperty('documentIds')) {
+                obj['documentIds'] = ApiClient.convertToType(data['documentIds'], ['Number']);
+            }
             if (data.hasOwnProperty('isDone')) {
                 obj['isDone'] = ApiClient.convertToType(data['isDone'], 'Boolean');
             }
@@ -58,6 +63,12 @@ class DocumentDoneUpdateParameters1 {
 
 
 }
+
+/**
+ * array of document ids
+ * @member {Array.<Number>} documentIds
+ */
+DocumentDoneUpdateParameters1.prototype['documentIds'] = undefined;
 
 /**
  * @member {Boolean} isDone

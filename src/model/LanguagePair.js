@@ -1,6 +1,6 @@
 /**
  * Lilt REST API
- * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests. ## Authentication Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use. 
+ * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests.  ## Authentication  Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use.  ## Quotas  Our services have a general quota of 4000 requests per minute. Should you hit the maximum requests per minute, you will need to wait 60 seconds before you can send another request. 
  *
  * The version of the OpenAPI document: v2.0
  * Contact: support@lilt.com
@@ -12,18 +12,19 @@
  */
 
 import ApiClient from '../ApiClient';
+import WorkflowStageAssignment from './WorkflowStageAssignment';
 
 /**
  * The LanguagePair model module.
  * @module model/LanguagePair
- * @version 0.6.2
+ * @version 0.5.0
  */
 class LanguagePair {
     /**
      * Constructs a new <code>LanguagePair</code>.
      * A language pair couples the source and target language along with memory and pre-translations settings associated to a project. 
      * @alias module:model/LanguagePair
-     * @param trgLang {String} Target langauge, an ISO 639-1 language identifier.
+     * @param trgLang {String} Target language, an ISO 639-1 language identifier.
      * @param memoryId {Number} A unique number identifying the associated Memory.
      */
     constructor(trgLang, memoryId) { 
@@ -85,6 +86,12 @@ class LanguagePair {
             if (data.hasOwnProperty('configId')) {
                 obj['configId'] = ApiClient.convertToType(data['configId'], 'Number');
             }
+            if (data.hasOwnProperty('workflowTemplateId')) {
+                obj['workflowTemplateId'] = ApiClient.convertToType(data['workflowTemplateId'], 'Number');
+            }
+            if (data.hasOwnProperty('workflowStageAssignments')) {
+                obj['workflowStageAssignments'] = ApiClient.convertToType(data['workflowStageAssignments'], [WorkflowStageAssignment]);
+            }
         }
         return obj;
     }
@@ -93,19 +100,19 @@ class LanguagePair {
 }
 
 /**
- * Source langauge, an ISO 639-1 language identifier.
+ * Source language, an ISO 639-1 language identifier.
  * @member {String} srcLang
  */
 LanguagePair.prototype['srcLang'] = undefined;
 
 /**
- * A locale identifier, supported for source langauge.
+ * A locale identifier, supported for source language.
  * @member {String} srcLocale
  */
 LanguagePair.prototype['srcLocale'] = undefined;
 
 /**
- * Target langauge, an ISO 639-1 language identifier.
+ * Target language, an ISO 639-1 language identifier.
  * @member {String} trgLang
  */
 LanguagePair.prototype['trgLang'] = undefined;
@@ -157,6 +164,17 @@ LanguagePair.prototype['takeMatchAttribution'] = undefined;
  * @member {Number} configId
  */
 LanguagePair.prototype['configId'] = undefined;
+
+/**
+ * Workflow Template id, to assign a specific Workflow to the project created out of this Language Pair. WorkflowTemplateIds can be retrieved via the /workflows/templates endpoint. If not specified then the Job level workflowTemplateId will be used.
+ * @member {Number} workflowTemplateId
+ */
+LanguagePair.prototype['workflowTemplateId'] = undefined;
+
+/**
+ * @member {Array.<module:model/WorkflowStageAssignment>} workflowStageAssignments
+ */
+LanguagePair.prototype['workflowStageAssignments'] = undefined;
 
 
 

@@ -1,6 +1,6 @@
 /**
  * Lilt REST API
- * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests. ## Authentication Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use. 
+ * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests.  ## Authentication  Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use.  ## Quotas  Our services have a general quota of 4000 requests per minute. Should you hit the maximum requests per minute, you will need to wait 60 seconds before you can send another request. 
  *
  * The version of the OpenAPI document: v2.0
  * Contact: support@lilt.com
@@ -17,7 +17,7 @@ import DocumentWithoutSegments from './DocumentWithoutSegments';
 /**
  * The Project model module.
  * @module model/Project
- * @version 0.6.2
+ * @version 0.5.0
  */
 class Project {
     /**
@@ -93,6 +93,9 @@ class Project {
             }
             if (data.hasOwnProperty('updated_at')) {
                 obj['updated_at'] = ApiClient.convertToType(data['updated_at'], 'Number');
+            }
+            if (data.hasOwnProperty('workflowStatus')) {
+                obj['workflowStatus'] = ApiClient.convertToType(data['workflowStatus'], 'String');
             }
             if (data.hasOwnProperty('document')) {
                 obj['document'] = ApiClient.convertToType(data['document'], [DocumentWithoutSegments]);
@@ -195,6 +198,12 @@ Project.prototype['created_at'] = undefined;
 Project.prototype['updated_at'] = undefined;
 
 /**
+ * The status of the Workflow for the current project. This may not be present for all project endpoints even with workflows enabled.
+ * @member {module:model/Project.WorkflowStatusEnum} workflowStatus
+ */
+Project.prototype['workflowStatus'] = undefined;
+
+/**
  * A list of Documents.
  * @member {Array.<module:model/DocumentWithoutSegments>} document
  */
@@ -202,6 +211,33 @@ Project.prototype['document'] = undefined;
 
 
 
+
+
+/**
+ * Allowed values for the <code>workflowStatus</code> property.
+ * @enum {String}
+ * @readonly
+ */
+Project['WorkflowStatusEnum'] = {
+
+    /**
+     * value: "READY_TO_START"
+     * @const
+     */
+    "READY_TO_START": "READY_TO_START",
+
+    /**
+     * value: "IN_PROGRESS"
+     * @const
+     */
+    "IN_PROGRESS": "IN_PROGRESS",
+
+    /**
+     * value: "DONE"
+     * @const
+     */
+    "DONE": "DONE"
+};
 
 
 

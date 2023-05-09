@@ -19,6 +19,20 @@ Name | Type | Description | Notes
 **sampleReviewPercentage** | **Number** | The project&#39;s sample review percentage. | [optional] 
 **createdAt** | **Number** | Time at which the object was created. Measured in seconds since the Unix epoch. | [optional] 
 **updatedAt** | **Number** | Time at which the object was created. Measured in seconds since the Unix epoch. | [optional] 
+**workflowStatus** | **String** | The status of the Workflow for the current project. This may not be present for all project endpoints even with workflows enabled. | [optional] 
 **document** | [**[DocumentWithoutSegments]**](DocumentWithoutSegments.md) | A list of Documents. | [optional] 
+
+
+
+## Enum: WorkflowStatusEnum
+
+
+* `READY_TO_START` (value: `"READY_TO_START"`)
+
+* `IN_PROGRESS` (value: `"IN_PROGRESS"`)
+
+* `DONE` (value: `"DONE"`)
+
+
 
 
