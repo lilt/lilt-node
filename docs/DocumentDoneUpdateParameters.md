@@ -4,6 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**isDone** | **Boolean** |  | 
+**documentIds** | **[Number]** | array of document ids | 
 
 

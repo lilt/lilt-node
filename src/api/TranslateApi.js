@@ -1,6 +1,6 @@
 /**
  * Lilt REST API
- * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests. ## Authentication Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use. 
+ * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests.  ## Authentication  Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use.  ## Quotas  Our services have a general quota of 4000 requests per minute. Should you hit the maximum requests per minute, you will need to wait 60 seconds before you can send another request. 
  *
  * The version of the OpenAPI document: v2.0
  * Contact: support@lilt.com
@@ -13,15 +13,17 @@
 
 
 import ApiClient from "../ApiClient";
-import Error2 from '../model/Error2';
+import Error from '../model/Error';
 import TranslateRegisterResponse from '../model/TranslateRegisterResponse';
+import TranslateSegmentBody from '../model/TranslateSegmentBody';
+import TranslateSegmentBody1 from '../model/TranslateSegmentBody1';
 import TranslationInfo from '../model/TranslationInfo';
 import TranslationList from '../model/TranslationList';
 
 /**
 * Translate service.
 * @module api/TranslateApi
-* @version 0.6.2
+* @version 0.5.0
 */
 export default class TranslateApi {
 
@@ -40,11 +42,12 @@ export default class TranslateApi {
 
     /**
      * Translate a File
-     * Start machine translation of one or more Files that have previously been uploaded.  The response will include an `id` parameter that can be used to monitor and download the translations in subsequent calls.  Example CURL: ``` curl --X --request POST 'https://lilt.com/2/translate/file?key=API_KEY&fileId=583&memoryId=2495&configId=123' ```  
+     * Start machine translation of one or more Files that have previously been uploaded.  The response will include an `id` parameter that can be used to monitor and download the translations in subsequent calls.  Example CURL: ``` curl --X --request POST 'https://lilt.com/2/translate/file?key=API_KEY&fileId=583&memoryId=2495&configId=123&withTM=true' ```  
      * @param {String} fileId List of File ids to be translated, comma separated.
      * @param {String} memoryId Id of Memory to use in translation.
      * @param {Object} opts Optional parameters
      * @param {Number} opts.configId An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file.
+     * @param {Boolean} opts.withTM An optional boolean parameter to toggle the use of Translation Memory in the translation of the file.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TranslationInfo} and HTTP response
      */
     batchTranslateFileWithHttpInfo(fileId, memoryId, opts) {
@@ -64,7 +67,8 @@ export default class TranslateApi {
       let queryParams = {
         'fileId': fileId,
         'memoryId': memoryId,
-        'configId': opts['configId']
+        'configId': opts['configId'],
+        'withTM': opts['withTM']
       };
       let headerParams = {
       };
@@ -84,11 +88,12 @@ export default class TranslateApi {
 
     /**
      * Translate a File
-     * Start machine translation of one or more Files that have previously been uploaded.  The response will include an `id` parameter that can be used to monitor and download the translations in subsequent calls.  Example CURL: ``` curl --X --request POST 'https://lilt.com/2/translate/file?key=API_KEY&fileId=583&memoryId=2495&configId=123' ```  
+     * Start machine translation of one or more Files that have previously been uploaded.  The response will include an `id` parameter that can be used to monitor and download the translations in subsequent calls.  Example CURL: ``` curl --X --request POST 'https://lilt.com/2/translate/file?key=API_KEY&fileId=583&memoryId=2495&configId=123&withTM=true' ```  
      * @param {String} fileId List of File ids to be translated, comma separated.
      * @param {String} memoryId Id of Memory to use in translation.
      * @param {Object} opts Optional parameters
      * @param {Number} opts.configId An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file.
+     * @param {Boolean} opts.withTM An optional boolean parameter to toggle the use of Translation Memory in the translation of the file.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TranslationInfo}
      */
     batchTranslateFile(fileId, memoryId, opts) {
@@ -267,7 +272,7 @@ export default class TranslateApi {
 
     /**
      * Translate a segment
-     * Translate a source string.  Setting the `rich` parameter to `true` will change the response format to include additional information about each translation including a model score, word alignments,  and formatting information. The rich format can be seen in the example response on this page.  By default, this endpoint also returns translation memory (TM) fuzzy matches, along with associated scores. Fuzzy matches always appear ahead of machine translation output in the response.  The maximum source length is 5,000 characters.  Usage charges apply to this endpoint for production REST API keys.  
+     * Translate a source string.  Setting the `rich` parameter to `true` will change the response format to include additional information about each translation including a model score, word alignments,  and formatting information. The rich format can be seen in the example response on this page.  By default, this endpoint also returns translation memory (TM) fuzzy matches, along with associated scores. Fuzzy matches always appear ahead of machine translation output in the response.  The `source` parameter may be supplied in the query or in the request body.  The maximum source length is 5,000 characters.  Usage charges apply to this endpoint for production REST API keys.  
      * @param {Number} memoryId A unique Memory identifier.
      * @param {Object} opts Optional parameters
      * @param {String} opts.source The source text to be translated.
@@ -277,11 +282,12 @@ export default class TranslateApi {
      * @param {Boolean} opts.rich Returns rich translation information (e.g., with word alignments). (default to false)
      * @param {Boolean} opts.tmMatches Include translation memory fuzzy matches. (default to true)
      * @param {Boolean} opts.projectTags Project tags. Projects tags in source to target if set to true. (default to false)
+     * @param {module:model/TranslateSegmentBody} opts.body 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TranslationList} and HTTP response
      */
     translateSegmentWithHttpInfo(memoryId, opts) {
       opts = opts || {};
-      let postBody = null;
+      let postBody = opts['body'];
       // verify the required parameter 'memoryId' is set
       if (memoryId === undefined || memoryId === null) {
         throw new Error("Missing the required parameter 'memoryId' when calling translateSegment");
@@ -305,7 +311,7 @@ export default class TranslateApi {
       };
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
-      let contentTypes = [];
+      let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = TranslationList;
       return this.apiClient.callApi(
@@ -317,7 +323,7 @@ export default class TranslateApi {
 
     /**
      * Translate a segment
-     * Translate a source string.  Setting the `rich` parameter to `true` will change the response format to include additional information about each translation including a model score, word alignments,  and formatting information. The rich format can be seen in the example response on this page.  By default, this endpoint also returns translation memory (TM) fuzzy matches, along with associated scores. Fuzzy matches always appear ahead of machine translation output in the response.  The maximum source length is 5,000 characters.  Usage charges apply to this endpoint for production REST API keys.  
+     * Translate a source string.  Setting the `rich` parameter to `true` will change the response format to include additional information about each translation including a model score, word alignments,  and formatting information. The rich format can be seen in the example response on this page.  By default, this endpoint also returns translation memory (TM) fuzzy matches, along with associated scores. Fuzzy matches always appear ahead of machine translation output in the response.  The `source` parameter may be supplied in the query or in the request body.  The maximum source length is 5,000 characters.  Usage charges apply to this endpoint for production REST API keys.  
      * @param {Number} memoryId A unique Memory identifier.
      * @param {Object} opts Optional parameters
      * @param {String} opts.source The source text to be translated.
@@ -327,10 +333,57 @@ export default class TranslateApi {
      * @param {Boolean} opts.rich Returns rich translation information (e.g., with word alignments). (default to false)
      * @param {Boolean} opts.tmMatches Include translation memory fuzzy matches. (default to true)
      * @param {Boolean} opts.projectTags Project tags. Projects tags in source to target if set to true. (default to false)
+     * @param {module:model/TranslateSegmentBody} opts.body 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TranslationList}
      */
     translateSegment(memoryId, opts) {
       return this.translateSegmentWithHttpInfo(memoryId, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Translate a segment
+     * Translate a source string.  Setting the `rich` parameter to `true` will change the response format to include additional information about each translation including a model score, word alignments,  and formatting information. The rich format can be seen in the example response on this page.  By default, this endpoint also returns translation memory (TM) fuzzy matches, along with associated scores. Fuzzy matches always appear ahead of machine translation output in the response.  The maximum source length is 5,000 characters.  Usage charges apply to this endpoint for production REST API keys.  
+     * @param {Object} opts Optional parameters
+     * @param {module:model/TranslateSegmentBody1} opts.body 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TranslationList} and HTTP response
+     */
+    translateSegmentPostWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['body'];
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = TranslationList;
+      return this.apiClient.callApi(
+        '/translate', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Translate a segment
+     * Translate a source string.  Setting the `rich` parameter to `true` will change the response format to include additional information about each translation including a model score, word alignments,  and formatting information. The rich format can be seen in the example response on this page.  By default, this endpoint also returns translation memory (TM) fuzzy matches, along with associated scores. Fuzzy matches always appear ahead of machine translation output in the response.  The maximum source length is 5,000 characters.  Usage charges apply to this endpoint for production REST API keys.  
+     * @param {Object} opts Optional parameters
+     * @param {module:model/TranslateSegmentBody1} opts.body 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TranslationList}
+     */
+    translateSegmentPost(opts) {
+      return this.translateSegmentPostWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

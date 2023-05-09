@@ -4,18 +4,18 @@ All URIs are relative to *https://lilt.com/2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getOrganizationSettings**](SettingsApi.md#getOrganizationSettings) | **GET** /settings/organization | Update or create a setting
+[**getOrganizationSettings**](SettingsApi.md#getOrganizationSettings) | **GET** /settings/organization | Get organization-level settings
 [**getProjectSettings**](SettingsApi.md#getProjectSettings) | **GET** /settings/project/{projectId} | Get settings for a project
-[**getUserSettings**](SettingsApi.md#getUserSettings) | **GET** /settings/user | Get settings for a project
-[**upsertSetting**](SettingsApi.md#upsertSetting) | **POST** /settings | Get organization-level settings
+[**getUserSettings**](SettingsApi.md#getUserSettings) | **GET** /settings/user | Get settings for the authenticated  user
+[**upsertSetting**](SettingsApi.md#upsertSetting) | **POST** /settings | Update or create a setting
 
 
 
 ## getOrganizationSettings
 
-> SettingDictionary getOrganizationSettings()
+> {String: Setting} getOrganizationSettings()
 
-Update or create a setting
+Get organization-level settings
 
 Get the organization-level settings for the active users organization  Example CURL:  &#x60;&#x60;&#x60; curl --location --request GET &#39;https://lilt.com/2/settings/organization?key&#x3D;&lt;API_KEY&gt;&#39; \\ &#x60;&#x60;&#x60;  
 
@@ -49,7 +49,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SettingDictionary**](SettingDictionary.md)
+[**{String: Setting}**](Setting.md)
 
 ### Authorization
 
@@ -63,7 +63,7 @@ This endpoint does not need any parameter.
 
 ## getProjectSettings
 
-> SettingDictionary getProjectSettings(projectId)
+> {String: Setting} getProjectSettings(projectId)
 
 Get settings for a project
 
@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SettingDictionary**](SettingDictionary.md)
+[**{String: Setting}**](Setting.md)
 
 ### Authorization
 
@@ -117,11 +117,11 @@ Name | Type | Description  | Notes
 
 ## getUserSettings
 
-> SettingDictionary getUserSettings()
+> {String: Setting} getUserSettings()
 
-Get settings for a project
+Get settings for the authenticated  user
 
-Get the active settings applied to a user.  Example CURL:  &#x60;&#x60;&#x60; curl --location --request GET &#39;https://lilt.com/2/settings/user?key&#x3D;&lt;API_KEY&gt;&#39; \\ &#x60;&#x60;&#x60;  
+Get the active settings applied to the authenticated user.  Example CURL:  &#x60;&#x60;&#x60; curl --location --request GET &#39;https://lilt.com/2/settings/user?key&#x3D;&lt;API_KEY&gt;&#39; \\ &#x60;&#x60;&#x60;  
 
 ### Example
 
@@ -153,7 +153,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SettingDictionary**](SettingDictionary.md)
+[**{String: Setting}**](Setting.md)
 
 ### Authorization
 
@@ -167,9 +167,9 @@ This endpoint does not need any parameter.
 
 ## upsertSetting
 
-> Object upsertSetting(opts)
+> SettingUpsertResponse upsertSetting(opts)
 
-Get organization-level settings
+Update or create a setting
 
 Create or update the value for the given setting and setting scope.  Example CURL to set an organization-level setting:  &#x60;&#x60;&#x60; curl --location --request POST &#39;https://lilt.com/2/settings?key&#x3D;&lt;API_KEY&gt;&#39; \\ --header &#39;Content-Type: application/json&#39; \\ --data-raw &#39;{     \&quot;settingName\&quot;: \&quot;requireBatchQaTranslator\&quot;,     \&quot;value\&quot;: false,     \&quot;organizationId\&quot;: 285,     \&quot;scope\&quot;: \&quot;Organization\&quot; }&#39; &#x60;&#x60;&#x60;  
 
@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**SettingUpsertResponse**](SettingUpsertResponse.md)
 
 ### Authorization
 

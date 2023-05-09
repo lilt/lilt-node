@@ -1,6 +1,6 @@
 /**
  * Lilt REST API
- * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests. ## Authentication Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use. 
+ * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests.  ## Authentication  Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use.  ## Quotas  Our services have a general quota of 4000 requests per minute. Should you hit the maximum requests per minute, you will need to wait 60 seconds before you can send another request. 
  *
  * The version of the OpenAPI document: v2.0
  * Contact: support@lilt.com
@@ -13,10 +13,11 @@
 
 
 import ApiClient from "../ApiClient";
-import Error2 from '../model/Error2';
+import Error from '../model/Error';
 import Segment from '../model/Segment';
 import SegmentCreateParameters from '../model/SegmentCreateParameters';
 import SegmentDeleteResponse from '../model/SegmentDeleteResponse';
+import SegmentDoneResponse from '../model/SegmentDoneResponse';
 import SegmentUpdateParameters from '../model/SegmentUpdateParameters';
 import SegmentWithComments from '../model/SegmentWithComments';
 import TaggedSegment from '../model/TaggedSegment';
@@ -24,7 +25,7 @@ import TaggedSegment from '../model/TaggedSegment';
 /**
 * Segments service.
 * @module api/SegmentsApi
-* @version 0.6.2
+* @version 0.5.0
 */
 export default class SegmentsApi {
 
@@ -191,53 +192,6 @@ export default class SegmentsApi {
 
 
     /**
-     * Unaccept and unlock segments
-     * Unaccept and unlock segments. Sets individual segments' \"Review Done\" to false. Confirmed segments will remain confirmed.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/segments/review/unlock?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"segmentIds\": [23921, 23922]   }' ``` 
-     * @param {Object} body segment ids to update
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<String>} and HTTP response
-     */
-    segmentsReviewUnlockPostWithHttpInfo(body) {
-      let postBody = body;
-      // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling segmentsReviewUnlockPost");
-      }
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['ApiKeyAuth', 'BasicAuth'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = ['String'];
-      return this.apiClient.callApi(
-        '/segments/review/unlock', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null
-      );
-    }
-
-    /**
-     * Unaccept and unlock segments
-     * Unaccept and unlock segments. Sets individual segments' \"Review Done\" to false. Confirmed segments will remain confirmed.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/segments/review/unlock?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"segmentIds\": [23921, 23922]   }' ``` 
-     * @param {Object} body segment ids to update
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<String>}
-     */
-    segmentsReviewUnlockPost(body) {
-      return this.segmentsReviewUnlockPostWithHttpInfo(body)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
-    }
-
-
-    /**
      * Tag a Segment
      * Project tags for a segment. The `source_tagged` string contains one or more SGML tags. The `target` string is untagged. This endpoint will automatically place the source tags in the target.  Usage charges apply to this endpoint for production REST API keys.  
      * @param {String} sourceTagged The tagged source string.
@@ -293,6 +247,53 @@ export default class SegmentsApi {
      */
     tagSegment(sourceTagged, target, memoryId) {
       return this.tagSegmentWithHttpInfo(sourceTagged, target, memoryId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Unaccept and unlock segments
+     * Unaccept and unlock segments. Sets individual segments' \"Review Done\" to false. Confirmed segments will remain confirmed.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/segments/review/unlock?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"segmentIds\": [23921, 23922]   }' ``` 
+     * @param {module:model/SegmentDoneResponse} body 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<Number>} and HTTP response
+     */
+    unlockSegmentsWithHttpInfo(body) {
+      let postBody = body;
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling unlockSegments");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = ['Number'];
+      return this.apiClient.callApi(
+        '/segments/review/unlock', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Unaccept and unlock segments
+     * Unaccept and unlock segments. Sets individual segments' \"Review Done\" to false. Confirmed segments will remain confirmed.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/segments/review/unlock?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"segmentIds\": [23921, 23922]   }' ``` 
+     * @param {module:model/SegmentDoneResponse} body 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<Number>}
+     */
+    unlockSegments(body) {
+      return this.unlockSegmentsWithHttpInfo(body)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

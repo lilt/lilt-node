@@ -1,6 +1,6 @@
 /**
  * Lilt REST API
- * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests. ## Authentication Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use. 
+ * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests.  ## Authentication  Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use.  ## Quotas  Our services have a general quota of 4000 requests per minute. Should you hit the maximum requests per minute, you will need to wait 60 seconds before you can send another request. 
  *
  * The version of the OpenAPI document: v2.0
  * Contact: support@lilt.com
@@ -13,18 +13,22 @@
 
 
 import ApiClient from "../ApiClient";
-import Error2 from '../model/Error2';
+import AutoAssignmentParameters from '../model/AutoAssignmentParameters';
+import AutoAssignmentResponse from '../model/AutoAssignmentResponse';
+import BadRequest from '../model/BadRequest';
+import Error from '../model/Error';
 import Project from '../model/Project';
 import ProjectCreateParameters from '../model/ProjectCreateParameters';
 import ProjectDeleteResponse from '../model/ProjectDeleteResponse';
 import ProjectQuote from '../model/ProjectQuote';
 import ProjectStatus from '../model/ProjectStatus';
-import ProjectUpdateResponse from '../model/ProjectUpdateResponse';
+import ProjectsToDeliver from '../model/ProjectsToDeliver';
+import ProjectsToUpdate from '../model/ProjectsToUpdate';
 
 /**
 * Projects service.
 * @module api/ProjectsApi
-* @version 0.6.2
+* @version 0.5.0
 */
 export default class ProjectsApi {
 
@@ -136,6 +140,59 @@ export default class ProjectsApi {
 
 
     /**
+     * Deliver multiple projects apart from their jobs.
+     * Deliver mulitple projects apart from their jobs. 
+     * @param {module:model/ProjectsToDeliver} body 
+     * @param {Object} opts Optional parameters
+     * @param {Boolean} opts.workflowEnabled Whether the project has or not workflows enabled. (not used)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
+     */
+    deliverProjectsBulkWithHttpInfo(body, opts) {
+      opts = opts || {};
+      let postBody = body;
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling deliverProjectsBulk");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'workflowEnabled': opts['workflowEnabled']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = null;
+      return this.apiClient.callApi(
+        '/projects/bulk-deliver', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Deliver multiple projects apart from their jobs.
+     * Deliver mulitple projects apart from their jobs. 
+     * @param {module:model/ProjectsToDeliver} body 
+     * @param {Object} opts Optional parameters
+     * @param {Boolean} opts.workflowEnabled Whether the project has or not workflows enabled. (not used)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    deliverProjectsBulk(body, opts) {
+      return this.deliverProjectsBulkWithHttpInfo(body, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * Retrieve Project report
      * Get information about a project that can be used for quoting. This includes: * A translation memory leverage report * Word count * Segment count  
      * @param {Number} id A unique Project identifier.
@@ -177,6 +234,54 @@ export default class ProjectsApi {
      */
     getProjectReport(id) {
       return this.getProjectReportWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Retrieve Project revision report
+     * Get information about a project's revision report. This includes: * Stats on accepted segments * reviewer details * Error rate  
+     * @param {Number} id A unique Project identifier.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
+     */
+    getProjectRevisionReportWithHttpInfo(id) {
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling getProjectRevisionReport");
+      }
+
+      let pathParams = {
+        'id': id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = null;
+      return this.apiClient.callApi(
+        '/projects/{id}/revision', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Retrieve Project revision report
+     * Get information about a project's revision report. This includes: * Stats on accepted segments * reviewer details * Error rate  
+     * @param {Number} id A unique Project identifier.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    getProjectRevisionReport(id) {
+      return this.getProjectRevisionReportWithHttpInfo(id)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -233,9 +338,9 @@ export default class ProjectsApi {
 
     /**
      * Retrieve a Project
-     * Retrieves one or more projects, including the documents associated with each project. Retrieving a project is the most efficient way to retrieve a single project or a list of all available projects.  To retrieve a specific project, specify the `id` request parameter. To retrieve all projects, omit the `id` request parameter. To limit the retrieved projects to those with a particular source language or target language, specify the corresponding ISO 639-1 language codes in the `srclang` and `trglang` request parameters, respectively.
+     * Retrieves one or more projects, including the documents associated with each project. Retrieving a project is the most efficient way to retrieve a single project, multiple projects or a list of all available projects.  To retrieve a specific project, specify the `id` request parameter or you can retrieve multiple projects by adding comma (,) between ids eg. `?id=1234,5678`. To retrieve all projects, omit the `id` request parameter. To limit the retrieved projects to those with a particular source language or target language, specify the corresponding ISO 639-1 language codes in the `srclang` and `trglang` request parameters, respectively.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.id A unique Project identifier.
+     * @param {Number} opts.id A unique Project identifier. It can be a single id or multiple ids separated by a comma
      * @param {String} opts.srclang An ISO 639-1 language code.
      * @param {String} opts.trglang An ISO 639-1 language code.
      * @param {Number} opts.fromTime Unix time stamp (epoch, in seconds) of Projects with `created_at` greater than or equal to the value.
@@ -279,9 +384,9 @@ export default class ProjectsApi {
 
     /**
      * Retrieve a Project
-     * Retrieves one or more projects, including the documents associated with each project. Retrieving a project is the most efficient way to retrieve a single project or a list of all available projects.  To retrieve a specific project, specify the `id` request parameter. To retrieve all projects, omit the `id` request parameter. To limit the retrieved projects to those with a particular source language or target language, specify the corresponding ISO 639-1 language codes in the `srclang` and `trglang` request parameters, respectively.
+     * Retrieves one or more projects, including the documents associated with each project. Retrieving a project is the most efficient way to retrieve a single project, multiple projects or a list of all available projects.  To retrieve a specific project, specify the `id` request parameter or you can retrieve multiple projects by adding comma (,) between ids eg. `?id=1234,5678`. To retrieve all projects, omit the `id` request parameter. To limit the retrieved projects to those with a particular source language or target language, specify the corresponding ISO 639-1 language codes in the `srclang` and `trglang` request parameters, respectively.
      * @param {Object} opts Optional parameters
-     * @param {Number} opts.id A unique Project identifier.
+     * @param {Number} opts.id A unique Project identifier. It can be a single id or multiple ids separated by a comma
      * @param {String} opts.srclang An ISO 639-1 language code.
      * @param {String} opts.trglang An ISO 639-1 language code.
      * @param {Number} opts.fromTime Unix time stamp (epoch, in seconds) of Projects with `created_at` greater than or equal to the value.
@@ -300,16 +405,69 @@ export default class ProjectsApi {
 
 
     /**
-     * Update a Project
-     * Update a Project. 
-     * @param {module:model/ProjectUpdateResponse} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Project} and HTTP response
+     * Auto Assignment
+     * Trigger automatic assignment of linguists.  Requires auto-assignment to be enabled as a setting on the origanization level. 
+     * @param {String} projectIds The comma separated list of project ids to auto-assign. Can be sent in the body as an alternative but if both are specified the query has precedence. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/AutoAssignmentParameters} opts.body 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/AutoAssignmentResponse>} and HTTP response
      */
-    updateProjectWithHttpInfo(body) {
+    triggerAutoAssignmentWithHttpInfo(projectIds, opts) {
+      opts = opts || {};
+      let postBody = opts['body'];
+      // verify the required parameter 'projectIds' is set
+      if (projectIds === undefined || projectIds === null) {
+        throw new Error("Missing the required parameter 'projectIds' when calling triggerAutoAssignment");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'projectIds': projectIds
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = [AutoAssignmentResponse];
+      return this.apiClient.callApi(
+        '/autoAssignment', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Auto Assignment
+     * Trigger automatic assignment of linguists.  Requires auto-assignment to be enabled as a setting on the origanization level. 
+     * @param {String} projectIds The comma separated list of project ids to auto-assign. Can be sent in the body as an alternative but if both are specified the query has precedence. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/AutoAssignmentParameters} opts.body 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/AutoAssignmentResponse>}
+     */
+    triggerAutoAssignment(projectIds, opts) {
+      return this.triggerAutoAssignmentWithHttpInfo(projectIds, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Update multiple Projects with a single payload
+     * Update multiple Projects with a single payload. 
+     * @param {module:model/ProjectsToUpdate} body 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/Project>} and HTTP response
+     */
+    updateProjectsBulkWithHttpInfo(body) {
       let postBody = body;
       // verify the required parameter 'body' is set
       if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling updateProject");
+        throw new Error("Missing the required parameter 'body' when calling updateProjectsBulk");
       }
 
       let pathParams = {
@@ -324,22 +482,22 @@ export default class ProjectsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = Project;
+      let returnType = [Project];
       return this.apiClient.callApi(
-        '/projects', 'PUT',
+        '/projects/bulk-update', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Update a Project
-     * Update a Project. 
-     * @param {module:model/ProjectUpdateResponse} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Project}
+     * Update multiple Projects with a single payload
+     * Update multiple Projects with a single payload. 
+     * @param {module:model/ProjectsToUpdate} body 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/Project>}
      */
-    updateProject(body) {
-      return this.updateProjectWithHttpInfo(body)
+    updateProjectsBulk(body) {
+      return this.updateProjectsBulkWithHttpInfo(body)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

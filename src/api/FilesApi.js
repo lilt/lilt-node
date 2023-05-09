@@ -1,6 +1,6 @@
 /**
  * Lilt REST API
- * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests. ## Authentication Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use. 
+ * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests.  ## Authentication  Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use.  ## Quotas  Our services have a general quota of 4000 requests per minute. Should you hit the maximum requests per minute, you will need to wait 60 seconds before you can send another request. 
  *
  * The version of the OpenAPI document: v2.0
  * Contact: support@lilt.com
@@ -13,14 +13,15 @@
 
 
 import ApiClient from "../ApiClient";
-import Error2 from '../model/Error2';
+import AddFileLabelRequest from '../model/AddFileLabelRequest';
+import Error from '../model/Error';
 import FileDeleteResponse from '../model/FileDeleteResponse';
 import SourceFile from '../model/SourceFile';
 
 /**
 * Files service.
 * @module api/FilesApi
-* @version 0.6.2
+* @version 0.5.0
 */
 export default class FilesApi {
 
@@ -35,6 +36,60 @@ export default class FilesApi {
         this.apiClient = apiClient || ApiClient.instance;
     }
 
+
+
+    /**
+     * Add Label to File
+     * Add a label to a File.  Example CURL: ``` curl --X --request POST 'https://lilt.com/2/files/labels?key=API_KEY&id=1' --header 'Content-Type: application/json' \\ --data-raw '{     \"name\": \"label_name\" }' ``` 
+     * @param {String} id A File id.
+     * @param {module:model/AddFileLabelRequest} name 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
+     */
+    addLabelWithHttpInfo(id, name) {
+      let postBody = name;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling addLabel");
+      }
+      // verify the required parameter 'name' is set
+      if (name === undefined || name === null) {
+        throw new Error("Missing the required parameter 'name' when calling addLabel");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'id': id
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = [];
+      let returnType = null;
+      return this.apiClient.callApi(
+        '/files/labels', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Add Label to File
+     * Add a label to a File.  Example CURL: ``` curl --X --request POST 'https://lilt.com/2/files/labels?key=API_KEY&id=1' --header 'Content-Type: application/json' \\ --data-raw '{     \"name\": \"label_name\" }' ``` 
+     * @param {String} id A File id.
+     * @param {module:model/AddFileLabelRequest} name 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    addLabel(id, name) {
+      return this.addLabelWithHttpInfo(id, name)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
 
 
     /**
@@ -86,10 +141,59 @@ export default class FilesApi {
 
 
     /**
+     * Download file
+     * Download a File.  Example CURL: ``` curl --X --request GET 'https://lilt.com/2/files/download?key=API_KEY&id=1' ``` 
+     * @param {String} id A File id.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Blob} and HTTP response
+     */
+    downloadWithHttpInfo(id) {
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling download");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'id': id
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = [];
+      let accepts = ['application/octet-stream'];
+      let returnType = 'Blob';
+      return this.apiClient.callApi(
+        '/files/download', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Download file
+     * Download a File.  Example CURL: ``` curl --X --request GET 'https://lilt.com/2/files/download?key=API_KEY&id=1' ``` 
+     * @param {String} id A File id.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Blob}
+     */
+    download(id) {
+      return this.downloadWithHttpInfo(id)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * Retrieve a File
      * Retrieves one or more files available to your user. Files are not associated with a project or a memory. They are unprocessed and can be used later in the project/document creation workflow step.  To retrieve a specific file, specify the <strong>id</strong> request parameter. To retrieve all files, omit the <strong>id</strong> request parameter.  Example CURL command: ```  curl -X GET https://lilt.com/2/files?key=API_KEY&id=274```
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id A unique File identifier.
+     * @param {Array.<String>} opts.labels One or more labels. This will return the files which contain all of the given labels. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/SourceFile>} and HTTP response
      */
     getFilesWithHttpInfo(opts) {
@@ -99,7 +203,8 @@ export default class FilesApi {
       let pathParams = {
       };
       let queryParams = {
-        'id': opts['id']
+        'id': opts['id'],
+        'labels': this.apiClient.buildCollectionParam(opts['labels'], 'csv')
       };
       let headerParams = {
       };
@@ -122,10 +227,66 @@ export default class FilesApi {
      * Retrieves one or more files available to your user. Files are not associated with a project or a memory. They are unprocessed and can be used later in the project/document creation workflow step.  To retrieve a specific file, specify the <strong>id</strong> request parameter. To retrieve all files, omit the <strong>id</strong> request parameter.  Example CURL command: ```  curl -X GET https://lilt.com/2/files?key=API_KEY&id=274```
      * @param {Object} opts Optional parameters
      * @param {Number} opts.id A unique File identifier.
+     * @param {Array.<String>} opts.labels One or more labels. This will return the files which contain all of the given labels. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/SourceFile>}
      */
     getFiles(opts) {
       return this.getFilesWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Remove Label from File
+     * Remove a label from a File.  Example CURL: ``` curl --X --request DELETE 'https://lilt.com/2/files/labels?key=API_KEY&id=1&name=label_name' ``` 
+     * @param {String} id A File id.
+     * @param {String} name A label name.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
+     */
+    removeLabelWithHttpInfo(id, name) {
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling removeLabel");
+      }
+      // verify the required parameter 'name' is set
+      if (name === undefined || name === null) {
+        throw new Error("Missing the required parameter 'name' when calling removeLabel");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'id': id,
+        'name': name
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = [];
+      let accepts = [];
+      let returnType = null;
+      return this.apiClient.callApi(
+        '/files/labels', 'DELETE',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Remove Label from File
+     * Remove a label from a File.  Example CURL: ``` curl --X --request DELETE 'https://lilt.com/2/files/labels?key=API_KEY&id=1&name=label_name' ``` 
+     * @param {String} id A File id.
+     * @param {String} name A label name.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    removeLabel(id, name) {
+      return this.removeLabelWithHttpInfo(id, name)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

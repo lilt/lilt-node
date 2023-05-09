@@ -209,7 +209,8 @@ let memoryId = 56; // Number | A unique Memory identifier.
 let name = "name_example"; // String | Name of the TM or termbase file.
 let body = "/path/to/file"; // File | The file contents to be uploaded. The entire POST body will be treated as the file.
 let opts = {
-  'hasHeaderRow': true // Boolean | A flag indicating whether an imported Termbase CSV has a header row or not (the default value is `false`).
+  'hasHeaderRow': true, // Boolean | A flag indicating whether an imported Termbase CSV has a header row or not (the default value is `false`).
+  'skipDuplicates': true // Boolean | A flag indicating whether or not to skip the import of segments which already exist in the memory. (the default value is `false`). 
 };
 apiInstance.importMemoryFile(memoryId, name, body, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -228,6 +229,7 @@ Name | Type | Description  | Notes
  **name** | **String**| Name of the TM or termbase file. | 
  **body** | **File**| The file contents to be uploaded. The entire POST body will be treated as the file. | 
  **hasHeaderRow** | **Boolean**| A flag indicating whether an imported Termbase CSV has a header row or not (the default value is &#x60;false&#x60;). | [optional] 
+ **skipDuplicates** | **Boolean**| A flag indicating whether or not to skip the import of segments which already exist in the memory. (the default value is &#x60;false&#x60;).  | [optional] 
 
 ### Return type
 

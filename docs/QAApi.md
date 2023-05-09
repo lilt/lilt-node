@@ -36,7 +36,8 @@ let target = "target_example"; // String | A target string to be checked.
 let trglang = "trglang_example"; // String | An ISO 639-1 language code.
 let opts = {
   'source': "source_example", // String | An optional source string.
-  'srclang': "srclang_example" // String | An ISO 639-1 language code.
+  'srclang': "srclang_example", // String | An ISO 639-1 language code.
+  'memoryId': 56 // Number | Any custom rules defined for this Memory will also be applied as part of the QA check. 
 };
 apiInstance.qaCheck(target, trglang, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -55,6 +56,7 @@ Name | Type | Description  | Notes
  **trglang** | **String**| An ISO 639-1 language code. | 
  **source** | **String**| An optional source string. | [optional] 
  **srclang** | **String**| An ISO 639-1 language code. | [optional] 
+ **memoryId** | **Number**| Any custom rules defined for this Memory will also be applied as part of the QA check.  | [optional] 
 
 ### Return type
 

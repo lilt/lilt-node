@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**monitorFileTranslation**](TranslateApi.md#monitorFileTranslation) | **GET** /translate/file | Monitor file translation
 [**registerSegment**](TranslateApi.md#registerSegment) | **GET** /translate/register | Register a segment
 [**translateSegment**](TranslateApi.md#translateSegment) | **GET** /translate | Translate a segment
+[**translateSegmentPost**](TranslateApi.md#translateSegmentPost) | **POST** /translate | Translate a segment
 
 
 
@@ -18,7 +19,7 @@ Method | HTTP request | Description
 
 Translate a File
 
-Start machine translation of one or more Files that have previously been uploaded.  The response will include an &#x60;id&#x60; parameter that can be used to monitor and download the translations in subsequent calls.  Example CURL: &#x60;&#x60;&#x60; curl --X --request POST &#39;https://lilt.com/2/translate/file?key&#x3D;API_KEY&amp;fileId&#x3D;583&amp;memoryId&#x3D;2495&amp;configId&#x3D;123&#39; &#x60;&#x60;&#x60;  
+Start machine translation of one or more Files that have previously been uploaded.  The response will include an &#x60;id&#x60; parameter that can be used to monitor and download the translations in subsequent calls.  Example CURL: &#x60;&#x60;&#x60; curl --X --request POST &#39;https://lilt.com/2/translate/file?key&#x3D;API_KEY&amp;fileId&#x3D;583&amp;memoryId&#x3D;2495&amp;configId&#x3D;123&amp;withTM&#x3D;true&#39; &#x60;&#x60;&#x60;  
 
 ### Example
 
@@ -39,7 +40,8 @@ let apiInstance = new LiltNode.TranslateApi();
 let fileId = "fileId_example"; // String | List of File ids to be translated, comma separated.
 let memoryId = "memoryId_example"; // String | Id of Memory to use in translation.
 let opts = {
-  'configId': 3.4 // Number | An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file.
+  'configId': 3.4, // Number | An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file.
+  'withTM': true // Boolean | An optional boolean parameter to toggle the use of Translation Memory in the translation of the file.
 };
 apiInstance.batchTranslateFile(fileId, memoryId, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -57,6 +59,7 @@ Name | Type | Description  | Notes
  **fileId** | **String**| List of File ids to be translated, comma separated. | 
  **memoryId** | **String**| Id of Memory to use in translation. | 
  **configId** | **Number**| An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file. | [optional] 
+ **withTM** | **Boolean**| An optional boolean parameter to toggle the use of Translation Memory in the translation of the file. | [optional] 
 
 ### Return type
 
@@ -252,7 +255,7 @@ Name | Type | Description  | Notes
 
 Translate a segment
 
-Translate a source string.  Setting the &#x60;rich&#x60; parameter to &#x60;true&#x60; will change the response format to include additional information about each translation including a model score, word alignments,  and formatting information. The rich format can be seen in the example response on this page.  By default, this endpoint also returns translation memory (TM) fuzzy matches, along with associated scores. Fuzzy matches always appear ahead of machine translation output in the response.  The maximum source length is 5,000 characters.  Usage charges apply to this endpoint for production REST API keys.  
+Translate a source string.  Setting the &#x60;rich&#x60; parameter to &#x60;true&#x60; will change the response format to include additional information about each translation including a model score, word alignments,  and formatting information. The rich format can be seen in the example response on this page.  By default, this endpoint also returns translation memory (TM) fuzzy matches, along with associated scores. Fuzzy matches always appear ahead of machine translation output in the response.  The &#x60;source&#x60; parameter may be supplied in the query or in the request body.  The maximum source length is 5,000 characters.  Usage charges apply to this endpoint for production REST API keys.  
 
 ### Example
 
@@ -278,7 +281,8 @@ let opts = {
   'n': 1, // Number | Return top n translations (deprecated).
   'rich': false, // Boolean | Returns rich translation information (e.g., with word alignments).
   'tmMatches': true, // Boolean | Include translation memory fuzzy matches.
-  'projectTags': false // Boolean | Project tags. Projects tags in source to target if set to true.
+  'projectTags': false, // Boolean | Project tags. Projects tags in source to target if set to true.
+  'body': new LiltNode.TranslateSegmentBody() // TranslateSegmentBody | 
 };
 apiInstance.translateSegment(memoryId, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -301,6 +305,7 @@ Name | Type | Description  | Notes
  **rich** | **Boolean**| Returns rich translation information (e.g., with word alignments). | [optional] [default to false]
  **tmMatches** | **Boolean**| Include translation memory fuzzy matches. | [optional] [default to true]
  **projectTags** | **Boolean**| Project tags. Projects tags in source to target if set to true. | [optional] [default to false]
+ **body** | [**TranslateSegmentBody**](TranslateSegmentBody.md)|  | [optional] 
 
 ### Return type
 
@@ -312,6 +317,62 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## translateSegmentPost
+
+> TranslationList translateSegmentPost(opts)
+
+Translate a segment
+
+Translate a source string.  Setting the &#x60;rich&#x60; parameter to &#x60;true&#x60; will change the response format to include additional information about each translation including a model score, word alignments,  and formatting information. The rich format can be seen in the example response on this page.  By default, this endpoint also returns translation memory (TM) fuzzy matches, along with associated scores. Fuzzy matches always appear ahead of machine translation output in the response.  The maximum source length is 5,000 characters.  Usage charges apply to this endpoint for production REST API keys.  
+
+### Example
+
+```javascript
+import LiltNode from 'lilt-node';
+let defaultClient = LiltNode.ApiClient.instance;
+// Configure API key authorization: ApiKeyAuth
+let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix = 'Token';
+// Configure HTTP basic authorization: BasicAuth
+let BasicAuth = defaultClient.authentications['BasicAuth'];
+BasicAuth.username = 'YOUR USERNAME';
+BasicAuth.password = 'YOUR PASSWORD';
+
+let apiInstance = new LiltNode.TranslateApi();
+let opts = {
+  'body': new LiltNode.TranslateSegmentBody1() // TranslateSegmentBody1 | 
+};
+apiInstance.translateSegmentPost(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**TranslateSegmentBody1**](TranslateSegmentBody1.md)|  | [optional] 
+
+### Return type
+
+[**TranslationList**](TranslationList.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 

@@ -129,7 +129,7 @@ Name | Type | Description  | Notes
 
 ## deleteJob
 
-> JobDeleteResponse deleteJob(id)
+> JobDeleteResponse deleteJob(jobId)
 
 Delete a Job
 
@@ -151,8 +151,8 @@ BasicAuth.username = 'YOUR USERNAME';
 BasicAuth.password = 'YOUR PASSWORD';
 
 let apiInstance = new LiltNode.JobsApi();
-let id = 56; // Number | A job id.
-apiInstance.deleteJob(id).then((data) => {
+let jobId = 56; // Number | A job id.
+apiInstance.deleteJob(jobId).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -165,7 +165,7 @@ apiInstance.deleteJob(id).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Number**| A job id. | 
+ **jobId** | **Number**| A job id. | 
 
 ### Return type
 
@@ -513,7 +513,7 @@ Name | Type | Description  | Notes
 
 Retrieve all Jobs
 
-Get all Jobs. You can retrieve all jobs from your account using the above API.  Example CURL command:  &#x60;&#x60;&#x60; curl -X GET &#39;https://lilt.com/2/jobs?key&#x3D;API_KEY&amp;isArchived&#x3D;false&#39; &#x60;&#x60;&#x60;
+Get all Jobs within a given offset and limit. You can retrieve jobs from your account using the above API.  Example CURL command:  &#x60;&#x60;&#x60; curl -X GET &#39;https://lilt.com/2/jobs?key&#x3D;API_KEY&amp;isArchived&#x3D;false&#39; &#x60;&#x60;&#x60;
 
 ### Example
 
@@ -532,7 +532,10 @@ BasicAuth.password = 'YOUR PASSWORD';
 
 let apiInstance = new LiltNode.JobsApi();
 let opts = {
-  'isArchived': true // Boolean | Retrieves all jobs that are archived.
+  'isArchived': true, // Boolean | Retrieves all jobs that are archived.
+  'isDelivered': true, // Boolean | Retrieves all jobs that are delivered.
+  'offset': 56, // Number | Return jobs starting at the offset row. If not given the default offset will be 0.
+  'limit': 56 // Number | The maximum number of jobs to be returned. If not given the default limit will be 25.
 };
 apiInstance.retrieveAllJobs(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -548,6 +551,9 @@ apiInstance.retrieveAllJobs(opts).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **isArchived** | **Boolean**| Retrieves all jobs that are archived. | [optional] 
+ **isDelivered** | **Boolean**| Retrieves all jobs that are delivered. | [optional] 
+ **offset** | **Number**| Return jobs starting at the offset row. If not given the default offset will be 0. | [optional] 
+ **limit** | **Number**| The maximum number of jobs to be returned. If not given the default limit will be 25. | [optional] 
 
 ### Return type
 
@@ -619,7 +625,7 @@ Name | Type | Description  | Notes
 
 ## updateJob
 
-> Job updateJob(id, opts)
+> Job updateJob(jobId, opts)
 
 Update a Job
 
@@ -641,11 +647,11 @@ BasicAuth.username = 'YOUR USERNAME';
 BasicAuth.password = 'YOUR PASSWORD';
 
 let apiInstance = new LiltNode.JobsApi();
-let id = 56; // Number | A job id.
+let jobId = 56; // Number | A job id.
 let opts = {
   'body': new LiltNode.JobUpdateParameters() // JobUpdateParameters | 
 };
-apiInstance.updateJob(id, opts).then((data) => {
+apiInstance.updateJob(jobId, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -658,7 +664,7 @@ apiInstance.updateJob(id, opts).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Number**| A job id. | 
+ **jobId** | **Number**| A job id. | 
  **body** | [**JobUpdateParameters**](JobUpdateParameters.md)|  | [optional] 
 
 ### Return type
