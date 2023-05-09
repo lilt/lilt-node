@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **timeElapsedTranslation** | **Number** | The total time spent on translation by all resources. Measured in milliseconds. | [optional] 
 **timeElapsedResearch** | **Number** | The total time spent on research by all resources. Measured in milliseconds. | [optional] 
 **timeElapsedReview** | **Number** | The total time spent on reviewing by all resources. Measured in milliseconds. | [optional] 
+**updatedAt** | **Number** | The project update date and time. Measured in seconds. | [optional] 
 **resources** | [**[ResourceStatus]**](ResourceStatus.md) | A list of ResourceStatus objects that represent per-resource statistics. | [optional] 
 
 

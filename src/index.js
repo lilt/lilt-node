@@ -1,6 +1,6 @@
 /**
  * Lilt REST API
- * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests. ## Authentication Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use. 
+ * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests.  ## Authentication  Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use.  ## Quotas  Our services have a general quota of 4000 requests per minute. Should you hit the maximum requests per minute, you will need to wait 60 seconds before you can send another request. 
  *
  * The version of the OpenAPI document: v2.0
  * Contact: support@lilt.com
@@ -13,8 +13,14 @@
 
 
 import ApiClient from './ApiClient';
+import AddFileLabelRequest from './model/AddFileLabelRequest';
 import Annotation from './model/Annotation';
 import ApiRoot from './model/ApiRoot';
+import AssignmentDetails from './model/AssignmentDetails';
+import AssignmentError from './model/AssignmentError';
+import AutoAssignmentParameters from './model/AutoAssignmentParameters';
+import AutoAssignmentResponse from './model/AutoAssignmentResponse';
+import BadRequest from './model/BadRequest';
 import Comment from './model/Comment';
 import CommentBody from './model/CommentBody';
 import CommentDeleteResponse from './model/CommentDeleteResponse';
@@ -22,30 +28,32 @@ import Connector from './model/Connector';
 import ConnectorArguments from './model/ConnectorArguments';
 import ConnectorDeleteResponse from './model/ConnectorDeleteResponse';
 import ConnectorJob from './model/ConnectorJob';
+import ConverterConfigUpdateResponse from './model/ConverterConfigUpdateResponse';
+import CreateConverterConfigParameters from './model/CreateConverterConfigParameters';
 import DocumentAssignmentParameters from './model/DocumentAssignmentParameters';
 import DocumentAssignmentResponse from './model/DocumentAssignmentResponse';
 import DocumentComments from './model/DocumentComments';
 import DocumentDeleteResponse from './model/DocumentDeleteResponse';
 import DocumentDoneUpdateParameters from './model/DocumentDoneUpdateParameters';
 import DocumentDoneUpdateParameters1 from './model/DocumentDoneUpdateParameters1';
+import DocumentDoneUpdateParameters2 from './model/DocumentDoneUpdateParameters2';
 import DocumentParameters from './model/DocumentParameters';
 import DocumentPretranslateParameters from './model/DocumentPretranslateParameters';
 import DocumentPretranslateResponse from './model/DocumentPretranslateResponse';
 import DocumentPretranslating from './model/DocumentPretranslating';
 import DocumentPretranslatingStatus from './model/DocumentPretranslatingStatus';
 import DocumentQuote from './model/DocumentQuote';
-import DocumentUpdateParameters from './model/DocumentUpdateParameters';
 import DocumentWithSegments from './model/DocumentWithSegments';
 import DocumentWithoutSegments from './model/DocumentWithoutSegments';
 import DocumentWithoutSegmentsStatus from './model/DocumentWithoutSegmentsStatus';
+import DocumentWorkflow from './model/DocumentWorkflow';
+import EditFilterMappingParameters from './model/EditFilterMappingParameters';
 import Error from './model/Error';
-import Error2 from './model/Error2';
 import FileDeleteResponse from './model/FileDeleteResponse';
 import Job from './model/Job';
 import JobCreateParameters from './model/JobCreateParameters';
 import JobDeleteResponse from './model/JobDeleteResponse';
 import JobLeverageStats from './model/JobLeverageStats';
-import JobLeverageStatsProjects from './model/JobLeverageStatsProjects';
 import JobProject from './model/JobProject';
 import JobStats from './model/JobStats';
 import JobUpdateParameters from './model/JobUpdateParameters';
@@ -66,38 +74,54 @@ import MemoryImportResponse from './model/MemoryImportResponse';
 import MemoryInsertResponse from './model/MemoryInsertResponse';
 import MemoryUpdateParameters from './model/MemoryUpdateParameters';
 import MemoryUpdateResponse from './model/MemoryUpdateResponse';
+import NextWorkflowTask from './model/NextWorkflowTask';
 import Project from './model/Project';
 import ProjectCreateParameters from './model/ProjectCreateParameters';
 import ProjectDeleteResponse from './model/ProjectDeleteResponse';
 import ProjectQuote from './model/ProjectQuote';
+import ProjectStats from './model/ProjectStats';
 import ProjectStatus from './model/ProjectStatus';
 import ProjectUpdateResponse from './model/ProjectUpdateResponse';
+import ProjectsToDeliver from './model/ProjectsToDeliver';
+import ProjectsToUpdate from './model/ProjectsToUpdate';
 import QARuleMatches from './model/QARuleMatches';
 import QARuleMatchesContext from './model/QARuleMatchesContext';
+import QARuleMatchesCustomRules from './model/QARuleMatchesCustomRules';
 import QARuleMatchesMatches from './model/QARuleMatchesMatches';
 import QARuleMatchesReplacements from './model/QARuleMatchesReplacements';
 import QARuleMatchesRule from './model/QARuleMatchesRule';
 import QARuleMatchesRuleCategory from './model/QARuleMatchesRuleCategory';
 import QARuleMatchesRuleUrls from './model/QARuleMatchesRuleUrls';
 import ResourceStatus from './model/ResourceStatus';
+import ReviewCompletionTypeError from './model/ReviewCompletionTypeError';
 import Segment from './model/Segment';
 import SegmentCreateParameters from './model/SegmentCreateParameters';
 import SegmentDeleteResponse from './model/SegmentDeleteResponse';
+import SegmentDoneResponse from './model/SegmentDoneResponse';
 import SegmentUpdateParameters from './model/SegmentUpdateParameters';
 import SegmentWithComments from './model/SegmentWithComments';
+import SetDocumentStageRequest from './model/SetDocumentStageRequest';
 import Setting from './model/Setting';
-import SettingDictionary from './model/SettingDictionary';
 import SettingUpsertBody from './model/SettingUpsertBody';
 import SettingUpsertResponse from './model/SettingUpsertResponse';
 import SourceFile from './model/SourceFile';
 import TaggedSegment from './model/TaggedSegment';
+import TranslateCompletionTypeError from './model/TranslateCompletionTypeError';
 import TranslateRegisterResponse from './model/TranslateRegisterResponse';
+import TranslateSegmentBody from './model/TranslateSegmentBody';
+import TranslateSegmentBody1 from './model/TranslateSegmentBody1';
 import Translation from './model/Translation';
 import TranslationInfo from './model/TranslationInfo';
 import TranslationList from './model/TranslationList';
 import TranslationMemoryEntry from './model/TranslationMemoryEntry';
+import WorkflowStage from './model/WorkflowStage';
+import WorkflowStageAssignment from './model/WorkflowStageAssignment';
+import WorkflowStageTemplate from './model/WorkflowStageTemplate';
+import WorkflowTask from './model/WorkflowTask';
+import WorkflowTemplate from './model/WorkflowTemplate';
 import CommentsApi from './api/CommentsApi';
 import ConnectorsApi from './api/ConnectorsApi';
+import ConverterConfigApi from './api/ConverterConfigApi';
 import DocumentsApi from './api/DocumentsApi';
 import FilesApi from './api/FilesApi';
 import JobsApi from './api/JobsApi';
@@ -110,10 +134,11 @@ import RootApi from './api/RootApi';
 import SegmentsApi from './api/SegmentsApi';
 import SettingsApi from './api/SettingsApi';
 import TranslateApi from './api/TranslateApi';
+import WorkflowsApi from './api/WorkflowsApi';
 
 
 /**
-* The_Lilt_REST_API_enables_programmatic_access_to_the_full_range_of_Lilt_backend_services_including___Training_of_and_translating_with_interactive_adaptive_machine_translation___Large_scale_translation_memory___The_Lexicon__a_large_scale_termbase___Programmatic_control_of_the_Lilt_CAT_environment___Translation_memory_synchronizationRequests_and_responses_are_in_JSON_format__The_REST_API_only_responds_to_HTTPS___SSL_requests__AuthenticationRequests_are_authenticated_via_REST_API_key_which_requires_the_Business_plan_Requests_are_authenticated_using__HTTP_Basic_Auth_https__en_wikipedia_org_wiki_Basic_access_authentication__Add_your_REST_API_key_as_both_the_username_and_password_For_development_you_may_also_pass_the_REST_API_key_via_the_key_query_parameter__This_is_less_secure_than_HTTP_Basic_Auth_and_is_not_recommended_for_production_use_.<br>
+* The_Lilt_REST_API_enables_programmatic_access_to_the_full_range_of_Lilt_backend_services_including___Training_of_and_translating_with_interactive_adaptive_machine_translation___Large_scale_translation_memory___The_Lexicon__a_large_scale_termbase___Programmatic_control_of_the_Lilt_CAT_environment___Translation_memory_synchronizationRequests_and_responses_are_in_JSON_format__The_REST_API_only_responds_to_HTTPS___SSL_requests__AuthenticationRequests_are_authenticated_via_REST_API_key_which_requires_the_Business_plan_Requests_are_authenticated_using__HTTP_Basic_Auth_https__en_wikipedia_org_wiki_Basic_access_authentication__Add_your_REST_API_key_as_both_the_username_and_password_For_development_you_may_also_pass_the_REST_API_key_via_the_key_query_parameter__This_is_less_secure_than_HTTP_Basic_Auth_and_is_not_recommended_for_production_use__QuotasOur_services_have_a_general_quota_of_4000_requests_per_minute__Should_you_hit_the_maximum_requests_per_minute_you_will_need_to_wait_60_seconds_before_you_can_send_another_request_.<br>
 * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
 * <p>
 * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:
@@ -141,7 +166,7 @@ import TranslateApi from './api/TranslateApi';
 * </pre>
 * </p>
 * @module index
-* @version 0.6.2
+* @version 0.5.0
 */
 export {
     /**
@@ -149,6 +174,12 @@ export {
      * @property {module:ApiClient}
      */
     ApiClient,
+
+    /**
+     * The AddFileLabelRequest model constructor.
+     * @property {module:model/AddFileLabelRequest}
+     */
+    AddFileLabelRequest,
 
     /**
      * The Annotation model constructor.
@@ -161,6 +192,36 @@ export {
      * @property {module:model/ApiRoot}
      */
     ApiRoot,
+
+    /**
+     * The AssignmentDetails model constructor.
+     * @property {module:model/AssignmentDetails}
+     */
+    AssignmentDetails,
+
+    /**
+     * The AssignmentError model constructor.
+     * @property {module:model/AssignmentError}
+     */
+    AssignmentError,
+
+    /**
+     * The AutoAssignmentParameters model constructor.
+     * @property {module:model/AutoAssignmentParameters}
+     */
+    AutoAssignmentParameters,
+
+    /**
+     * The AutoAssignmentResponse model constructor.
+     * @property {module:model/AutoAssignmentResponse}
+     */
+    AutoAssignmentResponse,
+
+    /**
+     * The BadRequest model constructor.
+     * @property {module:model/BadRequest}
+     */
+    BadRequest,
 
     /**
      * The Comment model constructor.
@@ -205,6 +266,18 @@ export {
     ConnectorJob,
 
     /**
+     * The ConverterConfigUpdateResponse model constructor.
+     * @property {module:model/ConverterConfigUpdateResponse}
+     */
+    ConverterConfigUpdateResponse,
+
+    /**
+     * The CreateConverterConfigParameters model constructor.
+     * @property {module:model/CreateConverterConfigParameters}
+     */
+    CreateConverterConfigParameters,
+
+    /**
      * The DocumentAssignmentParameters model constructor.
      * @property {module:model/DocumentAssignmentParameters}
      */
@@ -239,6 +312,12 @@ export {
      * @property {module:model/DocumentDoneUpdateParameters1}
      */
     DocumentDoneUpdateParameters1,
+
+    /**
+     * The DocumentDoneUpdateParameters2 model constructor.
+     * @property {module:model/DocumentDoneUpdateParameters2}
+     */
+    DocumentDoneUpdateParameters2,
 
     /**
      * The DocumentParameters model constructor.
@@ -277,12 +356,6 @@ export {
     DocumentQuote,
 
     /**
-     * The DocumentUpdateParameters model constructor.
-     * @property {module:model/DocumentUpdateParameters}
-     */
-    DocumentUpdateParameters,
-
-    /**
      * The DocumentWithSegments model constructor.
      * @property {module:model/DocumentWithSegments}
      */
@@ -301,16 +374,22 @@ export {
     DocumentWithoutSegmentsStatus,
 
     /**
+     * The DocumentWorkflow model constructor.
+     * @property {module:model/DocumentWorkflow}
+     */
+    DocumentWorkflow,
+
+    /**
+     * The EditFilterMappingParameters model constructor.
+     * @property {module:model/EditFilterMappingParameters}
+     */
+    EditFilterMappingParameters,
+
+    /**
      * The Error model constructor.
      * @property {module:model/Error}
      */
     Error,
-
-    /**
-     * The Error2 model constructor.
-     * @property {module:model/Error2}
-     */
-    Error2,
 
     /**
      * The FileDeleteResponse model constructor.
@@ -341,12 +420,6 @@ export {
      * @property {module:model/JobLeverageStats}
      */
     JobLeverageStats,
-
-    /**
-     * The JobLeverageStatsProjects model constructor.
-     * @property {module:model/JobLeverageStatsProjects}
-     */
-    JobLeverageStatsProjects,
 
     /**
      * The JobProject model constructor.
@@ -469,6 +542,12 @@ export {
     MemoryUpdateResponse,
 
     /**
+     * The NextWorkflowTask model constructor.
+     * @property {module:model/NextWorkflowTask}
+     */
+    NextWorkflowTask,
+
+    /**
      * The Project model constructor.
      * @property {module:model/Project}
      */
@@ -493,6 +572,12 @@ export {
     ProjectQuote,
 
     /**
+     * The ProjectStats model constructor.
+     * @property {module:model/ProjectStats}
+     */
+    ProjectStats,
+
+    /**
      * The ProjectStatus model constructor.
      * @property {module:model/ProjectStatus}
      */
@@ -505,6 +590,18 @@ export {
     ProjectUpdateResponse,
 
     /**
+     * The ProjectsToDeliver model constructor.
+     * @property {module:model/ProjectsToDeliver}
+     */
+    ProjectsToDeliver,
+
+    /**
+     * The ProjectsToUpdate model constructor.
+     * @property {module:model/ProjectsToUpdate}
+     */
+    ProjectsToUpdate,
+
+    /**
      * The QARuleMatches model constructor.
      * @property {module:model/QARuleMatches}
      */
@@ -515,6 +612,12 @@ export {
      * @property {module:model/QARuleMatchesContext}
      */
     QARuleMatchesContext,
+
+    /**
+     * The QARuleMatchesCustomRules model constructor.
+     * @property {module:model/QARuleMatchesCustomRules}
+     */
+    QARuleMatchesCustomRules,
 
     /**
      * The QARuleMatchesMatches model constructor.
@@ -553,6 +656,12 @@ export {
     ResourceStatus,
 
     /**
+     * The ReviewCompletionTypeError model constructor.
+     * @property {module:model/ReviewCompletionTypeError}
+     */
+    ReviewCompletionTypeError,
+
+    /**
      * The Segment model constructor.
      * @property {module:model/Segment}
      */
@@ -571,6 +680,12 @@ export {
     SegmentDeleteResponse,
 
     /**
+     * The SegmentDoneResponse model constructor.
+     * @property {module:model/SegmentDoneResponse}
+     */
+    SegmentDoneResponse,
+
+    /**
      * The SegmentUpdateParameters model constructor.
      * @property {module:model/SegmentUpdateParameters}
      */
@@ -583,16 +698,16 @@ export {
     SegmentWithComments,
 
     /**
+     * The SetDocumentStageRequest model constructor.
+     * @property {module:model/SetDocumentStageRequest}
+     */
+    SetDocumentStageRequest,
+
+    /**
      * The Setting model constructor.
      * @property {module:model/Setting}
      */
     Setting,
-
-    /**
-     * The SettingDictionary model constructor.
-     * @property {module:model/SettingDictionary}
-     */
-    SettingDictionary,
 
     /**
      * The SettingUpsertBody model constructor.
@@ -619,10 +734,28 @@ export {
     TaggedSegment,
 
     /**
+     * The TranslateCompletionTypeError model constructor.
+     * @property {module:model/TranslateCompletionTypeError}
+     */
+    TranslateCompletionTypeError,
+
+    /**
      * The TranslateRegisterResponse model constructor.
      * @property {module:model/TranslateRegisterResponse}
      */
     TranslateRegisterResponse,
+
+    /**
+     * The TranslateSegmentBody model constructor.
+     * @property {module:model/TranslateSegmentBody}
+     */
+    TranslateSegmentBody,
+
+    /**
+     * The TranslateSegmentBody1 model constructor.
+     * @property {module:model/TranslateSegmentBody1}
+     */
+    TranslateSegmentBody1,
 
     /**
      * The Translation model constructor.
@@ -649,6 +782,36 @@ export {
     TranslationMemoryEntry,
 
     /**
+     * The WorkflowStage model constructor.
+     * @property {module:model/WorkflowStage}
+     */
+    WorkflowStage,
+
+    /**
+     * The WorkflowStageAssignment model constructor.
+     * @property {module:model/WorkflowStageAssignment}
+     */
+    WorkflowStageAssignment,
+
+    /**
+     * The WorkflowStageTemplate model constructor.
+     * @property {module:model/WorkflowStageTemplate}
+     */
+    WorkflowStageTemplate,
+
+    /**
+     * The WorkflowTask model constructor.
+     * @property {module:model/WorkflowTask}
+     */
+    WorkflowTask,
+
+    /**
+     * The WorkflowTemplate model constructor.
+     * @property {module:model/WorkflowTemplate}
+     */
+    WorkflowTemplate,
+
+    /**
     * The CommentsApi service constructor.
     * @property {module:api/CommentsApi}
     */
@@ -659,6 +822,12 @@ export {
     * @property {module:api/ConnectorsApi}
     */
     ConnectorsApi,
+
+    /**
+    * The ConverterConfigApi service constructor.
+    * @property {module:api/ConverterConfigApi}
+    */
+    ConverterConfigApi,
 
     /**
     * The DocumentsApi service constructor.
@@ -730,5 +899,11 @@ export {
     * The TranslateApi service constructor.
     * @property {module:api/TranslateApi}
     */
-    TranslateApi
+    TranslateApi,
+
+    /**
+    * The WorkflowsApi service constructor.
+    * @property {module:api/WorkflowsApi}
+    */
+    WorkflowsApi
 };

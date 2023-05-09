@@ -1,6 +1,6 @@
 /**
  * Lilt REST API
- * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests. ## Authentication Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use. 
+ * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests.  ## Authentication  Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use.  ## Quotas  Our services have a general quota of 4000 requests per minute. Should you hit the maximum requests per minute, you will need to wait 60 seconds before you can send another request. 
  *
  * The version of the OpenAPI document: v2.0
  * Contact: support@lilt.com
@@ -16,12 +16,12 @@ import ApiClient from '../ApiClient';
 /**
  * The JobProject model module.
  * @module model/JobProject
- * @version 0.6.2
+ * @version 0.5.0
  */
 class JobProject {
     /**
      * Constructs a new <code>JobProject</code>.
-     * A job project contains project statistcal data that belongs to a specific job. 
+     * A job project contains project statistical data that belongs to a specific job. 
      * @alias module:model/JobProject
      */
     constructor() { 
@@ -93,6 +93,12 @@ class JobProject {
             if (data.hasOwnProperty('memoryId')) {
                 obj['memoryId'] = ApiClient.convertToType(data['memoryId'], 'Number');
             }
+            if (data.hasOwnProperty('workflowStatus')) {
+                obj['workflowStatus'] = ApiClient.convertToType(data['workflowStatus'], 'String');
+            }
+            if (data.hasOwnProperty('workflowName')) {
+                obj['workflowName'] = ApiClient.convertToType(data['workflowName'], 'String');
+            }
         }
         return obj;
     }
@@ -107,25 +113,25 @@ class JobProject {
 JobProject.prototype['id'] = undefined;
 
 /**
- * Source langauge, an ISO 639-1 language identifier.
+ * Source language, an ISO 639-1 language identifier.
  * @member {String} srcLang
  */
 JobProject.prototype['srcLang'] = undefined;
 
 /**
- * A locale identifier, supported for source langauge.
+ * A locale identifier, supported for source language.
  * @member {String} srcLocale
  */
 JobProject.prototype['srcLocale'] = undefined;
 
 /**
- * Target langauge, an ISO 639-1 language identifier.
+ * Target language, an ISO 639-1 language identifier.
  * @member {String} trgLang
  */
 JobProject.prototype['trgLang'] = undefined;
 
 /**
- * A locale identifier, supported for target langauge.
+ * A locale identifier, supported for target language.
  * @member {String} trgLocale
  */
 JobProject.prototype['trgLocale'] = undefined;
@@ -190,8 +196,47 @@ JobProject.prototype['isDeleted'] = undefined;
  */
 JobProject.prototype['memoryId'] = undefined;
 
+/**
+ * The status of the Workflow for the current project.
+ * @member {module:model/JobProject.WorkflowStatusEnum} workflowStatus
+ */
+JobProject.prototype['workflowStatus'] = undefined;
+
+/**
+ * Human readable name of the workflow associated with the current project.
+ * @member {String} workflowName
+ */
+JobProject.prototype['workflowName'] = undefined;
 
 
+
+
+
+/**
+ * Allowed values for the <code>workflowStatus</code> property.
+ * @enum {String}
+ * @readonly
+ */
+JobProject['WorkflowStatusEnum'] = {
+
+    /**
+     * value: "READY_TO_START"
+     * @const
+     */
+    "READY_TO_START": "READY_TO_START",
+
+    /**
+     * value: "IN_PROGRESS"
+     * @const
+     */
+    "IN_PROGRESS": "IN_PROGRESS",
+
+    /**
+     * value: "DONE"
+     * @const
+     */
+    "DONE": "DONE"
+};
 
 
 

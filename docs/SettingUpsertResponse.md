@@ -5,6 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **scopedSetting** | [**Setting**](Setting.md) |  | [optional] 
-**activeSettings** | [**SettingDictionary**](SettingDictionary.md) |  | [optional] 
+**activeSettings** | [**{String: Setting}**](Setting.md) | A dictionary of configuration settings, keyed by setting name | [optional] 
 
 

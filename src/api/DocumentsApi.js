@@ -1,6 +1,6 @@
 /**
  * Lilt REST API
- * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests. ## Authentication Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use. 
+ * The Lilt REST API enables programmatic access to the full-range of Lilt backend services including:   * Training of and translating with interactive, adaptive machine translation   * Large-scale translation memory   * The Lexicon (a large-scale termbase)   * Programmatic control of the Lilt CAT environment   * Translation memory synchronization  Requests and responses are in JSON format. The REST API only responds to HTTPS / SSL requests.  ## Authentication  Requests are authenticated via REST API key, which requires the Business plan.  Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.  For development, you may also pass the REST API key via the `key` query parameter. This is less secure than HTTP Basic Auth, and is not recommended for production use.  ## Quotas  Our services have a general quota of 4000 requests per minute. Should you hit the maximum requests per minute, you will need to wait 60 seconds before you can send another request. 
  *
  * The version of the OpenAPI document: v2.0
  * Contact: support@lilt.com
@@ -18,17 +18,19 @@ import DocumentAssignmentResponse from '../model/DocumentAssignmentResponse';
 import DocumentDeleteResponse from '../model/DocumentDeleteResponse';
 import DocumentDoneUpdateParameters from '../model/DocumentDoneUpdateParameters';
 import DocumentDoneUpdateParameters1 from '../model/DocumentDoneUpdateParameters1';
+import DocumentDoneUpdateParameters2 from '../model/DocumentDoneUpdateParameters2';
 import DocumentParameters from '../model/DocumentParameters';
 import DocumentPretranslateParameters from '../model/DocumentPretranslateParameters';
 import DocumentPretranslateResponse from '../model/DocumentPretranslateResponse';
-import DocumentUpdateParameters from '../model/DocumentUpdateParameters';
 import DocumentWithSegments from '../model/DocumentWithSegments';
-import Error2 from '../model/Error2';
+import Error from '../model/Error';
+import ReviewCompletionTypeError from '../model/ReviewCompletionTypeError';
+import TranslateCompletionTypeError from '../model/TranslateCompletionTypeError';
 
 /**
 * Documents service.
 * @module api/DocumentsApi
-* @version 0.6.2
+* @version 0.5.0
 */
 export default class DocumentsApi {
 
@@ -187,147 +189,6 @@ export default class DocumentsApi {
 
 
     /**
-     * Mark review done
-     * Mark the review of documents as done/undone in bulk.  When being marked positively as done:  - Documents must not already be marked as done for review. - Documents must already be marked as done for translation. - This request will also trigger an email notification.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/documents/done/review?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"documentIds\": [23921, 23922],       \"isDone\": true   }' ``` 
-     * @param {module:model/DocumentDoneUpdateParameters1} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<String>} and HTTP response
-     */
-    documentsDoneReviewPostWithHttpInfo(body) {
-      let postBody = body;
-      // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling documentsDoneReviewPost");
-      }
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['ApiKeyAuth', 'BasicAuth'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = ['String'];
-      return this.apiClient.callApi(
-        '/documents/done/review', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null
-      );
-    }
-
-    /**
-     * Mark review done
-     * Mark the review of documents as done/undone in bulk.  When being marked positively as done:  - Documents must not already be marked as done for review. - Documents must already be marked as done for translation. - This request will also trigger an email notification.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/documents/done/review?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"documentIds\": [23921, 23922],       \"isDone\": true   }' ``` 
-     * @param {module:model/DocumentDoneUpdateParameters1} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<String>}
-     */
-    documentsDoneReviewPost(body) {
-      return this.documentsDoneReviewPostWithHttpInfo(body)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
-    }
-
-
-    /**
-     * Mark translation done
-     * Mark the translation of documents as done/undone in bulk.  When being marked positively as done:  - Documents must not already be marked as done and all segments must be confirmed. - This request will also trigger an email notification to a document's assigned reviewer that the document is ready for review.  When being marked as un-done: - Documents must not be marked as complete for review.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/documents/done/translation?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"documentIds\": [23921, 23922],       \"isDone\": true   }' ``` 
-     * @param {module:model/DocumentDoneUpdateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<String>} and HTTP response
-     */
-    documentsDoneTranslationPostWithHttpInfo(body) {
-      let postBody = body;
-      // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling documentsDoneTranslationPost");
-      }
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['ApiKeyAuth', 'BasicAuth'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = ['String'];
-      return this.apiClient.callApi(
-        '/documents/done/translation', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null
-      );
-    }
-
-    /**
-     * Mark translation done
-     * Mark the translation of documents as done/undone in bulk.  When being marked positively as done:  - Documents must not already be marked as done and all segments must be confirmed. - This request will also trigger an email notification to a document's assigned reviewer that the document is ready for review.  When being marked as un-done: - Documents must not be marked as complete for review.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/documents/done/translation?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"documentIds\": [23921, 23922],       \"isDone\": true   }' ``` 
-     * @param {module:model/DocumentDoneUpdateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<String>}
-     */
-    documentsDoneTranslationPost(body) {
-      return this.documentsDoneTranslationPostWithHttpInfo(body)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
-    }
-
-
-    /**
-     * Unlock documents
-     * Unlock documents for translation. Sets document \"Translation Done\" and \"Review Done\" to false.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/documents/done/unlock?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"documentIds\": [23921, 23922]   }' ``` 
-     * @param {Object} body document ids to update
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<String>} and HTTP response
-     */
-    documentsDoneUnlockPostWithHttpInfo(body) {
-      let postBody = body;
-      // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling documentsDoneUnlockPost");
-      }
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['ApiKeyAuth', 'BasicAuth'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = ['String'];
-      return this.apiClient.callApi(
-        '/documents/done/unlock', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null
-      );
-    }
-
-    /**
-     * Unlock documents
-     * Unlock documents for translation. Sets document \"Translation Done\" and \"Review Done\" to false.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/documents/done/unlock?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"documentIds\": [23921, 23922]   }' ``` 
-     * @param {Object} body document ids to update
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<String>}
-     */
-    documentsDoneUnlockPost(body) {
-      return this.documentsDoneUnlockPostWithHttpInfo(body)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
-    }
-
-
-    /**
      * Download a Document
      * Export a Document that has been translated in the Lilt web application. Any Document can be downloaded in XLIFF 1.2 format, or can be retrieved in its original uploaded format by setting `is_xliff=false`. This endpoint will fail if either (a) export or (b) pre-translation operations are in-progress. The status of those operations can be determined by retrieving the Document resource. Example CURL command: ```   curl -X GET https://lilt.com/2/documents/files?key=API_KEY&id=274 -o from_lilt.xliff ```  
      * @param {Number} id An unique Document identifier.
@@ -436,8 +297,102 @@ export default class DocumentsApi {
 
 
     /**
+     * Mark review done
+     * Mark the review of documents as done/undone in bulk.  When being marked positively as done:  - Documents must not already be marked as done for review. - Documents must already be marked as done for translation. - This request will also trigger an email notification.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/documents/done/review?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"documentIds\": [23921, 23922],       \"isDone\": true   }' ``` 
+     * @param {module:model/DocumentDoneUpdateParameters2} body 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<Number>} and HTTP response
+     */
+    markReviewDoneWithHttpInfo(body) {
+      let postBody = body;
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling markReviewDone");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = ['Number'];
+      return this.apiClient.callApi(
+        '/documents/done/review', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Mark review done
+     * Mark the review of documents as done/undone in bulk.  When being marked positively as done:  - Documents must not already be marked as done for review. - Documents must already be marked as done for translation. - This request will also trigger an email notification.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/documents/done/review?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"documentIds\": [23921, 23922],       \"isDone\": true   }' ``` 
+     * @param {module:model/DocumentDoneUpdateParameters2} body 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<Number>}
+     */
+    markReviewDone(body) {
+      return this.markReviewDoneWithHttpInfo(body)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * Mark translation done
+     * Mark the translation of documents as done/undone in bulk.  When being marked positively as done:  - Documents must not already be marked as done and all segments must be confirmed. - This request will also trigger an email notification to a document's assigned reviewer that the document is ready for review.  When being marked as un-done: - Documents must not be marked as complete for review.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/documents/done/translation?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"documentIds\": [23921, 23922],       \"isDone\": true   }' ``` 
+     * @param {module:model/DocumentDoneUpdateParameters1} body 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<Number>} and HTTP response
+     */
+    markTranslationDoneWithHttpInfo(body) {
+      let postBody = body;
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling markTranslationDone");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['ApiKeyAuth', 'BasicAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = ['Number'];
+      return this.apiClient.callApi(
+        '/documents/done/translation', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null
+      );
+    }
+
+    /**
+     * Mark translation done
+     * Mark the translation of documents as done/undone in bulk.  When being marked positively as done:  - Documents must not already be marked as done and all segments must be confirmed. - This request will also trigger an email notification to a document's assigned reviewer that the document is ready for review.  When being marked as un-done: - Documents must not be marked as complete for review.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/documents/done/translation?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"documentIds\": [23921, 23922],       \"isDone\": true   }' ``` 
+     * @param {module:model/DocumentDoneUpdateParameters1} body 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<Number>}
+     */
+    markTranslationDone(body) {
+      return this.markTranslationDoneWithHttpInfo(body)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
      * Pretranslate a Document
-     * Initiate pretranslation of a list of Documents. This request will mark document(s) as being pretranslated. Pretranslation in this context is: - Applying and confirming exact TM matches based on the Memory of the Project; - Translating all other segments via MT without confirming them.  Example CURL command: ``` curl -X POST https://lilt.com/2/documents/pretranslate?key=API_KEY -d {\"id\": [123]} -H \"Content-Type: application/json\" ```  Document translation is an asynchronous process that, in effect, is performed in the background.  To check the status of pretranslation for a document, use the `GET /documents` endpoint. When pretranslation is in progress for a document, the `GET /documents` endpoint's response will include `is_pretranslating = true` as well as a more detailed status property `status.pretranslation` one of `idle`, `pending`, or `running`.  Once pretranslation is finished, the document can be downloaded via `GET /documents/files`. 
+     * Initiate pretranslation of a list of Documents. This request will mark document(s) as being pretranslated. Pretranslation in this context is: - Applying and confirming exact TM matches based on the Memory of the Project; - Translating all other segments via MT without confirming them.  Example CURL command: ``` curl -X POST https://lilt.com/2/documents/pretranslate?key=API_KEY -d '{\"id\": [123]}' -H \"Content-Type: application/json\" ```  Document translation is an asynchronous process that, in effect, is performed in the background.  To check the status of pretranslation for a document, use the `GET /documents` endpoint. When pretranslation is in progress for a document, the `GET /documents` endpoint's response will include `is_pretranslating = true` as well as a more detailed status property `status.pretranslation` one of `idle`, `pending`, or `running`.  Once pretranslation is finished, the document can be downloaded via `GET /documents/files`. 
      * @param {module:model/DocumentPretranslateParameters} body 
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.autoAccept Deprecated, use body param instead. Optional parameter for auto-accepting 100% TM hits.
@@ -480,7 +435,7 @@ export default class DocumentsApi {
 
     /**
      * Pretranslate a Document
-     * Initiate pretranslation of a list of Documents. This request will mark document(s) as being pretranslated. Pretranslation in this context is: - Applying and confirming exact TM matches based on the Memory of the Project; - Translating all other segments via MT without confirming them.  Example CURL command: ``` curl -X POST https://lilt.com/2/documents/pretranslate?key=API_KEY -d {\"id\": [123]} -H \"Content-Type: application/json\" ```  Document translation is an asynchronous process that, in effect, is performed in the background.  To check the status of pretranslation for a document, use the `GET /documents` endpoint. When pretranslation is in progress for a document, the `GET /documents` endpoint's response will include `is_pretranslating = true` as well as a more detailed status property `status.pretranslation` one of `idle`, `pending`, or `running`.  Once pretranslation is finished, the document can be downloaded via `GET /documents/files`. 
+     * Initiate pretranslation of a list of Documents. This request will mark document(s) as being pretranslated. Pretranslation in this context is: - Applying and confirming exact TM matches based on the Memory of the Project; - Translating all other segments via MT without confirming them.  Example CURL command: ``` curl -X POST https://lilt.com/2/documents/pretranslate?key=API_KEY -d '{\"id\": [123]}' -H \"Content-Type: application/json\" ```  Document translation is an asynchronous process that, in effect, is performed in the background.  To check the status of pretranslation for a document, use the `GET /documents` endpoint. When pretranslation is in progress for a document, the `GET /documents` endpoint's response will include `is_pretranslating = true` as well as a more detailed status property `status.pretranslation` one of `idle`, `pending`, or `running`.  Once pretranslation is finished, the document can be downloaded via `GET /documents/files`. 
      * @param {module:model/DocumentPretranslateParameters} body 
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.autoAccept Deprecated, use body param instead. Optional parameter for auto-accepting 100% TM hits.
@@ -498,16 +453,16 @@ export default class DocumentsApi {
 
 
     /**
-     * Update a Document
-     * Update a Document. 
-     * @param {module:model/DocumentUpdateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DocumentWithSegments} and HTTP response
+     * Unlock documents
+     * Unlock documents for translation. Sets document \"Translation Done\" and \"Review Done\" to false.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/documents/done/unlock?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"documentIds\": [23921, 23922]   }' ``` 
+     * @param {module:model/DocumentDoneUpdateParameters} body 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<Number>} and HTTP response
      */
-    updateDocumentWithHttpInfo(body) {
+    unlockDocumentsWithHttpInfo(body) {
       let postBody = body;
       // verify the required parameter 'body' is set
       if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling updateDocument");
+        throw new Error("Missing the required parameter 'body' when calling unlockDocuments");
       }
 
       let pathParams = {
@@ -522,22 +477,22 @@ export default class DocumentsApi {
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = DocumentWithSegments;
+      let returnType = ['Number'];
       return this.apiClient.callApi(
-        '/documents', 'PUT',
+        '/documents/done/unlock', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null
       );
     }
 
     /**
-     * Update a Document
-     * Update a Document. 
-     * @param {module:model/DocumentUpdateParameters} body 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DocumentWithSegments}
+     * Unlock documents
+     * Unlock documents for translation. Sets document \"Translation Done\" and \"Review Done\" to false.  Example curl: ```   curl --X --request POST 'https://lilt.com/2/documents/done/unlock?key=API_KEY' \\   --header 'Content-Type: application/json' \\   --data-raw '{       \"documentIds\": [23921, 23922]   }' ``` 
+     * @param {module:model/DocumentDoneUpdateParameters} body 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<Number>}
      */
-    updateDocument(body) {
-      return this.updateDocumentWithHttpInfo(body)
+    unlockDocuments(body) {
+      return this.unlockDocumentsWithHttpInfo(body)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -552,9 +507,9 @@ export default class DocumentsApi {
      * @param {File} body The file contents to be uploaded. The entire POST body will be treated as the file. 
      * @param {Object} opts Optional parameters
      * @param {String} opts.pretranslate An optional parameter indicating if and how the document will be pretranslated upon being uploaded. The accepted values are `TM`, or `TM+MT` 
-     * @param {Boolean} opts.autoAccept An optional parameter to auto-accept segments with 100% translation memory matches when the `pretranslate` option is also set, or to auto-accept any target data that is present when the uploaded file is XLIFF. If omitted or set to `false`, no segments will be auto-accepted. 
-     * @param {Boolean} opts.caseSensitive An optional parameter to use case sensitive translation memory matching when the `pretranslate` option is also enabled. Matches must have identical character-by-character case to qualify as matches. Default value is `false` 
-     * @param {Boolean} opts.matchAttribution An optional parameter to attribute translation authorship of exact matches to the author of the file when the `pretranslate` option is also enabled. Default value is `false` 
+     * @param {Boolean} opts.autoAccept An optional parameter to auto-accept segments with 100% translation memory matches when the `pretranslate` option is also set, or to auto-accept any target data that is present when the uploaded file is XLIFF. If omitted it will default to your organization settings for `Accept and lock exact matches`, if set to `false`, no segments will be auto-accepted. 
+     * @param {Boolean} opts.caseSensitive An optional parameter to use case sensitive translation memory matching when the `pretranslate` option is also enabled. Matches must have identical character-by-character case to qualify as matches. Default value matches your organization settings for `Use case sensitive translation memory matching` setting 
+     * @param {Boolean} opts.matchAttribution An optional parameter to attribute translation authorship of exact matches to the author of the file when the `pretranslate` option is also enabled. Default value matches your organization settings for `Translation authorship` setting 
      * @param {Number} opts.configId An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DocumentWithSegments} and HTTP response
      */
@@ -609,9 +564,9 @@ export default class DocumentsApi {
      * @param {File} body The file contents to be uploaded. The entire POST body will be treated as the file. 
      * @param {Object} opts Optional parameters
      * @param {String} opts.pretranslate An optional parameter indicating if and how the document will be pretranslated upon being uploaded. The accepted values are `TM`, or `TM+MT` 
-     * @param {Boolean} opts.autoAccept An optional parameter to auto-accept segments with 100% translation memory matches when the `pretranslate` option is also set, or to auto-accept any target data that is present when the uploaded file is XLIFF. If omitted or set to `false`, no segments will be auto-accepted. 
-     * @param {Boolean} opts.caseSensitive An optional parameter to use case sensitive translation memory matching when the `pretranslate` option is also enabled. Matches must have identical character-by-character case to qualify as matches. Default value is `false` 
-     * @param {Boolean} opts.matchAttribution An optional parameter to attribute translation authorship of exact matches to the author of the file when the `pretranslate` option is also enabled. Default value is `false` 
+     * @param {Boolean} opts.autoAccept An optional parameter to auto-accept segments with 100% translation memory matches when the `pretranslate` option is also set, or to auto-accept any target data that is present when the uploaded file is XLIFF. If omitted it will default to your organization settings for `Accept and lock exact matches`, if set to `false`, no segments will be auto-accepted. 
+     * @param {Boolean} opts.caseSensitive An optional parameter to use case sensitive translation memory matching when the `pretranslate` option is also enabled. Matches must have identical character-by-character case to qualify as matches. Default value matches your organization settings for `Use case sensitive translation memory matching` setting 
+     * @param {Boolean} opts.matchAttribution An optional parameter to attribute translation authorship of exact matches to the author of the file when the `pretranslate` option is also enabled. Default value matches your organization settings for `Translation authorship` setting 
      * @param {Number} opts.configId An optional pararameter to specify an import configuration to be applied when extracting translatable content from this file. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DocumentWithSegments}
      */

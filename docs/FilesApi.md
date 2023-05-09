@@ -4,10 +4,69 @@ All URIs are relative to *https://lilt.com/2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**addLabel**](FilesApi.md#addLabel) | **POST** /files/labels | Add Label to File
 [**deleteFile**](FilesApi.md#deleteFile) | **DELETE** /files | Delete a File
+[**download**](FilesApi.md#download) | **GET** /files/download | Download file
 [**getFiles**](FilesApi.md#getFiles) | **GET** /files | Retrieve a File
+[**removeLabel**](FilesApi.md#removeLabel) | **DELETE** /files/labels | Remove Label from File
 [**uploadFile**](FilesApi.md#uploadFile) | **POST** /files | Upload a File
 
+
+
+## addLabel
+
+> addLabel(id, name)
+
+Add Label to File
+
+Add a label to a File.  Example CURL: &#x60;&#x60;&#x60; curl --X --request POST &#39;https://lilt.com/2/files/labels?key&#x3D;API_KEY&amp;id&#x3D;1&#39; --header &#39;Content-Type: application/json&#39; \\ --data-raw &#39;{     \&quot;name\&quot;: \&quot;label_name\&quot; }&#39; &#x60;&#x60;&#x60; 
+
+### Example
+
+```javascript
+import LiltNode from 'lilt-node';
+let defaultClient = LiltNode.ApiClient.instance;
+// Configure API key authorization: ApiKeyAuth
+let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix = 'Token';
+// Configure HTTP basic authorization: BasicAuth
+let BasicAuth = defaultClient.authentications['BasicAuth'];
+BasicAuth.username = 'YOUR USERNAME';
+BasicAuth.password = 'YOUR PASSWORD';
+
+let apiInstance = new LiltNode.FilesApi();
+let id = "id_example"; // String | A File id.
+let name = new LiltNode.AddFileLabelRequest(); // AddFileLabelRequest | 
+apiInstance.addLabel(id, name).then(() => {
+  console.log('API called successfully.');
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| A File id. | 
+ **name** | [**AddFileLabelRequest**](AddFileLabelRequest.md)|  | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
 
 ## deleteFile
@@ -64,6 +123,60 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## download
+
+> Blob download(id)
+
+Download file
+
+Download a File.  Example CURL: &#x60;&#x60;&#x60; curl --X --request GET &#39;https://lilt.com/2/files/download?key&#x3D;API_KEY&amp;id&#x3D;1&#39; &#x60;&#x60;&#x60; 
+
+### Example
+
+```javascript
+import LiltNode from 'lilt-node';
+let defaultClient = LiltNode.ApiClient.instance;
+// Configure API key authorization: ApiKeyAuth
+let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix = 'Token';
+// Configure HTTP basic authorization: BasicAuth
+let BasicAuth = defaultClient.authentications['BasicAuth'];
+BasicAuth.username = 'YOUR USERNAME';
+BasicAuth.password = 'YOUR PASSWORD';
+
+let apiInstance = new LiltNode.FilesApi();
+let id = "id_example"; // String | A File id.
+apiInstance.download(id).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| A File id. | 
+
+### Return type
+
+**Blob**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/octet-stream
+
+
 ## getFiles
 
 > [SourceFile] getFiles(opts)
@@ -89,7 +202,8 @@ BasicAuth.password = 'YOUR PASSWORD';
 
 let apiInstance = new LiltNode.FilesApi();
 let opts = {
-  'id': 56 // Number | A unique File identifier.
+  'id': 56, // Number | A unique File identifier.
+  'labels': ["null"] // [String] | One or more labels. This will return the files which contain all of the given labels. 
 };
 apiInstance.getFiles(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -105,6 +219,7 @@ apiInstance.getFiles(opts).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Number**| A unique File identifier. | [optional] 
+ **labels** | [**[String]**](String.md)| One or more labels. This will return the files which contain all of the given labels.  | [optional] 
 
 ### Return type
 
@@ -118,6 +233,62 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
+
+
+## removeLabel
+
+> removeLabel(id, name)
+
+Remove Label from File
+
+Remove a label from a File.  Example CURL: &#x60;&#x60;&#x60; curl --X --request DELETE &#39;https://lilt.com/2/files/labels?key&#x3D;API_KEY&amp;id&#x3D;1&amp;name&#x3D;label_name&#39; &#x60;&#x60;&#x60; 
+
+### Example
+
+```javascript
+import LiltNode from 'lilt-node';
+let defaultClient = LiltNode.ApiClient.instance;
+// Configure API key authorization: ApiKeyAuth
+let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix = 'Token';
+// Configure HTTP basic authorization: BasicAuth
+let BasicAuth = defaultClient.authentications['BasicAuth'];
+BasicAuth.username = 'YOUR USERNAME';
+BasicAuth.password = 'YOUR PASSWORD';
+
+let apiInstance = new LiltNode.FilesApi();
+let id = "id_example"; // String | A File id.
+let name = "name_example"; // String | A label name.
+apiInstance.removeLabel(id, name).then(() => {
+  console.log('API called successfully.');
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| A File id. | 
+ **name** | **String**| A label name. | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
 ## uploadFile

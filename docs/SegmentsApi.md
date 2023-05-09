@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**createSegment**](SegmentsApi.md#createSegment) | **POST** /segments | Create a Segment
 [**deleteSegment**](SegmentsApi.md#deleteSegment) | **DELETE** /segments | Delete a Segment
 [**getSegment**](SegmentsApi.md#getSegment) | **GET** /segments | Retrieve a Segment
-[**segmentsReviewUnlockPost**](SegmentsApi.md#segmentsReviewUnlockPost) | **POST** /segments/review/unlock | Unaccept and unlock segments
 [**tagSegment**](SegmentsApi.md#tagSegment) | **GET** /segments/tag | Tag a Segment
+[**unlockSegments**](SegmentsApi.md#unlockSegments) | **POST** /segments/review/unlock | Unaccept and unlock segments
 [**updateSegment**](SegmentsApi.md#updateSegment) | **PUT** /segments | Update a Segment
 
 
@@ -179,60 +179,6 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
-## segmentsReviewUnlockPost
-
-> [String] segmentsReviewUnlockPost(body)
-
-Unaccept and unlock segments
-
-Unaccept and unlock segments. Sets individual segments&#39; \&quot;Review Done\&quot; to false. Confirmed segments will remain confirmed.  Example curl: &#x60;&#x60;&#x60;   curl --X --request POST &#39;https://lilt.com/2/segments/review/unlock?key&#x3D;API_KEY&#39; \\   --header &#39;Content-Type: application/json&#39; \\   --data-raw &#39;{       \&quot;segmentIds\&quot;: [23921, 23922]   }&#39; &#x60;&#x60;&#x60; 
-
-### Example
-
-```javascript
-import LiltNode from 'lilt-node';
-let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
-// Configure HTTP basic authorization: BasicAuth
-let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
-
-let apiInstance = new LiltNode.SegmentsApi();
-let body = null; // Object | segment ids to update
-apiInstance.segmentsReviewUnlockPost(body).then((data) => {
-  console.log('API called successfully. Returned data: ' + data);
-}, (error) => {
-  console.error(error);
-});
-
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | **Object**| segment ids to update | 
-
-### Return type
-
-**[String]**
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-
 ## tagSegment
 
 > TaggedSegment tagSegment(sourceTagged, target, memoryId)
@@ -288,6 +234,60 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## unlockSegments
+
+> [Number] unlockSegments(body)
+
+Unaccept and unlock segments
+
+Unaccept and unlock segments. Sets individual segments&#39; \&quot;Review Done\&quot; to false. Confirmed segments will remain confirmed.  Example curl: &#x60;&#x60;&#x60;   curl --X --request POST &#39;https://lilt.com/2/segments/review/unlock?key&#x3D;API_KEY&#39; \\   --header &#39;Content-Type: application/json&#39; \\   --data-raw &#39;{       \&quot;segmentIds\&quot;: [23921, 23922]   }&#39; &#x60;&#x60;&#x60; 
+
+### Example
+
+```javascript
+import LiltNode from 'lilt-node';
+let defaultClient = LiltNode.ApiClient.instance;
+// Configure API key authorization: ApiKeyAuth
+let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix = 'Token';
+// Configure HTTP basic authorization: BasicAuth
+let BasicAuth = defaultClient.authentications['BasicAuth'];
+BasicAuth.username = 'YOUR USERNAME';
+BasicAuth.password = 'YOUR PASSWORD';
+
+let apiInstance = new LiltNode.SegmentsApi();
+let body = new LiltNode.SegmentDoneResponse(); // SegmentDoneResponse | 
+apiInstance.unlockSegments(body).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**SegmentDoneResponse**](SegmentDoneResponse.md)|  | 
+
+### Return type
+
+**[Number]**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 
