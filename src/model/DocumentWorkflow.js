@@ -18,7 +18,7 @@ import WorkflowTask from './WorkflowTask';
 /**
  * The DocumentWorkflow model module.
  * @module model/DocumentWorkflow
- * @version 0.5.0
+ * @version 0.6.3
  */
 class DocumentWorkflow {
     /**

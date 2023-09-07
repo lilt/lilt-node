@@ -17,7 +17,7 @@ import Annotation from './Annotation';
 /**
  * The Comment model module.
  * @module model/Comment
- * @version 0.5.0
+ * @version 0.6.3
  */
 class Comment {
     /**

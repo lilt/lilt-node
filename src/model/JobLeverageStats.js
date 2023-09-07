@@ -17,7 +17,7 @@ import ProjectStats from './ProjectStats';
 /**
  * The JobLeverageStats model module.
  * @module model/JobLeverageStats
- * @version 0.5.0
+ * @version 0.6.3
  */
 class JobLeverageStats {
     /**

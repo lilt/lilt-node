@@ -17,7 +17,7 @@ import Comment from './Comment';
 /**
  * The SegmentWithComments model module.
  * @module model/SegmentWithComments
- * @version 0.5.0
+ * @version 0.6.3
  */
 class SegmentWithComments {
     /**

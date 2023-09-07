@@ -18,7 +18,7 @@ import Segment from './Segment';
 /**
  * The DocumentWithSegments model module.
  * @module model/DocumentWithSegments
- * @version 0.5.0
+ * @version 0.6.3
  */
 class DocumentWithSegments {
     /**
@@ -100,6 +100,9 @@ class DocumentWithSegments {
             }
             if (data.hasOwnProperty('updated_at')) {
                 obj['updated_at'] = ApiClient.convertToType(data['updated_at'], 'Number');
+            }
+            if (data.hasOwnProperty('is_review_complete')) {
+                obj['is_review_complete'] = ApiClient.convertToType(data['is_review_complete'], 'Boolean');
             }
             if (data.hasOwnProperty('segments')) {
                 obj['segments'] = ApiClient.convertToType(data['segments'], [Segment]);
@@ -211,6 +214,12 @@ DocumentWithSegments.prototype['created_at'] = undefined;
  * @member {Number} updated_at
  */
 DocumentWithSegments.prototype['updated_at'] = undefined;
+
+/**
+ * Document review status.
+ * @member {Boolean} is_review_complete
+ */
+DocumentWithSegments.prototype['is_review_complete'] = undefined;
 
 /**
  * A list of Segments.

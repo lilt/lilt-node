@@ -23,7 +23,7 @@ import TranslationList from '../model/TranslationList';
 /**
 * Translate service.
 * @module api/TranslateApi
-* @version 0.5.0
+* @version 0.6.3
 */
 export default class TranslateApi {
 
@@ -282,6 +282,7 @@ export default class TranslateApi {
      * @param {Boolean} opts.rich Returns rich translation information (e.g., with word alignments). (default to false)
      * @param {Boolean} opts.tmMatches Include translation memory fuzzy matches. (default to true)
      * @param {Boolean} opts.projectTags Project tags. Projects tags in source to target if set to true. (default to false)
+     * @param {Boolean} opts.containsIcuData Contains ICU data. If true then tags in the source following the ICU standard will be parsed and retained. (default to false)
      * @param {module:model/TranslateSegmentBody} opts.body 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/TranslationList} and HTTP response
      */
@@ -303,7 +304,8 @@ export default class TranslateApi {
         'n': opts['n'],
         'rich': opts['rich'],
         'tm_matches': opts['tmMatches'],
-        'project_tags': opts['projectTags']
+        'project_tags': opts['projectTags'],
+        'contains_icu_data': opts['containsIcuData']
       };
       let headerParams = {
       };
@@ -333,6 +335,7 @@ export default class TranslateApi {
      * @param {Boolean} opts.rich Returns rich translation information (e.g., with word alignments). (default to false)
      * @param {Boolean} opts.tmMatches Include translation memory fuzzy matches. (default to true)
      * @param {Boolean} opts.projectTags Project tags. Projects tags in source to target if set to true. (default to false)
+     * @param {Boolean} opts.containsIcuData Contains ICU data. If true then tags in the source following the ICU standard will be parsed and retained. (default to false)
      * @param {module:model/TranslateSegmentBody} opts.body 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/TranslationList}
      */

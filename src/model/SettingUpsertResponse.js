@@ -17,7 +17,7 @@ import Setting from './Setting';
 /**
  * The SettingUpsertResponse model module.
  * @module model/SettingUpsertResponse
- * @version 0.5.0
+ * @version 0.6.3
  */
 class SettingUpsertResponse {
     /**

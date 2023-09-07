@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The NextWorkflowTask model module.
  * @module model/NextWorkflowTask
- * @version 0.5.0
+ * @version 0.6.3
  */
 class NextWorkflowTask {
     /**

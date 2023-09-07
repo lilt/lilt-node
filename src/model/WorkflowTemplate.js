@@ -17,7 +17,7 @@ import WorkflowStageTemplate from './WorkflowStageTemplate';
 /**
  * The WorkflowTemplate model module.
  * @module model/WorkflowTemplate
- * @version 0.5.0
+ * @version 0.6.3
  */
 class WorkflowTemplate {
     /**

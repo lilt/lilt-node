@@ -21,7 +21,7 @@ import SettingUpsertResponse from '../model/SettingUpsertResponse';
 /**
 * Settings service.
 * @module api/SettingsApi
-* @version 0.5.0
+* @version 0.6.3
 */
 export default class SettingsApi {
 

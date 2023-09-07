@@ -18,7 +18,7 @@ import AssignmentError from './AssignmentError';
 /**
  * The AutoAssignmentResponse model module.
  * @module model/AutoAssignmentResponse
- * @version 0.5.0
+ * @version 0.6.3
  */
 class AutoAssignmentResponse {
     /**

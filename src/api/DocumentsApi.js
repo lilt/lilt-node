@@ -30,7 +30,7 @@ import TranslateCompletionTypeError from '../model/TranslateCompletionTypeError'
 /**
 * Documents service.
 * @module api/DocumentsApi
-* @version 0.5.0
+* @version 0.6.3
 */
 export default class DocumentsApi {
 

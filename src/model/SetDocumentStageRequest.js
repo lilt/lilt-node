@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The SetDocumentStageRequest model module.
  * @module model/SetDocumentStageRequest
- * @version 0.5.0
+ * @version 0.6.3
  */
 class SetDocumentStageRequest {
     /**
