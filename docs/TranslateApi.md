@@ -282,6 +282,7 @@ let opts = {
   'rich': false, // Boolean | Returns rich translation information (e.g., with word alignments).
   'tmMatches': true, // Boolean | Include translation memory fuzzy matches.
   'projectTags': false, // Boolean | Project tags. Projects tags in source to target if set to true.
+  'containsIcuData': false, // Boolean | Contains ICU data. If true then tags in the source following the ICU standard will be parsed and retained.
   'body': new LiltNode.TranslateSegmentBody() // TranslateSegmentBody | 
 };
 apiInstance.translateSegment(memoryId, opts).then((data) => {
@@ -305,6 +306,7 @@ Name | Type | Description  | Notes
  **rich** | **Boolean**| Returns rich translation information (e.g., with word alignments). | [optional] [default to false]
  **tmMatches** | **Boolean**| Include translation memory fuzzy matches. | [optional] [default to true]
  **projectTags** | **Boolean**| Project tags. Projects tags in source to target if set to true. | [optional] [default to false]
+ **containsIcuData** | **Boolean**| Contains ICU data. If true then tags in the source following the ICU standard will be parsed and retained. | [optional] [default to false]
  **body** | [**TranslateSegmentBody**](TranslateSegmentBody.md)|  | [optional] 
 
 ### Return type

@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The ConverterConfigUpdateResponse model module.
  * @module model/ConverterConfigUpdateResponse
- * @version 0.5.0
+ * @version 0.6.3
  */
 class ConverterConfigUpdateResponse {
     /**

@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The CreateConverterConfigParameters model module.
  * @module model/CreateConverterConfigParameters
- * @version 0.5.0
+ * @version 0.6.3
  */
 class CreateConverterConfigParameters {
     /**

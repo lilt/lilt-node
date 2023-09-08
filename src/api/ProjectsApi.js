@@ -28,7 +28,7 @@ import ProjectsToUpdate from '../model/ProjectsToUpdate';
 /**
 * Projects service.
 * @module api/ProjectsApi
-* @version 0.5.0
+* @version 0.6.3
 */
 export default class ProjectsApi {
 

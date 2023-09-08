@@ -17,7 +17,7 @@ import ProjectUpdateResponse from './ProjectUpdateResponse';
 /**
  * The ProjectsToUpdate model module.
  * @module model/ProjectsToUpdate
- * @version 0.5.0
+ * @version 0.6.3
  */
 class ProjectsToUpdate {
     /**

@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The TranslateSegmentBody1 model module.
  * @module model/TranslateSegmentBody1
- * @version 0.5.0
+ * @version 0.6.3
  */
 class TranslateSegmentBody1 {
     /**
@@ -72,6 +72,9 @@ class TranslateSegmentBody1 {
             }
             if (data.hasOwnProperty('project_tags')) {
                 obj['project_tags'] = ApiClient.convertToType(data['project_tags'], 'Boolean');
+            }
+            if (data.hasOwnProperty('containsICUData')) {
+                obj['containsICUData'] = ApiClient.convertToType(data['containsICUData'], 'Boolean');
             }
         }
         return obj;
@@ -130,6 +133,13 @@ TranslateSegmentBody1.prototype['tm_matches'] = true;
  * @default false
  */
 TranslateSegmentBody1.prototype['project_tags'] = false;
+
+/**
+ * Contains ICU data. If true then tags in the source following the ICU standard will be parsed and retained.
+ * @member {Boolean} containsICUData
+ * @default false
+ */
+TranslateSegmentBody1.prototype['containsICUData'] = false;
 
 
 

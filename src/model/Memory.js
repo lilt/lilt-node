@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The Memory model module.
  * @module model/Memory
- * @version 0.5.0
+ * @version 0.6.3
  */
 class Memory {
     /**
@@ -74,9 +74,6 @@ class Memory {
             }
             if (data.hasOwnProperty('updated_at')) {
                 obj['updated_at'] = ApiClient.convertToType(data['updated_at'], 'Number');
-            }
-            if (data.hasOwnProperty('num_segments')) {
-                obj['num_segments'] = ApiClient.convertToType(data['num_segments'], 'Number');
             }
             if (data.hasOwnProperty('resources')) {
                 obj['resources'] = ApiClient.convertToType(data['resources'], ['String']);
@@ -141,12 +138,6 @@ Memory.prototype['created_at'] = undefined;
  * @member {Number} updated_at
  */
 Memory.prototype['updated_at'] = undefined;
-
-/**
- * The number of confirmed Segments incorporated into this Memory.
- * @member {Number} num_segments
- */
-Memory.prototype['num_segments'] = undefined;
 
 /**
  * The resource files (translation memories and termbases) associated with this Memory.

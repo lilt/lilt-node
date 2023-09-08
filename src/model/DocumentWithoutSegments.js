@@ -17,7 +17,7 @@ import DocumentWithoutSegmentsStatus from './DocumentWithoutSegmentsStatus';
 /**
  * The DocumentWithoutSegments model module.
  * @module model/DocumentWithoutSegments
- * @version 0.5.0
+ * @version 0.6.3
  */
 class DocumentWithoutSegments {
     /**
@@ -99,6 +99,9 @@ class DocumentWithoutSegments {
             }
             if (data.hasOwnProperty('updated_at')) {
                 obj['updated_at'] = ApiClient.convertToType(data['updated_at'], 'Number');
+            }
+            if (data.hasOwnProperty('is_review_complete')) {
+                obj['is_review_complete'] = ApiClient.convertToType(data['is_review_complete'], 'Boolean');
             }
         }
         return obj;
@@ -207,6 +210,12 @@ DocumentWithoutSegments.prototype['created_at'] = undefined;
  * @member {Number} updated_at
  */
 DocumentWithoutSegments.prototype['updated_at'] = undefined;
+
+/**
+ * Document review status.
+ * @member {Boolean} is_review_complete
+ */
+DocumentWithoutSegments.prototype['is_review_complete'] = undefined;
 
 
 

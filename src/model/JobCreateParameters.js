@@ -17,7 +17,7 @@ import LanguagePair from './LanguagePair';
 /**
  * The JobCreateParameters model module.
  * @module model/JobCreateParameters
- * @version 0.5.0
+ * @version 0.6.3
  */
 class JobCreateParameters {
     /**
@@ -26,10 +26,12 @@ class JobCreateParameters {
      * @param name {String} A name for the Job.
      * @param languagePairs {Array.<module:model/LanguagePair>} Language pairs is a set of one or more pairs that includes source language, source locale(optional), target language, target locale(optional), and memoryId.
      * @param fileIds {Array.<Number>} A list of file ids to upload to job creation.
+     * @param srcLang {String} 2-letter ISO source language code
+     * @param srcLocale {String} 2-letter source language code
      */
-    constructor(name, languagePairs, fileIds) { 
+    constructor(name, languagePairs, fileIds, srcLang, srcLocale) { 
         
-        JobCreateParameters.initialize(this, name, languagePairs, fileIds);
+        JobCreateParameters.initialize(this, name, languagePairs, fileIds, srcLang, srcLocale);
     }
 
     /**
@@ -37,10 +39,12 @@ class JobCreateParameters {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, name, languagePairs, fileIds) { 
+    static initialize(obj, name, languagePairs, fileIds, srcLang, srcLocale) { 
         obj['name'] = name;
         obj['languagePairs'] = languagePairs;
         obj['fileIds'] = fileIds;
+        obj['srcLang'] = srcLang;
+        obj['srcLocale'] = srcLocale;
     }
 
     /**
@@ -65,6 +69,12 @@ class JobCreateParameters {
             }
             if (data.hasOwnProperty('due')) {
                 obj['due'] = ApiClient.convertToType(data['due'], 'String');
+            }
+            if (data.hasOwnProperty('srcLang')) {
+                obj['srcLang'] = ApiClient.convertToType(data['srcLang'], 'String');
+            }
+            if (data.hasOwnProperty('srcLocale')) {
+                obj['srcLocale'] = ApiClient.convertToType(data['srcLocale'], 'String');
             }
             if (data.hasOwnProperty('isPlural')) {
                 obj['isPlural'] = ApiClient.convertToType(data['isPlural'], 'Boolean');
@@ -102,6 +112,18 @@ JobCreateParameters.prototype['fileIds'] = undefined;
  * @member {String} due
  */
 JobCreateParameters.prototype['due'] = undefined;
+
+/**
+ * 2-letter ISO source language code
+ * @member {String} srcLang
+ */
+JobCreateParameters.prototype['srcLang'] = undefined;
+
+/**
+ * 2-letter source language code
+ * @member {String} srcLocale
+ */
+JobCreateParameters.prototype['srcLocale'] = undefined;
 
 /**
  * A boolean value representing if the files have plurals.

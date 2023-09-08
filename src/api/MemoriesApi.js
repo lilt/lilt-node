@@ -21,12 +21,13 @@ import MemoryImportResponse from '../model/MemoryImportResponse';
 import MemoryInsertResponse from '../model/MemoryInsertResponse';
 import MemoryUpdateParameters from '../model/MemoryUpdateParameters';
 import MemoryUpdateResponse from '../model/MemoryUpdateResponse';
+import SDLXLIFFFilter from '../model/SDLXLIFFFilter';
 import TranslationMemoryEntry from '../model/TranslationMemoryEntry';
 
 /**
 * Memories service.
 * @module api/MemoriesApi
-* @version 0.5.0
+* @version 0.6.3
 */
 export default class MemoriesApi {
 
@@ -187,11 +188,12 @@ export default class MemoriesApi {
 
     /**
      * File import for a Memory
-     * Imports common translation memory or termbase file formats to a specific Lilt memory. Currently supported file formats are `*.tmx`, `*.sdltm` and `*.tmq` for TM data; `*.csv` and `*.tbx` for termbase data. Request parameters should be passed as JSON object with the header field `LILT-API`.  Example CURL command to upload a translation memory file named `my_memory.sdltm` in the current working directory: ```   curl -X POST https://lilt.com/2/memories/import?key=API_KEY \\     --header \"LILT-API: {\\\"name\\\": \\\"my_memory.sdltm\\\",\\\"memory_id\\\": 42}\" \\     --header \"Content-Type: application/octet-stream\" \\     --data-binary @my_memory.sdltm ```  
+     * Imports common translation memory or termbase file formats to a specific Lilt memory. Currently supported file formats are `*.tmx`, `*.sdltm`, `*.sdlxliff`(With custom Filters), '*.xliff', and `*.tmq` for TM data; `*.csv` and `*.tbx` for termbase data. Request parameters should be passed as JSON object with the header field `LILT-API`.  Example CURL command to upload a translation memory file named `my_memory.sdltm` in the current working directory: ```   curl -X POST https://lilt.com/2/memories/import?key=API_KEY \\     --header \"LILT-API: {\\\"name\\\": \\\"my_memory.sdltm\\\",\\\"memory_id\\\": 42}\" \\     --header \"Content-Type: application/octet-stream\" \\     --data-binary @my_memory.sdltm ```  Example CURL command to upload a translation memory file named `my_memory.sdlxliff` in the current working directory, with Custom Filters based on SDLXLIFF fields, conf_name which maps to, percentage, and whether we should ignore unlocked segments. ```   curl -X POST https://lilt.com/2/memories/import?key=API_KEY \\     --header \"LILT-API: {\\\"name\\\": \\\"my_memory.sdlxliff\\\",\\\"memory_id\\\": 12,\\\"sdlxliff_filters\\\":[{\\\"conf_name\\\": \\\"Translated\\\", \\\"percentage\\\": 100, \\\"allow_unlocked\\\": false}]\"}\" \\     --header \"Content-Type: application/octet-stream\" \\     --data-binary @my_memory.sdlxliff   
      * @param {Number} memoryId A unique Memory identifier.
      * @param {String} name Name of the TM or termbase file.
      * @param {File} body The file contents to be uploaded. The entire POST body will be treated as the file.
      * @param {Object} opts Optional parameters
+     * @param {Array.<module:model/SDLXLIFFFilter>} opts.sdlxliffFilters Contains Filter information Unique to SDLXLIFF
      * @param {Boolean} opts.hasHeaderRow A flag indicating whether an imported Termbase CSV has a header row or not (the default value is `false`).
      * @param {Boolean} opts.skipDuplicates A flag indicating whether or not to skip the import of segments which already exist in the memory. (the default value is `false`). 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/MemoryImportResponse} and HTTP response
@@ -219,6 +221,7 @@ export default class MemoriesApi {
       let headerParams = {
         'memory_id': memoryId,
         'name': name,
+        'sdlxliff_filters': opts['sdlxliffFilters'],
         'has_header_row': opts['hasHeaderRow'],
         'skip_duplicates': opts['skipDuplicates']
       };
@@ -238,11 +241,12 @@ export default class MemoriesApi {
 
     /**
      * File import for a Memory
-     * Imports common translation memory or termbase file formats to a specific Lilt memory. Currently supported file formats are `*.tmx`, `*.sdltm` and `*.tmq` for TM data; `*.csv` and `*.tbx` for termbase data. Request parameters should be passed as JSON object with the header field `LILT-API`.  Example CURL command to upload a translation memory file named `my_memory.sdltm` in the current working directory: ```   curl -X POST https://lilt.com/2/memories/import?key=API_KEY \\     --header \"LILT-API: {\\\"name\\\": \\\"my_memory.sdltm\\\",\\\"memory_id\\\": 42}\" \\     --header \"Content-Type: application/octet-stream\" \\     --data-binary @my_memory.sdltm ```  
+     * Imports common translation memory or termbase file formats to a specific Lilt memory. Currently supported file formats are `*.tmx`, `*.sdltm`, `*.sdlxliff`(With custom Filters), '*.xliff', and `*.tmq` for TM data; `*.csv` and `*.tbx` for termbase data. Request parameters should be passed as JSON object with the header field `LILT-API`.  Example CURL command to upload a translation memory file named `my_memory.sdltm` in the current working directory: ```   curl -X POST https://lilt.com/2/memories/import?key=API_KEY \\     --header \"LILT-API: {\\\"name\\\": \\\"my_memory.sdltm\\\",\\\"memory_id\\\": 42}\" \\     --header \"Content-Type: application/octet-stream\" \\     --data-binary @my_memory.sdltm ```  Example CURL command to upload a translation memory file named `my_memory.sdlxliff` in the current working directory, with Custom Filters based on SDLXLIFF fields, conf_name which maps to, percentage, and whether we should ignore unlocked segments. ```   curl -X POST https://lilt.com/2/memories/import?key=API_KEY \\     --header \"LILT-API: {\\\"name\\\": \\\"my_memory.sdlxliff\\\",\\\"memory_id\\\": 12,\\\"sdlxliff_filters\\\":[{\\\"conf_name\\\": \\\"Translated\\\", \\\"percentage\\\": 100, \\\"allow_unlocked\\\": false}]\"}\" \\     --header \"Content-Type: application/octet-stream\" \\     --data-binary @my_memory.sdlxliff   
      * @param {Number} memoryId A unique Memory identifier.
      * @param {String} name Name of the TM or termbase file.
      * @param {File} body The file contents to be uploaded. The entire POST body will be treated as the file.
      * @param {Object} opts Optional parameters
+     * @param {Array.<module:model/SDLXLIFFFilter>} opts.sdlxliffFilters Contains Filter information Unique to SDLXLIFF
      * @param {Boolean} opts.hasHeaderRow A flag indicating whether an imported Termbase CSV has a header row or not (the default value is `false`).
      * @param {Boolean} opts.skipDuplicates A flag indicating whether or not to skip the import of segments which already exist in the memory. (the default value is `false`). 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/MemoryImportResponse}

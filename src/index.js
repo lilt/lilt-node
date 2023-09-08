@@ -94,6 +94,7 @@ import QARuleMatchesRuleCategory from './model/QARuleMatchesRuleCategory';
 import QARuleMatchesRuleUrls from './model/QARuleMatchesRuleUrls';
 import ResourceStatus from './model/ResourceStatus';
 import ReviewCompletionTypeError from './model/ReviewCompletionTypeError';
+import SDLXLIFFFilter from './model/SDLXLIFFFilter';
 import Segment from './model/Segment';
 import SegmentCreateParameters from './model/SegmentCreateParameters';
 import SegmentDeleteResponse from './model/SegmentDeleteResponse';
@@ -166,7 +167,7 @@ import WorkflowsApi from './api/WorkflowsApi';
 * </pre>
 * </p>
 * @module index
-* @version 0.5.0
+* @version 0.6.3
 */
 export {
     /**
@@ -660,6 +661,12 @@ export {
      * @property {module:model/ReviewCompletionTypeError}
      */
     ReviewCompletionTypeError,
+
+    /**
+     * The SDLXLIFFFilter model constructor.
+     * @property {module:model/SDLXLIFFFilter}
+     */
+    SDLXLIFFFilter,
 
     /**
      * The Segment model constructor.

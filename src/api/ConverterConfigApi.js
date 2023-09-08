@@ -21,7 +21,7 @@ import Error from '../model/Error';
 /**
 * ConverterConfig service.
 * @module api/ConverterConfigApi
-* @version 0.5.0
+* @version 0.6.3
 */
 export default class ConverterConfigApi {
 

@@ -17,7 +17,7 @@ import MatchBand from './MatchBand';
 /**
  * The DocumentQuote model module.
  * @module model/DocumentQuote
- * @version 0.5.0
+ * @version 0.6.3
  */
 class DocumentQuote {
     /**

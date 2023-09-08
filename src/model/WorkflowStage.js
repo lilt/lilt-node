@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The WorkflowStage model module.
  * @module model/WorkflowStage
- * @version 0.5.0
+ * @version 0.6.3
  */
 class WorkflowStage {
     /**

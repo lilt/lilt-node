@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The WorkflowTask model module.
  * @module model/WorkflowTask
- * @version 0.5.0
+ * @version 0.6.3
  */
 class WorkflowTask {
     /**

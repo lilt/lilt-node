@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The DocumentDoneUpdateParameters2 model module.
  * @module model/DocumentDoneUpdateParameters2
- * @version 0.5.0
+ * @version 0.6.3
  */
 class DocumentDoneUpdateParameters2 {
     /**
