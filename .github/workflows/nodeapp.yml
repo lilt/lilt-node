@@ -2,9 +2,9 @@ name: Mocha Tests
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, openapi-bindings ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, openapi-bindings ]
 
 jobs:
   build:
