@@ -1,5 +1,5 @@
 const fs = require('fs');
-require('dotenv').config()
+require('dotenv').config();
 
 let createDataSourceCases = [
     "noneSrc",
@@ -195,8 +195,8 @@ function expectQueryResponse(expect, queryObject, expected) {
 }(this, function(expect, LiltNode) {
     let defaultClient = LiltNode.ApiClient.instance;
     let ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"];
-    ApiKeyAuth.apiKey = process.env.DEV_API_KEY;
-    defaultClient.basePath = process.env.DEV_HOST;
+    ApiKeyAuth.apiKey = process.env.API_KEY;
+    defaultClient.basePath = process.env.API_HOST;
 
     describe('MemoriesApi', () => {
         describe('createMemory', () => {
@@ -232,8 +232,22 @@ function expectQueryResponse(expect, queryObject, expected) {
                     let tmxSettings = getTmxSettings(tmxFileCase);
                     let fileBody = await fs.readFileSync(tmxSettings["body"])
                     let fileUploadData = await apiInstance.importMemoryFile(memoryId, tmxSettings["name"], fileBody)
+                    let isProcessing = fileUploadData.isProcessing
                     expect(fileUploadData.id).to.equal(memoryId)
-                    expect(fileUploadData.isProcessing).to.equal(1)
+                    expect(isProcessing).to.equal(1)
+
+                    let numMonitored = 0
+                    while (isProcessing == 1) {
+                        await new Promise(resolve => setTimeout(resolve, 5000))
+                        let monitorResponse = await apiInstance.getMemory(memoryId);
+                        isProcessing = monitorResponse.isProcessing
+                        console.log(`Memory status: ${isProcessing} || Request No: ${numMonitored}`)
+                        numMonitored++
+                        if (numMonitored > 20) {
+                            console.log("Memory import exceeding time limit. Failing test")
+                            throw new Error("Memory import exceeding time limit")
+                        }
+                    }
 
                     let query = "chatte"
                     let queryData = await apiInstance.queryMemory(memoryId, query)

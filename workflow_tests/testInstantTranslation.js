@@ -1,10 +1,9 @@
 const exp = require('constants');
 const fs = require('fs');
-require('dotenv').config()
+require('dotenv').config();
 
 let translateFilePath = "./workflow_tests/resources"
-let DEV_MEMORY_ID = 13300
-let STAGING_MEMORY_ID = 23584
+let STAGING_MEMORY_ID = 23583
 let STAGING_TRANSLATION_ID = 17680
 
 function expectUploadResponse(expect, response) {
@@ -37,8 +36,8 @@ function expectTranslateResponse(expect, response, fileId) {
 }(this, function(expect, LiltNode) {
     let defaultClient = LiltNode.ApiClient.instance;
     let ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"];
-    ApiKeyAuth.apiKey = process.env.DEV_API_KEY;
-    defaultClient.basePath = process.env.DEV_HOST;
+    ApiKeyAuth.apiKey = process.env.API_KEY;
+    defaultClient.basePath = process.env.API_HOST;
 
     describe('TranslateApi', () => {
         let fileInstanct = new LiltNode.FilesApi(defaultClient);
@@ -53,7 +52,7 @@ function expectTranslateResponse(expect, response, fileId) {
             let fileId = uploadResponse.id
             console.log(`File uploaded with ID: ${fileId}`)
 
-            let memoryId = DEV_MEMORY_ID
+            let memoryId = STAGING_MEMORY_ID
             let apiResponse = await translateInstance.batchTranslateFile(fileId, memoryId)
             let translationResponse = apiResponse[0]
             let translationId = translationResponse.id
