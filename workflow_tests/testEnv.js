@@ -1,4 +1,4 @@
-require('dotenv').config()
+//require('dotenv').config()
 
 (function(root, factory) {
     if (typeof define === 'function' && define.amd) {
