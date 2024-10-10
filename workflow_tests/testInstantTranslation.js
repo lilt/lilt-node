@@ -1,6 +1,6 @@
 const exp = require('constants');
 const fs = require('fs');
-require('dotenv').config()
+require('dotenv').config();
 
 let translateFilePath = "./workflow_tests/resources"
 let DEV_MEMORY_ID = 13300

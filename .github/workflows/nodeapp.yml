@@ -24,9 +24,6 @@ jobs:
           registry-url: https://npm.pkg.github.com
           scope: '@lilt'
 
-      - name: Check env
-        run: echo $API_HOST
-
       - name: Install dependencies
         run: npm ci
       
