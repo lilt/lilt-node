@@ -3,8 +3,7 @@ const fs = require('fs');
 require('dotenv').config();
 
 let translateFilePath = "./workflow_tests/resources"
-let DEV_MEMORY_ID = 13300
-let STAGING_MEMORY_ID = 23584
+let STAGING_MEMORY_ID = 23583
 let STAGING_TRANSLATION_ID = 17680
 
 function expectUploadResponse(expect, response) {
