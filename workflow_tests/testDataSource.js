@@ -195,8 +195,8 @@ function expectQueryResponse(expect, queryObject, expected) {
 }(this, function(expect, LiltNode) {
     let defaultClient = LiltNode.ApiClient.instance;
     let ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"];
-    ApiKeyAuth.apiKey = process.env.DEV_API_KEY;
-    defaultClient.basePath = process.env.DEV_HOST;
+    ApiKeyAuth.apiKey = process.env.API_KEY;
+    defaultClient.basePath = process.env.API_HOST;
 
     describe('MemoriesApi', () => {
         describe('createMemory', () => {
