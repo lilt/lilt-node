@@ -1,10 +1,10 @@
 # LiltNode.LanguagesApi
 
-All URIs are relative to *https://lilt.com/2*
+All URIs are relative to *https://api.lilt.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getLanguages**](LanguagesApi.md#getLanguages) | **GET** /languages | Retrieve supported languages
+[**getLanguages**](LanguagesApi.md#getLanguages) | **GET** /v2/languages | Retrieve supported languages
 
 
 

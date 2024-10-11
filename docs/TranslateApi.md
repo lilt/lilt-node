@@ -1,25 +1,23 @@
 # LiltNode.TranslateApi
 
-All URIs are relative to *https://lilt.com/2*
+All URIs are relative to *https://api.lilt.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**batchTranslateFile**](TranslateApi.md#batchTranslateFile) | **POST** /translate/file | Translate a File
-[**downloadFile**](TranslateApi.md#downloadFile) | **GET** /translate/files | Download translated file
-[**monitorFileTranslation**](TranslateApi.md#monitorFileTranslation) | **GET** /translate/file | Monitor file translation
-[**registerSegment**](TranslateApi.md#registerSegment) | **GET** /translate/register | Register a segment
-[**translateSegment**](TranslateApi.md#translateSegment) | **GET** /translate | Translate a segment
-[**translateSegmentPost**](TranslateApi.md#translateSegmentPost) | **POST** /translate | Translate a segment
+[**batchTranslateFile**](TranslateApi.md#batchTranslateFile) | **POST** /v2/translate/file | Translate a File
+[**downloadFile**](TranslateApi.md#downloadFile) | **GET** /v2/translate/files | Download translated file
+[**monitorFileTranslation**](TranslateApi.md#monitorFileTranslation) | **GET** /v2/translate/file | Monitor file translation
+[**translateSegmentPost**](TranslateApi.md#translateSegmentPost) | **POST** /v2/translate | Translate a segment
 
 
 
 ## batchTranslateFile
 
-> TranslationInfo batchTranslateFile(fileId, memoryId, opts)
+> [TranslationInfo] batchTranslateFile(fileId, memoryId, opts)
 
 Translate a File
 
-Start machine translation of one or more Files that have previously been uploaded.  The response will include an &#x60;id&#x60; parameter that can be used to monitor and download the translations in subsequent calls.  Example CURL: &#x60;&#x60;&#x60; curl --X --request POST &#39;https://lilt.com/2/translate/file?key&#x3D;API_KEY&amp;fileId&#x3D;583&amp;memoryId&#x3D;2495&amp;configId&#x3D;123&amp;withTM&#x3D;true&#39; &#x60;&#x60;&#x60;  
+Start machine translation of one or more Files that have previously been uploaded.  The response will include an &#x60;id&#x60; parameter that can be used to monitor and download the translations in subsequent calls.  Example CURL: &#x60;&#x60;&#x60;bash curl -X POST &#39;https://api.lilt.com/v2/translate/file?key&#x3D;API_KEY&amp;fileId&#x3D;583&amp;memoryId&#x3D;2495&amp;configId&#x3D;123&amp;withTM&#x3D;true&#39; &#x60;&#x60;&#x60;  
 
 ### Example
 
@@ -63,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TranslationInfo**](TranslationInfo.md)
+[**[TranslationInfo]**](TranslationInfo.md)
 
 ### Authorization
 
@@ -81,7 +79,7 @@ Name | Type | Description  | Notes
 
 Download translated file
 
-Download a translated File.  Example CURL: &#x60;&#x60;&#x60; curl --X --request GET &#39;https://lilt.com/2/translate/files?key&#x3D;API_KEY&amp;id&#x3D;1&#39; &#x60;&#x60;&#x60;  
+Download a translated File.  Example CURL: &#x60;&#x60;&#x60;bash curl -X GET &#39;https://api.lilt.com/v2/translate/files?key&#x3D;API_KEY&amp;id&#x3D;1&#39; &#x60;&#x60;&#x60;  
 
 ### Example
 
@@ -131,11 +129,11 @@ Name | Type | Description  | Notes
 
 ## monitorFileTranslation
 
-> TranslationInfo monitorFileTranslation(opts)
+> [TranslationInfo] monitorFileTranslation(opts)
 
 Monitor file translation
 
-Get information about the one or more Files that are being translated with machine translation. Query filters are optional but at least one must be provided.  Example CURL: &#x60;&#x60;&#x60; curl --X --request GET &#39;https://lilt.com/2/translate/file?key&#x3D;API_KEY&amp;translationIds&#x3D;1,2&amp;fromTime&#x3D;1607966744&amp;toTime&#x3D;1707966744&amp;status&#x3D;InProgress&#39; &#x60;&#x60;&#x60;  
+Get information about the one or more Files that are being translated with machine translation. Query filters are optional but at least one must be provided.  Example CURL: &#x60;&#x60;&#x60;bash curl -X GET &#39;https://api.lilt.com/v2/translate/file?key&#x3D;API_KEY&amp;translationIds&#x3D;1,2&amp;fromTime&#x3D;1607966744&amp;toTime&#x3D;1707966744&amp;status&#x3D;InProgress&#39; &#x60;&#x60;&#x60;  
 
 ### Example
 
@@ -179,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TranslationInfo**](TranslationInfo.md)
+[**[TranslationInfo]**](TranslationInfo.md)
 
 ### Authorization
 
@@ -188,136 +186,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## registerSegment
-
-> TranslateRegisterResponse registerSegment(source, srclang, trglang)
-
-Register a segment
-
-Register a source string for interactive translation. The &#x60;source_hash&#x60; value that is returned by this request is required by the &#x60;prefix&#x60; parameter for the translation endpoint. The maximum source length is 5,000 characters. Usage charges apply to this endpoint for production REST API keys.  
-
-### Example
-
-```javascript
-import LiltNode from 'lilt-node';
-let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
-// Configure HTTP basic authorization: BasicAuth
-let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
-
-let apiInstance = new LiltNode.TranslateApi();
-let source = "source_example"; // String | A source string to be registered.
-let srclang = "srclang_example"; // String | An ISO 639-1 language code.
-let trglang = "trglang_example"; // String | An ISO 639-1 language code.
-apiInstance.registerSegment(source, srclang, trglang).then((data) => {
-  console.log('API called successfully. Returned data: ' + data);
-}, (error) => {
-  console.error(error);
-});
-
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **source** | **String**| A source string to be registered. | 
- **srclang** | **String**| An ISO 639-1 language code. | 
- **trglang** | **String**| An ISO 639-1 language code. | 
-
-### Return type
-
-[**TranslateRegisterResponse**](TranslateRegisterResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## translateSegment
-
-> TranslationList translateSegment(memoryId, opts)
-
-Translate a segment
-
-Translate a source string.  Setting the &#x60;rich&#x60; parameter to &#x60;true&#x60; will change the response format to include additional information about each translation including a model score, word alignments,  and formatting information. The rich format can be seen in the example response on this page.  By default, this endpoint also returns translation memory (TM) fuzzy matches, along with associated scores. Fuzzy matches always appear ahead of machine translation output in the response.  The &#x60;source&#x60; parameter may be supplied in the query or in the request body.  The maximum source length is 5,000 characters.  Usage charges apply to this endpoint for production REST API keys.  
-
-### Example
-
-```javascript
-import LiltNode from 'lilt-node';
-let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
-// Configure HTTP basic authorization: BasicAuth
-let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
-
-let apiInstance = new LiltNode.TranslateApi();
-let memoryId = 56; // Number | A unique Memory identifier.
-let opts = {
-  'source': "source_example", // String | The source text to be translated.
-  'sourceHash': 56, // Number | A source hash code.
-  'prefix': "prefix_example", // String | A target prefix.
-  'n': 1, // Number | Return top n translations (deprecated).
-  'rich': false, // Boolean | Returns rich translation information (e.g., with word alignments).
-  'tmMatches': true, // Boolean | Include translation memory fuzzy matches.
-  'projectTags': false, // Boolean | Project tags. Projects tags in source to target if set to true.
-  'body': new LiltNode.TranslateSegmentBody() // TranslateSegmentBody | 
-};
-apiInstance.translateSegment(memoryId, opts).then((data) => {
-  console.log('API called successfully. Returned data: ' + data);
-}, (error) => {
-  console.error(error);
-});
-
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **memoryId** | **Number**| A unique Memory identifier. | 
- **source** | **String**| The source text to be translated. | [optional] 
- **sourceHash** | **Number**| A source hash code. | [optional] 
- **prefix** | **String**| A target prefix. | [optional] 
- **n** | **Number**| Return top n translations (deprecated). | [optional] [default to 1]
- **rich** | **Boolean**| Returns rich translation information (e.g., with word alignments). | [optional] [default to false]
- **tmMatches** | **Boolean**| Include translation memory fuzzy matches. | [optional] [default to true]
- **projectTags** | **Boolean**| Project tags. Projects tags in source to target if set to true. | [optional] [default to false]
- **body** | [**TranslateSegmentBody**](TranslateSegmentBody.md)|  | [optional] 
-
-### Return type
-
-[**TranslationList**](TranslationList.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 
@@ -346,7 +214,7 @@ BasicAuth.password = 'YOUR PASSWORD';
 
 let apiInstance = new LiltNode.TranslateApi();
 let opts = {
-  'body': new LiltNode.TranslateSegmentBody1() // TranslateSegmentBody1 | 
+  'body': new LiltNode.TranslateSegmentBody() // TranslateSegmentBody | 
 };
 apiInstance.translateSegmentPost(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -361,7 +229,7 @@ apiInstance.translateSegmentPost(opts).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**TranslateSegmentBody1**](TranslateSegmentBody1.md)|  | [optional] 
+ **body** | [**TranslateSegmentBody**](TranslateSegmentBody.md)|  | [optional] 
 
 ### Return type
 
