@@ -4,8 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**file** | **File** |  | [optional] 
-**detectedLang** | **String** | Language associated with the file. | [optional] 
-**detectedLangConfidence** | **Number** | Confidence score for the language associated with the file. | [optional] 
+**id** | **Number** | The ID of the deleted Lilt Create content. | [optional] 
 
 

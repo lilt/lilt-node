@@ -19,7 +19,9 @@ Name | Type | Description | Notes
 **status** | [**DocumentWithoutSegmentsStatus**](DocumentWithoutSegmentsStatus.md) |  | [optional] 
 **translatorEmail** | **String** | The email of the assigned translator. | [optional] 
 **reviewerEmail** | **String** | The email of the assigned reviewer. | [optional] 
+**customerReviewerEmail** | **String** | The email of the assigned customer reviewer. Only present if the project was request by id. | [optional] 
 **createdAt** | **Number** | Time at which the object was created. Measured in seconds since the Unix epoch. | [optional] 
 **updatedAt** | **Number** | Time at which the object was created. Measured in seconds since the Unix epoch. | [optional] 
+**isReviewComplete** | **Boolean** | Document review status. | [optional] 
 
 
