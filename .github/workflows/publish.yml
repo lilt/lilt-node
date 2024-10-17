@@ -25,7 +25,7 @@ jobs:
     name: >-
       Upload to Github Release
     needs:
-    - build
+    - build-and-publish
     runs-on: ubuntu-latest
 
     permissions:
