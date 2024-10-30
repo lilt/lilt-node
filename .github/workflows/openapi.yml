@@ -25,7 +25,7 @@ jobs:
             -i https://developers.lilt.com/redocusaurus/plugin-redoc-0.yaml
             -g javascript
             -p projectName=lilt-node
-            -p projectVersion=${{ steps.latest.outputs.tag }}
+            -p packageVersion=${{ github.event.client_payload.version }}
             -p usePromises=true
             --git-user-id lilt
             --git-repo-id lilt-node
