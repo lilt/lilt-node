@@ -1,19 +1,18 @@
 # LiltNode.MemoriesApi
 
-All URIs are relative to *https://lilt.com/2*
+All URIs are relative to *https://api.lilt.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createMemory**](MemoriesApi.md#createMemory) | **POST** /memories | Create a Memory
-[**deleteMemory**](MemoriesApi.md#deleteMemory) | **DELETE** /memories | Delete a Memory
-[**getMemory**](MemoriesApi.md#getMemory) | **GET** /memories | Retrieve a Memory
-[**importMemoryFile**](MemoriesApi.md#importMemoryFile) | **POST** /memories/import | File import for a Memory
-[**queryMemory**](MemoriesApi.md#queryMemory) | **GET** /memories/query | Query a Memory
-[**syncDeleteMemory**](MemoriesApi.md#syncDeleteMemory) | **DELETE** /memories/sync | Delete-sync for a Memory
-[**syncDownMemory**](MemoriesApi.md#syncDownMemory) | **GET** /memories/sync | Get-sync for a Memory
-[**syncInsertMemory**](MemoriesApi.md#syncInsertMemory) | **POST** /memories/sync | Insert-sync for a Memory
-[**syncUpdateMemory**](MemoriesApi.md#syncUpdateMemory) | **PUT** /memories/sync | Update-sync for a Memory
-[**updateMemory**](MemoriesApi.md#updateMemory) | **PUT** /memories | Update the name of a Memory
+[**createMemory**](MemoriesApi.md#createMemory) | **POST** /v2/memories | Create a Memory
+[**deleteMemory**](MemoriesApi.md#deleteMemory) | **DELETE** /v2/memories | Delete a Memory
+[**deleteSegmentFromMemory**](MemoriesApi.md#deleteSegmentFromMemory) | **DELETE** /v2/memories/segment | Delete a segment from a memory.
+[**downloadTermbase**](MemoriesApi.md#downloadTermbase) | **GET** /v2/memories/termbase/download | Termbase download for a Memory
+[**exportTermbase**](MemoriesApi.md#exportTermbase) | **POST** /v2/memories/termbase/export | Termbase export for a Memory
+[**getMemory**](MemoriesApi.md#getMemory) | **GET** /v2/memories | Retrieve a Memory
+[**importMemoryFile**](MemoriesApi.md#importMemoryFile) | **POST** /v2/memories/import | File import for a Memory
+[**queryMemory**](MemoriesApi.md#queryMemory) | **GET** /v2/memories/query | Query a Memory
+[**updateMemory**](MemoriesApi.md#updateMemory) | **PUT** /v2/memories | Update the name of a Memory
 
 
 
@@ -125,6 +124,170 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## deleteSegmentFromMemory
+
+> DeleteSegmentFromMemoryResponse deleteSegmentFromMemory(id, segmentId)
+
+Delete a segment from a memory.
+
+Delete a segment from a memory.  &#x60;&#x60;&#x60;bash   curl -X DELETE https://api.lilt.com/v2/memories/segment?key&#x3D;API_KEY&amp;id&#x3D;ID&amp;segment_id&#x3D;$SEGMENT_ID &#x60;&#x60;&#x60; 
+
+### Example
+
+```javascript
+import LiltNode from 'lilt-node';
+let defaultClient = LiltNode.ApiClient.instance;
+// Configure API key authorization: ApiKeyAuth
+let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix = 'Token';
+// Configure HTTP basic authorization: BasicAuth
+let BasicAuth = defaultClient.authentications['BasicAuth'];
+BasicAuth.username = 'YOUR USERNAME';
+BasicAuth.password = 'YOUR PASSWORD';
+
+let apiInstance = new LiltNode.MemoriesApi();
+let id = 56; // Number | A unique Memory identifier.
+let segmentId = 56; // Number | A unique Segment identifier.
+apiInstance.deleteSegmentFromMemory(id, segmentId).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Number**| A unique Memory identifier. | 
+ **segmentId** | **Number**| A unique Segment identifier. | 
+
+### Return type
+
+[**DeleteSegmentFromMemoryResponse**](DeleteSegmentFromMemoryResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## downloadTermbase
+
+> Blob downloadTermbase(id)
+
+Termbase download for a Memory
+
+Downloads the termbase export for the given memory as a CSV file.  Ensure you first call the &#x60;/2/memories/termbase/export&#x60; endpoint to start the export process before you try to download it.  &#x60;&#x60;&#x60;bash   curl -X GET https://api.lilt.com/v2/memories/termbase/download?key&#x3D;API_KEY&amp;id&#x3D;ID &#x60;&#x60;&#x60; 
+
+### Example
+
+```javascript
+import LiltNode from 'lilt-node';
+let defaultClient = LiltNode.ApiClient.instance;
+// Configure API key authorization: ApiKeyAuth
+let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix = 'Token';
+// Configure HTTP basic authorization: BasicAuth
+let BasicAuth = defaultClient.authentications['BasicAuth'];
+BasicAuth.username = 'YOUR USERNAME';
+BasicAuth.password = 'YOUR PASSWORD';
+
+let apiInstance = new LiltNode.MemoriesApi();
+let id = 56; // Number | A unique Memory identifier.
+apiInstance.downloadTermbase(id).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Number**| A unique Memory identifier. | 
+
+### Return type
+
+**Blob**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## exportTermbase
+
+> TermbaseExportResponse exportTermbase(id)
+
+Termbase export for a Memory
+
+Exports the termbase entries for the given memory into a CSV file.  Calling this endpoint will begin the export process in the background. Check that the processing is complete by polling the &#x60;GET /2/memories&#x60; endpoint. When the &#x60;is_processing&#x60; value is 0 then call the &#x60;POST /2/memories/termbase/download&#x60; endpoint.  &#x60;&#x60;&#x60;bash   curl -X POST https://api.lilt.com/v2/memories/termbase/export?key&#x3D;API_KEY&amp;id&#x3D;ID &#x60;&#x60;&#x60; 
+
+### Example
+
+```javascript
+import LiltNode from 'lilt-node';
+let defaultClient = LiltNode.ApiClient.instance;
+// Configure API key authorization: ApiKeyAuth
+let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+ApiKeyAuth.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.apiKeyPrefix = 'Token';
+// Configure HTTP basic authorization: BasicAuth
+let BasicAuth = defaultClient.authentications['BasicAuth'];
+BasicAuth.username = 'YOUR USERNAME';
+BasicAuth.password = 'YOUR PASSWORD';
+
+let apiInstance = new LiltNode.MemoriesApi();
+let id = 56; // Number | A unique Memory identifier.
+apiInstance.exportTermbase(id).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Number**| A unique Memory identifier. | 
+
+### Return type
+
+[**TermbaseExportResponse**](TermbaseExportResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## getMemory
 
 > [Memory] getMemory(opts)
@@ -187,7 +350,7 @@ Name | Type | Description  | Notes
 
 File import for a Memory
 
-Imports common translation memory or termbase file formats to a specific Lilt memory. Currently supported file formats are &#x60;*.tmx&#x60;, &#x60;*.sdltm&#x60; and &#x60;*.tmq&#x60; for TM data; &#x60;*.csv&#x60; and &#x60;*.tbx&#x60; for termbase data. Request parameters should be passed as JSON object with the header field &#x60;LILT-API&#x60;.  Example CURL command to upload a translation memory file named &#x60;my_memory.sdltm&#x60; in the current working directory: &#x60;&#x60;&#x60;   curl -X POST https://lilt.com/2/memories/import?key&#x3D;API_KEY \\     --header \&quot;LILT-API: {\\\&quot;name\\\&quot;: \\\&quot;my_memory.sdltm\\\&quot;,\\\&quot;memory_id\\\&quot;: 42}\&quot; \\     --header \&quot;Content-Type: application/octet-stream\&quot; \\     --data-binary @my_memory.sdltm &#x60;&#x60;&#x60;  
+Imports common translation memory or termbase file formats to a specific Lilt memory. Currently supported file formats are &#x60;*.tmx&#x60;, &#x60;*.sdltm&#x60;, &#x60;*.sdlxliff&#x60;(With custom Filters), &#39;*.xliff&#39;, and &#x60;*.tmq&#x60; for TM data; &#x60;*.csv&#x60; and &#x60;*.tbx&#x60; for termbase data. Request parameters should be passed as JSON object with the header field &#x60;LILT-API&#x60;.  Example CURL command to upload a translation memory file named &#x60;my_memory.sdltm&#x60; in the current working directory: &#x60;&#x60;&#x60;bash   curl -X POST https://api.lilt.com/v2/memories/import?key&#x3D;API_KEY \\     --header \&quot;LILT-API: {\\\&quot;name\\\&quot;: \\\&quot;my_memory.sdltm\\\&quot;,\\\&quot;memory_id\\\&quot;: 42}\&quot; \\     --header \&quot;Content-Type: application/octet-stream\&quot; \\     --data-binary @my_memory.sdltm &#x60;&#x60;&#x60;  Example CURL command to upload a translation memory file named &#x60;my_memory.sdlxliff&#x60; in the current working directory, with Custom Filters based on SDLXLIFF fields, conf_name which maps to, percentage, and whether we should ignore unlocked segments. &#x60;&#x60;&#x60;bash   curl -X POST https://api.lilt.com/v2/memories/import?key&#x3D;API_KEY \\     --header \&quot;LILT-API: {\\\&quot;name\\\&quot;: \\\&quot;my_memory.sdlxliff\\\&quot;,\\\&quot;memory_id\\\&quot;: 12,\\\&quot;sdlxliff_filters\\\&quot;:[{\\\&quot;conf_name\\\&quot;: \\\&quot;Translated\\\&quot;, \\\&quot;percentage\\\&quot;: 100, \\\&quot;allow_unlocked\\\&quot;: false}]\&quot;}\&quot; \\     --header \&quot;Content-Type: application/octet-stream\&quot; \\     --data-binary @my_memory.sdlxliff &#x60;&#x60;&#x60;  
 
 ### Example
 
@@ -209,6 +372,7 @@ let memoryId = 56; // Number | A unique Memory identifier.
 let name = "name_example"; // String | Name of the TM or termbase file.
 let body = "/path/to/file"; // File | The file contents to be uploaded. The entire POST body will be treated as the file.
 let opts = {
+  'sdlxliffFilters': [new LiltNode.SDLXLIFFFilter()], // [SDLXLIFFFilter] | Contains Filter information Unique to SDLXLIFF
   'hasHeaderRow': true, // Boolean | A flag indicating whether an imported Termbase CSV has a header row or not (the default value is `false`).
   'skipDuplicates': true // Boolean | A flag indicating whether or not to skip the import of segments which already exist in the memory. (the default value is `false`). 
 };
@@ -228,6 +392,7 @@ Name | Type | Description  | Notes
  **memoryId** | **Number**| A unique Memory identifier. | 
  **name** | **String**| Name of the TM or termbase file. | 
  **body** | **File**| The file contents to be uploaded. The entire POST body will be treated as the file. | 
+ **sdlxliffFilters** | [**[SDLXLIFFFilter]**](SDLXLIFFFilter.md)| Contains Filter information Unique to SDLXLIFF | [optional] 
  **hasHeaderRow** | **Boolean**| A flag indicating whether an imported Termbase CSV has a header row or not (the default value is &#x60;false&#x60;). | [optional] 
  **skipDuplicates** | **Boolean**| A flag indicating whether or not to skip the import of segments which already exist in the memory. (the default value is &#x60;false&#x60;).  | [optional] 
 
@@ -302,254 +467,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## syncDeleteMemory
-
-> MemoryInsertResponse syncDeleteMemory(id, opts)
-
-Delete-sync for a Memory
-
-Deletes segments in the Memory matching the &#x60;from_time&#x60;, &#x60;to_time&#x60; and &#x60;when&#x60; parameters.  Example CURL command: &#x60;&#x60;&#x60;   curl -X DELETE https://lilt.com/2/memories/sync?key&#x3D;API_KEY&amp;id&#x3D;42&amp;from_time&#x3D;1491048000&amp;to_time&#x3D;1491049800&amp;when&#x3D;created &#x60;&#x60;&#x60;  
-
-### Example
-
-```javascript
-import LiltNode from 'lilt-node';
-let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
-// Configure HTTP basic authorization: BasicAuth
-let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
-
-let apiInstance = new LiltNode.MemoriesApi();
-let id = 56; // Number | A unique Memory identifier.
-let opts = {
-  'fromTime': 56, // Number | Unix time stamp (epoch, in seconds) of the start of the Memory section.
-  'toTime': 56, // Number | Unix time stamp (epoch, in seconds) of the end of the Memory section.
-  'when': "when_example" // String | The date field on which retrieved segments match from/to time stamps: `created`, `updated`, `deleted`.
-};
-apiInstance.syncDeleteMemory(id, opts).then((data) => {
-  console.log('API called successfully. Returned data: ' + data);
-}, (error) => {
-  console.error(error);
-});
-
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Number**| A unique Memory identifier. | 
- **fromTime** | **Number**| Unix time stamp (epoch, in seconds) of the start of the Memory section. | [optional] 
- **toTime** | **Number**| Unix time stamp (epoch, in seconds) of the end of the Memory section. | [optional] 
- **when** | **String**| The date field on which retrieved segments match from/to time stamps: &#x60;created&#x60;, &#x60;updated&#x60;, &#x60;deleted&#x60;. | [optional] 
-
-### Return type
-
-[**MemoryInsertResponse**](MemoryInsertResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## syncDownMemory
-
-> Blob syncDownMemory(id, opts)
-
-Get-sync for a Memory
-
-Get all or part of a memory in TMX 1.4b format. If the &#x60;from_time&#x60; and/or &#x60;to_time&#x60; are omitted, then all segments are returned. The parameter &#x60;when&#x60; specifies on which date field &#x60;from_time&#x60; and &#x60;to_time&#x60; are matched. Possible values are &#x60;created&#x60; (when the segment was originally created in the memory), &#x60;updated&#x60; (when the segment was lastly updated), and &#x60;deleted&#x60; (when the segment was deleted).  Example CURL command: &#x60;&#x60;&#x60;   curl -X GET https://lilt.com/2/memories/sync?key&#x3D;API_KEY&amp;id&#x3D;42 -o from_lilt.tmx &#x60;&#x60;&#x60;  
-
-### Example
-
-```javascript
-import LiltNode from 'lilt-node';
-let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
-// Configure HTTP basic authorization: BasicAuth
-let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
-
-let apiInstance = new LiltNode.MemoriesApi();
-let id = 56; // Number | A unique Memory identifier.
-let opts = {
-  'fromTime': 56, // Number | Unix time stamp (epoch, in seconds) of the start of the Memory section.
-  'toTime': 56, // Number | Unix time stamp (epoch, in seconds) of the end of the Memory section.
-  'when': "when_example" // String | The date field on which retrieved segments match from/to time stamps: `created`, `updated`, `deleted`. If this parameter is omitted, then the whole Memory is returned.
-};
-apiInstance.syncDownMemory(id, opts).then((data) => {
-  console.log('API called successfully. Returned data: ' + data);
-}, (error) => {
-  console.error(error);
-});
-
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Number**| A unique Memory identifier. | 
- **fromTime** | **Number**| Unix time stamp (epoch, in seconds) of the start of the Memory section. | [optional] 
- **toTime** | **Number**| Unix time stamp (epoch, in seconds) of the end of the Memory section. | [optional] 
- **when** | **String**| The date field on which retrieved segments match from/to time stamps: &#x60;created&#x60;, &#x60;updated&#x60;, &#x60;deleted&#x60;. If this parameter is omitted, then the whole Memory is returned. | [optional] 
-
-### Return type
-
-**Blob**
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/x-tmx
-
-
-## syncInsertMemory
-
-> MemoryInsertResponse syncInsertMemory(id, body, opts)
-
-Insert-sync for a Memory
-
-Inserts a TM in TMX 1.4b format into the Memory. Request parameters should be passed as JSON object with the header field &#x60;LILT-API&#x60;.  Example CURL command: &#x60;&#x60;&#x60;   curl -X POST https://lilt.com/2/memories/sync?key&#x3D;API_KEY \\     --header \&quot;LILT-API: {\\\&quot;name\\\&quot;: \\\&quot;my_memory.tmx\\\&quot;,\\\&quot;id\\\&quot;: 42}\&quot; \\     --header \&quot;Content-Type: application/octet-stream\&quot; \\     --data-binary @my_memory.tmx &#x60;&#x60;&#x60;  
-
-### Example
-
-```javascript
-import LiltNode from 'lilt-node';
-let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
-// Configure HTTP basic authorization: BasicAuth
-let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
-
-let apiInstance = new LiltNode.MemoriesApi();
-let id = 56; // Number | A unique Memory identifier.
-let body = "body_example"; // String | The file contents to be uploaded. The entire POST body will be treated as the file.
-let opts = {
-  'name': "name_example" // String | Name of the TMX file.
-};
-apiInstance.syncInsertMemory(id, body, opts).then((data) => {
-  console.log('API called successfully. Returned data: ' + data);
-}, (error) => {
-  console.error(error);
-});
-
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Number**| A unique Memory identifier. | 
- **body** | **String**| The file contents to be uploaded. The entire POST body will be treated as the file. | 
- **name** | **String**| Name of the TMX file. | [optional] 
-
-### Return type
-
-[**MemoryInsertResponse**](MemoryInsertResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/octet-stream
-- **Accept**: application/json
-
-
-## syncUpdateMemory
-
-> MemoryUpdateResponse syncUpdateMemory(id, body, opts)
-
-Update-sync for a Memory
-
-Updates the Memory with given TMX file. Request parameters should be passed as JSON object with the header field &#x60;LILT-API&#x60;. The number of segments returned by the &#x60;from_time&#x60;, &#x60;to_time&#x60;, &#x60;when&#x60; parameters and the number of segments in the TMX file need to be identical.  Example CURL command: &#x60;&#x60;&#x60;   curl -X PUT https://lilt.com/2/memories/sync?key&#x3D;API_KEY \\     --header \&quot;LILT-API: {\\\&quot;name\\\&quot;: \\\&quot;my_memory.tmx\\\&quot;, \\\&quot;id\\\&quot;: 42, \\\&quot;from_time\\\&quot;: 1491048000, \\\&quot;to_time\\\&quot;: 1491049800, \&quot;when\&quot;: \&quot;Updated\&quot;}\&quot; \\     --header \&quot;Content-Type: application/octet-stream\&quot; \\     --data-binary @my_memory.tmx &#x60;&#x60;&#x60;  
-
-### Example
-
-```javascript
-import LiltNode from 'lilt-node';
-let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
-// Configure HTTP basic authorization: BasicAuth
-let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
-
-let apiInstance = new LiltNode.MemoriesApi();
-let id = 56; // Number | A unique Memory identifier.
-let body = "body_example"; // String | The file contents to be uploaded. The entire PUT body will be treated as the file.
-let opts = {
-  'fromTime': 56, // Number | Unix time stamp (epoch, in seconds) of the start of the Memory section.
-  'toTime': 56, // Number | Unix time stamp (epoch, in seconds) of the end of the Memory section.
-  'when': "when_example" // String | The date field on which retrieved segments match from/to time stamps: `created`, `updated`, `deleted`.
-};
-apiInstance.syncUpdateMemory(id, body, opts).then((data) => {
-  console.log('API called successfully. Returned data: ' + data);
-}, (error) => {
-  console.error(error);
-});
-
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Number**| A unique Memory identifier. | 
- **body** | **String**| The file contents to be uploaded. The entire PUT body will be treated as the file. | 
- **fromTime** | **Number**| Unix time stamp (epoch, in seconds) of the start of the Memory section. | [optional] 
- **toTime** | **Number**| Unix time stamp (epoch, in seconds) of the end of the Memory section. | [optional] 
- **when** | **String**| The date field on which retrieved segments match from/to time stamps: &#x60;created&#x60;, &#x60;updated&#x60;, &#x60;deleted&#x60;. | [optional] 
-
-### Return type
-
-[**MemoryUpdateResponse**](MemoryUpdateResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 

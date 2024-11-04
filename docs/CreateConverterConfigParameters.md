@@ -4,8 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**configJson** | **String** | The configuration json blob, string escaped. | 
-**configName** | **String** | The user defined name of your configuration. | 
-**configDescription** | **String** | A description for the configuration. | 
+**signedAgreement** | **Boolean** | Signifies that the Organization has signed the agreement or not. | 
 
 
