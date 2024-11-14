@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The LiltCreateContentTemplateParams model module.
  * @module model/LiltCreateContentTemplateParams
- * @version 0.6.3
+ * @version v3.0
  */
 class LiltCreateContentTemplateParams {
     /**

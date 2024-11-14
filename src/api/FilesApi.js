@@ -21,7 +21,7 @@ import SourceFile from '../model/SourceFile';
 /**
 * Files service.
 * @module api/FilesApi
-* @version 0.6.3
+* @version v3.0
 */
 export default class FilesApi {
 
@@ -68,7 +68,7 @@ export default class FilesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
-      let accepts = [];
+      let accepts = ['application/octet-stream', 'text/plain', 'application/json'];
       let returnType = null;
       return this.apiClient.callApi(
         '/v2/files/labels', 'POST',
@@ -117,7 +117,7 @@ export default class FilesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = FileDeleteResponse;
       return this.apiClient.callApi(
         '/v2/files', 'DELETE',
@@ -165,7 +165,7 @@ export default class FilesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/octet-stream'];
+      let accepts = ['application/octet-stream', 'text/plain', 'application/json'];
       let returnType = 'Blob';
       return this.apiClient.callApi(
         '/v2/files/download', 'GET',
@@ -213,7 +213,7 @@ export default class FilesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = [SourceFile];
       return this.apiClient.callApi(
         '/v2/files', 'GET',
@@ -269,7 +269,7 @@ export default class FilesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = [];
+      let accepts = ['application/octet-stream', 'text/plain', 'application/json'];
       let returnType = null;
       return this.apiClient.callApi(
         '/v2/files/labels', 'DELETE',
@@ -335,7 +335,7 @@ export default class FilesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/octet-stream'];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = SourceFile;
       return this.apiClient.callApi(
         '/v2/files', 'POST',

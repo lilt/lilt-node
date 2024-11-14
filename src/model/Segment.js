@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The Segment model module.
  * @module model/Segment
- * @version 0.6.3
+ * @version v3.0
  */
 class Segment {
     /**

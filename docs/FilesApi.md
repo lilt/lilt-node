@@ -66,7 +66,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/octet-stream, text/plain, application/json
 
 
 ## deleteFile
@@ -120,7 +120,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## download
@@ -174,7 +174,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream
+- **Accept**: application/octet-stream, text/plain, application/json
 
 
 ## getFiles
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## removeLabel
@@ -288,7 +288,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/octet-stream, text/plain, application/json
 
 
 ## uploadFile
@@ -356,5 +356,5 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/octet-stream
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 

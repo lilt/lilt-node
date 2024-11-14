@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream
+- **Accept**: application/octet-stream, text/plain, 
 
 
 ## uploadDocument
@@ -134,5 +134,5 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/octet-stream
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 

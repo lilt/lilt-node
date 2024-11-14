@@ -21,7 +21,7 @@ import TranslationList from '../model/TranslationList';
 /**
 * Translate service.
 * @module api/TranslateApi
-* @version 0.6.3
+* @version v3.0
 */
 export default class TranslateApi {
 
@@ -75,7 +75,7 @@ export default class TranslateApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = [TranslationInfo];
       return this.apiClient.callApi(
         '/v2/translate/file', 'POST',
@@ -127,7 +127,7 @@ export default class TranslateApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/octet-stream'];
+      let accepts = ['application/octet-stream', 'text/plain', 'application/json'];
       let returnType = 'Blob';
       return this.apiClient.callApi(
         '/v2/translate/files', 'GET',
@@ -179,7 +179,7 @@ export default class TranslateApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = [TranslationInfo];
       return this.apiClient.callApi(
         '/v2/translate/file', 'GET',
@@ -228,7 +228,7 @@ export default class TranslateApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = TranslationList;
       return this.apiClient.callApi(
         '/v2/translate', 'POST',

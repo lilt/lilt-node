@@ -16,22 +16,22 @@ import LiltCreateContentPreferences from './LiltCreateContentPreferences';
 import LiltCreateContentTemplateParams from './LiltCreateContentTemplateParams';
 
 /**
- * The LiltCreateContent model module.
- * @module model/LiltCreateContent
+ * The LiltCreateContentRequest model module.
+ * @module model/LiltCreateContentRequest
  * @version v3.0
  */
-class LiltCreateContent {
+class LiltCreateContentRequest {
     /**
-     * Constructs a new <code>LiltCreateContent</code>.
+     * Constructs a new <code>LiltCreateContentRequest</code>.
      * Content Parameters for LiltCreate. 
-     * @alias module:model/LiltCreateContent
+     * @alias module:model/LiltCreateContentRequest
      * @param language {String} The language of the content.
      * @param template {String} The template of the content.
      * @param templateParams {module:model/LiltCreateContentTemplateParams} 
      */
     constructor(language, template, templateParams) { 
         
-        LiltCreateContent.initialize(this, language, template, templateParams);
+        LiltCreateContentRequest.initialize(this, language, template, templateParams);
     }
 
     /**
@@ -46,21 +46,18 @@ class LiltCreateContent {
     }
 
     /**
-     * Constructs a <code>LiltCreateContent</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>LiltCreateContentRequest</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/LiltCreateContent} obj Optional instance to populate.
-     * @return {module:model/LiltCreateContent} The populated <code>LiltCreateContent</code> instance.
+     * @param {module:model/LiltCreateContentRequest} obj Optional instance to populate.
+     * @return {module:model/LiltCreateContentRequest} The populated <code>LiltCreateContentRequest</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new LiltCreateContent();
+            obj = obj || new LiltCreateContentRequest();
 
             if (data.hasOwnProperty('name')) {
                 obj['name'] = ApiClient.convertToType(data['name'], 'String');
-            }
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'Number');
             }
             if (data.hasOwnProperty('language')) {
                 obj['language'] = ApiClient.convertToType(data['language'], 'String');
@@ -85,40 +82,34 @@ class LiltCreateContent {
  * A name for the request content.
  * @member {String} name
  */
-LiltCreateContent.prototype['name'] = undefined;
-
-/**
- * A unique identifier for the generated content.
- * @member {Number} id
- */
-LiltCreateContent.prototype['id'] = undefined;
+LiltCreateContentRequest.prototype['name'] = undefined;
 
 /**
  * The language of the content.
  * @member {String} language
  */
-LiltCreateContent.prototype['language'] = undefined;
+LiltCreateContentRequest.prototype['language'] = undefined;
 
 /**
  * The template of the content.
  * @member {String} template
  */
-LiltCreateContent.prototype['template'] = undefined;
+LiltCreateContentRequest.prototype['template'] = undefined;
 
 /**
  * @member {module:model/LiltCreateContentTemplateParams} templateParams
  */
-LiltCreateContent.prototype['templateParams'] = undefined;
+LiltCreateContentRequest.prototype['templateParams'] = undefined;
 
 /**
  * @member {module:model/LiltCreateContentPreferences} preferences
  */
-LiltCreateContent.prototype['preferences'] = undefined;
+LiltCreateContentRequest.prototype['preferences'] = undefined;
 
 
 
 
 
 
-export default LiltCreateContent;
+export default LiltCreateContentRequest;
 

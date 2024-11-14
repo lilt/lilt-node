@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The JobDeleteResponse model module.
  * @module model/JobDeleteResponse
- * @version 0.6.3
+ * @version v3.0
  */
 class JobDeleteResponse {
     /**

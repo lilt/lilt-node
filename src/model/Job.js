@@ -17,7 +17,7 @@ import JobStats from './JobStats';
 /**
  * The Job model module.
  * @module model/Job
- * @version 0.6.3
+ * @version v3.0
  */
 class Job {
     /**

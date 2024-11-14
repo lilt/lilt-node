@@ -19,7 +19,7 @@ import Error from '../model/Error';
 /**
 * Documents service.
 * @module api/DocumentsApi
-* @version 0.6.3
+* @version v3.0
 */
 export default class DocumentsApi {
 
@@ -65,7 +65,7 @@ export default class DocumentsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/octet-stream'];
+      let accepts = ['application/octet-stream', 'text/plain', ];
       let returnType = 'Blob';
       return this.apiClient.callApi(
         '/v2/documents/files', 'GET',
@@ -138,7 +138,7 @@ export default class DocumentsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/octet-stream'];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = DocumentWithSegments;
       return this.apiClient.callApi(
         '/v2/documents/files', 'POST',

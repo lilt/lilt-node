@@ -19,7 +19,7 @@ import LanguagesResponse from '../model/LanguagesResponse';
 /**
 * Languages service.
 * @module api/LanguagesApi
-* @version 0.6.3
+* @version v3.0
 */
 export default class LanguagesApi {
 
@@ -55,7 +55,7 @@ export default class LanguagesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = LanguagesResponse;
       return this.apiClient.callApi(
         '/v2/languages', 'GET',

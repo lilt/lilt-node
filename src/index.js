@@ -34,6 +34,7 @@ import LanguagePair from './model/LanguagePair';
 import LanguagesResponse from './model/LanguagesResponse';
 import LiltCreateContent from './model/LiltCreateContent';
 import LiltCreateContentPreferences from './model/LiltCreateContentPreferences';
+import LiltCreateContentRequest from './model/LiltCreateContentRequest';
 import LiltCreateContentTemplateParams from './model/LiltCreateContentTemplateParams';
 import Memory from './model/Memory';
 import MemoryCreateParameters from './model/MemoryCreateParameters';
@@ -97,7 +98,7 @@ import WorkflowsApi from './api/WorkflowsApi';
 * </pre>
 * </p>
 * @module index
-* @version 0.6.3
+* @version v3.0
 */
 export {
     /**
@@ -231,6 +232,12 @@ export {
      * @property {module:model/LiltCreateContentPreferences}
      */
     LiltCreateContentPreferences,
+
+    /**
+     * The LiltCreateContentRequest model constructor.
+     * @property {module:model/LiltCreateContentRequest}
+     */
+    LiltCreateContentRequest,
 
     /**
      * The LiltCreateContentTemplateParams model constructor.

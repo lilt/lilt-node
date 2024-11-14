@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The Error model module.
  * @module model/Error
- * @version 0.6.3
+ * @version v3.0
  */
 class Error {
     /**
@@ -49,7 +49,7 @@ class Error {
             obj = obj || new Error();
 
             if (data.hasOwnProperty('message')) {
-                obj['message'] = ApiClient.convertToType(data['message'], Object);
+                obj['message'] = ApiClient.convertToType(data['message'], 'String');
             }
         }
         return obj;
@@ -60,7 +60,7 @@ class Error {
 
 /**
  * A human-readable message describing the error.
- * @member {Object} message
+ * @member {String} message
  */
 Error.prototype['message'] = undefined;
 

@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The Translation model module.
  * @module model/Translation
- * @version 0.6.3
+ * @version v3.0
  */
 class Translation {
     /**

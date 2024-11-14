@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The SignLiltCreateTermsResponse model module.
  * @module model/SignLiltCreateTermsResponse
- * @version 0.6.3
+ * @version v3.0
  */
 class SignLiltCreateTermsResponse {
     /**

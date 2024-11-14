@@ -21,7 +21,7 @@ import ProjectDeleteResponse from '../model/ProjectDeleteResponse';
 /**
 * Projects service.
 * @module api/ProjectsApi
-* @version 0.6.3
+* @version v3.0
 */
 export default class ProjectsApi {
 
@@ -62,7 +62,7 @@ export default class ProjectsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = Project;
       return this.apiClient.callApi(
         '/v2/projects', 'POST',
@@ -108,7 +108,7 @@ export default class ProjectsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = ProjectDeleteResponse;
       return this.apiClient.callApi(
         '/v2/projects', 'DELETE',
@@ -169,7 +169,7 @@ export default class ProjectsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = [Project];
       return this.apiClient.callApi(
         '/v2/projects', 'GET',

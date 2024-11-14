@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The MemoryCreateParameters model module.
  * @module model/MemoryCreateParameters
- * @version 0.6.3
+ * @version v3.0
  */
 class MemoryCreateParameters {
     /**
