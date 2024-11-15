@@ -19,7 +19,7 @@ import Error from '../model/Error';
 /**
 * Documents service.
 * @module api/DocumentsApi
-* @version v3.0
+* @version 3.0.0
 */
 export default class DocumentsApi {
 

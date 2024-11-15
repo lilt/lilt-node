@@ -24,7 +24,7 @@ import SignLiltCreateTermsResponse from '../model/SignLiltCreateTermsResponse';
 /**
 * Create service.
 * @module api/CreateApi
-* @version v3.0
+* @version 3.0.0
 */
 export default class CreateApi {
 

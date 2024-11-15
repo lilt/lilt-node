@@ -17,7 +17,7 @@ import Translation from './Translation';
 /**
  * The TranslationList model module.
  * @module model/TranslationList
- * @version v3.0
+ * @version 3.0.0
  */
 class TranslationList {
     /**

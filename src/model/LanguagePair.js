@@ -17,7 +17,7 @@ import WorkflowStageAssignment from './WorkflowStageAssignment';
 /**
  * The LanguagePair model module.
  * @module model/LanguagePair
- * @version v3.0
+ * @version 3.0.0
  */
 class LanguagePair {
     /**

@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The FileDeleteResponse model module.
  * @module model/FileDeleteResponse
- * @version v3.0
+ * @version 3.0.0
  */
 class FileDeleteResponse {
     /**
