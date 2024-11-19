@@ -17,7 +17,7 @@ import LanguagePair from './LanguagePair';
 /**
  * The JobCreateParameters model module.
  * @module model/JobCreateParameters
- * @version v3.0
+ * @version 3.0.0
  */
 class JobCreateParameters {
     /**

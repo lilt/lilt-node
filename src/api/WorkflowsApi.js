@@ -19,7 +19,7 @@ import WorkflowTemplate from '../model/WorkflowTemplate';
 /**
 * Workflows service.
 * @module api/WorkflowsApi
-* @version v3.0
+* @version 3.0.0
 */
 export default class WorkflowsApi {
 

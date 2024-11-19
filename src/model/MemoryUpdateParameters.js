@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The MemoryUpdateParameters model module.
  * @module model/MemoryUpdateParameters
- * @version v3.0
+ * @version 3.0.0
  */
 class MemoryUpdateParameters {
     /**

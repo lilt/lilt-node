@@ -18,7 +18,7 @@ import LiltCreateContentTemplateParams from './LiltCreateContentTemplateParams';
 /**
  * The LiltCreateContentRequest model module.
  * @module model/LiltCreateContentRequest
- * @version v3.0
+ * @version 3.0.0
  */
 class LiltCreateContentRequest {
     /**

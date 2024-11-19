@@ -17,7 +17,7 @@ import JobProject from './JobProject';
 /**
  * The JobStats model module.
  * @module model/JobStats
- * @version v3.0
+ * @version 3.0.0
  */
 class JobStats {
     /**

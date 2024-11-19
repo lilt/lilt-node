@@ -21,7 +21,7 @@ import TranslationList from '../model/TranslationList';
 /**
 * Translate service.
 * @module api/TranslateApi
-* @version v3.0
+* @version 3.0.0
 */
 export default class TranslateApi {
 

@@ -21,7 +21,7 @@ import SourceFile from '../model/SourceFile';
 /**
 * Files service.
 * @module api/FilesApi
-* @version v3.0
+* @version 3.0.0
 */
 export default class FilesApi {
 

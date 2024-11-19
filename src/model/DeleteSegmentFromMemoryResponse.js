@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The DeleteSegmentFromMemoryResponse model module.
  * @module model/DeleteSegmentFromMemoryResponse
- * @version v3.0
+ * @version 3.0.0
  */
 class DeleteSegmentFromMemoryResponse {
     /**

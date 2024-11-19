@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The SDLXLIFFFilter model module.
  * @module model/SDLXLIFFFilter
- * @version v3.0
+ * @version 3.0.0
  */
 class SDLXLIFFFilter {
     /**

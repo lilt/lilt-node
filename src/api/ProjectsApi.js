@@ -21,7 +21,7 @@ import ProjectDeleteResponse from '../model/ProjectDeleteResponse';
 /**
 * Projects service.
 * @module api/ProjectsApi
-* @version v3.0
+* @version 3.0.0
 */
 export default class ProjectsApi {
 
