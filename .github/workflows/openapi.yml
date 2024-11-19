@@ -27,6 +27,7 @@ jobs:
             -p projectName=lilt-node
             -p packageVersion=${{ github.event.client_payload.version }}
             -p usePromises=true
+            -p licenseName="SEE LICENSE IN LICENSE.md"
             --git-user-id lilt
             --git-repo-id lilt-node
             --skip-validate-spec
