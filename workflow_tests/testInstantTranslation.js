@@ -35,6 +35,10 @@ function expectTranslateResponse(expect, response, fileId) {
 }(this, function(expect, LiltNode) {
     let defaultClient = LiltNode.ApiClient.instance;
     let ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"];
+    defaultClient.defaultHeaders = {
+        "x-is-automated-test": "true",
+        "x-is-expected-error": "true"
+    };
     ApiKeyAuth.apiKey = process.env.API_KEY;
     defaultClient.basePath = process.env.API_HOST;
 
