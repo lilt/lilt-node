@@ -11,7 +11,7 @@
   "scripts": {
     "build": "babel src -d dist",
     "prepack": "npm run build",
-    "test": "mocha ./workflow_tests --require @babel/register --recursive --timeout 120000"
+    "test": "mocha ./workflow_tests --require @babel/register --require dd-trace/init --recursive --timeout 120000"
   },
   "browser": {
     "fs": false

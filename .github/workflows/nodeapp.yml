@@ -39,4 +39,4 @@ jobs:
         run: npm run build --if-present
       
       - name: Run Mocha tests
-        run: npm test --require dd-trace/init
+        run: npm test
