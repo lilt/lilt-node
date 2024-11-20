@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The AddFileLabelRequest model module.
  * @module model/AddFileLabelRequest
- * @version 0.6.3
+ * @version 3.0.0
  */
 class AddFileLabelRequest {
     /**

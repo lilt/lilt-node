@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## deleteMemory
@@ -121,7 +121,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## deleteSegmentFromMemory
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## downloadTermbase
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## exportTermbase
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## getMemory
@@ -341,7 +341,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## importMemoryFile
@@ -407,7 +407,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/octet-stream
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## queryMemory
@@ -416,7 +416,7 @@ Name | Type | Description  | Notes
 
 Query a Memory
 
-Perform a translation memory query.  
+Perform a translation memory query. 
 
 ### Example
 
@@ -467,7 +467,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## updateMemory
@@ -521,5 +521,5 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 

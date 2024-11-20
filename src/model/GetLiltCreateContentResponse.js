@@ -17,7 +17,7 @@ import LiltCreateContent from './LiltCreateContent';
 /**
  * The GetLiltCreateContentResponse model module.
  * @module model/GetLiltCreateContentResponse
- * @version 0.6.3
+ * @version 3.0.0
  */
 class GetLiltCreateContentResponse {
     /**

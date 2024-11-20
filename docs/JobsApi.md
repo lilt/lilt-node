@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**createJob**](JobsApi.md#createJob) | **POST** /v2/jobs | Create a Job
 [**deleteJob**](JobsApi.md#deleteJob) | **DELETE** /v2/jobs/{jobId} | Delete a Job
 [**deliverJob**](JobsApi.md#deliverJob) | **POST** /v2/jobs/{jobId}/deliver | Deliver a Job
-[**downloadJob**](JobsApi.md#downloadJob) | **GET** /v2/jobs/{jobId}/downlod | Download a Job
+[**downloadJob**](JobsApi.md#downloadJob) | **GET** /v2/jobs/{jobId}/download | Download a Job
 [**exportJob**](JobsApi.md#exportJob) | **GET** /v2/jobs/{jobId}/export | Export a Job
 [**getJob**](JobsApi.md#getJob) | **GET** /v2/jobs/{jobId} | Retrieve a Job
 [**getJobLeverageStats**](JobsApi.md#getJobLeverageStats) | **POST** /v2/jobs/{jobId}/stats | Retrieve Job Leverage Stats
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## createJob
@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## deleteJob
@@ -178,7 +178,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## deliverJob
@@ -232,12 +232,12 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## downloadJob
 
-> downloadJob(jobId)
+> Blob downloadJob(jobId)
 
 Download a Job
 
@@ -260,8 +260,8 @@ BasicAuth.password = 'YOUR PASSWORD';
 
 let apiInstance = new LiltNode.JobsApi();
 let jobId = 56; // Number | A job id.
-apiInstance.downloadJob(jobId).then(() => {
-  console.log('API called successfully.');
+apiInstance.downloadJob(jobId).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
 });
@@ -277,7 +277,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+**Blob**
 
 ### Authorization
 
@@ -286,7 +286,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/octet-stream, text/plain, application/json
 
 
 ## exportJob
@@ -342,7 +342,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/octet-stream, text/plain, application/json
 
 
 ## getJob
@@ -396,7 +396,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## getJobLeverageStats
@@ -450,7 +450,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## reactivateJob
@@ -504,7 +504,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## retrieveAllJobs
@@ -566,7 +566,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## unarchiveJob
@@ -620,7 +620,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## updateJob
@@ -678,5 +678,5 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 

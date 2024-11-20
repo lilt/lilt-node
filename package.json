@@ -1,23 +1,25 @@
 {
   "name": "lilt-node",
-  "version": "0.6.5",
+  "version": "3.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lilt/lilt-node.git"
   },
   "description": "The_Lilt_REST_API_enables_programmatic_access_to_the_full_range_of_Lilt_backend_services_including___Training_of_and_translating_with_interactive_adaptive_machine_translation___Large_scale_translation_memory___The_Lexicon__a_large_scale_termbase___Programmatic_control_of_the_Lilt_CAT_environment___Translation_memory_synchronizationRequests_and_responses_are_in_JSON_format__The_REST_API_only_responds_to_HTTPS___SSL_requests__AuthenticationRequests_are_authenticated_via_REST_API_key_which_requires_the_Business_plan_Requests_are_authenticated_using__HTTP_Basic_Auth_https__en_wikipedia_org_wiki_Basic_access_authentication__Add_your_REST_API_key_as_both_the_username_and_password_For_development_you_may_also_pass_the_REST_API_key_via_the_key_query_parameter__This_is_less_secure_than_HTTP_Basic_Auth_and_is_not_recommended_for_production_use__QuotasOur_services_have_a_general_quota_of_4000_requests_per_minute__Should_you_hit_the_maximum_requests_per_minute_you_will_need_to_wait_60_seconds_before_you_can_send_another_request_",
-  "license": "Unlicense",
+  "license": "SEE LICENSE IN LICENSE.md",
   "main": "dist/index.js",
   "scripts": {
     "build": "babel src -d dist",
     "prepack": "npm run build",
-    "test": "mocha --require @babel/register --recursive"
+    "test": "mocha ./workflow_tests --require @babel/register --recursive --timeout 120000"
   },
   "browser": {
     "fs": false
   },
   "dependencies": {
     "@babel/cli": "^7.0.0",
+    "adm-zip": "^0.5.16",
+    "dotenv": "^16.4.5",
     "superagent": "3.7.0"
   },
   "devDependencies": {
@@ -38,10 +40,11 @@
     "@babel/plugin-proposal-throw-expressions": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.25.4",
     "@babel/preset-env": "^7.0.0",
     "@babel/register": "^7.0.0",
     "expect.js": "^0.3.1",
-    "mocha": "^5.2.0",
+    "mocha": "^10.7.3",
     "sinon": "^7.2.0"
   },
   "files": [

@@ -13,12 +13,13 @@
 
 
 import ApiClient from "../ApiClient";
+import Error from '../model/Error';
 import WorkflowTemplate from '../model/WorkflowTemplate';
 
 /**
 * Workflows service.
 * @module api/WorkflowsApi
-* @version 0.6.3
+* @version 3.0.0
 */
 export default class WorkflowsApi {
 
@@ -54,7 +55,7 @@ export default class WorkflowsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = [WorkflowTemplate];
       return this.apiClient.callApi(
         '/v2/workflows/templates', 'GET',

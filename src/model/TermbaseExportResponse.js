@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The TermbaseExportResponse model module.
  * @module model/TermbaseExportResponse
- * @version 0.6.3
+ * @version 3.0.0
  */
 class TermbaseExportResponse {
     /**

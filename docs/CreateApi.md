@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## generateLiltCreateContent
@@ -94,7 +94,7 @@ BasicAuth.username = 'YOUR USERNAME';
 BasicAuth.password = 'YOUR PASSWORD';
 
 let apiInstance = new LiltNode.CreateApi();
-let templateParams = new LiltNode.LiltCreateContent(); // LiltCreateContent | Input parameters that determine what content will be generated. 
+let templateParams = new LiltNode.LiltCreateContentRequest(); // LiltCreateContentRequest | Input parameters that determine what content will be generated. 
 apiInstance.generateLiltCreateContent(templateParams).then(() => {
   console.log('API called successfully.');
 }, (error) => {
@@ -108,7 +108,7 @@ apiInstance.generateLiltCreateContent(templateParams).then(() => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **templateParams** | [**LiltCreateContent**](LiltCreateContent.md)| Input parameters that determine what content will be generated.  | 
+ **templateParams** | [**LiltCreateContentRequest**](LiltCreateContentRequest.md)| Input parameters that determine what content will be generated.  | 
 
 ### Return type
 
@@ -121,7 +121,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/octet-stream, text/plain, application/json
 
 
 ## getLiltCreateById
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## getLiltCreateContent
@@ -225,7 +225,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## getLiltCreatePreferences
@@ -275,7 +275,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/octet-stream, text/plain, application/json
 
 
 ## regenerateLiltCreateContent
@@ -329,7 +329,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/octet-stream, text/plain, application/json
 
 
 ## signLiltCreateTerms
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## updateLiltCreateContent
@@ -441,7 +441,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, application/octet-stream, text/plain
 
 
 ## updateLiltCreatePreferences
@@ -497,5 +497,5 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/octet-stream, text/plain, application/json
 

@@ -14,15 +14,17 @@
 
 import ApiClient from "../ApiClient";
 import CreateConverterConfigParameters from '../model/CreateConverterConfigParameters';
+import Error from '../model/Error';
 import GetLiltCreateContentResponse from '../model/GetLiltCreateContentResponse';
 import InlineResponse200 from '../model/InlineResponse200';
 import LiltCreateContent from '../model/LiltCreateContent';
+import LiltCreateContentRequest from '../model/LiltCreateContentRequest';
 import SignLiltCreateTermsResponse from '../model/SignLiltCreateTermsResponse';
 
 /**
 * Create service.
 * @module api/CreateApi
-* @version 0.6.3
+* @version 3.0.0
 */
 export default class CreateApi {
 
@@ -64,7 +66,7 @@ export default class CreateApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = InlineResponse200;
       return this.apiClient.callApi(
         '/v2/create/{contentId}', 'DELETE',
@@ -90,7 +92,7 @@ export default class CreateApi {
     /**
      * Generate new Lilt Create content
      * Generate new Lilt Create content with the given parameters.  Example CURL: ```bash curl -X POST 'https://api.lilt.com/v2/create?key=API_KEY' \\ --header 'Content-Type: application/json' \\ --data-raw '{   \"language\":\"en-US\",   \"template\":\"blog-post\",   \"templateParams\":{     \"contentLength\":\"100\",     \"language\":\"en-US\",     \"sections\":[],     \"summary\":\"a blog post about hiking\"     },   \"preferences\":{\"tone\":\"formal\",\"styleguide\":\"\"} }' ```  
-     * @param {module:model/LiltCreateContent} templateParams Input parameters that determine what content will be generated. 
+     * @param {module:model/LiltCreateContentRequest} templateParams Input parameters that determine what content will be generated. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
     generateLiltCreateContentWithHttpInfo(templateParams) {
@@ -111,7 +113,7 @@ export default class CreateApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
-      let accepts = [];
+      let accepts = ['application/octet-stream', 'text/plain', 'application/json'];
       let returnType = null;
       return this.apiClient.callApi(
         '/v2/create', 'POST',
@@ -123,7 +125,7 @@ export default class CreateApi {
     /**
      * Generate new Lilt Create content
      * Generate new Lilt Create content with the given parameters.  Example CURL: ```bash curl -X POST 'https://api.lilt.com/v2/create?key=API_KEY' \\ --header 'Content-Type: application/json' \\ --data-raw '{   \"language\":\"en-US\",   \"template\":\"blog-post\",   \"templateParams\":{     \"contentLength\":\"100\",     \"language\":\"en-US\",     \"sections\":[],     \"summary\":\"a blog post about hiking\"     },   \"preferences\":{\"tone\":\"formal\",\"styleguide\":\"\"} }' ```  
-     * @param {module:model/LiltCreateContent} templateParams Input parameters that determine what content will be generated. 
+     * @param {module:model/LiltCreateContentRequest} templateParams Input parameters that determine what content will be generated. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
     generateLiltCreateContent(templateParams) {
@@ -159,7 +161,7 @@ export default class CreateApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = LiltCreateContent;
       return this.apiClient.callApi(
         '/v2/create/{contentId}', 'GET',
@@ -201,7 +203,7 @@ export default class CreateApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = GetLiltCreateContentResponse;
       return this.apiClient.callApi(
         '/v2/create', 'GET',
@@ -242,7 +244,7 @@ export default class CreateApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = [];
+      let accepts = ['application/octet-stream', 'text/plain', 'application/json'];
       let returnType = null;
       return this.apiClient.callApi(
         '/v2/create/preferences', 'GET',
@@ -289,7 +291,7 @@ export default class CreateApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = [];
+      let accepts = ['application/octet-stream', 'text/plain', 'application/json'];
       let returnType = null;
       return this.apiClient.callApi(
         '/v2/create/{contentId}/create', 'GET',
@@ -336,7 +338,7 @@ export default class CreateApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = SignLiltCreateTermsResponse;
       return this.apiClient.callApi(
         '/v2/create/terms-and-conditions', 'POST',
@@ -387,7 +389,7 @@ export default class CreateApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = LiltCreateContent;
       return this.apiClient.callApi(
         '/v2/create/{contentId}', 'PUT',
@@ -434,7 +436,7 @@ export default class CreateApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
-      let accepts = [];
+      let accepts = ['application/octet-stream', 'text/plain', 'application/json'];
       let returnType = null;
       return this.apiClient.callApi(
         '/v2/create/preferences', 'PUT',

@@ -27,7 +27,7 @@ import TranslationMemoryEntry from '../model/TranslationMemoryEntry';
 /**
 * Memories service.
 * @module api/MemoriesApi
-* @version 0.6.3
+* @version 3.0.0
 */
 export default class MemoriesApi {
 
@@ -68,7 +68,7 @@ export default class MemoriesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = Memory;
       return this.apiClient.callApi(
         '/v2/memories', 'POST',
@@ -116,7 +116,7 @@ export default class MemoriesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = MemoryDeleteResponse;
       return this.apiClient.callApi(
         '/v2/memories', 'DELETE',
@@ -170,7 +170,7 @@ export default class MemoriesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = DeleteSegmentFromMemoryResponse;
       return this.apiClient.callApi(
         '/v2/memories/segment', 'DELETE',
@@ -219,7 +219,7 @@ export default class MemoriesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = 'Blob';
       return this.apiClient.callApi(
         '/v2/memories/termbase/download', 'GET',
@@ -267,7 +267,7 @@ export default class MemoriesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = TermbaseExportResponse;
       return this.apiClient.callApi(
         '/v2/memories/termbase/export', 'POST',
@@ -313,7 +313,7 @@ export default class MemoriesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = [Memory];
       return this.apiClient.callApi(
         '/v2/memories', 'GET',
@@ -381,7 +381,7 @@ export default class MemoriesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/octet-stream'];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = MemoryImportResponse;
       return this.apiClient.callApi(
         '/v2/memories/import', 'POST',
@@ -412,7 +412,7 @@ export default class MemoriesApi {
 
     /**
      * Query a Memory
-     * Perform a translation memory query.  
+     * Perform a translation memory query. 
      * @param {Number} id A unique Memory identifier.
      * @param {String} query A source query.
      * @param {Object} opts Optional parameters
@@ -445,7 +445,7 @@ export default class MemoriesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = [TranslationMemoryEntry];
       return this.apiClient.callApi(
         '/v2/memories/query', 'GET',
@@ -456,7 +456,7 @@ export default class MemoriesApi {
 
     /**
      * Query a Memory
-     * Perform a translation memory query.  
+     * Perform a translation memory query. 
      * @param {Number} id A unique Memory identifier.
      * @param {String} query A source query.
      * @param {Object} opts Optional parameters
@@ -495,7 +495,7 @@ export default class MemoriesApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = Memory;
       return this.apiClient.callApi(
         '/v2/memories', 'PUT',

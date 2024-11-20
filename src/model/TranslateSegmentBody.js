@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The TranslateSegmentBody model module.
  * @module model/TranslateSegmentBody
- * @version 0.6.3
+ * @version 3.0.0
  */
 class TranslateSegmentBody {
     /**

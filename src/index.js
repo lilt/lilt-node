@@ -34,6 +34,7 @@ import LanguagePair from './model/LanguagePair';
 import LanguagesResponse from './model/LanguagesResponse';
 import LiltCreateContent from './model/LiltCreateContent';
 import LiltCreateContentPreferences from './model/LiltCreateContentPreferences';
+import LiltCreateContentRequest from './model/LiltCreateContentRequest';
 import LiltCreateContentTemplateParams from './model/LiltCreateContentTemplateParams';
 import Memory from './model/Memory';
 import MemoryCreateParameters from './model/MemoryCreateParameters';
@@ -69,7 +70,7 @@ import WorkflowsApi from './api/WorkflowsApi';
 
 
 /**
-* Lilt_REST_API_Support_https__lilt_atlassian_net_servicedesk_customer_portals___The_Lilt_REST_API_enables_programmatic_access_to_the_full_range_of_Lilt_backend_services_including___Training_of_and_translating_with_interactive_adaptive_machine_translation___Large_scale_translation_memory___The_Lexicon__a_large_scale_termbase___Programmatic_control_of_the_Lilt_CAT_environment___Translation_memory_synchronizationRequests_and_responses_are_in_JSON_format__The_REST_API_only_responds_to_HTTPS___SSL_requests__The_base_url_for_this_REST_API_is_https__api_lilt_com___AuthenticationRequests_are_authenticated_via_REST_API_key_which_requires_the_Business_plan_Requests_are_authenticated_using__HTTP_Basic_Auth_https__en_wikipedia_org_wiki_Basic_access_authentication__Add_your_REST_API_key_as_both_the_username_and_password_For_development_you_may_also_pass_the_REST_API_key_via_the_key_query_parameter__This_is_less_secure_than_HTTP_Basic_Auth_and_is_not_recommended_for_production_use__QuotasOur_services_have_a_general_quota_of_4000_requests_per_minute__Should_you_hit_the_maximum_requests_per_minute_you_will_need_to_wait_60_seconds_before_you_can_send_another_request_.<br>
+* The_Lilt_REST_API_enables_programmatic_access_to_the_full_range_of_Lilt_backend_services_including___Training_of_and_translating_with_interactive_adaptive_machine_translation___Large_scale_translation_memory___The_Lexicon__a_large_scale_termbase___Programmatic_control_of_the_Lilt_CAT_environment___Translation_memory_synchronizationRequests_and_responses_are_in_JSON_format__The_REST_API_only_responds_to_HTTPS___SSL_requests__The_base_url_for_this_REST_API_is_https__api_lilt_com___AuthenticationRequests_are_authenticated_via_REST_API_key_which_requires_the_Business_plan_Requests_are_authenticated_using__HTTP_Basic_Auth_https__en_wikipedia_org_wiki_Basic_access_authentication__Add_your_REST_API_key_as_both_the_username_and_password_For_development_you_may_also_pass_the_REST_API_key_via_the_key_query_parameter__This_is_less_secure_than_HTTP_Basic_Auth_and_is_not_recommended_for_production_use__QuotasOur_services_have_a_general_quota_of_4000_requests_per_minute__Should_you_hit_the_maximum_requests_per_minute_you_will_need_to_wait_60_seconds_before_you_can_send_another_request_.<br>
 * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
 * <p>
 * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:
@@ -97,7 +98,7 @@ import WorkflowsApi from './api/WorkflowsApi';
 * </pre>
 * </p>
 * @module index
-* @version 0.6.3
+* @version 3.0.0
 */
 export {
     /**
@@ -231,6 +232,12 @@ export {
      * @property {module:model/LiltCreateContentPreferences}
      */
     LiltCreateContentPreferences,
+
+    /**
+     * The LiltCreateContentRequest model constructor.
+     * @property {module:model/LiltCreateContentRequest}
+     */
+    LiltCreateContentRequest,
 
     /**
      * The LiltCreateContentTemplateParams model constructor.

@@ -18,7 +18,7 @@ import Segment from './Segment';
 /**
  * The DocumentWithSegments model module.
  * @module model/DocumentWithSegments
- * @version 0.6.3
+ * @version 3.0.0
  */
 class DocumentWithSegments {
     /**

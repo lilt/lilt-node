@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The ProjectStats model module.
  * @module model/ProjectStats
- * @version 0.6.3
+ * @version 3.0.0
  */
 class ProjectStats {
     /**

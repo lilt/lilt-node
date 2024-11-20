@@ -23,7 +23,7 @@ import JobUpdateParameters from '../model/JobUpdateParameters';
 /**
 * Jobs service.
 * @module api/JobsApi
-* @version 0.6.3
+* @version 3.0.0
 */
 export default class JobsApi {
 
@@ -65,7 +65,7 @@ export default class JobsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = Job;
       return this.apiClient.callApi(
         '/v2/jobs/{jobId}/archive', 'POST',
@@ -112,7 +112,7 @@ export default class JobsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = Job;
       return this.apiClient.callApi(
         '/v2/jobs', 'POST',
@@ -160,7 +160,7 @@ export default class JobsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = JobDeleteResponse;
       return this.apiClient.callApi(
         '/v2/jobs/{jobId}', 'DELETE',
@@ -208,7 +208,7 @@ export default class JobsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = Job;
       return this.apiClient.callApi(
         '/v2/jobs/{jobId}/deliver', 'POST',
@@ -235,7 +235,7 @@ export default class JobsApi {
      * Download a Job
      * Make sure you have exported a job with the same id before using this api.  Downloading files requires the exported job `id` in the param.  Example CURL command:  ```bash curl -X GET 'https://api.lilt.com/v2/jobs/{id}/download?key=API_KEY' ```
      * @param {Number} jobId A job id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Blob} and HTTP response
      */
     downloadJobWithHttpInfo(jobId) {
       let postBody = null;
@@ -256,10 +256,10 @@ export default class JobsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = null;
+      let accepts = ['application/octet-stream', 'text/plain', 'application/json'];
+      let returnType = 'Blob';
       return this.apiClient.callApi(
-        '/v2/jobs/{jobId}/downlod', 'GET',
+        '/v2/jobs/{jobId}/download', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null
       );
@@ -269,7 +269,7 @@ export default class JobsApi {
      * Download a Job
      * Make sure you have exported a job with the same id before using this api.  Downloading files requires the exported job `id` in the param.  Example CURL command:  ```bash curl -X GET 'https://api.lilt.com/v2/jobs/{id}/download?key=API_KEY' ```
      * @param {Number} jobId A job id.
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Blob}
      */
     downloadJob(jobId) {
       return this.downloadJobWithHttpInfo(jobId)
@@ -310,7 +310,7 @@ export default class JobsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/octet-stream', 'text/plain', 'application/json'];
       let returnType = null;
       return this.apiClient.callApi(
         '/v2/jobs/{jobId}/export', 'GET',
@@ -359,7 +359,7 @@ export default class JobsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = Job;
       return this.apiClient.callApi(
         '/v2/jobs/{jobId}', 'GET',
@@ -407,7 +407,7 @@ export default class JobsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = JobLeverageStats;
       return this.apiClient.callApi(
         '/v2/jobs/{jobId}/stats', 'POST',
@@ -455,7 +455,7 @@ export default class JobsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = Job;
       return this.apiClient.callApi(
         '/v2/jobs/{jobId}/reactivate', 'POST',
@@ -507,7 +507,7 @@ export default class JobsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = [Job];
       return this.apiClient.callApi(
         '/v2/jobs', 'GET',
@@ -559,7 +559,7 @@ export default class JobsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = [];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = Job;
       return this.apiClient.callApi(
         '/v2/jobs/{jobId}/unarchive', 'POST',
@@ -610,7 +610,7 @@ export default class JobsApi {
 
       let authNames = ['ApiKeyAuth', 'BasicAuth'];
       let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
+      let accepts = ['application/json', 'application/octet-stream', 'text/plain'];
       let returnType = Job;
       return this.apiClient.callApi(
         '/v2/jobs/{jobId}', 'PUT',
