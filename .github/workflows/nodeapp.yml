@@ -40,3 +40,5 @@ jobs:
       
       - name: Run Mocha tests
         run: npm test
+        env:
+          NODE_OPTIONS: -r dd-trace/ci/init
