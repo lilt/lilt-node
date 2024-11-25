@@ -1,3 +1,4 @@
+const forEach = require('mocha-each');
 const fs = require('fs');
 require('dotenv').config();
 
@@ -204,66 +205,64 @@ function expectQueryResponse(expect, queryObject, expected) {
 
     describe('DataSourceWorkflow', () => {
         describe('createMemory', () => {
-            createDataSourceCases.forEach(function(dataSourceCase) {
-                it(`should create a data source with ${dataSourceCase} parameters`, async () => {
-                    let apiInstance = new LiltNode.MemoriesApi();
-                    let dataSourceParameters = getDataSourceParameters(dataSourceCase);
-                    let body = new LiltNode.MemoryCreateParameters.constructFromObject(dataSourceParameters)
-                    try {
-                        let data = await apiInstance.createMemory(body)
-                        expectDataSourceResponse(expect, data, getExpectedDataSource(dataSourceCase))
-                        await apiInstance.deleteMemory(data.id)
-                    } catch (e) {
-                        if (["noneSrc", "noneTrg", "noneBoth", "unsupportedLanguages"].includes(dataSourceCase)) {
-                            expect(e.status).to.equal(400)
-                        } else {
-                            throw e
-                        }
+            forEach(createDataSourceCases)
+            .it('should create a data source with %s parameters', async (dataSourceCase) => {
+                let apiInstance = new LiltNode.MemoriesApi();
+                let dataSourceParameters = getDataSourceParameters(dataSourceCase);
+                let body = new LiltNode.MemoryCreateParameters.constructFromObject(dataSourceParameters)
+                try {
+                    let data = await apiInstance.createMemory(body)
+                    expectDataSourceResponse(expect, data, getExpectedDataSource(dataSourceCase))
+                    await apiInstance.deleteMemory(data.id)
+                } catch (e) {
+                    if (["noneSrc", "noneTrg", "noneBoth", "unsupportedLanguages"].includes(dataSourceCase)) {
+                        expect(e.status).to.equal(400)
+                    } else {
+                        throw e
                     }
-                });
+                }
             });
         });
         describe('importMemoryFile', () => {
-            tmxFileCases.forEach(function(tmxFileCase) {
-                it(`should upload a TMX file with ${tmxFileCase} data`, async () => {
-                    let apiInstance = new LiltNode.MemoriesApi();
-                    let dataSourceParameters = getDataSourceParameters("frToEn");
-                    let body = new LiltNode.MemoryCreateParameters.constructFromObject(dataSourceParameters)
-                    let createMemoryData = await apiInstance.createMemory(body)
-                    expectDataSourceResponse(expect, createMemoryData, getExpectedDataSource("frToEn"))
-                    let memoryId = createMemoryData.id
-                    console.log(`Memory ID: ${memoryId}`)
-                    
-                    let tmxSettings = getTmxSettings(tmxFileCase);
-                    let fileBody = await fs.readFileSync(tmxSettings["body"])
-                    let fileUploadData = await apiInstance.importMemoryFile(memoryId, tmxSettings["name"], fileBody)
-                    let isProcessing = fileUploadData.isProcessing
-                    expect(fileUploadData.id).to.equal(memoryId)
-                    expect(isProcessing).to.equal(1)
+            forEach(tmxFileCases)
+            .it('should upload a TMX file with %s data', async (tmxFileCase) => {
+                let apiInstance = new LiltNode.MemoriesApi();
+                let dataSourceParameters = getDataSourceParameters("frToEn");
+                let body = new LiltNode.MemoryCreateParameters.constructFromObject(dataSourceParameters)
+                let createMemoryData = await apiInstance.createMemory(body)
+                expectDataSourceResponse(expect, createMemoryData, getExpectedDataSource("frToEn"))
+                let memoryId = createMemoryData.id
+                console.log(`Memory ID: ${memoryId}`)
+                
+                let tmxSettings = getTmxSettings(tmxFileCase);
+                let fileBody = await fs.readFileSync(tmxSettings["body"])
+                let fileUploadData = await apiInstance.importMemoryFile(memoryId, tmxSettings["name"], fileBody)
+                let isProcessing = fileUploadData.isProcessing
+                expect(fileUploadData.id).to.equal(memoryId)
+                expect(isProcessing).to.equal(1)
 
-                    let numMonitored = 0
-                    while (isProcessing == 1) {
-                        await new Promise(resolve => setTimeout(resolve, 5000))
-                        let monitorResponse = await apiInstance.getMemory(memoryId);
-                        isProcessing = monitorResponse.isProcessing
-                        console.log(`Memory status: ${isProcessing} || Request No: ${numMonitored}`)
-                        numMonitored++
-                        if (numMonitored > 20) {
-                            console.log("Memory import exceeding time limit. Failing test")
-                            throw new Error("Memory import exceeding time limit")
-                        }
+                let numMonitored = 0
+                while (isProcessing == 1) {
+                    await new Promise(resolve => setTimeout(resolve, 5000))
+                    let monitorResponse = await apiInstance.getMemory(memoryId);
+                    isProcessing = monitorResponse.isProcessing
+                    console.log(`Memory status: ${isProcessing} || Request No: ${numMonitored}`)
+                    numMonitored++
+                    if (numMonitored > 20) {
+                        console.log("Memory import exceeding time limit. Failing test")
+                        throw new Error("Memory import exceeding time limit")
                     }
+                }
 
-                    let query = "chatte"
-                    let queryData = await apiInstance.queryMemory(memoryId, query)
-                    if (tmxFileCase == "wrongData") {
-                        expect(queryData.length).to.equal(0)
-                    } else {
-                        expect(queryData.length).to.be.greaterThan(0)
-                        expectQueryResponse(expect, queryData[0], getExpectedQuery())
-                    }
-                    await apiInstance.deleteMemory(memoryId)
-                });
+                let query = "chatte"
+                let queryData = await apiInstance.queryMemory(memoryId, query)
+                if (tmxFileCase == "wrongData") {
+                    expect(queryData.length).to.equal(0)
+                } else {
+                    expect(queryData.length).to.be.greaterThan(0)
+                    expectQueryResponse(expect, queryData[0], getExpectedQuery())
+                }
+                await apiInstance.deleteMemory(memoryId)
             });
         });
     });

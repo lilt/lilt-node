@@ -1,3 +1,4 @@
+const forEach = require('mocha-each');
 require("dotenv").config();
 
 let signCases = [
@@ -200,77 +201,74 @@ function expectResponse(expect, createContentObj, expected) {
 
     describe("LiltCreateWorkflow", () => {
       describe("sign Lilt Terms and Conditions", () => {
-          signCases.forEach(function (signCase) {
-              it(`should sign terms and conditions for ${signCase}`, async () => {
-                  let apiInstance = new LiltNode.CreateApi();
-                  let sign = getSign(signCase);
-                  let signedAgreement = new LiltNode.CreateConverterConfigParameters(sign);
-                  try {
-                      let data = await apiInstance.signLiltCreateTerms(signedAgreement);
-                      expect(data.signedAgreement).to.be(Boolean(sign));
-                  } catch (error) {
-                      if (signCase === "none") {
-                          return
-                      } else {
-                          console.log(error);
-                          throw error
-                      }
+          forEach(signCases)
+          .it('should sign terms and conditions for %s', async (signCase) => {
+              let apiInstance = new LiltNode.CreateApi();
+              let sign = getSign(signCase);
+              let signedAgreement = new LiltNode.CreateConverterConfigParameters(sign);
+              try {
+                  let data = await apiInstance.signLiltCreateTerms(signedAgreement);
+                  expect(data.signedAgreement).to.be(Boolean(sign));
+              } catch (error) {
+                  if (signCase === "none") {
+                      return
+                  } else {
+                      console.log(error);
+                      throw error
                   }
-              });
+              }
           });
       });
       describe("generate Lilt Create content", () => {
-        generateContentCharCases.forEach(function (charCase) {
-          it(`should generate content with ${charCase} characters`, async () => {
-              let apiInstance = new LiltNode.CreateApi();
-              let signedAgreement = new LiltNode.CreateConverterConfigParameters(true);
-              await apiInstance.signLiltCreateTerms(signedAgreement);
-              let requestBody = new LiltNode.LiltCreateContent.constructFromObject({
-                  language: "en-US",
-                  template: "blog-post",
-                  templateParams: {
-                    contentLength: 1000,
-                    language: "en-US",
-                    summary: getSummary(charCase),
-                    sections: ["Bees and me", "Honey for you", "Conclusion"]
-                  },
-                  preferences: {
-                    tone: "formal"
-                  }
-              });
-              await apiInstance.generateLiltCreateContent(requestBody)
-              let data = await apiInstance.getLiltCreateContent(requestBody);
-              let createContentObjs = data.contents;
-              let createContentObj = createContentObjs[createContentObjs.length - 1]
-              expectResponse(expect, createContentObj, expectedChars(charCase));
-              await apiInstance.deleteLiltCreateContent(createContentObj.id);
-          });
-        });
-        generateContentSectionsCases.forEach(function (sectionCase) {
-          it(`should generate content with specified ${sectionCase} sections`, async () => {
-              let apiInstance = new LiltNode.CreateApi();
-              let signedAgreement = new LiltNode.CreateConverterConfigParameters(true);
-              await apiInstance.signLiltCreateTerms(signedAgreement);
-              let requestBody = new LiltNode.LiltCreateContent.constructFromObject({
+        forEach(generateContentCharCases)
+        .it('should generate content with %s characters', async (charCase) => {
+            let apiInstance = new LiltNode.CreateApi();
+            let signedAgreement = new LiltNode.CreateConverterConfigParameters(true);
+            await apiInstance.signLiltCreateTerms(signedAgreement);
+            let requestBody = new LiltNode.LiltCreateContent.constructFromObject({
                 language: "en-US",
                 template: "blog-post",
                 templateParams: {
                   contentLength: 1000,
                   language: "en-US",
-                  summary: "a blog post about how important bees are to my honey farm",
-                  sections: getSection(sectionCase),
+                  summary: getSummary(charCase),
+                  sections: ["Bees and me", "Honey for you", "Conclusion"]
                 },
                 preferences: {
                   tone: "formal"
                 }
             });
-              await apiInstance.generateLiltCreateContent(requestBody)
-              let data = await apiInstance.getLiltCreateContent();
-              let createContentObjs = data.contents;
-              let createContentObj = createContentObjs[createContentObjs.length - 1]
-              expectResponse(expect, createContentObj, expectedSection(sectionCase));
-              await apiInstance.deleteLiltCreateContent(createContentObj.id);
+            await apiInstance.generateLiltCreateContent(requestBody)
+            let data = await apiInstance.getLiltCreateContent(requestBody);
+            let createContentObjs = data.contents;
+            let createContentObj = createContentObjs[createContentObjs.length - 1]
+            expectResponse(expect, createContentObj, expectedChars(charCase));
+            await apiInstance.deleteLiltCreateContent(createContentObj.id);
+        });
+        forEach(generateContentSectionsCases)
+        .it('should generate content with specified %s sections', async (sectionCase) => {
+            let apiInstance = new LiltNode.CreateApi();
+            let signedAgreement = new LiltNode.CreateConverterConfigParameters(true);
+            await apiInstance.signLiltCreateTerms(signedAgreement);
+            let requestBody = new LiltNode.LiltCreateContent.constructFromObject({
+              language: "en-US",
+              template: "blog-post",
+              templateParams: {
+                contentLength: 1000,
+                language: "en-US",
+                summary: "a blog post about how important bees are to my honey farm",
+                sections: getSection(sectionCase),
+              },
+              preferences: {
+                tone: "formal"
+              }
           });
+            await apiInstance.generateLiltCreateContent(requestBody)
+            let data = await apiInstance.getLiltCreateContent();
+            let createContentObjs = data.contents;
+            let createContentObj = createContentObjs[createContentObjs.length - 1]
+            expectResponse(expect, createContentObj, expectedSection(sectionCase));
+            await apiInstance.deleteLiltCreateContent(createContentObj.id);
         });
       });
     });

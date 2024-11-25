@@ -20,6 +20,7 @@
     "@babel/cli": "^7.0.0",
     "adm-zip": "^0.5.16",
     "dotenv": "^16.4.5",
+    "mocha-each": "^2.0.1",
     "superagent": "3.7.0"
   },
   "devDependencies": {
