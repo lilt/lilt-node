@@ -144,6 +144,20 @@ api.deleteLiltCreateContent(contentId).then(function(data) {
 
 ```
 
+## Checking Credentials
+
+If you would like to test your credentials using our functionality tests you can do the following.
+
+Navigate to the folder where the package is installed and create a .env file inside the package using .env_example as a template. Fill out the API_HOST and API_KEY lines using the credentials you were given.
+
+Then while inside the package folder, run:
+
+```sh
+npm test
+```
+
+You should be able to see the tests run.
+
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://api.lilt.com*
