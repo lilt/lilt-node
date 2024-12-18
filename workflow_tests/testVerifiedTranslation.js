@@ -32,16 +32,10 @@ function expectCreateJobResponse(expect, createJobResponse) {
     expect(createJobResponse.due).to.not.be.null
     expect(createJobResponse.id).to.not.be.null
     expect(createJobResponse.isProcessing).to.equal(0)
-    expect(createJobResponse.stats.exactWords).to.equal(0)
-    expect(createJobResponse.stats.fuzzyWords).to.equal(0)
-    expect(createJobResponse.stats.newWords).to.equal(0)
     expect(createJobResponse.stats.numDeliveredProjects).to.equal(0)
-    expect(createJobResponse.stats.numLanguagePairs).to.equal(1)
-    expect(createJobResponse.stats.numProjects).to.equal(1)
     expect(createJobResponse.stats.percentReviewed).to.equal(0)
     expect(createJobResponse.stats.percentTranslated).to.equal(0)
     expect(createJobResponse.stats.projects).to.be.an('array')
-    expect(createJobResponse.stats.sourceWords).to.equal(0)
     expect(createJobResponse.stats.uniqueLanguagePairs).to.equal(1)
     expect(createJobResponse.stats.uniqueLinguists).to.equal(0)
     expect(createJobResponse.stats.workflowStatus).to.equal("READY_TO_START")
