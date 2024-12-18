@@ -30,6 +30,7 @@ jobs:
             -p licenseName="SEE LICENSE IN LICENSE.md"
             --git-user-id lilt
             --git-repo-id lilt-node
+            --http-user-agent Lilt_Client_Library-Node
             --skip-validate-spec
             -o .
       - name: Create Pull Request
