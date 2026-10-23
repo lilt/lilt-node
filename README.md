@@ -18,7 +18,7 @@ Requests are authenticated via REST API key, which requires the Business plan.
 
 Requests are authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Add your REST API key as both the `username` and `password`.
 
-Passing the REST API key via the `key` query parameter is deprecated and will stop working on the sunset date announced by Lilt. Since 3.0.1 this SDK never puts the key in the URL: a key set on `authentications['ApiKeyAuth'].apiKey` is sent as HTTP Basic authentication as well.
+Passing the REST API key via the `key` query parameter is deprecated and stops working on December 1, 2026. Since 3.0.1 this SDK never puts the key in the URL: a key set on `authentications['ApiKeyAuth'].apiKey` is sent as HTTP Basic authentication as well.
 
 ## Quotas
 
