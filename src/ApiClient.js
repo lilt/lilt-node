@@ -17,7 +17,7 @@ import querystring from "querystring";
 
 /**
 * @module ApiClient
-* @version 3.0.0
+* @version 3.0.1
 */
 
 /**
@@ -41,7 +41,9 @@ class ApiClient {
          * @type {Array.<String>}
          */
         this.authentications = {
-            'ApiKeyAuth': {type: 'apiKey', 'in': 'query', name: 'key'},
+            // Deprecated name kept for compatibility: the key set on it is sent as
+            // HTTP Basic authentication, never as the `key` query parameter.
+            'ApiKeyAuth': {type: 'basic'},
             'BasicAuth': {type: 'basic'}
         }
 
@@ -273,8 +275,11 @@ class ApiClient {
             var auth = this.authentications[authName];
             switch (auth.type) {
                 case 'basic':
-                    if (auth.username || auth.password) {
-                        request.auth(auth.username || '', auth.password || '');
+                    // An apiKey set on a basic authentication is the username and the password.
+                    var username = auth.username || auth.apiKey;
+                    var password = auth.password || auth.apiKey;
+                    if (username || password) {
+                        request.auth(username || '', password || '');
                     }
 
                     break;
