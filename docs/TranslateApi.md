@@ -24,15 +24,11 @@ Start machine translation of one or more Files that have previously been uploade
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.TranslateApi();
 let fileId = "fileId_example"; // String | List of File ids to be translated, comma separated.
@@ -86,15 +82,11 @@ Download a translated File.  Example CURL: &#x60;&#x60;&#x60;bash curl -X GET &#
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.TranslateApi();
 let id = "id_example"; // String | A translation id.
@@ -140,15 +132,11 @@ Get information about the one or more Files that are being translated with machi
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.TranslateApi();
 let opts = {
@@ -202,15 +190,11 @@ Translate a source string.  Setting the &#x60;rich&#x60; parameter to &#x60;true
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.TranslateApi();
 let opts = {

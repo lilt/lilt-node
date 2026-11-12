@@ -26,15 +26,11 @@ Add a label to a File.  Example CURL: &#x60;&#x60;&#x60;bash curl -X POST &#39;h
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.FilesApi();
 let id = "id_example"; // String | A File id.
@@ -82,15 +78,11 @@ Delete a File.  Example CURL command: &#x60;&#x60;&#x60;bash   curl -X DELETE ht
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.FilesApi();
 let id = 56; // Number | A unique File identifier.
@@ -136,15 +128,11 @@ Download a File.  Example CURL: &#x60;&#x60;&#x60;bash curl -X GET &#39;https://
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.FilesApi();
 let id = "id_example"; // String | A File id.
@@ -190,15 +178,11 @@ Retrieves one or more files available to your user. Files are not associated wit
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.FilesApi();
 let opts = {
@@ -248,15 +232,11 @@ Remove a label from a File.  Example CURL: &#x60;&#x60;&#x60;bash curl -X DELETE
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.FilesApi();
 let id = "id_example"; // String | A File id.
@@ -304,15 +284,11 @@ Upload a File in any of the formats [documented in our knowledge base](https://s
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.FilesApi();
 let name = "name_example"; // String | A file name.

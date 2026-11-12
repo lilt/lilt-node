@@ -32,15 +32,11 @@ Set job to archived, unassign all linguists and archive all projects and documen
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.JobsApi();
 let jobId = 56; // Number | A job id.
@@ -86,15 +82,11 @@ Create a Job. A Job is a collection of Projects. A Job will contain multiple pro
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.JobsApi();
 let body = new LiltNode.JobCreateParameters(); // JobCreateParameters | 
@@ -140,15 +132,11 @@ Delete a job, deletes all projects and documents in the job, deletes all the seg
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.JobsApi();
 let jobId = 56; // Number | A job id.
@@ -194,15 +182,11 @@ Set the job state to delivered and set all the projects in the job to done  It w
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.JobsApi();
 let jobId = 56; // Number | A job id.
@@ -248,15 +232,11 @@ Make sure you have exported a job with the same id before using this api.  Downl
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.JobsApi();
 let jobId = 56; // Number | A job id.
@@ -302,15 +282,11 @@ Prepare job files for download. To export translated documents from the job use 
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.JobsApi();
 let jobId = 56; // Number | A job id.
@@ -358,15 +334,11 @@ Retrieves a job data along with stats. To retrieve a specific job, you will need
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.JobsApi();
 let jobId = 56; // Number | A job id.
@@ -412,15 +384,11 @@ Get the TM leverage stats for the job (new/exact/fuzzy matches).  Example CURL c
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.JobsApi();
 let jobId = 56; // Number | A job id.
@@ -466,15 +434,11 @@ Set the job state to active. Does not change the state of projects associated wi
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.JobsApi();
 let jobId = 56; // Number | A job id.
@@ -520,15 +484,11 @@ Get all Jobs within a given offset and limit. You can retrieve jobs from your ac
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.JobsApi();
 let opts = {
@@ -582,15 +542,11 @@ Set job to unarchived, the job will move to active status.  Example CURL command
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.JobsApi();
 let jobId = 56; // Number | A job id.
@@ -636,15 +592,11 @@ Updates a job with the new job properties. To update a specific job, you will ne
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.JobsApi();
 let jobId = 56; // Number | A job id.

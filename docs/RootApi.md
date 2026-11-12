@@ -21,15 +21,11 @@ This resource does not have any attributes. It lists the name of the REST API.  
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.RootApi();
 apiInstance.root().then((data) => {

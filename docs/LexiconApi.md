@@ -22,15 +22,11 @@ Query the Lexicon. The Lexicon is an editable termbase / concordance that is int
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.LexiconApi();
 let memoryId = 56; // Number | A unique Memory identifier.
@@ -86,15 +82,11 @@ Update the Lexicon (Termbase as displayed in the ui) with a new term. The maximu
 ```javascript
 import LiltNode from 'lilt-node';
 let defaultClient = LiltNode.ApiClient.instance;
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
 // Configure HTTP basic authorization: BasicAuth
+// Use your REST API key as both username and password.
 let BasicAuth = defaultClient.authentications['BasicAuth'];
-BasicAuth.username = 'YOUR USERNAME';
-BasicAuth.password = 'YOUR PASSWORD';
+BasicAuth.username = 'YOUR API KEY';
+BasicAuth.password = 'YOUR API KEY';
 
 let apiInstance = new LiltNode.LexiconApi();
 let body = new LiltNode.LexiconUpdateParameters(); // LexiconUpdateParameters | 
